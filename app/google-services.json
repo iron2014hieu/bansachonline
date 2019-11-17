@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "803397535046",
+    "firebase_url": "https://bansachonline-b082a.firebaseio.com",
+    "project_id": "bansachonline-b082a",
+    "storage_bucket": "bansachonline-b082a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803397535046:android:fdca5e5ea9181653cd1147",
+        "android_client_info": {
+          "package_name": "iron2014.bansachonline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803397535046-jssf9g7l7hbst2davqsu9s2f8eoetna7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "iron2014.bansachonline",
+            "certificate_hash": "ced1478155c44fdad297356700d1568d12656e17"
+          }
+        },
+        {
+          "client_id": "803397535046-u99n8ji18jr1nccdq39alva6fsgia1i5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWIqosVetLKsKUBWlXzqofyAZa-zcz_9k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803397535046-u99n8ji18jr1nccdq39alva6fsgia1i5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
