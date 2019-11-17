@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".Activity.hoadon.HoadonActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:textColor="#F44336"
+        android:gravity="center"
+        android:text="@string/hoadon"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/edmasp"
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"
+            android:hint="Mã sản phẩm"
+            />
+        <EditText
+            android:id="@+id/edtensach"
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:hint="Tên sách"
+            />
+        <EditText
+            android:id="@+id/edgiaban"
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:hint="Giá bán"
+            />
+        <EditText
+            android:id="@+id/edsoluong"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:hint="Số lượng"
+            android:inputType="number"
+            />
+        <EditText
+            android:id="@+id/edngayxuat"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:hint="Ngày xuất"
+            />
+        <EditText
+            android:id="@+id/edtongtien"
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:hint="Tổng tiền"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_themhoadon"
+            android:layout_width="wrap_content"
+            android:text="Thêm hóa đơn"
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btn_huy"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:text="Hủy bỏ"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+</LinearLayout>

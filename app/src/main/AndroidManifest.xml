@@ -4,18 +4,104 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/book"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".LoginRegister.VerifyPhoneActivity" />
+        <activity android:name=".LoginRegister.LoginWithSMSActivity" />
+        <activity android:name=".Activity.hoadon.ListAllCommentActivity" />
+        <activity android:name=".fragmentVanChuyen.Activity.ChitietGiaoHangActivity" />
+        <activity android:name=".Activity.Library.BookDetailLibActivity" />
+        <activity android:name=".FirstStartActivity" />
+        <activity android:name=".MuahangActivity" />
+        <activity android:name=".Activity.EditGioHangActivity" />
+        <activity android:name=".Activity.DatmuaActivity" />
+        <activity android:name=".Activity.GetAllBookActivity" />
+        <activity android:name=".Activity.ShipperActivity" />
+        <activity android:name=".fragmentVanChuyen.Activity.ChitietVanChuyenActivity" />
+        <activity android:name=".Activity.SearchBooksActivity">
+
+            <!-- to identify this activity as "searchable" -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".CartDetailActivity" />
+        <activity android:name=".Activity.hoadon.RatingBookCommentActivity" />
+        <activity android:name=".Activity.BookDetailActivity" />
+        <activity android:name=".Activity.GetBookByTheloaiActivity" />
+        <activity android:name=".LoginRegister.ProfileActivity" />
+        <activity android:name=".Activity.Library.ViewBookActivity" />
+        <activity android:name=".Activity.hoadon.HoadonActivity" />
+        <activity android:name=".Activity.hoadon.Chitiethoadon_RatingActivity" />
+        <activity android:name=".Activity.hoadon.ChitiethoadonActivity" />
+        <activity android:name=".Main2Activity" />
+        <activity
+            android:name=".Activity.TheloaiChitietActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".LoginRegister.RegisterActivity"
+            android:hardwareAccelerated="false"
+            android:parentActivityName=".LoginRegister.LoginActivity" />
+        <activity android:name=".LoginRegister.LoginActivity" />
+        <activity
+            android:name=".LoginRegister.SettingsActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.SEARCH" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-    </application>
+            <!-- deeplink -->
+            <intent-filter android:label="@string/app_name">
+                <action android:name="android.intent.action.VIEW" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data
+                    android:host="myhost"
+                    android:pathPrefix="/login"
+                    android:scheme="myapp" />
+                <!-- note that the leading "/" is required for pathPrefix -->
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+
+        <receiver android:name=".Notif.HoadonReceiver" />
+        <receiver android:name=".Service.MaGiamGia">
+            <intent-filter>
+                <action android:name="android.intent.action.CUSTOM_INTENT_BAI3" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/khuyenmai_x32" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+
+        <service android:name=".Service.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4271678036251490~7420544422"/>
+    </application>
 </manifest>

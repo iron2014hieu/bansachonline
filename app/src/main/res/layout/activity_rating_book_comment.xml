@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/backgroundcolor"
+    android:backgroundTint="?attr/backgroundcolor"
+    tools:context=".Activity.hoadon.RatingBookCommentActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="@drawable/ic_close"
+        android:background="?attr/topbottomcolor"
+        app:titleTextColor="?attr/textcolor"
+        app:title="@string/nhanxet"/>
+    <RatingBar
+        android:id="@+id/ratingbarComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="?attr/textcolor"
+        app:errorEnabled="true"
+        android:layout_marginTop="15dp"
+        app:counterMaxLength="150"
+        app:counterEnabled="true"
+        android:padding="10dp">
+
+        <EditText
+            android:id="@+id/edtNhanxet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:text=""
+            android:maxLength="150"
+            android:hint="@string/nhapnhanxet"
+            android:textColorHint="?attr/textcolor"
+            android:textColor="?attr/textcolor"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

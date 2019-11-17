@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    android:background="?attr/backgroundcolor"
+    tools:context=".Activity.TheloaiChitietActivity">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgTheloai"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/profile2"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35sp"
+        android:backgroundTint="?attr/backgroundcolor">
+        <EditText
+            android:id="@+id/edtTentheloai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:textColor="?attr/textcolor"
+            android:textColorHint="?attr/textcolor"
+            android:hint="Tên thể loại sách"
+            android:background="@android:color/transparent"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25sp"
+        android:backgroundTint="?attr/backgroundcolor">
+        <EditText
+            android:id="@+id/edtMotatheloai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:textColor="?attr/textcolor"
+            android:textColorHint="?attr/textcolor"
+            android:hint="Mô tả thể loại sách"
+            android:background="@android:color/transparent"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:id="@+id/btnCapnhat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25sp"
+        android:background="?attr/buttoncolor"
+        android:textColor="?attr/textcolor"
+        android:text="Cập nhật"/>
+</LinearLayout>

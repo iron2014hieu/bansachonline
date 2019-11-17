@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+ android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="?attr/backgroundcolor">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+
+        android:orientation="horizontal">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_user_profile_iv"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/profile2"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/txtName_iv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_person_outline"
+                android:textColor="?attr/textcolor"
+                android:fontFamily="casual"
+                android:textSize="20dp"
+                android:text="Name"/>
+            <TextView
+                android:id="@+id/txtEmail_iv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_email_black_24dp"
+                android:textColor="?attr/textcolor"
+                android:textSize="20dp"
+                android:fontFamily="casual"
+                android:text="Email"/>
+            <ImageView
+                android:id="@+id/image_quyen"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="5dp"
+                android:src="@drawable/profile2"/>
+                <TextView
+                    android:id="@+id/txtAddress_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/textcolor"
+                    android:textSize="10dp"
+                    android:textStyle="italic"
+                    android:drawableLeft="@drawable/ic_location"
+                    android:fontFamily="casual"
+                    android:layout_gravity="right"
+                    android:text="Address"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

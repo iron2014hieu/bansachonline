@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/backgroundcolor"
+    tools:context=".MuahangActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_muahang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/topbottomcolor"
+        app:titleTextColor="?attr/textcolor"
+        app:title="@string/muahang"
+        app:navigationIcon="@drawable/danggiao"/>
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/backgroundcolor"
+        app:tabMode="scrollable"
+        app:tabGravity="fill"
+        app:tabBackground="?attr/backgroundcolor"
+        app:tabSelectedTextColor="#FF0000"
+        android:id="@+id/tablayout_id"/>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/fragment_container_muahang"
+        android:layout_below="@id/tablayout_id"
+        android:background="?attr/backgroundcolor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

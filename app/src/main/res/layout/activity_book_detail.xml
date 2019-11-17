@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/backgroundcolor"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Activity.BookDetailActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/backgroundcolor"
+        android:orientation="vertical">
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_sach_chitiet"
+                android:layout_width="match_parent"
+                app:navigationIcon="@drawable/ic_arrow"
+                app:title="@string/chitet_mua"
+                app:titleTextColor="?attr/textcolor"
+                android:backgroundTint="?attr/topbottomcolor"
+                android:layout_height="wrap_content"
+                />
+        </com.google.android.material.appbar.AppBarLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="?attr/backgroundcolor">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="?attr/backgroundcolor"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/imgBook"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/gmbapdful" />
+
+                <ImageView
+                    android:id="@+id/imgBookCopy"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/gmbapdful"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/edtTensach"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:hint="Teen sacs"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:textColor="?attr/textcolor"
+                    android:textColorHint="?attr/textcolor" />
+
+                <TextView
+                    android:id="@+id/edtGiaban"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:text="555"
+                    android:textColor="#FF0000"
+                    android:textColorHint="?attr/textcolor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="?attr/backgroundcolor"
+                    android:orientation="horizontal">
+                    <RatingBar
+                        android:id="@+id/ratingbar_book_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        style="@android:style/Widget.Holo.Light.RatingBar.Small"/>
+                    <TextView
+                        android:id="@+id/numrating_book_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="15dp"
+                        android:textColor="?attr/textcolor"
+                        android:text=""/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_gravity="center"
+                        android:textColor="?attr/textcolor"
+                        android:text="Đã bán 123"/>
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:background="@drawable/ic_fatevori"/>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/edtMotaChitiet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="15dp"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:hint="@string/mota_ban"
+                    android:textColor="?attr/textcolor"
+                    android:textColorHint="?attr/textcolor" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cungtacgia_ban" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_sach_tacgia"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/backgroundcolor"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="?attr/backgroundcolor"
+            android:layout_marginTop="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:visibility="gone"
+                android:background="?attr/backgroundcolor"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="z Sản phẩm liên quan" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="?attr/backgroundcolor"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="40dp">
+
+            <LinearLayout
+                android:id="@+id/linnear_nhanxet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="?attr/backgroundcolor"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/textcolor"
+                    android:textSize="15dp"
+                    android:text="@string/danhgia_ban" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="?attr/backgroundcolor"
+                    android:orientation="horizontal">
+                <RatingBar
+                    android:id="@+id/ratingbar_below_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    style="@android:style/Widget.Holo.Light.RatingBar.Small"/>
+                    <TextView
+                        android:id="@+id/numrating_below_deatil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text="4.7(2 đánh giá)"/>
+
+                    <TextView
+                        android:id="@+id/txtXemtataca"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="21dp"
+                        android:drawableRight="@drawable/ic_chevron_right"
+                        android:text="@string/tatca_ban"
+                        android:textColor="?attr/textcolor" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_nhanxet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/backgroundcolor"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom|end"
+        android:layout_weight="3"
+        android:background="?attr/backgroundcolor"
+        android:orientation="horizontal">
+        <ImageButton
+            android:background="?attr/buttoncolor"
+            android:id="@+id/btn_Share"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_share"
+            android:textSize="12dp"/>
+        <ImageButton
+            android:layout_marginLeft="5dp"
+            android:background="?attr/buttoncolor"
+            android:id="@+id/btn_chat"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_chat"
+            android:textSize="12dp"/>
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/btn_muangay"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:background="?attr/buttoncolor"
+            android:text="@string/mungay_ban"
+            android:textColor="?attr/textcolor"
+            android:textSize="12dp" />
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

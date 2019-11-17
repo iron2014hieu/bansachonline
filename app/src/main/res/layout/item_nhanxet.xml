@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="5dp"
+    android:backgroundTint="?attr/backgroundcolor"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/linearlayoutnx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="?attr/backgroundcolor"
+            android:layout_margin="3dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:background="?attr/backgroundcolor"
+                android:orientation="horizontal">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_prf_item"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentStart="true"
+                    android:src="@drawable/profile2" />
+
+                <TextView
+                    android:id="@+id/txtNameuser_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/img_prf"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="?attr/textcolor"
+                    android:text="Traanf hieeus tong" />
+            </LinearLayout>
+
+            <RatingBar
+                android:id="@+id/ratingbar_cuaban_item"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/backgroundcolor"
+                android:layout_gravity="left" />
+            <TextView
+                android:id="@+id/txtLoinhanxet_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/textcolor"
+                android:fontFamily="casual"
+                android:text="sdsds"/>
+        </LinearLayout>
+</androidx.cardview.widget.CardView>

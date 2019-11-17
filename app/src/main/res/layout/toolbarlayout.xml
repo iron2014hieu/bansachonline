@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:elevation="0dp">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_scrollFlags="scroll|enterAlways|snap"
+        app:titleTextColor="?attr/textcolor"
+        android:background="?attr/topbottomcolor"
+        app:elevation="0dp">
+        <RelativeLayout
+            android:id="@+id/cartRelativeLayout"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btnSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/cartButtonIV"
+                android:hint="@string/khuyenmaicucchat"
+                android:textSize="17sp"
+                android:gravity="left"
+                android:textColorHint="?attr/textcolor"
+                android:drawableRight="@drawable/ic_search_black_24dp"
+                android:backgroundTint="?attr/buttoncolor"/>
+            <ImageButton
+                android:id="@+id/cartButtonIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:visibility="gone"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="8dp"
+                android:background="@null"
+                android:clickable="false"
+                android:padding="5dip"
+                android:src="@drawable/ic_shopping_cart" />
+            <TextView
+                android:id="@+id/textNotify"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="9dp"
+                android:layout_marginEnd="-11dp"
+                android:layout_toStartOf="@+id/cartButtonIV"
+                android:background="@drawable/notification_circle"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="0"
+                android:textStyle="bold"
+                android:textColor="?attr/backgroundcolor"
+                android:textSize="10dp" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+</com.google.android.material.appbar.AppBarLayout>

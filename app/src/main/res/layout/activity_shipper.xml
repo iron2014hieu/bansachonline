@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.ShipperActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_vanchuyen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="#fff"
+        android:background="#2196F3"
+        app:title="@string/vanchuyen"
+        app:navigationIcon="@drawable/danggiao">
+        <ImageView
+            android:id="@+id/btnLogoutvc"
+            android:src="@drawable/ic_person_outline_black"
+            android:layout_gravity="right"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"/>
+    </androidx.appcompat.widget.Toolbar>
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/backgroundcolor"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabBackground="?attr/backgroundcolor"
+        app:tabSelectedTextColor="#FF0000"
+        android:id="@+id/tablayout_id"/>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/fragment_container_vanchuyen"
+        android:layout_below="@id/tablayout_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

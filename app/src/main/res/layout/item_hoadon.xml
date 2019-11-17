@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="?attr/backgroundcolor"
+    android:layout_margin="4dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/backgroundcolor"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="?attr/backgroundcolor"
+        android:gravity="left">
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center"
+        android:src="@drawable/bill"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/textcolor"
+            android:text="Hoa ddown: 81"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:id="@+id/tv_hoadon_stt"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FF0000"
+            android:text="Tong tien"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:id="@+id/tv_tongtien"/>
+    </LinearLayout>
+        <TextView
+            android:id="@+id/txtXemchitiet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:textColor="#FF0000"
+            android:text="@string/xemchitiet"/>
+    </LinearLayout>
+        <TextView
+            android:id="@+id/txtUoctinhnhan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="Nhận vào: 11/11/2019"
+            android:textSize="15dp"
+            android:textColor="#21DA2B"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

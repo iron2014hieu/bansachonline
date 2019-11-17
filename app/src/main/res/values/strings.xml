@@ -1,3 +1,107 @@
 <resources>
-    <string name="app_name">bansachonline</string>
+    <string name="app_name">Sách</string>
+    <string name="hello_blank_fragment">ddd</string>
+    <string name="string_internet_connection_not_available">Không có kết nối internet!</string>
+    <string name="thaydoingonngu">Ngôn ngữ</string>
+    <string name="chedotoi">Chế độ tối</string>
+    <string name="tatBatchedotoi">Tắt/bật chế độ tối</string>
+
+    <string name="thay_doi_ngon_ngu">Thay đổi ngôn ngữ</string>
+    <string name="chitet_mua">Chi tiết</string>
+    <string name="mota_ban">Mô tả sách</string>
+    <string name="cungtacgia_ban">Sản phẩm cùng tác giả</string>
+    <string name="danhgia_ban">Đánh giá sản phẩm</string>
+    <string name="tatca_ban">Xem tất cả</string>
+    <string name="mungay_ban">Mua ngay</string>
+    <string name="docsach">Đọc sách</string>
+    <string name="danhgia_doc">Xem đánh giá của bạn</string>
+    <string name="tenkhachhang">Tên khách hàng</string>
+    <string name="diachi">Địa chỉ</string>
+    <string name="sodienthoaikhach">Số điện thoại</string>
+    <string name="sanphammua">Sản phẩm</string>
+    <string name="thanhtoanhang">Thanh toán</string>
+    <string name="kientrama">Kiểm tra mã</string>
+    <string name="phuongthucvanchuyen">Phương thức vận chuyển</string>
+    <string name="tongtien">Tổng tiền: 10 VND</string>
+    <string name="tenkhachhangs">Khách hàng :</string>
+    <string name="diachis">Địa chỉ :</string>
+    <string name="SDT">SĐT :</string>
+    <string name="tongtiens">Tổng tiền :</string>
+    <string name="tinhtranghang">Tình trạng :</string>
+    <string name="xacnhandonhang">Xác nhận đơn hàng</string>
+    <string name="sanphams">Sản phẩm :</string>
+    <string name="gias">Giá :</string>
+    <string name="soluongs">Số lượng :</string>
+    <string name="them_sanpham">Thêm sản phẩm</string>
+    <string name="hoadon">Hóa đơn</string>
+    <string name="dangnhap">ĐĂNG NHẬP</string>
+    <string name="dangnhaps">Đăng nhập</string>
+    <string name="ghinholuachon">Ghi nhớ</string>
+    <string name="dangkytaikhoan">Chưa có tài khoản! Đăng ký ngay</string>
+    <string name="giohang">Giỏ hàng</string>
+    <string name="muahang">Mua hàng</string>
+    <string name="trangcanhan">Trang cá nhân</string>
+    <string name="ten">Tên</string>
+    <string name="email">Email</string>
+    <string name="dangxuat">Đăng xuất</string>
+    <string name="quanlytaikhoan">Quản lý tài khoản</string>
+    <string name="nhanxet">Nhận xét</string>
+    <string name="dangkytaikhaon">ĐĂNG KÍ TÀI KHOẢN</string>
+    <string name="dangky">Đăng ký</string>
+    <string name="khongtimthaysach">Không tìm thấy sách</string>
+    <string name="vanchuyen">Vận chuyển</string>
+    <string name="donhang">Đơn hàng</string>
+    <string name="lichsumua">Lịch sử mua hàng</string>
+    <string name="choxacnhan">Chờ xác nhận</string>
+    <string name="cholayhang">Chờ lấy hàng</string>
+    <string name="danggiao">Đang giao</string>
+    <string name="danhgia">Đánh giá</string>
+    <string name="sachdathich">Sách đã thích</string>
+    <string name="danhgiacutoi">Đánh giá của tôi</string>
+    <string name="thietlaptaikhoan">Thiết lập tài khoản</string>
+    <string name="caidatkhac">Cài đặt khác</string>
+    <string name="giohangtrong">Giỏ hàng trống</string>
+    <string name="thanhtoan">Thanh toán</string>
+    <string name="tieptucmua"><![CDATA[Tiếp tục mua sản phẩm >>]]></string>
+    <string name="bansachonline">Bán sách online</string>
+    <string name="thanhvien">Thành viên :</string>
+    <string name="chaomung">CHÀO MỪNG</string>
+    <string name="denvoitusach">Đến với tủ sách của chúng tôi</string>
+    <string name="batdaunao">Đắt đầu nào</string>
+    <string name="theloai">Thể loại</string>
+    <string name="truyenmoicapnhat">Truyện mới cập nhật</string>
+    <string name="xemthem"><![CDATA[Xem thêm >>]]></string>
+    <string name="nhaxuatban">Nhà xuất bản</string>
+    <string name="tacgia">Tác giả</string>
+    <string name="themdanhgia">Thêm đánh giá</string>
+    <string name="xoa">Xóa</string>
+    <string name="xemchitiet">Xem chi tiết</string>
+    <string name="makm">Mã :</string>
+    <string name="giam">Giảm :</string>
+    <string name="ngaybd">NBĐ :</string>
+    <string name="ngaykt">Ngày kết thúc</string>
+    <string name="cuoc">cước</string>
+    <string name="khuyenmaicucchat">Khuyến mãi cực chất!...</string>
+    <string name="trangchu">Trang chủ</string>
+    <string name="khuyenmai">Khuyến mãi</string>
+    <string name="thuvien">Thư viện</string>
+    <string name="thongbao">Thông báo</string>
+    <string name="canhan">Cá nhân</string>
+    <string name="nhapnhanxet">Nhập nhận xét</string>
+    <string name="guinhanxet">Gửi nhận xét</string>
+
+    <string name="xacnhantruoc">Xác nhận trước</string>
+    <string name="chuyenditruoc">Chuyển đi trước </string>
+    <string name="nhanhangtruoc">Nhận hàng trước</string>
+
+    <string-array name="query_suggestions">
+        <item>Doraemon tập 1</item>
+        <item>Doraemon tập 2</item>
+        <item>Lật đổ ông vua trì hoãn</item>
+        <item>Khéo ăn nói sẽ có được thiên hạ</item>
+        <item>Đời ngắn đừng ngủ dài</item>
+    </string-array>
+
+    <string name="ADMOB_APP_ID">ca-app-pub-4271678036251490~7420544422</string>
+    <string name="ABMOB_ID_TEST_BANNER">ca-app-pub-3940256099942544/6300978111</string>
 </resources>

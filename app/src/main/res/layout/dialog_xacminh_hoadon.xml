@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/linearLayoutdialog_Nhap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <Spinner
+                android:id="@+id/spinner_dialog_Countries"
+                android:layout_width="120dp"
+                android:layout_height="50dp" />
+
+            <EditText
+                android:id="@+id/editTextPhone_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:digits="0123456789"
+                android:hint="Nhập số điện thoại của bạn"
+                android:maxLength="10" />
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/btnxacminhsdt_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="?attr/buttoncolor"
+            android:textColor="?attr/textcolor"
+            android:textAllCaps="true"
+            android:text="Tiếp tục"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/container_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayoutdialog_Nhap"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/textView_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Vui lòng đợi"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textColor="@color/colorPrimary" />
+
+        <ProgressBar
+            android:id="@+id/progressbar_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/editTextCode_dialog"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:digits="0123456789"
+            android:drawablePadding="10dp"
+            android:hint="Nhập mã xác nhận"
+            android:inputType="phone"
+            android:maxLength="10" />
+
+        <Button
+            android:id="@+id/buttonsuccess_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Hoàn thành đơn hàng"
+            android:textAllCaps="true"
+            android:background="?attr/buttoncolor"
+            android:textColor="?attr/textcolor" />
+
+    </LinearLayout>
+</RelativeLayout>

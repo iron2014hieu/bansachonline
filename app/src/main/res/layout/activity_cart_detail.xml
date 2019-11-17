@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CartDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="?attr/backgroundcolor"
+        android:background="?attr/backgroundcolor"
+        android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbargh"
+            android:layout_width="match_parent"
+            app:navigationIcon="@drawable/ic_arrow"
+            app:title="@string/thanhtoanhang"
+            app:titleTextColor="?attr/textcolor"
+            android:background="?attr/topbottomcolor"
+            android:layout_height="wrap_content"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progress_hoadon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:padding="20dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tenkhachhang"
+            android:textColor="?attr/textcolor"
+            android:textSize="20dp" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true">
+            <EditText
+                android:id="@+id/edtTenkh"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="?attr/textcolor"
+                android:background="@drawable/rounded_edittext" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/diachi"
+            android:textColor="?attr/textcolor"
+            android:textSize="20dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true">
+            <EditText
+                android:id="@+id/edtDiachi"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="?attr/textcolor"
+                android:background="@drawable/rounded_edittext" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sodienthoaikhach"
+            android:textColor="?attr/textcolor"
+            android:textSize="20dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true">
+            <EditText
+                android:id="@+id/edtSdt"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="?attr/textcolor"
+                android:background="@drawable/rounded_edittext" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sanphammua"
+            android:textColor="?attr/textcolor"
+            android:textSize="20dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_create_bill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/backgroundcolor"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edtMaGiamGia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="?attr/textcolor"
+                android:textColorHint="?attr/textcolor"
+                android:hint="Nhập mã khuyến mãi" />
+
+            <Button
+                android:id="@+id/CheckMGG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#2196F3"
+                android:text="@string/kientrama"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/phuongthucvanchuyen"
+            android:textColor="?attr/textcolor"
+            android:textSize="20dp" />
+
+        <Spinner
+            android:id="@+id/spinner_countries"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="?attr/backgroundcolor"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtTongtienthanhtoan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tongtien"
+                android:textColor="#E91E63"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/btnThanhtoan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#2196F3"
+                android:text="@string/thanhtoanhang"
+                android:backgroundTint="?attr/buttoncolor"
+                android:textColor="?attr/textcolor" />
+        </LinearLayout>
+
+    </LinearLayout>
+    </LinearLayout>
+</ScrollView>

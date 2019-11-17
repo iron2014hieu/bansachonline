@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="?attr/backgroundcolor"
+    android:layout_margin="2dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:background="?attr/backgroundcolor"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contact phone"
+            android:textColor="?attr/textcolor"
+            android:textStyle="bold"
+            android:id="@+id/txt_soluong_cthd"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_height="75dp"
+                android:src="@drawable/book"
+                android:id="@+id/img_cthd"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/textcolor"
+                android:text="Contact name"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:id="@+id/txt_books_name_cthd"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contact phone"
+                android:textColor="?attr/textcolor"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:id="@+id/txt_giaban_cthd"/>
+            <TextView
+                android:id="@+id/txtDanhgia_sach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:drawableLeft="@drawable/rating"
+                android:layout_marginTop="5dp"
+                android:textColor="#EE1B1B"
+                android:text="@string/themdanhgia"/>
+            <RatingBar
+                android:id="@+id/ratingbar_item_cthd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                style="@style/Widget.AppCompat.RatingBar.Small"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

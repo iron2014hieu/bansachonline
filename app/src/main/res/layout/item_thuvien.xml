@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/textcolor"
+    android:layout_margin="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0.15dp"
+        android:background="?attr/backgroundcolor"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/textcolor"
+            android:text="Teen sach"
+            android:layout_marginTop="15dp"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_below="@id/img_book_lib"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/tv_name_book_lib"/>
+    <ImageView
+        android:id="@+id/img_book_lib"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/book"/>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
