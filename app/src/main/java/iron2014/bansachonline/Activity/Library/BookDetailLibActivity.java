@@ -86,6 +86,8 @@ public class BookDetailLibActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sendNotification();
+                Intent i = new Intent(getBaseContext(),AudioActivity.class);
+                startActivity(i);
             }
         });
 

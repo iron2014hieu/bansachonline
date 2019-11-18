@@ -6,4 +6,9 @@
 
     <color name="colorButton">#3d5f51</color>
     <color name="colorButtonActive">#1bea95</color>
+
+
+    <color name="colorGrey">#9b9b9b</color>
+    <color name="colorYellow">#fbfd5d</color>
+    <color name="colorDarkOrange">#f54339</color>
 </resources>
