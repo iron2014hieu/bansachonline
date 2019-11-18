@@ -1,6 +1,4 @@
 package iron2014.bansachonline.fragmentMain;
-
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,22 +10,16 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
 import iron2014.bansachonline.Activity.BookDetailActivity;
 import iron2014.bansachonline.Activity.GetAllBookActivity;
 import iron2014.bansachonline.Activity.GetBookByTheloaiActivity;
@@ -51,46 +43,35 @@ import iron2014.bansachonline.model.Tacgia;
 import iron2014.bansachonline.model.TheLoai;
 import retrofit2.Call;
 import retrofit2.Callback;
-
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class HomeFragment extends Fragment {
     UrlSql urlSql = new UrlSql();
-
     SliderView sliderView;
-
     TextView tvXemThem;
-
     TheLoaiAdapter theLoaiAdapter;
     SachAdapter sachAdapter;
     TacgiaAdapter tacgiaAdapter;
-
     ProgressBar progressBar;
     NhaxuatbanAdapter nhaxuatbanAdapter;
     private List<TheLoai> listTheloai = new ArrayList<>();
     private List<Books> listBookhome = new ArrayList<>();
     private List<Nhaxuatban> listNhaxuatbanHome = new ArrayList<>();
     private List<Tacgia> listTacgia = new ArrayList<>();
+    private List<Books> listSuggest = new ArrayList<>();
 
     private RecyclerView recyclerview_book_home;
     private RecyclerView recyclerview_nxb_home;
     private RecyclerView recyclerViewTheloai;
     private RecyclerView recyclerViewTacgia;
+    private RecyclerView recyclerview_book_suggest;
 
     private ApiInTerFaceNXB apiInTerFaceNXB;
     private ApiInTerFaceTacgia apiInTerFaceTacgia;
     private ApiInTerFaceTheloai apiInTerFaceTheloai;
     private ApiInTerFace apiInTerFace;
-
     ImageButton buttonRecord;
     View view;
-
+    String suggesst;
     SessionManager sessionManager;
-    public HomeFragment() {
-        // Required empty public constructor
-    }
     public static LibraryFragment newInstance() {
         LibraryFragment fragment = new LibraryFragment();
         return fragment;
@@ -99,7 +80,6 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
         addControls();
 
@@ -111,12 +91,13 @@ public class HomeFragment extends Fragment {
                 startActivity(i);
             }
         });
-
-
         sessionManager = new SessionManager(getContext());
         sachAdapter = new SachAdapter(getContext(), listBookhome);
         nhaxuatbanAdapter = new NhaxuatbanAdapter(getContext(), listNhaxuatbanHome);
         tacgiaAdapter = new TacgiaAdapter(getContext(), listTacgia);
+
+        HashMap<String,String> sugess = sessionManager.getSuggest();
+        suggesst = sugess.get(sessionManager.SUGGEST_BOOK);
 
         final SliderAdapterExample adapter = new SliderAdapterExample(getContext());
         adapter.setCount(5);
@@ -165,6 +146,11 @@ public class HomeFragment extends Fragment {
         recyclerViewTacgia.setLayoutManager(gridLayoutManager4);
         recyclerViewTacgia.setHasFixedSize(true);
 
+        //recyclerview_book_suggest
+        StaggeredGridLayoutManager gridLayoutManager5 =
+                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
+        recyclerview_book_suggest.setLayoutManager(gridLayoutManager5);
+        recyclerview_book_suggest.setHasFixedSize(true);
         //book get by thể loại
         recyclerViewTheloai.addOnItemTouchListener(new RecyclerTouchListener(getActivity(),
                 recyclerViewTheloai, new RecyclerTouchListener.ClickListener() {
@@ -173,7 +159,6 @@ public class HomeFragment extends Fragment {
                 TheLoai theloai =   listTheloai.get(position);
                 String id = String.valueOf(theloai.getMaloai());
                 String ten = theloai.getTenloai();
-
                 sessionManager.createSessionGuimatheloai(id,ten);
                 Intent intent = new Intent(getContext(), GetBookByTheloaiActivity.class);
                 intent.putExtra("matheloai", id);
@@ -263,10 +248,42 @@ public class HomeFragment extends Fragment {
 
             }
         }));
+        recyclerview_book_suggest.addOnItemTouchListener(new RecyclerTouchListener(getContext(),
+                recyclerview_book_suggest, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Books books =   listSuggest.get(position);
+                String masach = String.valueOf(books.getMasach());
+                String tensach = String.valueOf(books.getTensach());
+                String manxb = String.valueOf(books.getManxb());
+                String matheloai = String.valueOf(books.getMatheloai());
+                String ngayxb = books.getNgayxb();
+                String noidung = books.getNoidung();
+                String anhbia =books.getAnhbia();
+                String gia = String.valueOf( books.getGia());
+                String tennxb= String.valueOf(books.getTennxb());
+                String soluong = String.valueOf(books.getSoluong());
+                String tacgia = books.getTacgia();
+                String matacgia = String.valueOf(books.getMatacgia());
+
+
+                String tongdiem = String.valueOf(books.getTongdiem());
+                String landanhgia = String.valueOf(books.getLandanhgia());
+
+                sessionManager.createSessionSendInfomationBook(masach,tensach,manxb,matheloai,ngayxb,noidung,
+                        anhbia,gia,tennxb,soluong,tacgia,matacgia, tongdiem, landanhgia);
+                startActivity(new Intent(getContext(), BookDetailActivity.class));
+            }
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
         fetchTheloai();
         fetchUser("");
         fetchNXB();
         fetchTacgia();
+        fetchBookSuggest(suggesst);
         return view;
     }
     public void fetchTheloai(){
@@ -302,6 +319,27 @@ public class HomeFragment extends Fragment {
                 listBookhome= response.body();
                 sachAdapter = new SachAdapter(getContext(),listBookhome);
                 recyclerview_book_home.setAdapter(sachAdapter);
+                sachAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<Books>> call, Throwable t) {
+                progressBar.setVisibility(View.GONE);
+                Log.e("Error Search:","Error on: "+t.toString());
+            }
+        });
+    }
+    public void fetchBookSuggest(String key){
+        apiInTerFace = ApiClient.getApiClient().create(ApiInTerFace.class);
+        Call<List<Books>> call = apiInTerFace.getBookSuggest(key);
+
+        call.enqueue(new Callback<List<Books>>() {
+            @Override
+            public void onResponse(Call<List<Books>> call, retrofit2.Response<List<Books>> response) {
+                progressBar.setVisibility(View.GONE);
+                listSuggest= response.body();
+                sachAdapter = new SachAdapter(getContext(),listSuggest);
+                recyclerview_book_suggest.setAdapter(sachAdapter);
                 sachAdapter.notifyDataSetChanged();
             }
 
@@ -369,6 +407,6 @@ public class HomeFragment extends Fragment {
         sliderView = view.findViewById(R.id.imageSlider);
         recyclerview_nxb_home = view.findViewById(R.id.recyclerview_nxb_home);
         recyclerViewTacgia = view.findViewById(R.id.recyclerview_tacgia_home);
-
+        recyclerview_book_suggest=view.findViewById(R.id.recyclerview_book_suggest);
     }
 }

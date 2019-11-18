@@ -10,10 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cartview"
@@ -41,11 +49,6 @@
                     app:sliderStartAutoCycle="true" />
 
             </androidx.cardview.widget.CardView>
-            <ProgressBar
-                android:id="@+id/progress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
             <TextView
                 android:layout_marginLeft="5dp"
                 android:textColor="?attr/textcolor"
@@ -123,6 +126,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
             <TextView
+                android:id="@+id/textsuggest"
+                android:layout_marginLeft="5dp"
+                android:textColor="?attr/textcolor"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:layout_below="@+id/recyclerview_nxb_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tìm kiếm gần đây"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_gravity="center"
+                android:id="@+id/recyclerview_book_suggest"
+                android:backgroundTint="?attr/backgroundcolor"
+                android:layout_below="@id/textsuggest"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <TextView
                 android:id="@+id/texttacgia"
                 android:layout_marginLeft="5dp"
                 android:textColor="?attr/textcolor"
@@ -140,6 +161,7 @@
                 android:layout_below="@id/texttacgia"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
+        </LinearLayout>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
     <ImageButton

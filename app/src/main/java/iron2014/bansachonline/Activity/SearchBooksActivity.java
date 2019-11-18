@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -48,7 +49,6 @@ public class SearchBooksActivity extends AppCompatActivity {
     ApiInTerFace apiInTerFace;
     private SachAdapter sachAdapter;
     private List<Books> listBookSearch = new ArrayList<>();
-
     ImageButton buttonRecord;
     RecyclerView recyclerview_book_search;
     SessionManager sessionManager;
@@ -68,7 +68,7 @@ public class SearchBooksActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar_search);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-
+        //permission
         Dexter.withActivity(this)
                 .withPermissions(Manifest.permission.RECORD_AUDIO)
                 .withListener(new BaseMultiplePermissionsListener(){
@@ -83,7 +83,6 @@ public class SearchBooksActivity extends AppCompatActivity {
                     }
                 }).check();
 
-
         sachAdapter = new SachAdapter(SearchBooksActivity.this, listBookSearch);
         StaggeredGridLayoutManager gridLayoutManager =
                 new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
@@ -95,13 +94,21 @@ public class SearchBooksActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(SearchBooksActivity.this, "query: "+query, Toast.LENGTH_SHORT).show();
                 fetchBookRandom(query);
+                if (listBookSearch.size()>0) {
+                    sessionManager.createSuggestBook(query);
+                }
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
                 fetchBookRandom(newText);
+                if (listBookSearch.size()>0 && newText!=null) {
+                    sessionManager.createSuggestBook(newText);
+                }
+                Toast.makeText(SearchBooksActivity.this, "newText: "+newText, Toast.LENGTH_SHORT).show();
                 return false;
             }
         });

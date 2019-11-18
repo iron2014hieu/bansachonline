@@ -52,7 +52,8 @@ public class SessionManager {
     public static final String TENTHELOAI = "TENTHELOAI";
     // hóa đơn
     public static final String TINHTRANG_HOADON = "TENTHELOAI";
-
+    //suggest book
+    public static String SUGGEST_BOOK ="SUGGEST_BOOK";
     public SessionManager(Context context) {
         this.context = context;
         sharedPreferences = context.getSharedPreferences(PREF_NAMR, PRIVATE_MODE);
@@ -128,6 +129,10 @@ public class SessionManager {
         editor.putString(TINHTRANG_HOADON, tinhtrang);
         editor.apply();
     }
+    public void createSuggestBook(String suggest){
+        editor.putString(SUGGEST_BOOK, suggest);
+        editor.apply();
+    }
     // kiểm tra login
     public boolean isLOggin(){
         return sharedPreferences.getBoolean(LOGIN, false);
@@ -148,6 +153,11 @@ public class SessionManager {
         user.put(NAME, sharedPreferences.getString(NAME, null));
         user.put(QUYEN, sharedPreferences.getString(QUYEN, null));
         return user;
+    }
+    public HashMap<String,String> getSuggest(){
+        HashMap<String, String> suggest = new HashMap<>();
+        suggest.put(SUGGEST_BOOK, sharedPreferences.getString(SUGGEST_BOOK, ""));
+        return suggest;
     }
     public HashMap<String, String> getMAtheloai(){
         HashMap<String, String> theloai = new HashMap<>();
