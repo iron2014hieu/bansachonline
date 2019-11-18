@@ -14,30 +14,7 @@
         }
       },
       "oauth_client": [
-        {
-          "client_id": "803397535046-9n7ofr3pfp5dc8dqbs7cacsqpgjmjg1l.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "iron2014.bansachonline",
-            "certificate_hash": "fc7435c3aeb57a5d47b41b3719564c9fc46b00b9"
-          }
-        },
-        {
-          "client_id": "803397535046-jhd23t3o83prokbl7vd6qbaaiu74jibe.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "iron2014.bansachonline",
-            "certificate_hash": "1a02eb3d54ca1e10abe19ab1428207485cc94c98"
-          }
-        },
-        {
-          "client_id": "803397535046-v7fj4tpcbsukbq0ogpb2fqp4l15rp6ns.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "iron2014.bansachonline",
-            "certificate_hash": "ced1478155c44fdad297356700d1568d12656e17"
-          }
-        },
+        
         {
           "client_id": "803397535046-u99n8ji18jr1nccdq39alva6fsgia1i5.apps.googleusercontent.com",
           "client_type": 3
