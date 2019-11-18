@@ -33,6 +33,7 @@ import iron2014.bansachonline.Activity.ShipperActivity;
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
+import iron2014.bansachonline.URL.UrlSql;
 import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 
 public class LoginActivity extends AppCompatActivity {
@@ -43,13 +44,12 @@ public class LoginActivity extends AppCompatActivity {
     public SharedPreferences sharedpreferences;
     public CheckBox cbRemember;
     SharedPref sharedPref;
-
+    UrlSql urlSql;
 
     EditText edtEmail, edtPassword;
     CircleImageView cicler_logo;
     Button btnLogin;
     ProgressBar progressBar;
-    private String URL_LOGIN = "https://bansachonline.xyz/bansach/loginregister/login.php";
     SessionManager sessionManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         addControls();
         sessionManager = new SessionManager(this);
-
+        urlSql = new UrlSql();
         //khởi tạo shared preferences
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         loadData();//lấy dữ liệu đã lưu nếu có
@@ -69,12 +69,6 @@ public class LoginActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     String mEmail = edtEmail.getText().toString().trim();
                     String mPassword = edtPassword.getText().toString().trim();
-//                    edtEmail.setVisibility(View.VISIBLE);
-//                    edtPassword.setVisibility(View.VISIBLE);
-//                    progressBar.setVisibility(View.GONE);
-//                    cicler_logo.setVisibility(View.VISIBLE);
-//                    btnLogin.setVisibility(View.VISIBLE);
-//                    cbRemember.setVisibility(View.VISIBLE);
                     if (!mEmail.isEmpty() || !mPassword.isEmpty()){
                         if (cbRemember.isChecked()){
                             Login(mEmail,mPassword);
@@ -84,8 +78,8 @@ public class LoginActivity extends AppCompatActivity {
                             clearData();
                         }
                     }else {
-                        edtEmail.setError("Nhap email");
-                        edtPassword.setError("nhap password");
+                        edtEmail.setError("Vui lòng nhập email");
+                        edtPassword.setError("Vui lòng nhập password");
                     }
                 }
             });
@@ -94,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(getBaseContext(), VerifyPhoneActivity.class));
         }
     private void Login(final String email, final String password){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOGIN,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, urlSql.URL_LOGIN,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
