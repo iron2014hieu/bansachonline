@@ -230,25 +230,33 @@ public class CartDetailActivity extends AppCompatActivity {
         btnThanhtoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder alertDialog = new  AlertDialog.Builder(CartDetailActivity.this);
-                alertDialog.setMessage("Bạn có muốn thanh toán đơn hàng này không");
-                alertDialog.setIcon(R.drawable.ic_check_black_24dp);
-                alertDialog.setTitle("Đặt hàng");
-                alertDialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        displayAlertDialog();
-                    }
-                });
-                alertDialog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        progress_hoadon.setVisibility(View.GONE);
-                        btnThanhtoan.setVisibility(View.VISIBLE);
-                    }
+                if (edtTenkh.getText().toString().isEmpty()){
+                    Toast.makeText(CartDetailActivity.this, "Vui lòng nhập tên khách hàng", Toast.LENGTH_SHORT).show();
+                }else if (edtDiachi.getText().toString().isEmpty()){
+                    Toast.makeText(CartDetailActivity.this, "Vui lòng nhập địa chỉ", Toast.LENGTH_SHORT).show();
+                }else if (edtSdt.getText().toString().isEmpty()){
+                    Toast.makeText(CartDetailActivity.this, "Vui lòng nhập số điện thoại", Toast.LENGTH_SHORT).show();
+                }else {
+                    AlertDialog.Builder alertDialog = new  AlertDialog.Builder(CartDetailActivity.this);
+                    alertDialog.setMessage("Bạn có muốn thanh toán đơn hàng này không");
+                    alertDialog.setIcon(R.drawable.ic_check_black_24dp);
+                    alertDialog.setTitle("Đặt hàng");
+                    alertDialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            displayAlertDialog();
+                        }
+                    });
+                    alertDialog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            progress_hoadon.setVisibility(View.GONE);
+                            btnThanhtoan.setVisibility(View.VISIBLE);
+                        }
 
-                });
-                alertDialog.show();
+                    });
+                    alertDialog.show();
+                }
             }
         });
     }

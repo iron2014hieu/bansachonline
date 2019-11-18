@@ -49,42 +49,42 @@ public class SliderAdapterExample extends
 
         switch (position) {
             case 0:
-                viewHolder.textViewDescription.setText("This is slider item " + position);
+//                viewHolder.textViewDescription.setText("Trí tưởng tượng");
                 viewHolder.textViewDescription.setTextSize(16);
                 viewHolder.textViewDescription.setTextColor(Color.WHITE);
                 viewHolder.imageGifContainer.setVisibility(View.GONE);
                 Glide.with(viewHolder.itemView)
-                        .load("https://images.pexels.com/photos/218983/pexels-photo-218983.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
+                        .load("https://cdn6.f-cdn.com/contestentries/303039/7570371/5646ae3665d1d_thumb900.jpg")
                         .fitCenter()
                         .into(viewHolder.imageViewBackground);
                 break;
             case 2:
-                viewHolder.textViewDescription.setText("This is slider item " + position);
+//                viewHolder.textViewDescription.setText("Những điều mới lạ");
                 viewHolder.textViewDescription.setTextSize(16);
                 viewHolder.textViewDescription.setTextColor(Color.WHITE);
                 viewHolder.imageGifContainer.setVisibility(View.GONE);
                 Glide.with(viewHolder.itemView)
-                        .load("https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260")
+                        .load("http://blog.komo.vn/wp-content/uploads/2016/01/banner_gia-dinh-ngo.jpg")
                         .fitCenter()
                         .into(viewHolder.imageViewBackground);
                 break;
             case 4:
-                viewHolder.textViewDescription.setText("This is slider item " + position);
+//                viewHolder.textViewDescription.setText("Phát triển tư duy");
                 viewHolder.textViewDescription.setTextSize(16);
                 viewHolder.textViewDescription.setTextColor(Color.WHITE);
                 viewHolder.imageGifContainer.setVisibility(View.GONE);
                 Glide.with(viewHolder.itemView)
-                        .load("https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
+                        .load("https://3r98nw2w9uto3s66qn2k1ho2-wpengine.netdna-ssl.com/wp-content/uploads/sites/2/2019/09/pastorofkilsythpromo.png")
                         .fitCenter()
                         .into(viewHolder.imageViewBackground);
                 break;
             default:
                 viewHolder.textViewDescription.setTextSize(29);
                 viewHolder.textViewDescription.setTextColor(Color.WHITE);
-                viewHolder.textViewDescription.setText("Ohhhh! look at this!");
+//                viewHolder.textViewDescription.setText("Khám phá mới!");
                 viewHolder.imageGifContainer.setVisibility(View.VISIBLE);
                 Glide.with(viewHolder.itemView)
-                        .load(R.drawable.puma_offer)
+                        .load(R.drawable.uuu)
                         .fitCenter()
                         .into(viewHolder.imageViewBackground);
                 Glide.with(viewHolder.itemView)

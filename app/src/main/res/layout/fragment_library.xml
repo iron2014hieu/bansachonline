@@ -13,7 +13,6 @@
         android:layout_centerInParent="true"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_book_library"
-        android:layout_below="@+id/searchview"
         android:backgroundTint="?attr/backgroundcolor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

@@ -1,124 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:weightSum="2"
-    android:padding="10dp"
-    android:background="@drawable/cutomskhuyenmai"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_marginTop="10dp"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:visibility="gone"
-        android:text="id"
-        android:id="@+id/idKM"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
     <LinearLayout
-        android:layout_weight="1"
+        android:weightSum="2"
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
         <TextView
-            android:textStyle="bold"
-            android:textColor="?attr/textcolor"
-            android:textSize="15dp"
-            android:id="@+id/tvTenKM"
-            android:text="Tên KM"
-            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:text="id"
+            android:id="@+id/idKM"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <LinearLayout
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <TextView
                 android:textStyle="bold"
                 android:textColor="?attr/textcolor"
-                android:text="@string/makm"
-                android:layout_width="wrap_content"
+                android:textSize="15dp"
+                android:id="@+id/tvTenKM"
+                android:text="Tên KM"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-            <TextView
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="?attr/textcolor"
+                    android:text="@string/makm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/textcolor"
+                    android:id="@+id/tvMaKM"
+                    android:text="Mã KM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="?attr/textcolor"
+                    android:text="@string/giam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="?attr/textcolor"
+                    android:id="@+id/tvTinhChat"
+                    android:text="TC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="#F44336"
+                    android:layout_gravity="right"
+                    android:text="@string/ngaybd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="#3F51B5"
+                    android:id="@+id/tvNgayBatDau"
+                    android:layout_gravity="right"
+                    android:text=" Ngày bắt đầu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="#F44336"
+                    android:layout_gravity="right"
+                    android:text="HSD : "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="#3F51B5"
+                    android:id="@+id/tvNgayKetThuc"
+                    android:layout_gravity="right"
+                    android:text="@string/ngaykt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_copy"
                 android:padding="5dp"
-                android:textStyle="bold"
-                android:textColor="?attr/textcolor"
-                android:id="@+id/tvMaKM"
-                android:text="Mã KM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:background="@drawable/cutomsimage"
+                android:src="@drawable/ic_content_copy_black"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:textStyle="bold"
-                android:textColor="?attr/textcolor"
-                android:text="@string/giam"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:textStyle="bold"
-                android:textColor="?attr/textcolor"
-                android:id="@+id/tvTinhChat"
-                android:text="TC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-
     </LinearLayout>
-    <LinearLayout
-        android:layout_marginLeft="10dp"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:textStyle="bold"
-                android:textColor="#F44336"
-                android:layout_gravity="right"
-                android:text="@string/ngaybd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:textStyle="bold"
-                android:textColor="#3F51B5"
-                android:id="@+id/tvNgayBatDau"
-                android:layout_gravity="right"
-                android:text="Ngày bắt đầu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:textStyle="bold"
-                android:textColor="#F44336"
-                android:layout_gravity="right"
-                android:text="HSD : "
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:textStyle="bold"
-                android:textColor="#3F51B5"
-                android:id="@+id/tvNgayKetThuc"
-                android:layout_gravity="right"
-                android:text="@string/ngaykt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/img_copy"
-            android:padding="5dp"
-            android:background="@drawable/cutomsimage"
-            android:src="@drawable/ic_content_copy_black"
-            android:layout_width="40dp"
-            android:layout_height="40dp"/>
-    </LinearLayout>
-</LinearLayout>
+</androidx.cardview.widget.CardView>

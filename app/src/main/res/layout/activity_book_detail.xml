@@ -123,7 +123,15 @@
                     android:hint="@string/mota_ban"
                     android:textColor="?attr/textcolor"
                     android:textColorHint="?attr/textcolor" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="?attr/textcolor"/>
                 <TextView
+                    android:layout_marginTop="5dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/cungtacgia_ban" />

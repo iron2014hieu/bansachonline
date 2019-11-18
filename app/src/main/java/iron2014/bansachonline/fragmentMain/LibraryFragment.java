@@ -68,7 +68,7 @@ public class LibraryFragment extends Fragment {
         sessionManager = new SessionManager(getContext());
         // the loaij sachs
         StaggeredGridLayoutManager gridLayoutManager =
-                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+                new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerview_book_library.setLayoutManager(gridLayoutManager);
         recyclerview_book_library.setHasFixedSize(true);
 

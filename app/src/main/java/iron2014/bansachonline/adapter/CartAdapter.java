@@ -157,7 +157,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         private ImageView img_cart;
 
         private ImageButton btnGiam_sl,btntang_sl;
-        private Button btn_iv_Xoa_giohang;
+        private ImageView btn_iv_Xoa_giohang;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_name=(TextView)itemView.findViewById(R.id.tv_name_book_cart);

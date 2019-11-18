@@ -23,16 +23,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
+            <LinearLayout
                 android:id="@+id/cartview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true">
-
+                android:background="@drawable/bgchinhthuc"
+                android:layout_width="wrap_content"
+                android:layout_height="220dp"
+                android:orientation="vertical"
+                android:padding="10dp">
                 <com.smarteist.autoimageslider.SliderView
                     android:id="@+id/imageSlider"
                     android:layout_width="match_parent"
-                    android:layout_height="287dp"
+                    android:layout_height="200dp"
+                    android:background="@drawable/cutomsbg"
+                    android:padding="5dp"
                     app:sliderAnimationDuration="600"
                     app:sliderAutoCycleDirection="back_and_forth"
                     app:sliderAutoCycleEnabled="true"
@@ -47,27 +50,38 @@
                     app:sliderIndicatorUnselectedColor="#FFF"
                     app:sliderScrollTimeInSec="5"
                     app:sliderStartAutoCycle="true" />
-
-            </androidx.cardview.widget.CardView>
-            <TextView
-                android:layout_marginLeft="5dp"
-                android:textColor="?attr/textcolor"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:id="@+id/textView1"
+            </LinearLayout>
+            <LinearLayout
+                android:background="#2196F3"
+                android:id="@+id/linnear_theloai"
                 android:layout_below="@id/cartview"
-                android:text="@string/theloai"
-                android:layout_width="match_parent"
-                android:layout_height="30dp">
-            </TextView>
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_below="@id/textView1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/recyclerview_theloai"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/theloai"
+                    android:textColor="#fff"
+                    android:textSize="18dp"
+                    android:textStyle="normal"></TextView>
+
+                <LinearLayout
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/backgroundxml"
+                    android:layout_height="wrap_content">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/recyclerview_theloai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -79,7 +93,7 @@
                     android:layout_marginLeft="5dp"
                     android:textColor="?attr/textcolor"
                     android:layout_marginTop="10dp"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     android:textSize="18dp"
                     android:id="@+id/textView"
                     android:layout_below="@id/recyclerview_theloai"
@@ -88,7 +102,7 @@
                     android:layout_height="30dp">
                 </TextView>
                 <TextView
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     android:id="@+id/tvXemthem"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
@@ -100,6 +114,12 @@
                 </TextView>
 
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="5dp"
+                android:background="?attr/textcolor"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_gravity="center"
                 android:id="@+id/recyclerview_book_home"
@@ -107,35 +127,57 @@
                 android:layout_below="@id/inlayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-            <TextView
-                android:layout_marginLeft="5dp"
-                android:textColor="?attr/textcolor"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:id="@+id/textView2"
+            <LinearLayout
+                android:id="@+id/linnear_nhaxuaban"
+                android:background="#2196F3"
                 android:layout_below="@id/recyclerview_book_home"
-                android:text="@string/nhaxuatban"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_gravity="center"
-                android:id="@+id/recyclerview_nxb_home"
-                android:backgroundTint="?attr/backgroundcolor"
-                android:layout_below="@id/textView2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/recyclerview_book_home"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/nhaxuatban"
+                    android:textColor="#fff"
+                    android:textSize="18dp"
+                    android:textStyle="normal" />
+                <LinearLayout
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/backgroundxml"
+                    android:layout_height="wrap_content">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/recyclerview_nxb_home"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/textView2"
+                        android:layout_gravity="center"
+                        android:backgroundTint="?attr/backgroundcolor" />
+                </LinearLayout>
+            </LinearLayout>
             <TextView
                 android:id="@+id/textsuggest"
                 android:layout_marginLeft="5dp"
                 android:textColor="?attr/textcolor"
                 android:layout_marginTop="10dp"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 android:textSize="18dp"
                 android:layout_below="@+id/recyclerview_nxb_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tìm kiếm gần đây"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="5dp"
+                android:background="?attr/textcolor"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_gravity="center"
                 android:id="@+id/recyclerview_book_suggest"
@@ -143,24 +185,41 @@
                 android:layout_below="@id/textsuggest"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-            <TextView
-                android:id="@+id/texttacgia"
-                android:layout_marginLeft="5dp"
-                android:textColor="?attr/textcolor"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:layout_below="@+id/recyclerview_nxb_home"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tacgia"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_gravity="center"
-                android:id="@+id/recyclerview_tacgia_home"
-                android:backgroundTint="?attr/backgroundcolor"
-                android:layout_below="@id/texttacgia"
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:background="#2196F3"
+                android:layout_below="@id/linnear_nhaxuaban"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/texttacgia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/linnear_nhaxuaban"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/tacgia"
+                    android:textColor="#fff"
+                    android:textSize="18dp"
+                    android:textStyle="normal" />
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/backgroundxml"
+                    android:layout_height="wrap_content">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/recyclerview_tacgia_home"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/texttacgia"
+                        android:layout_gravity="center"
+                        android:backgroundTint="?attr/backgroundcolor" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
