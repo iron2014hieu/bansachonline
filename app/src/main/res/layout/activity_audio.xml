@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/colorPrimary"
+    android:background="?attr/backgroundcolor"
     tools:context=".Activity.Library.AudioActivity">
 
 
@@ -166,18 +166,20 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/txtTensach"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Good Morning Music"
+            android:text="Sách: Những chiêc đồng hồ kỳ lạ"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/colorYellow" />
 
         <TextView
+            android:id="@+id/txtTacgia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Morning Sound"
+            android:text="Tác giả: xxx"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             android:textColor="@color/colorYellow" />
 

@@ -19,7 +19,7 @@ public class MaGiamGia extends BroadcastReceiver {
                     } else if (Integer.parseInt(ma.substring(3, 9)) == 537129) {
                         Toast.makeText(context, "Giảm giá 20%", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(context, "Mã nhập sai !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Mã nhập dung !", Toast.LENGTH_SHORT).show();
                     }
                 } else if (km.equalsIgnoreCase("VIP")) {
                     if (Integer.parseInt(ma.substring(3, 9)) == 537128) {
@@ -27,7 +27,7 @@ public class MaGiamGia extends BroadcastReceiver {
                     } else if (Integer.parseInt(km.substring(3, 9)) == 537129) {
                         Toast.makeText(context, "Giảm giá 50%", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(context, "Mã nhập sai", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Mã nhập dung", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(context, "Mã giảm giá bắt đầu bằng MEN hoặc VIP", Toast.LENGTH_SHORT).show();

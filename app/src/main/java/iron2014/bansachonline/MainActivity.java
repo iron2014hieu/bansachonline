@@ -145,6 +145,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(getBaseContext(), ShipperActivity.class));
                 finish();
             }
+            if (quyen!=null&&quyen.equals("shipper")){
+                startActivity(new Intent(getBaseContext(), ShipperActivity.class));
+            }
 
         //Setup seerch view
         btnSearchView.setOnClickListener(new View.OnClickListener() {

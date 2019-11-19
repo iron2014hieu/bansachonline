@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +31,7 @@ import com.karumi.dexter.listener.multi.BaseMultiplePermissionsListener;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -55,6 +57,7 @@ public class SearchBooksActivity extends AppCompatActivity {
     TextView txtSearch_null;
     ProgressBar progressBar;
     SharedPref sharedPref;
+    ArrayList<String> arrayList= new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,9 +65,11 @@ public class SearchBooksActivity extends AppCompatActivity {
         sharedPref = new SharedPref(this);
         theme();
         addControl();
+        addArray();
 //        checkPermission();
         sessionManager = new SessionManager(this);
         buttonRecord.setVisibility(View.GONE);
+        searchView.setVoiceSearch(true);
         Toolbar toolbar = findViewById(R.id.toolbar_search);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -90,11 +95,12 @@ public class SearchBooksActivity extends AppCompatActivity {
         recyclerview_book_search.setAdapter(sachAdapter);
         recyclerview_book_search.setHasFixedSize(true);
 
+
+
         fetchBookRandom("");
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(SearchBooksActivity.this, "query: "+query, Toast.LENGTH_SHORT).show();
                 fetchBookRandom(query);
                 if (listBookSearch.size()>0) {
                     sessionManager.createSuggestBook(query);
@@ -105,27 +111,22 @@ public class SearchBooksActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 fetchBookRandom(newText);
-                if (listBookSearch.size()>0 && newText!=null) {
-                    sessionManager.createSuggestBook(newText);
-                }
-                Toast.makeText(SearchBooksActivity.this, "newText: "+newText, Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
-//            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//                @Override
-//                public boolean onQueryTextSubmit(String query) {
-//                    fetchBookRandom(query);
-//                    return false;
-//                }
-//
-//                @Override
-//                public boolean onQueryTextChange(String newText) {
-//                    fetchBookRandom(newText);
-//                    return false;
-//                }
-//            });
+        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+                searchView.clearFocus();// close the keyboard on load
+                searchView.setCursorDrawable(R.drawable.material_search);
+                buttonRecord.setVisibility(View.VISIBLE);
+            }
 
+            @Override
+            public void onSearchViewClosed() {
+                buttonRecord.setVisibility(View.GONE);
+            }
+        });
 
         recyclerview_book_search.addOnItemTouchListener(new RecyclerTouchListener(this,
                 recyclerview_book_search, new RecyclerTouchListener.ClickListener() {
@@ -159,19 +160,9 @@ public class SearchBooksActivity extends AppCompatActivity {
             }
         }));
 
-        searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
-//        searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
-//            @Override
-//            public boolean onSuggestionSelect(int position) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onSuggestionClick(int position) {
-//                return false;
-//            }
-//        });
+//        searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
 
+        searchView.setSuggestions(GetStringArray(arrayList));
         //speech to text
         final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         searchView.clearFocus();
@@ -180,18 +171,7 @@ public class SearchBooksActivity extends AppCompatActivity {
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
                 Locale.getDefault());
-        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
-            @Override
-            public void onSearchViewShown() {
-                searchView.clearFocus(); // close the keyboard on load
-                buttonRecord.setVisibility(View.VISIBLE);
-            }
 
-            @Override
-            public void onSearchViewClosed() {
-                buttonRecord.setVisibility(View.GONE);
-            }
-        });
 
         mSpeechRecognizer.setRecognitionListener(new RecognitionListener() {
             @Override
@@ -275,7 +255,21 @@ public class SearchBooksActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == MaterialSearchView.REQUEST_VOICE && resultCode == RESULT_OK) {
+            ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            if (matches != null && matches.size() > 0) {
+                String searchWrd = matches.get(0);
+                if (!TextUtils.isEmpty(searchWrd)) {
+                    searchView.setQuery(searchWrd, false);
+                }
+            }
 
+            return;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
     public void fetchBookRandom(String key){
         apiInTerFace = ApiClient.getApiClient().create(ApiInTerFace.class);
         Call<List<Books>> call = apiInTerFace.getBookRandom(key);
@@ -312,21 +306,34 @@ public class SearchBooksActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_search:
-                return true;
-            default:
-        }
-        return super.onOptionsItemSelected(item);
-
-    }
-    @Override
     public void onBackPressed() {
         if (searchView.isSearchOpen()){
             searchView.closeSearch();
         }else
             super.onBackPressed();
+    }
+    private void addArray(){
+        arrayList.add("Doraemon tập 1");
+        arrayList.add("Doraemon tập 2");
+        arrayList.add("Doraemon tập 3");
+        arrayList.add("Lật đổ ông vua trì hoãn");
+        arrayList.add("Khéo ăn nói sẽ có được thiên hạ");
+        arrayList.add("Đời ngắn đừng ngủ dài");
+        arrayList.add("Con chó nhỏ mang giỏ hoa hồng");
+        arrayList.add("Có hai con mèo ngồi bên cửa sổ");
+    }
+    public static String[] GetStringArray(ArrayList<String> arr)
+    {
+        // declaration and initialise String Array
+        String str[] = new String[arr.size()];
+
+        // ArrayList to Array Conversion
+        for (int j = 0; j < arr.size(); j++) {
+
+            // Assign each value to String array
+            str[j] = arr.get(j);
+        }
+        return str;
     }
     private void addControl() {
         searchView = findViewById(R.id.search_view_all);

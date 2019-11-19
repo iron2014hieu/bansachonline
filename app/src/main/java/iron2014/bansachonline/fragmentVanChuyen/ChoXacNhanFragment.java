@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,72 +49,74 @@ public class ChoXacNhanFragment extends Fragment {
         v = inflater.inflate(R.layout.fragment_cho_xac_nhan2, container, false);
         addControls();
         sessionManager = new SessionManager(getContext());
-        StaggeredGridLayoutManager gridLayoutManagerVeticl =
+                StaggeredGridLayoutManager gridLayoutManagerVeticl =
                 new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
-        recyclerview_choxacnhan.setLayoutManager(gridLayoutManagerVeticl);
-        recyclerview_choxacnhan.setHasFixedSize(true);
-        fetchHoadon();
+                recyclerview_choxacnhan.setLayoutManager(gridLayoutManagerVeticl);
+                recyclerview_choxacnhan.setHasFixedSize(true);
+                fetchHoadon();
 
-        recyclerview_choxacnhan.addOnItemTouchListener(new RecyclerTouchListener(getActivity(),
+                recyclerview_choxacnhan.addOnItemTouchListener(new RecyclerTouchListener(getActivity(),
                 recyclerview_choxacnhan, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Hoadon theloai =   listHoadon.get(position);
-                String id = String.valueOf(theloai.getMahoadon());
-                String ten = theloai.getTenkh();
-                String diachi = theloai.getDiachi();
-                String sdt = theloai.getSdt();
-                String tinhtrang = theloai.getTinhtrang();
-                String tongtien = String.valueOf(theloai.getTongtien());
+    @Override
+    public void onClick(View view, int position) {
+            Hoadon theloai =   listHoadon.get(position);
+            String id = String.valueOf(theloai.getMahoadon());
+            String ten = theloai.getTenkh();
+            String diachi = theloai.getDiachi();
+            String sdt = theloai.getSdt();
+            String tinhtrang = theloai.getTinhtrang();
+            String tongtien = String.valueOf(theloai.getTongtien());
 
-                sessionManager.createSessionGuimatheloai(id,ten);
-                Intent intent = new Intent(getContext(), ChitietVanChuyenActivity.class);
-                intent.putExtra("mahoadon", id);
-                intent.putExtra("tenkh", ten);
-                intent.putExtra("diachi", diachi);
-                intent.putExtra("sdt", sdt);
-                intent.putExtra("tinhtrang", tinhtrang);
-                intent.putExtra("tongtien", tongtien);
-                startActivity(intent);
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-
+            sessionManager.createSessionGuimatheloai(id,ten);
+            Intent intent = new Intent(getContext(), ChitietVanChuyenActivity.class);
+            intent.putExtra("mahoadon", id);
+            intent.putExtra("tenkh", ten);
+            intent.putExtra("diachi", diachi);
+            intent.putExtra("sdt", sdt);
+            intent.putExtra("tinhtrang", tinhtrang);
+            intent.putExtra("tongtien", tongtien);
+            startActivity(intent);
 
             }
-        }));
-        return  v;
-    }
+
+    @Override
+    public void onLongClick(View view, int position) {
+
+
+            }
+            }));
+            return  v;
+            }
     public void fetchHoadon(){
-        apiInTerFaceHoadon = ApiClient.getApiClient().create(ApiInTerFaceHoadon.class);
-        Call<List<Hoadon>> call = apiInTerFaceHoadon.get_all_donhang();
+            apiInTerFaceHoadon = ApiClient.getApiClient().create(ApiInTerFaceHoadon.class);
+            Call<List<Hoadon>> call = apiInTerFaceHoadon.get_all_donhang();
 
-        call.enqueue(new Callback<List<Hoadon>>() {
-            @Override
-            public void onResponse(Call<List<Hoadon>> call, retrofit2.Response<List<Hoadon>> response) {
-                //progressBar.setVisibility(View.GONE);
-                if (response.body().size() == 0){
-                    txtBillEmpty.setVisibility(View.VISIBLE);
-                    recyclerview_choxacnhan.setVisibility(View.GONE);
-                }else {
-                    txtBillEmpty.setVisibility(View.GONE);
-                    recyclerview_choxacnhan.setVisibility(View.VISIBLE);
-                    listHoadon= response.body();
-                    hoadonAdapter = new HoadonAdapter(getContext(),listHoadon);
-                    recyclerview_choxacnhan.setAdapter(hoadonAdapter);
-                    hoadonAdapter.notifyDataSetChanged();
-                }
+            call.enqueue(new Callback<List<Hoadon>>() {
+    @Override
+    public void onResponse(Call<List<Hoadon>> call, retrofit2.Response<List<Hoadon>> response) {
+            //progressBar.setVisibility(View.GONE);
+            if (response.body().size() == 0){
+            txtBillEmpty.setVisibility(View.VISIBLE);
+            recyclerview_choxacnhan.setVisibility(View.GONE);
+            }else {
+            txtBillEmpty.setVisibility(View.GONE);
+            recyclerview_choxacnhan.setVisibility(View.VISIBLE);
+            listHoadon= response.body();
+            hoadonAdapter = new HoadonAdapter(getContext(),listHoadon);
+            recyclerview_choxacnhan.setAdapter(hoadonAdapter);
+            hoadonAdapter.notifyDataSetChanged();
             }
-            @Override
-            public void onFailure(Call<List<Hoadon>> call, Throwable t) {
-                //progressBar.setVisibility(View.GONE);
-                Log.e("Error Search:","Error on: "+t.toString());
+    }
+
+    @Override
+    public void onFailure(Call<List<Hoadon>> call, Throwable t) {
+            //progressBar.setVisibility(View.GONE);
+            Log.e("Error Search:","Error on: "+t.toString());
             }
-        });
+            });
     }
     private void addControls(){
-        recyclerview_choxacnhan = v.findViewById(R.id.recyclerview_choxacnhan);
-        txtBillEmpty=v.findViewById(R.id.txtBill_empty_choxacnhan);
+            recyclerview_choxacnhan = v.findViewById(R.id.recyclerview_choxacnhan);
+            txtBillEmpty=v.findViewById(R.id.txtBill_empty_choxacnhan);
     }
 }

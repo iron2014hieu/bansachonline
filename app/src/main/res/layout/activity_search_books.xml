@@ -18,26 +18,30 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/backgroundcolor">
-
-                <com.google.android.material.appbar.AppBarLayout
-                    android:id="@+id/appbar"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbarlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/search_layover_bg">
+                <FrameLayout
+                    android:id="@+id/toolbar_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <androidx.appcompat.widget.Toolbar
-
                         android:id="@+id/toolbar_search"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:titleTextColor="?attr/textcolor"
+                        app:title="Tìm kiếm"
                         android:background="?attr/topbottomcolor"
                         app:navigationIcon="@drawable/ic_close"
-                        >
+                        />
                         <com.miguelcatalan.materialsearchview.MaterialSearchView
                             android:id="@+id/search_view_all"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                    </androidx.appcompat.widget.Toolbar>
-                </com.google.android.material.appbar.AppBarLayout>
+                            android:layout_height="wrap_content" />
+                </FrameLayout>
+            </com.google.android.material.appbar.AppBarLayout>
                         <ProgressBar
                             android:id="@+id/progress_search"
                             android:layout_width="wrap_content"
@@ -46,7 +50,7 @@
                            <LinearLayout
                                android:layout_width="match_parent"
                                android:layout_height="match_parent"
-                               android:layout_below="@id/appbar"
+                               android:layout_below="@id/appbarlayout"
                                android:background="?attr/backgroundcolor"
                                android:orientation="vertical">
                                <androidx.recyclerview.widget.RecyclerView

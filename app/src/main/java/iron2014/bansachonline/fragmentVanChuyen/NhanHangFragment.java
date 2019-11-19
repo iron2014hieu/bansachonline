@@ -1,6 +1,7 @@
 package iron2014.bansachonline.fragmentVanChuyen;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import iron2014.bansachonline.R;
 import iron2014.bansachonline.RecycerViewTouch.RecyclerTouchListener;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.adapter.hoadoncthd.HoadonAdapter;
+import iron2014.bansachonline.fragmentVanChuyen.Activity.ChitietVanChuyenActivity;
 import iron2014.bansachonline.model.Hoadon;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,23 +59,23 @@ public class NhanHangFragment extends Fragment {
                 recyclerview_nhanhang, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-//                Hoadon theloai =   listHoadon.get(position);
-//                String id = String.valueOf(theloai.getMahoadon());
-//                String ten = theloai.getTenkh();
-//                String diachi = theloai.getDiachi();
-//                String sdt = theloai.getSdt();
-//                String tinhtrang = theloai.getTinhtrang();
-//                String tongtien = String.valueOf(theloai.getTongtien());
-//
-//                sessionManager.createSessionGuimatheloai(id,ten);
-//                Intent intent = new Intent(getContext(), ChitietVanChuyenActivity.class);
-//                intent.putExtra("mahoadon", id);
-//                intent.putExtra("tenkh", ten);
-//                intent.putExtra("diachi", diachi);
-//                intent.putExtra("sdt", sdt);
-//                intent.putExtra("tinhtrang", tinhtrang);
-//                intent.putExtra("tongtien", tongtien);
-//                startActivity(intent);
+                Hoadon theloai =   listHoadon.get(position);
+                String id = String.valueOf(theloai.getMahoadon());
+                String ten = theloai.getTenkh();
+                String diachi = theloai.getDiachi();
+                String sdt = theloai.getSdt();
+                String tinhtrang = theloai.getTinhtrang();
+                String tongtien = String.valueOf(theloai.getTongtien());
+
+                sessionManager.createSessionGuimatheloai(id,ten);
+                Intent intent = new Intent(getContext(), ChitietVanChuyenActivity.class);
+                intent.putExtra("mahoadon", id);
+                intent.putExtra("tenkh", ten);
+                intent.putExtra("diachi", diachi);
+                intent.putExtra("sdt", sdt);
+                intent.putExtra("tinhtrang", tinhtrang);
+                intent.putExtra("tongtien", tongtien);
+                startActivity(intent);
 
             }
 

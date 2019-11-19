@@ -33,18 +33,18 @@ public class AudioActivity extends AppCompatActivity {
     private TextView tv_song_current_duration, tv_song_total_duration;
     private CircularImageView image;
 
-    private MediaPlayer mp;
+    private MediaPlayer mediaPlayer;
     private Handler mHandler = new Handler();
 
     private MusicUtils utils;
+
+    String audioUrl = "http://files.giaoduccongdong.com/ThuVienSachNoi/VanHoaGiaoDuc/TieuThuyet_VanHoc/TTVH_TheGioi/NhungChiecDongHoKyLa/01.NhungChiecDongHoKyLa-P01.mp3 ";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audio);
         setMusicPlayerComponents();
     }
-
-
     private void setMusicPlayerComponents() {
         parent_view = findViewById(R.id.parent_view);
         seek_song_progressbar = findViewById(R.id.seek_song_progressbar);
@@ -57,8 +57,8 @@ public class AudioActivity extends AppCompatActivity {
         tv_song_total_duration = findViewById(R.id.total_duration);
         image =  findViewById(R.id.image);
 
-        mp = new MediaPlayer();
-        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 btn_play.setImageResource(R.drawable.ic_play_arrow);
@@ -66,11 +66,10 @@ public class AudioActivity extends AppCompatActivity {
         });
 
         try {
-            mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            AssetFileDescriptor afd = getAssets().openFd("sai.mp3");
-            mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-            afd.close();
-            mp.prepare();
+            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+//            AssetFileDescriptor afd = getAssets().openFd("sai.mp3");
+            mediaPlayer.setDataSource(audioUrl);
+            mediaPlayer.prepare();
         } catch (Exception e) {
             Snackbar.make(parent_view, "Cannot load audio file", Snackbar.LENGTH_SHORT).show();
         }
@@ -90,9 +89,9 @@ public class AudioActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 mHandler.removeCallbacks(mUpdateTimeTask);
-                int totalDuration = mp.getDuration();
+                int totalDuration = mediaPlayer.getDuration();
                 int currentPosition = utils.progressToTimer(seekBar.getProgress(), totalDuration);
-                mp.seekTo(currentPosition);
+                mediaPlayer.seekTo(currentPosition);
                 mHandler.post(mUpdateTimeTask);
             }
         });
@@ -105,11 +104,11 @@ public class AudioActivity extends AppCompatActivity {
         btn_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                if (mp.isPlaying()) {
-                    mp.pause();
+                if (mediaPlayer.isPlaying()) {
+                    mediaPlayer.pause();
                     btn_play.setImageResource(R.drawable.ic_play_arrow);
                 } else {
-                    mp.start();
+                    mediaPlayer.start();
                     btn_play.setImageResource(R.drawable.ic_pause);
                     mHandler.post(mUpdateTimeTask);
                 }
@@ -161,15 +160,15 @@ public class AudioActivity extends AppCompatActivity {
     private Runnable mUpdateTimeTask = new Runnable() {
         public void run() {
             updateTimerAndSeekbar();
-            if (mp.isPlaying()) {
+            if (mediaPlayer.isPlaying()) {
                 mHandler.postDelayed(this, 100);
             }
         }
     };
 
     private void updateTimerAndSeekbar() {
-        long totalDuration = mp.getDuration();
-        long currentDuration = mp.getCurrentPosition();
+        long totalDuration = mediaPlayer.getDuration();
+        long currentDuration = mediaPlayer.getCurrentPosition();
 
         tv_song_total_duration.setText(utils.milliSecondsToTimer(totalDuration));
         tv_song_current_duration.setText(utils.milliSecondsToTimer(currentDuration));
@@ -179,7 +178,7 @@ public class AudioActivity extends AppCompatActivity {
     }
 
     private void rotateTheDisk() {
-        if (!mp.isPlaying()) return;
+        if (!mediaPlayer.isPlaying())
         image.animate().setDuration(100).rotation(image.getRotation() + 2f).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
@@ -187,6 +186,7 @@ public class AudioActivity extends AppCompatActivity {
                 super.onAnimationEnd(animation);
             }
         });
+        return;
     }
 
 
@@ -194,7 +194,7 @@ public class AudioActivity extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
         mHandler.removeCallbacks(mUpdateTimeTask);
-        mp.release();
+        mediaPlayer.release();
     }
 
 
