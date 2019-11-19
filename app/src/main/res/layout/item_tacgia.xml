@@ -31,7 +31,7 @@
                 android:gravity="right"
                 android:text="name"
                 android:padding="5dp"
-                android:textColor="#000000"
+                android:textColor="?attr/textcolor"
                 android:maxLength="10"
                 android:textSize="12dp"
                 android:textStyle="normal" />

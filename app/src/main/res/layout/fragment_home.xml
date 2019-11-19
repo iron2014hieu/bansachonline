@@ -93,18 +93,19 @@
                     android:textColor="?attr/textcolor"
                     android:layout_marginTop="10dp"
                     android:textStyle="normal"
-                    android:textSize="18dp"
+                    android:textSize="17dp"
                     android:id="@+id/textView"
                     android:layout_below="@id/recyclerview_theloai"
                     android:text="@string/truyenmoicapnhat"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp">
                 </TextView>
+
                 <TextView
+                    android:layout_marginRight="5dp"
                     android:textStyle="normal"
                     android:id="@+id/tvXemthem"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
                     android:gravity="right"
                     android:textColor="?attr/textcolor"
                     android:text="@string/xemthem"
@@ -113,6 +114,10 @@
                 </TextView>
 
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?attr/textcolor"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_gravity="center"
                 android:id="@+id/recyclerview_book_home"
@@ -158,11 +163,16 @@
                 android:textColor="?attr/textcolor"
                 android:layout_marginTop="10dp"
                 android:textStyle="normal"
-                android:textSize="18dp"
+                android:textSize="17dp"
                 android:layout_below="@+id/recyclerview_nxb_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tìm kiếm gần đây"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="?attr/textcolor"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_gravity="center"
                 android:id="@+id/recyclerview_book_suggest"
@@ -171,7 +181,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
             <LinearLayout
-                android:layout_marginTop="20dp"
                 android:background="#2196F3"
                 android:layout_below="@id/linnear_nhaxuaban"
                 android:layout_width="match_parent"

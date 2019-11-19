@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_giohang"
-    android:layout_marginTop="5dp"
-    android:padding="10dp"
-    android:orientation="horizontal">
+    android:layout_marginTop="5dp">
+    <LinearLayout
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <CheckBox
         android:visibility="gone"
         android:id="@+id/cb_giohang"
@@ -95,3 +97,4 @@
 </LinearLayout>
 </LinearLayout>
 </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -42,14 +42,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textSize="20dp"
+                    android:textColor="?attr/textcolor"
+                    android:text="Tổng thanh toán : "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
                     android:id="@+id/txtTongtien"
                     android:textSize="20dp"
                     android:textColor="#F44336"
-                    android:text="0 VNĐ"
-                    android:layout_width="match_parent"
+                    android:text="VNĐ"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
             <Button
+                android:layout_marginTop="10dp"
                 android:textColor="#fff"
                 android:background="#2196F3"
                 android:text="@string/thanhtoan"
@@ -57,6 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
+
         <TextView
             android:id="@+id/tvMuatiep"
             android:textStyle="bold"
