@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import iron2014.bansachonline.Activity.hoadon.ChitiethoadonActivity;
@@ -36,6 +37,7 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     Calendar defaultTime = Calendar.getInstance();
     SharedPref sharedPref;
+    String quyen;
     public HoadonAdapter(Context context, List<Hoadon> mData) {
         this.context = context;
         this.mData = mData;
@@ -52,6 +54,8 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
         final MyViewHolder viewHolder= new MyViewHolder(view);
         sessionManager = new SessionManager(context);
         sharedPref = new SharedPref(context);
+        HashMap<String,String> user = sessionManager.getUserDetail();
+        quyen = user.get(sessionManager.QUYEN);
         return viewHolder;
     }
 
@@ -59,7 +63,9 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int i) {
         holder.tv_hoadon_stt.setText("Hóa đơn "+mData.get(i).getMahoadon());
         holder.tv_tongtien.setText(mData.get(i).getTongtien()+"₫");
-
+        if (quyen.equals("shipper")){
+            holder.txtXemchitiet.setVisibility(View.GONE);
+        }
         holder.txtXemchitiet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +73,7 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
                 String mahd = String.valueOf(mData.get(i).getMahoadon());
                 String tinhtrang = mData.get(0).getTinhtrang();
                 intent.putExtra("mahd", mahd);
+                intent.putExtra("tinhtrang", tinhtrang);
                 sessionManager.createHoadon(tinhtrang);
                 context.startActivity(intent);
             }
@@ -86,6 +93,9 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
             holder.txtUoctinh.setText("Nhận hàng trước "+limitTime);
         }
 
+        if (mData.get(i).getTinhtrang().equals("userxacnhan")){
+            holder.txtUserXacnhan.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -98,6 +108,7 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
         private TextView tv_hoadon_stt;
         private TextView tv_tongtien;
         private TextView txtXemchitiet;
+        private TextView txtUserXacnhan;
         //tùy từng tab
         private TextView txtUoctinh;
 
@@ -109,6 +120,8 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
             txtXemchitiet=(TextView) itemView.findViewById(R.id.txtXemchitiet);
 
             txtUoctinh=(TextView) itemView.findViewById(R.id.txtUoctinhnhan);
+            txtUserXacnhan=(TextView) itemView.findViewById(R.id.txtUserXacnhan);
+            txtUserXacnhan.setVisibility(View.GONE);
         }
     }
     public static void UpDownDate() {

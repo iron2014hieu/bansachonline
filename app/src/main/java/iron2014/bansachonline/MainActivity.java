@@ -44,6 +44,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import iron2014.bansachonline.Activity.SearchBooksActivity;
+import iron2014.bansachonline.Activity.ShipperActivity;
 import iron2014.bansachonline.LoginRegister.LoginActivity;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.UrlSql;
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public  static ClipboardManager clipboardManager;
     public static ClipData clipData;
     boolean doubleBackToExitPressedOnce = false;
+    String quyen;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = new SharedPref(this);
@@ -133,11 +135,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             HashMap<String,String> user = sessionManager.getUserDetail();
             name = user.get(sessionManager.NAME);
             id = user.get(sessionManager.ID);
-            String quyen = user.get(sessionManager.QUYEN);
+            quyen = user.get(sessionManager.QUYEN);
             if (!InternetConnection.checkConnection(getApplicationContext())) {
                 Snackbar.make(linearLayoutMain,
                         R.string.string_internet_connection_not_available,
                         Snackbar.LENGTH_LONG).show();
+            }
+            if (quyen!=null&&quyen.equals("shipper")){
+                startActivity(new Intent(getBaseContext(), ShipperActivity.class));
+                finish();
             }
 
         //Setup seerch view

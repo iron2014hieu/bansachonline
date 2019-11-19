@@ -2,8 +2,10 @@ package iron2014.bansachonline.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,10 +13,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 
-import iron2014.bansachonline.Fragment.donhang.ChoXacNhanFragment;
 import iron2014.bansachonline.LoginRegister.ProfileActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.adapter.ViewPagerFM.TabViewPagerAdapter;
+import iron2014.bansachonline.fragmentVanChuyen.ChoXacNhanFragment;
 import iron2014.bansachonline.fragmentVanChuyen.GiaoHangFragment;
 import iron2014.bansachonline.fragmentVanChuyen.NhanHangFragment;
 
@@ -26,6 +28,7 @@ public class ShipperActivity extends AppCompatActivity {
     ImageView btnLogoutvc;
     String check;
     int select =2;
+    boolean doubleBackToExitPressedOnce = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +49,9 @@ public class ShipperActivity extends AppCompatActivity {
         });
         tabViewPagerAdapter = new TabViewPagerAdapter(getSupportFragmentManager());
         //add fragmenr here
-        tabViewPagerAdapter.AddFragment(new ChoXacNhanFragment(), "Chờ xác nhận");
+        tabViewPagerAdapter.AddFragment(new ChoXacNhanFragment(), "Nhận hàng");
         tabViewPagerAdapter.AddFragment(new GiaoHangFragment(), "Giao hàng");
-        tabViewPagerAdapter.AddFragment(new NhanHangFragment(), "Nhận giao");
+        tabViewPagerAdapter.AddFragment(new NhanHangFragment(), "Hoàn tất");
         viewPager.setAdapter(tabViewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         if (check==null){
@@ -62,7 +65,21 @@ public class ShipperActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-       //startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Nhấn thêm lần nữa để thoát!", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 
     @Override

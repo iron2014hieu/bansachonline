@@ -76,7 +76,7 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
         cthdAdapter = new CTHDAdapter(this, cthdList);
 
         StaggeredGridLayoutManager gridLayoutManagerVeticl =
-                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(gridLayoutManagerVeticl);
         recyclerView.setHasFixedSize(true);
 
@@ -88,7 +88,6 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
                 if (tinhtrang.equals("cholayhang")) {
                     UpdateTinhtrang( "danggiao", URL_UDATE);
                 }
-
             }
         });
     }
@@ -129,7 +128,7 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                    Log.e("update tt er ", error.toString());
+                Log.e("update tt er ", error.toString());
             }
         })
         {

@@ -12,4 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <Button
+        android:visibility="gone"
+        android:id="@+id/btnXacNhanHang"
+        android:textColor="#fff"
+        android:background="#2196F3"
+        android:text="Xác nhận"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>

@@ -4,8 +4,9 @@
     android:layout_height="wrap_content"
     android:backgroundTint="?attr/backgroundcolor"
     android:layout_margin="4dp"
-    >
+    android:padding="5dp">
     <LinearLayout
+        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/backgroundcolor"
@@ -17,10 +18,10 @@
         android:background="?attr/backgroundcolor"
         android:gravity="left">
     <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
-        android:src="@drawable/bill"/>
+        android:src="@drawable/icon_bill"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,20 +48,41 @@
             android:id="@+id/txtXemchitiet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center"
+            android:gravity="right"
             android:padding="5dp"
             android:textColor="#FF0000"
             android:text="@string/xemchitiet"/>
     </LinearLayout>
-        <TextView
-            android:id="@+id/txtUoctinhnhan"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:weightSum="2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="Nhận vào: 11/11/2019"
-            android:textSize="15dp"
-            android:textColor="#21DA2B"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtUoctinhnhan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:text="Nhận vào: 11/11/2019"
+                android:textColor="#21DA2B"
+                android:textSize="15dp" />
+
+            <TextView
+                android:textStyle="normal"
+                android:layout_weight="1"
+                android:id="@+id/txtUserXacnhan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="Chờ Xác Nhận"
+                android:textSize="18dp"
+                android:textColor="#3F51B5"/>
+
+
+        </LinearLayout>
+
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

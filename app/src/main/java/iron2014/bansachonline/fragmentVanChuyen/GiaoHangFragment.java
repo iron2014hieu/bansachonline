@@ -74,7 +74,6 @@ public class GiaoHangFragment extends Fragment {
                 intent.putExtra("tinhtrang", tinhtrang);
                 intent.putExtra("tongtien", tongtien);
                 startActivity(intent);
-
             }
 
             @Override

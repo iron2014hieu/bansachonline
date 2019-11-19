@@ -63,6 +63,7 @@ public class HoadonRatingAdapter extends RecyclerView.Adapter<HoadonRatingAdapte
             }
         });
         holder.txtUoctinh.setVisibility(View.GONE);
+        holder.txtUserXacnhan.setVisibility(View.GONE);
     }
 
     @Override
@@ -75,6 +76,8 @@ public class HoadonRatingAdapter extends RecyclerView.Adapter<HoadonRatingAdapte
         private TextView tv_hoadon_stt;
         private TextView tv_tongtien;
         private TextView txtXemchitiet;
+        TextView txtUserXacnhan;
+
         //tùy từng tab
         private TextView txtUoctinh;
 
@@ -86,6 +89,7 @@ public class HoadonRatingAdapter extends RecyclerView.Adapter<HoadonRatingAdapte
             txtXemchitiet=(TextView) itemView.findViewById(R.id.txtXemchitiet);
 
             txtUoctinh=(TextView) itemView.findViewById(R.id.txtUoctinhnhan);
+            txtUserXacnhan= itemView.findViewById(R.id.txtUserXacnhan);
         }
     }
     public interface ProductItemActionListener{

@@ -70,7 +70,6 @@
 
                 <LinearLayout
                     android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_width="match_parent"
                     android:background="@drawable/backgroundxml"
                     android:layout_height="wrap_content">
@@ -105,7 +104,7 @@
                     android:textStyle="normal"
                     android:id="@+id/tvXemthem"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="20dp"
                     android:gravity="right"
                     android:textColor="?attr/textcolor"
                     android:text="@string/xemthem"
@@ -114,12 +113,6 @@
                 </TextView>
 
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="5dp"
-                android:background="?attr/textcolor"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_gravity="center"
                 android:id="@+id/recyclerview_book_home"
@@ -147,12 +140,10 @@
                     android:textStyle="normal" />
                 <LinearLayout
                     android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_width="match_parent"
                     android:background="@drawable/backgroundxml"
                     android:layout_height="wrap_content">
                     <androidx.recyclerview.widget.RecyclerView
-                        android:layout_marginLeft="5dp"
                         android:id="@+id/recyclerview_nxb_home"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -172,12 +163,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tìm kiếm gần đây"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="5dp"
-                android:background="?attr/textcolor"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_gravity="center"
                 android:id="@+id/recyclerview_book_suggest"
@@ -206,12 +191,10 @@
                 <LinearLayout
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_width="match_parent"
                     android:background="@drawable/backgroundxml"
                     android:layout_height="wrap_content">
                     <androidx.recyclerview.widget.RecyclerView
-                        android:layout_marginLeft="5dp"
                         android:id="@+id/recyclerview_tacgia_home"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
