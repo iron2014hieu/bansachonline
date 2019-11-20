@@ -103,6 +103,7 @@ public class CartDetailActivity extends AppCompatActivity {
     int Giatri;
     int Phivanchuyen = 0;
     SharedPref sharedPref;
+    private String tenkh,diachi,sodienthoai;
     private NotificationManagerCompat notificationManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,15 +124,26 @@ public class CartDetailActivity extends AppCompatActivity {
         sessionManager = new SessionManager(this);
         notificationManager = NotificationManagerCompat.from(this);
         mAuth = FirebaseAuth.getInstance();
-
         HashMap<String,String> user = sessionManager.getUserDetail();
         mauser_session = user.get(sessionManager.ID);
+        tenkh = user.get(sessionManager.NAME);
+        diachi = user.get(sessionManager.ADDRESS);
+        sodienthoai = user.get(sessionManager.PHONE);
+        Toast.makeText(this, "ten "+tenkh+" diachi "+diachi+" sdt "+sodienthoai, Toast.LENGTH_SHORT).show();
+
         Intent intent = getIntent();
         tongtien = Integer.valueOf(intent.getStringExtra("tongtien"));
 
         Toolbar toolbar = findViewById(R.id.toolbargh);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
+        try {
+            edtDiachi.setText(diachi);
+            edtSdt.setText(sodienthoai);
+        }catch (Exception e){
+
+        }
+        edtTenkh.setText(tenkh);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

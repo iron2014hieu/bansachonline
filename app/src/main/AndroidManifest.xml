@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="iron2014.bansachonline">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,7 +15,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
         <activity android:name=".Activity.Library.AudioActivity"></activity>
         <activity android:name=".LoginRegister.VerifyPhoneActivity" />
         <activity android:name=".LoginRegister.LoginWithSMSActivity" />
@@ -23,10 +25,8 @@
         <activity android:name=".Activity.Library.BookDetailLibActivity" />
         <activity android:name=".FirstStartActivity" />
         <activity android:name=".MuahangActivity" />
-        <activity android:name=".Activity.EditGioHangActivity" />
-        <activity android:name=".Activity.DatmuaActivity" />
         <activity android:name=".Activity.GetAllBookActivity" />
-        <activity android:name=".Activity.ShipperActivity" />
+        <activity android:name=".fragmentVanChuyen.Activity.ShipperActivity" />
         <activity android:name=".fragmentVanChuyen.Activity.ChitietVanChuyenActivity" />
         <activity android:name=".Activity.SearchBooksActivity">
 

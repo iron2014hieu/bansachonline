@@ -24,16 +24,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import iron2014.bansachonline.Activity.ShipperActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
-import iron2014.bansachonline.Fragment.donhang.DanhGiaFragment;
-import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.MuahangActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.adapter.hoadoncthd.CTHDAdapter;
-import iron2014.bansachonline.fragmentVanChuyen.Activity.ChitietGiaoHangActivity;
-import iron2014.bansachonline.fragmentVanChuyen.Activity.ChitietVanChuyenActivity;
 import iron2014.bansachonline.model.CTHD;
 import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 import retrofit2.Call;

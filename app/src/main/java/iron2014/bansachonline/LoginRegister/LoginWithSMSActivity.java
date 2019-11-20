@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -31,11 +30,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import iron2014.bansachonline.Activity.ShipperActivity;
+import iron2014.bansachonline.fragmentVanChuyen.Activity.ShipperActivity;
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
@@ -150,10 +147,11 @@ public class LoginWithSMSActivity extends AppCompatActivity {
                                     JSONObject object = jsonArray.getJSONObject(i);
                                     String name = object.getString("name").trim();
                                     String email = object.getString("email").trim();
+                                    String address = object.getString("address");
                                     String phone = object.getString("phone").trim();
                                     String id = object.getString("id").trim();
                                     String quyen = object.getString("quyen").trim();
-                                    sessionManager.createSession(id, email,phone, name, quyen);
+                                    sessionManager.createSession(id, email,address,phone, name, quyen);
                                     Log.e("loginphone",name+email+phone+id+quyen);
                                     if(quyen.equals("shipper")){
                                         startActivity(new Intent(LoginWithSMSActivity.this, ShipperActivity.class));

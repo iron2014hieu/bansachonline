@@ -49,10 +49,6 @@ public class CartListFragment extends Fragment {
     TextView tvMuatiep, tvTTgiohang;
 
     View view;
-    public CartListFragment() {
-        // Required empty public constructor
-    }
-    Toolbar toolbar;
     ApiInTerFaceDatmua apiInTerFaceDatmua;
     CartAdapter cartAdapter;
     RecyclerView recyclerView_dat_mua;
@@ -61,11 +57,9 @@ public class CartListFragment extends Fragment {
     int sizeList;
     public  static TextView txtTongtien;
     private Button btnnext;
-    int tongTien =0;
     String quyen, name, idUser;
     SessionManager sessionManager;
-    int tienTungsach, giaban,soluong;
-    int masach;
+    public static int total=0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -94,7 +88,6 @@ public class CartListFragment extends Fragment {
         name = user.get(sessionManager.NAME);
         idUser = user.get(sessionManager.ID);
 
-        tongTien += CartAdapter.tongTienSach;
         StaggeredGridLayoutManager gridLayoutManager =
                 new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         recyclerView_dat_mua.setLayoutManager(gridLayoutManager);
@@ -104,13 +97,11 @@ public class CartListFragment extends Fragment {
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), CartDetailActivity.class);
-                String tien = txtTongtien.getText().toString();
-                intent.putExtra("tongtien", tien);
-                startActivity(intent);
+                            Intent intent = new Intent(getContext(), CartDetailActivity.class);
+                            intent.putExtra("tongtien", String.valueOf(total));
+                            startActivity(intent);
             }
         });
-
         return view;
     }
 
@@ -136,15 +127,29 @@ public class CartListFragment extends Fragment {
                     btnnext.setVisibility(View.VISIBLE);
                     txtTongtien.setVisibility(View.VISIBLE);
                     tvTTgiohang.setVisibility(View.GONE);
-                    btnnext.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(getContext(), CartDetailActivity.class);
-                            String tien = txtTongtien.getText().toString();
-                            intent.putExtra("tongtien", tien);
-                            startActivity(intent);
-                        }
-                    });
+                    for (int i=0;i<sizeList;i++){
+                        DatMua datMua = listDatmua.get(i);
+                        total = (Integer.valueOf(datMua.getGia()))*(Integer.valueOf(datMua.getSoluong()));
+
+                        txtTongtien.setText(total+" ");
+                    }
+
+//                    btnnext.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//
+//                            for (int n =0;n<listDatmua.size();n++){
+//                                soluong = listDatmua.get(n).getSoluong();
+//                                giaban = listDatmua.get(n).getGia();
+//                                tientungsach = soluong*giaban;
+//                                tongTien+=tientungsach;
+//                            }
+//                            Intent intent = new Intent(getContext(), CartDetailActivity.class);
+//                            intent.putExtra("tongtien", tongTien);
+//                            startActivity(intent);
+//                        }
+//                    });
+//                    txtTongtien.setText(String.valueOf(tongTien));
                 }
             }
 
@@ -190,5 +195,8 @@ public class CartListFragment extends Fragment {
             }
         };
         requestQueue.add(stringRequest);
+    }
+    private void loadListCart() {
+        cartAdapter.notifyDataSetChanged();
     }
 }

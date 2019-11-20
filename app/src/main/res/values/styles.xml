@@ -9,7 +9,7 @@
         <item name="backgroundcolor">#fcfcfc</item>
         <item name="backgroundcolor2">#C0BFBF</item>
         <item name="cardbackground">#F0EBEB</item>
-        <item name="textcolor">#A3A3A3</item>
+        <item name="textcolor">#383838</item>
         <item name="tincolor">#000000</item>
         <item name="buttoncolor">#BFDDF7</item>
         <item name="topbottomcolor">#2196F3</item>
@@ -44,7 +44,7 @@
         <item name="searchBackground">?attr/backgroundcolor</item>
 
         <!-- Change voice icon -->
-        <item name="searchVoiceIcon">@drawable/ic_action_voice_search_inverted</item>
+        <item name="searchVoiceIcon">@drawable/ic_mic</item>
 
         <!-- Change clear text icon -->
         <item name="searchCloseIcon">@drawable/ic_action_navigation_close_inverted</item>
@@ -53,7 +53,7 @@
         <item name="searchBackIcon">@drawable/ic_action_navigation_arrow_back_inverted</item>
 
         <!-- Change icon for the suggestions -->
-        <item name="searchSuggestionIcon">@drawable/ic_suggestion</item>
+        <item name="searchSuggestionIcon">@drawable/ic_call</item>
 
         <!-- Change background for the suggestions list view -->
         <item name="searchSuggestionBackground">@android:color/white</item>

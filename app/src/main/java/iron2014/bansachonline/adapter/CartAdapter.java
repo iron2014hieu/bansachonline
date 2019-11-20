@@ -25,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -34,6 +35,8 @@ import java.util.Map;
 import iron2014.bansachonline.Fragment.CartListFragment;
 import iron2014.bansachonline.Main2Activity;
 import iron2014.bansachonline.R;
+import iron2014.bansachonline.URL.UrlSql;
+import iron2014.bansachonline.model.Cart;
 import iron2014.bansachonline.model.DatMua;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
@@ -41,9 +44,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     public static List<DatMua> listGiohang;
     public static int tongTienSach;
     private int tongTienTungsach;
-
-    int giaBan = 0;
-    private  int soLuong;
+    UrlSql urlSql;
+    private  int total =0;
     String iduser, masach;
     public  static String url_UD = "https://bansachonline.xyz/bansach/giohang/update_status_carts.php";
 
@@ -57,7 +59,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
         view = LayoutInflater.from(context).inflate(R.layout.item_giohang, viewGroup, false);
-
+        urlSql = new UrlSql();
         final MyViewHolder holder= new MyViewHolder(view);
         return holder;
     }
@@ -67,46 +69,30 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         holder.checkBox.setTag(i);
         holder.tv_name.setText(listGiohang.get(i).getSanpham());
         holder.tv_giaban.setText(listGiohang.get(i).getGia()+" VNĐ");
-        holder.tv_soluongmua.setText(String.valueOf(listGiohang.get(i).getSoluong()));
+        holder.btn_quality.setNumber(String.valueOf(listGiohang.get(i).getSoluong()));
         try {
             Picasso.with(context).load(listGiohang.get(i).getHinhanh()).into(holder.img_cart);
         }catch (Exception e){
 
         }
         final String maSach = String.valueOf(listGiohang.get(i).getMasach());
-        tongTienTungsach = listGiohang.get(i).getSoluong()*listGiohang.get(i).getGia();
+
         if (listGiohang.get(i).getSelected()==1){
             holder.checkBox.setChecked(true);
-            tongTienTungsach = listGiohang.get(i).getGia() * listGiohang.get(i).getSoluong();
-            tongTienSach +=tongTienTungsach;
-            CartListFragment.txtTongtien.setText(String.valueOf(tongTienSach));
-        }else  {
+        }else {
             holder.checkBox.setChecked(false);
-            tongTienTungsach = listGiohang.get(i).getGia() * listGiohang.get(i).getSoluong();
-            CartListFragment.txtTongtien.setText(String.valueOf(tongTienSach));
         }
-
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Integer pos = (Integer) holder.checkBox.getTag();
                 if (isChecked) {
-                    listGiohang.get(pos).setSelected(1);
                     update_selected(maSach,"1", url_UD);
-                        if(listGiohang.get(i).getSelected() == 1) {
-                            tongTienTungsach = listGiohang.get(i).getGia() * listGiohang.get(i).getSoluong();
-                            tongTienSach +=tongTienTungsach;
-                            CartListFragment.txtTongtien.setText(String.valueOf(tongTienSach));
-                    }
+                    tongTienTungsach = listGiohang.get(i).getGia() * listGiohang.get(i).getSoluong();
+                    tongTienSach +=tongTienTungsach;
                 } else {
-                    listGiohang.get(pos).setSelected(0);
                     update_selected(maSach,"0", url_UD);
-                        if (listGiohang.get(i).getSelected() == 0){
-                            tongTienTungsach = listGiohang.get(i).getGia() * listGiohang.get(i).getSoluong();
-                            tongTienSach -=tongTienTungsach;
-                            CartListFragment.txtTongtien.setText(String.valueOf(tongTienSach));
-                    }
-
+                    tongTienTungsach = listGiohang.get(i).getGia() * listGiohang.get(i).getSoluong();
+                    tongTienSach -=tongTienTungsach;
                 }
             }
         });
@@ -114,34 +100,29 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         iduser = listGiohang.get(i).getMauser();
         masach = String.valueOf(listGiohang.get(i).getMasach());
 
-        holder.btntang_sl.setOnClickListener(new View.OnClickListener() {
+        holder.btn_quality.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
             @Override
-            public void onClick(View v) {
-                soLuong = listGiohang.get(i).getSoluong();
-                holder.tv_soluongmua.setText(String.valueOf(soLuong++));
-                listGiohang.get(i).setSoluong(soLuong);
-                updateSoluongTongtien(String.valueOf(soLuong),iduser, masach, "https://bansachonline.xyz/bansach/giohang/update_carts.php");
+            public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
+                DatMua datMua = listGiohang.get(i);
+                updateSoluongTongtien(String.valueOf(newValue),iduser, masach, urlSql.URL_UPDATE_CARTS);
+                datMua.setSoluong(newValue);
+                total = (Integer.valueOf(datMua.getGia()))*(Integer.valueOf(datMua.getSoluong()));
 
-            }
-        });
-        holder.btnGiam_sl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(soLuong>1){
-                    soLuong = listGiohang.get(i).getSoluong();
-                    holder.tv_soluongmua.setText(String.valueOf(soLuong--));
-                    listGiohang.get(i).setSoluong(soLuong);
-                    updateSoluongTongtien(String.valueOf(soLuong),iduser, masach, "https://bansachonline.xyz/bansach/giohang/update_carts.php");
+                if (listGiohang.get(i).getSoluong()==0){
+                    holder.checkBox.setChecked(false);
+                    update_selected(maSach,"0", url_UD);
                 }
+
             }
         });
 
         holder.btn_iv_Xoa_giohang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteGiohang(iduser, masach,"https://bansachonline.xyz/bansach/giohang/delete_carts.php");
+                deleteGiohang(iduser, masach,urlSql.URL_DELETE_CARTS);
             }
         });
+
     }
 
     @Override
@@ -151,13 +132,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         private TextView tv_name;
-        private TextView tv_soluongmua,tv_giaban;
+        private TextView tv_giaban;
         private CheckBox checkBox;
         private LinearLayout  linear_cart;
         private ImageView img_cart;
-
-        private ImageButton btnGiam_sl,btntang_sl;
         private ImageView btn_iv_Xoa_giohang;
+        private ElegantNumberButton btn_quality;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_name=(TextView)itemView.findViewById(R.id.tv_name_book_cart);
@@ -167,9 +147,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             img_cart=(ImageView)itemView.findViewById(R.id.img_cart);
 
             btn_iv_Xoa_giohang= itemView.findViewById(R.id.btn_iv_Xoa_giohang);
-            btnGiam_sl = itemView.findViewById(R.id.btnGiam_sl);
-            btntang_sl = itemView.findViewById(R.id.btnTang_sl);
-            tv_soluongmua= itemView.findViewById(R.id.tv_soluongmua);
+            btn_quality = itemView.findViewById(R.id.btn_numberQuality);
         }
     }
     private void updateSoluongTongtien(final String soluong, final String mauser, final String masach, String url) {

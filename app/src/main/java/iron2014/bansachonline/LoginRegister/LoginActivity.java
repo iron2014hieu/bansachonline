@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import iron2014.bansachonline.Activity.ShipperActivity;
+import iron2014.bansachonline.fragmentVanChuyen.Activity.ShipperActivity;
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
@@ -102,11 +102,12 @@ public class LoginActivity extends AppCompatActivity {
                                     JSONObject object = jsonArray.getJSONObject(i);
                                     String name = object.getString("name").trim();
                                     String email = object.getString("email").trim();
+                                    String address = object.getString("address").trim();
                                     String phone = object.getString("phone").trim();
                                     String id = object.getString("id").trim();
                                     String quyen = object.getString("quyen").trim();
 
-                                    sessionManager.createSession(id, email,phone, name, quyen);
+                                    sessionManager.createSession(id, email,address,phone, name, quyen);
 
 
                                     if(quyen.equals("shipper")){
