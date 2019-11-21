@@ -25,7 +25,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import iron2014.bansachonline.Activity.ShipperActivity;
+import iron2014.bansachonline.fragmentVanChuyen.Activity.ShipperActivity;
 import iron2014.bansachonline.LoginRegister.ProfileActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.fragmentVanChuyen.Activity.ChitietGiaoHangActivity;
@@ -63,12 +63,9 @@ public class UpdateProfileActivity extends AppCompatActivity {
         edtGioiTinh.setText(sex);
         edtAddress.setText(address);
 
-
-
         btnUpdateUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 final String name1 = edtNameUser.getText().toString();
                 final String address1 = edtAddress.getText().toString();
                 final String sex1 = edtGioiTinh.getText().toString();
@@ -77,8 +74,6 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 saveDetail(id, name1, address1, sex1, ngaysinh1, phone1);
             }
     });
-        Toast.makeText(this, ""+ id, Toast.LENGTH_SHORT).show();
-
     }
 
     private void saveDetail(final String strid, final String strname, final String strdiachi, final String strsex, final String strngaysinh, final String strphone){

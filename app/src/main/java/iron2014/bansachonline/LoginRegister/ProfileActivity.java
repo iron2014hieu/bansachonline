@@ -181,7 +181,6 @@ public class ProfileActivity extends AppCompatActivity {
                             txtSex.setText(sex);
                             txtEmail.setText(email);
                             txtName.setText(name);
-                            Toast.makeText(ProfileActivity.this, "" + id, Toast.LENGTH_SHORT).show();
 //                            txtPassword.setText(password);
                             strid = String.valueOf(id);
                             Picasso.with(ProfileActivity.this).load(urlImage).into(profile_image) ;

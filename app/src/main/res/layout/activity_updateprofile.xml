@@ -28,58 +28,97 @@
             android:layout_height="50dp"
             android:hint="Tên khách hàng"
             />
-        <EditText
-            android:background="@drawable/rounded_edittext"
-            android:id="@+id/edtNameUser"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="15dp"
-            android:layout_height="50dp"
-            android:hint="Tên khách hàng"
-            />
-        <EditText
-            android:background="@drawable/rounded_edittext"
-            android:id="@+id/edtEmailUser"
-            android:enabled="false"
-            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_height="50dp"
-            android:hint="Email"
-            />
-        <EditText
-            android:background="@drawable/rounded_edittext"
-            android:id="@+id/edtAddress"
+            app:passwordToggleEnabled="true">
+            <EditText
+                android:background="@drawable/rounded_edittext"
+                android:id="@+id/edtNameUser"
+                android:layout_width="match_parent"
+                android:layout_marginTop="15dp"
+                android:layout_height="50dp"
+                android:hint="Tên khách hàng"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_height="50dp"
-            android:hint="Địa chỉ"
-            />
-        <EditText
-            android:background="@drawable/rounded_edittext"
-            android:id="@+id/edtSdtUser"
+            app:passwordToggleEnabled="true">
+            <EditText
+                android:background="@drawable/rounded_edittext"
+                android:id="@+id/edtEmailUser"
+                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="50dp"
+                android:hint="Email"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_height="50dp"
-            android:hint="SĐT"
-            android:inputType="number"
-            />
-        <EditText
-            android:background="@drawable/rounded_edittext"
-            android:id="@+id/edtNgaySinh"
+            app:passwordToggleEnabled="true">
+            <EditText
+                android:background="@drawable/rounded_edittext"
+                android:id="@+id/edtAddress"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="50dp"
+                android:hint="Địa chỉ"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_height="50dp"
-            android:hint="Ngày sinh"
-            />
-        <EditText
-            android:background="@drawable/rounded_edittext"
-            android:id="@+id/edtGioiTinh"
+            app:passwordToggleEnabled="true">
+            <EditText
+                android:background="@drawable/rounded_edittext"
+                android:id="@+id/edtSdtUser"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="50dp"
+                android:hint="SĐT"
+                android:inputType="number"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_height="50dp"
-            android:hint="Giới tính"
-            />
+            app:passwordToggleEnabled="true">
+            <EditText
+                android:background="@drawable/rounded_edittext"
+                android:id="@+id/edtNgaySinh"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="50dp"
+                android:hint="Ngày sinh"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:passwordToggleEnabled="true">
+            <EditText
+                android:background="@drawable/rounded_edittext"
+                android:id="@+id/edtGioiTinh"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="50dp"
+                android:hint="Giới tính"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
     </LinearLayout>
     <Button
+        android:layout_marginTop="20dp"
         android:background="#2196F3"
         android:textColor="#fff"
         android:id="@+id/btnUpdateUser"
