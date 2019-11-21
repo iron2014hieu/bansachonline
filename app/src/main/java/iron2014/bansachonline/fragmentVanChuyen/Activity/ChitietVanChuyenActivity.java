@@ -65,7 +65,9 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
         sdt = intent.getStringExtra("sdt");
         tongtien = intent.getStringExtra("tongtien");
         tinhtrang = intent.getStringExtra("tinhtrang");
-
+        if (tinhtrang!=null&&tinhtrang.equals("danhgia")){
+            btnNhanhang.setVisibility(View.GONE);
+        }
         tvTenKH.setText(tenkh);
         tvDiaChi.setText(diachi);
         tvSDT.setText(sdt);

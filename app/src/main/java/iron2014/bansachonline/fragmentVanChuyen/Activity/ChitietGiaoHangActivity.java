@@ -63,19 +63,7 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
 
         btnGiaoHang = findViewById(R.id.btnGiaoHang);
 
-        if(tinhtrang!=null && tinhtrang.equals("userxacnhan")){
-            btnGiaoHang.setVisibility(View.VISIBLE);
-        }
-        btnGiaoHang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (tinhtrang.equals("danggiao")) {
-                    UpdateTinhtrang( "userxacnhan", URL_UDATE);
-                }
-                Toast.makeText(ChitietGiaoHangActivity.this, tinhtrang, Toast.LENGTH_SHORT).show();
-            }
 
-        });
 
         Intent intent = getIntent();
         mahd = intent.getStringExtra("mahoadon");
@@ -91,7 +79,23 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
         tvTongTien.setText(tongtien);
         tvTinhTrang.setText(tinhtrang);
 
+        Toast.makeText(this, ""+tinhtrang, Toast.LENGTH_SHORT).show();
+        if(tinhtrang!=null && tinhtrang.equals("userxacnhan")){
+            btnGiaoHang.setVisibility(View.GONE);
+        }
+        if (tinhtrang!=null && tinhtrang.equals("danhgia")){
+            btnGiaoHang.setVisibility(View.GONE);
+        }
+        btnGiaoHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (tinhtrang.equals("danggiao")) {
+                    UpdateTinhtrang( "userxacnhan", URL_UDATE);
+                }
+                Toast.makeText(ChitietGiaoHangActivity.this, tinhtrang, Toast.LENGTH_SHORT).show();
+            }
 
+        });
 
         cthdAdapter = new CTHDAdapter(this, cthdList);
         fetchcthdbymahd(mahd);

@@ -62,11 +62,21 @@ public class ChitiethoadonActivity extends AppCompatActivity {
         recyclerView_cthd.setHasFixedSize(true);
 
         btnXacNhanHang = findViewById(R.id.btnXacNhanHang);
-
-        if (tinhtrang.equals("userxacnhan")){
+        Toast.makeText(this, ""+tinhtrang, Toast.LENGTH_SHORT).show();
+        if (tinhtrang!=null&&tinhtrang.equals("userxacnhan")){
             btnXacNhanHang.setVisibility(View.VISIBLE);
+        }else if (tinhtrang!=null&&tinhtrang.equals("danggiao")){
+            btnXacNhanHang.setVisibility(View.GONE);
         }
 
+        btnXacNhanHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (tinhtrang.equals("userxacnhan")) {
+                    UpdateTinhtrang( "danhgia", URL_UDATE);
+                }
+            }
+        });
         btnXacNhanHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,7 +123,7 @@ public class ChitiethoadonActivity extends AppCompatActivity {
                         if (response.equals("tc")){
                             Toast.makeText(ChitiethoadonActivity.this, "tc", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplication(), MuahangActivity.class);
-                            intent.putExtra("check", 1);
+                            intent.putExtra("check", 3);
                             startActivity(intent);
                         }
                     }

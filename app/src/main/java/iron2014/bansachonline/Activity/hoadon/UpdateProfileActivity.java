@@ -89,6 +89,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
                         if (response.equals("success")){
                             Toast.makeText(UpdateProfileActivity.this, "Sửa thành công", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(UpdateProfileActivity.this, ProfileActivity.class));
+                            finish();
                         }
                     }
                 },

@@ -65,8 +65,9 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
             public void onClick(View v) {
                 Intent intent = new Intent(context, ChitiethoadonActivity.class);
                 String mahd = String.valueOf(mData.get(i).getMahoadon());
-                String tinhtrang = mData.get(0).getTinhtrang();
+                String tinhtrang = mData.get(i).getTinhtrang();
                 intent.putExtra("mahd", mahd);
+                intent.putExtra("tinhtrang", tinhtrang);
                 sessionManager.createHoadon(tinhtrang);
                 context.startActivity(intent);
             }
@@ -79,10 +80,19 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
         String limitTime =(dateFormat.format(defaultTime.getTime()));
 
         if (mData.get(i).getTinhtrang().equals("choxacnhan")){
+            holder.txtUserXacnhan.setVisibility(View.GONE);
             holder.txtUoctinh.setText("Xác nhận trước "+limitTime);
         }else if (mData.get(i).getTinhtrang().equals("cholayhang")){
+            holder.txtUserXacnhan.setVisibility(View.GONE);
             holder.txtUoctinh.setText("Chuyển đi trước "+limitTime);
         }else if (mData.get(i).getTinhtrang().equals("danggiao")){
+            holder.txtUserXacnhan.setVisibility(View.GONE);
+            holder.txtUoctinh.setText("Nhận hàng trước "+limitTime);
+        }else  if (mData.get(i).getTinhtrang().equals("userxacnhan")){
+            holder.txtUserXacnhan.setVisibility(View.VISIBLE);
+            holder.txtUoctinh.setText("Nhận hàng trước "+limitTime);
+        }else  if (mData.get(i).getTinhtrang().equals("danhgia")){
+            holder.txtUserXacnhan.setVisibility(View.GONE);
             holder.txtUoctinh.setText("Nhận hàng trước "+limitTime);
         }
 
@@ -100,6 +110,7 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
         private TextView txtXemchitiet;
         //tùy từng tab
         private TextView txtUoctinh;
+        private TextView txtUserXacnhan;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -109,6 +120,7 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
             txtXemchitiet=(TextView) itemView.findViewById(R.id.txtXemchitiet);
 
             txtUoctinh=(TextView) itemView.findViewById(R.id.txtUoctinhnhan);
+            txtUserXacnhan= itemView.findViewById(R.id.txtUserXacnhan);
         }
     }
     public static void UpDownDate() {
