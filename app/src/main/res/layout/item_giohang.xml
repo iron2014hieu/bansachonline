@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="10dp"
     android:orientation="horizontal">
     <CheckBox
@@ -46,30 +46,37 @@
                     android:textColor="#F44336"
                     android:textStyle="bold"
                     android:id="@+id/tv_giaban"/>
+
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
-                    <ImageButton
-                        android:background="@drawable/cutomstacgia"
-                        android:layout_gravity="center"
-                        android:id="@+id/btnGiam_sl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_chevron_left"/>
-                    <TextView
-                        android:padding="10dp"
-                        android:id="@+id/tv_soluongmua"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"/>
-                    <ImageButton
-                        android:background="@drawable/cutomstacgia"
-                        android:layout_gravity="center"
-                        android:id="@+id/btnTang_sl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_chevron_right"/>
+                    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                        android:id="@+id/btn_numberQuality"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:backGroundColor="?attr/backgroundcolor"
+                        app:textColor="?attr/textcolor"/>
+<!--                    <ImageButton-->
+<!--                        android:background="@drawable/cutomstacgia"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:id="@+id/btnGiam_sl"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/ic_remove_24dp"/>-->
+<!--                    <TextView-->
+<!--                        android:padding="10dp"-->
+<!--                        android:id="@+id/tv_soluongmua"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="0"/>-->
+<!--                    <ImageButton-->
+<!--                        android:background="@drawable/cutomstacgia"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:id="@+id/btnTang_sl"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/ic_add_24dp"/>-->
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

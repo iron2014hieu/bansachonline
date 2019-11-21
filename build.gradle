@@ -22,7 +22,10 @@ allprojects {
 
         //library com.github.kk121:File-Loader:1.2
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+        maven {
+            url 'https://jitpack.io'
+
+        }
     }
 }
 

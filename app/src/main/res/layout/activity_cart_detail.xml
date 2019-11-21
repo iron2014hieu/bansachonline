@@ -55,7 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="@string/tenkhachhang"
-                    android:textColor="?attr/textcolor"
+                    android:textColor="#000"
                     android:background="@drawable/rounded_edittext" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,7 +70,7 @@
                     android:layout_width="match_parent"
                     android:hint="@string/diachi"
                     android:layout_height="50dp"
-                    android:textColor="?attr/textcolor"
+                    android:textColor="#000"
                     android:background="@drawable/rounded_edittext" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,7 +87,7 @@
                     android:id="@+id/edtSdt"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:textColor="?attr/textcolor"
+                    android:textColor="#000"
                     android:hint="@string/sodienthoaikhach"
                     android:background="@drawable/rounded_edittext" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -119,7 +119,7 @@
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_edittext"
-                    android:textColor="?attr/textcolor"
+                    android:textColor="#000"
                     android:textColorHint="?attr/textcolor"
                     android:hint="Nhập mã khuyến mãi" />
 

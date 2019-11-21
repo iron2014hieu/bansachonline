@@ -70,6 +70,7 @@
                 android:textStyle="normal"
                 android:maxLength="15"
                 android:gravity="center"
+                android:layout_gravity="center"
                 android:id="@+id/books_name"/>
             <TextView
                 android:layout_width="wrap_content"

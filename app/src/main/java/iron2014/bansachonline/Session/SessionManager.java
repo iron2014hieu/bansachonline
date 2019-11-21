@@ -17,6 +17,7 @@ public class SessionManager {
     public static final String PREF_NAMR = "LOGIN";
     public static final String LOGIN = "IS_LOGIN";
     public static final String EMAIL = "EMAIL";
+    public static final String ADDRESS = "ADDRESS";
     public static final String NAME = "NAME";
     public static final String ID = "ID";
     public static final String QUYEN = "QUYEN";
@@ -61,10 +62,11 @@ public class SessionManager {
         editor=sharedPreferences.edit();
     }
 
-    public void createSession(String id,String email,String phone, String name, String quyen){
+    public void createSession(String id,String email,String address,String phone, String name, String quyen){
         editor.putBoolean(LOGIN, true);
         editor.putString(ID, id);
         editor.putString(EMAIL, email);
+        editor.putString(ADDRESS, address);
         editor.putString(PHONE, phone);
         editor.putString(NAME, name);
         editor.putString(QUYEN, quyen);
@@ -150,6 +152,7 @@ public class SessionManager {
         HashMap<String, String> user = new HashMap<>();
         user.put(ID, sharedPreferences.getString(ID, null));
         user.put(EMAIL, sharedPreferences.getString(EMAIL, null));
+        user.put(ADDRESS, sharedPreferences.getString(ADDRESS, null));
         user.put(PHONE, sharedPreferences.getString(PHONE, null));
         user.put(NAME, sharedPreferences.getString(NAME, null));
         user.put(QUYEN, sharedPreferences.getString(QUYEN, null));
