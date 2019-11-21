@@ -59,10 +59,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:text="Giới tính"
                 android:textColor="?attr/textcolor"
-                android:text="Tên đăng nhập"/>
+                android:padding="5dp"
+                />
             <TextView
+                android:id="@+id/txtSex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Thiết lập ngay"
@@ -73,11 +75,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Giới tính"
-                android:textColor="?attr/textcolor"
                 android:padding="5dp"
-                />
+                android:textColor="?attr/textcolor"
+                android:text="Địa chỉ"/>
             <TextView
+                android:id="@+id/txtAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Thiết lập ngay"
@@ -92,6 +94,7 @@
                 android:textColor="?attr/textcolor"
                 android:text="Ngày sinh"/>
             <TextView
+                android:id="@+id/txtNgaySinh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Thiết lập ngay"
@@ -106,6 +109,7 @@
                 android:textColor="?attr/textcolor"
                 android:text="Số điện thoại"/>
             <TextView
+                android:id="@+id/txtPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Thiết lập ngay"
@@ -141,7 +145,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="Thay đổi mạt khẩu"/>
+                android:text="Thay đổi mật khẩu"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -150,6 +154,14 @@
                 android:padding="5dp"
                 android:layout_gravity="right"/>
         </GridLayout>
+        <Button
+            android:id="@+id/btnUpdateThongTin"
+            android:layout_marginTop="25sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/buttoncolor"
+            android:textColor="?attr/textcolor"
+            android:text="Cập nhật thông tin"/>
         <Button
             android:id="@+id/btnLogout"
             android:layout_marginTop="25sp"

@@ -44,21 +44,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import iron2014.bansachonline.Activity.hoadon.UpdateProfileActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 
 public class ProfileActivity extends AppCompatActivity {
     SharedPref sharedPref;
-    TextView txtEmail, txtName;
-    Button btnLogout;
+    TextView txtEmail, txtName, txtPhone, txtNgaySinh, txtSex, txtAddress;
+    Button btnLogout, btnUpdateThongTin;
     SessionManager sessionManager;
     private String TAG = "TAG_PROFILE";
 
     private static String URL_READ ="https://bansachonline.xyz/bansach/loginregister/read_detail.php";
     private static String URL_EDIT ="https://bansachonline.xyz/bansach/loginregister/edit_detail.php";
     private static String URL_UPLOAD ="https://bansachonline.xyz/bansach/loginregister/upload.php";
-    String email,strid,name,quyen,linh_img,phone;
+    String email,strid,name,quyen,linh_img,phone, address, sex, ngaysinh, id;
 
     private Menu action;
     Bitmap bitmap;
@@ -79,17 +80,36 @@ public class ProfileActivity extends AppCompatActivity {
 
         sessionManager = new SessionManager( this);
         sessionManager.Checklogin();
-
+        txtSex = findViewById(R.id.txtSex);
+        txtPhone = findViewById(R.id.txtPhone);
+        txtNgaySinh = findViewById(R.id.txtNgaySinh);
         txtEmail=findViewById(R.id.txtEmail);
+        txtAddress = findViewById(R.id.txtAddress);
         txtName=findViewById(R.id.txtName);
         txtEmail=findViewById(R.id.txtEmail);
         btnLogout=findViewById(R.id.btnLogout);
+        btnUpdateThongTin= findViewById(R.id.btnUpdateThongTin);
+        btnUpdateThongTin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileActivity.this, UpdateProfileActivity.class);
+                intent.putExtra("name", name);
+                intent.putExtra("email", email);
+                intent.putExtra("phone", phone);
+                intent.putExtra("address", address);
+                intent.putExtra("sex", sex);
+                intent.putExtra("ngaysinh", ngaysinh);
+                intent.putExtra("id", id);
+                startActivity(intent);
+            }
+        });
+
         profile_image = findViewById(R.id.profile_image);
 
         HashMap<String,String> user = sessionManager.getUserDetail();
         email = user.get(sessionManager.EMAIL);
         name = user.get(sessionManager.NAME);
-        String id = user.get(sessionManager.ID);
+        id = user.get(sessionManager.ID);
         quyen = user.get(sessionManager.QUYEN);
         phone = user.get(sessionManager.PHONE);
         getDetail(email);
@@ -102,7 +122,6 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
-
         @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -130,7 +149,6 @@ public class ProfileActivity extends AppCompatActivity {
         }else
             ProfileActivity.this.finish();
     }
-
     public void getImage(View v){
         chooseFile();
     }
@@ -138,7 +156,6 @@ public class ProfileActivity extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading");
         progressDialog.show();
-
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_READ,
                 new Response.Listener<String>() {
                     @Override
@@ -149,14 +166,22 @@ public class ProfileActivity extends AppCompatActivity {
                             JSONObject jsonobject = new JSONObject(response);
                             JSONArray jsonArray = jsonobject.getJSONArray("users_table");
                             JSONObject data = jsonArray.getJSONObject(0);
-
                             int id = data.getInt("id");
                             String name = data.getString("name");
                             String email = data.getString("email");
+                            address = data.getString("address");
+                            phone = data.getString("phone");
+                            ngaysinh = data.getString("ngaysinh");
+                            sex = data.getString("sex");
                             String password = data.getString("password");
                             String urlImage = data.getString("photo");
+                            txtAddress.setText(address);
+                            txtNgaySinh.setText(ngaysinh);
+                            txtPhone.setText(phone);
+                            txtSex.setText(sex);
                             txtEmail.setText(email);
                             txtName.setText(name);
+                            Toast.makeText(ProfileActivity.this, "" + id, Toast.LENGTH_SHORT).show();
 //                            txtPassword.setText(password);
                             strid = String.valueOf(id);
                             Picasso.with(ProfileActivity.this).load(urlImage).into(profile_image) ;
@@ -166,7 +191,6 @@ public class ProfileActivity extends AppCompatActivity {
                             e.printStackTrace();
                             progressDialog.dismiss();
                         }
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -225,7 +249,6 @@ public class ProfileActivity extends AppCompatActivity {
         }catch (Exception e){
             Log.e("log", e.toString());
         }
-
         return super.onOptionsItemSelected(item);
     }
     private void saveDetail(){

@@ -43,7 +43,7 @@
         <activity android:name=".Activity.GetBookByTheloaiActivity" />
         <activity android:name=".LoginRegister.ProfileActivity" />
         <activity android:name=".Activity.Library.ViewBookActivity" />
-        <activity android:name=".Activity.hoadon.HoadonActivity" />
+        <activity android:name=".Activity.hoadon.UpdateProfileActivity" />
         <activity android:name=".Activity.hoadon.Chitiethoadon_RatingActivity" />
         <activity android:name=".Activity.hoadon.ChitiethoadonActivity" />
         <activity android:name=".Main2Activity" />
