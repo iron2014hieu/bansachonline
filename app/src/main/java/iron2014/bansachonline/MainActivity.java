@@ -33,9 +33,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import org.json.JSONArray;
 
@@ -109,13 +113,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setupFm(getSupportFragmentManager(), viewPager); //Setup Fragment
         viewPager.setCurrentItem(0); //Set Currrent Item When Activity Start
         viewPager.setOnPageChangeListener(new PageChange()); //Listeners For Viewpager When Page Changed
-//        if (check==null){
-//            tab = tabLayout.getTabAt(0);
-//            tab.select();
-//        }else {
-//            tab = tabLayout.getTabAt(Integer.valueOf(check));
-//            tab.select();
-//        }
         Intent intent = getIntent();
         String check = intent.getStringExtra("check");
         if (check != null) {
@@ -130,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 navigation.setSelectedItemId(R.id.nav_library);
             }
         }
+        HashMap<String,String> tk= sessionManager.getToken();
 
             HashMap<String,String> user = sessionManager.getUserDetail();
             name = user.get(sessionManager.NAME);

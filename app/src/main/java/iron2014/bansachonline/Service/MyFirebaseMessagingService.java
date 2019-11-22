@@ -7,9 +7,13 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
+import android.text.Html;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -24,14 +28,30 @@ import com.android.volley.toolbox.Volley;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.R;
+import iron2014.bansachonline.Session.SessionManager;
 
 import static android.content.ContentValues.TAG;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
+    SessionManager sessionManager;
+    public static final int ID_BIG_NOTIFICATION = 234;
+    public static final int ID_SMALL_NOTIFICATION = 235;
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        sessionManager = new SessionManager(getApplicationContext());
+    }
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
@@ -77,52 +97,73 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         String check = "4";
         intent.putExtra("check", check);
         PendingIntent pendingIntent = PendingIntent.getActivity(this,
-                0,
+                ID_BIG_NOTIFICATION,
                 intent,
-                0
+                PendingIntent.FLAG_UPDATE_CURRENT
         );
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
 
-        builder.setAutoCancel(true)
-                .setDefaults(Notification.DEFAULT_ALL)
-                .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.drawable.khuyenmai_x32)
-                .setLargeIcon(BitmapFactory.decodeResource( getResources(), R.drawable.sach3))
-                .setTicker("Hearty365")
-                .setContentTitle(title)
-                .setContentText(body)
-                .setVibrate(new long[]{0, 1000, 500, 1000})
+        NotificationCompat.BigPictureStyle bigPictureStyle = new NotificationCompat.BigPictureStyle();
+        bigPictureStyle.setBigContentTitle(title);
+        bigPictureStyle.setSummaryText(body);
+        bigPictureStyle.bigPicture(getBitmapFromURL("http://thuvienkontum.vn/uploads/news/2016_07/sach_1.jpg"));
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext());
+        Notification notification;
+        Uri sound = Uri.parse("android.resource://"
+                + getApplicationContext().getPackageName() + "/" + R.raw.drum);
+        notification = mBuilder.setSmallIcon(R.mipmap.ic_launcher).setTicker(title).setWhen(0)
+                .setAutoCancel(true)
+                .setSound(sound)
                 .setContentIntent(pendingIntent)
-                .setContentInfo("info");
+                .setContentTitle(title)
+                .setStyle(bigPictureStyle)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setLargeIcon(BitmapFactory.decodeResource(getApplication().getResources(), R.mipmap.ic_launcher))
+                .setContentText(body)
+                .build();
 
-        manager.notify(1, builder.build());
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+
+        NotificationManager notificationManager = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(ID_BIG_NOTIFICATION, notification);
+//        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+//
+//        builder.setAutoCancel(true)
+//                .setDefaults(Notification.DEFAULT_ALL)
+//                .setWhen(System.currentTimeMillis())
+//                .setSmallIcon(R.drawable.khuyenmai_x32)
+//                .setLargeIcon(BitmapFactory.decodeResource( getResources(), R.drawable.sach3))
+//                .setTicker("Hearty365")
+//                .setContentTitle(title)
+//                .setContentText(body)
+//                .setVibrate(new long[]{0, 1000, 500, 1000})
+//                .setContentIntent(pendingIntent)
+//                .setContentInfo("info");
+//
+//        manager.notify(1, builder.build());
     }
 
     @Override
     public void onNewToken(String token) {
         Log.d("Token", "Refreshed Token"+token);
         FirebaseMessaging.getInstance().subscribeToTopic("dispositivos");
-        enviarTokenToServer(token);
+        sessionManager.createToken(token);
     }
 
-    private void enviarTokenToServer(final String token) {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                "https://bansachonline.xyz/bansach/thongbao/registrarToken.php/?Token="+token,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_LONG).show();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "ERROR "+error, Toast.LENGTH_LONG).show();
-                Log.e("error: ", error.toString());
-            }
-        });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+    //The method will return Bitmap from an image URL
+    private Bitmap getBitmapFromURL(String strURL) {
+        try {
+            URL url = new URL(strURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

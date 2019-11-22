@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
@@ -21,6 +22,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     ProgressBar progressBar;
     SessionManager sessionManager;
+    String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +71,16 @@ public class LoginActivity extends AppCompatActivity {
         //khởi tạo shared preferences
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         loadData();//lấy dữ liệu đã lưu nếu có
-
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (task.isSuccessful()){
+                            token = task.getResult().getToken();
+                            edtPassword.setText(token);
+                        }
+                    }
+                });
             btnLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -108,8 +125,9 @@ public class LoginActivity extends AppCompatActivity {
                                     String quyen = object.getString("quyen").trim();
 
                                     sessionManager.createSession(id, email,address,phone, name, quyen);
-
-
+                                    //get token notif
+                                    enviarTokenToServer(token,id);
+                                    Toast.makeText(getApplicationContext(), ""+token, Toast.LENGTH_SHORT).show();
                                     if(quyen.equals("shipper")){
                                         startActivity(new Intent(LoginActivity.this, ShipperActivity.class));
                                     }else {
@@ -181,6 +199,27 @@ public class LoginActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.loading_login);
         cbRemember = (CheckBox) findViewById(R.id.cbRemember);
         cicler_logo=(CircleImageView)findViewById(R.id.cicler_logo);
+    }
+
+
+    private void enviarTokenToServer(final String token,final String iduser) {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                "https://bansachonline.xyz/bansach/thongbao/registrarToken.php/?Token="+token
+                        +"&iduser="+iduser,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "ERROR "+error, Toast.LENGTH_LONG).show();
+                Log.e("error: ", error.toString());
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 }
 

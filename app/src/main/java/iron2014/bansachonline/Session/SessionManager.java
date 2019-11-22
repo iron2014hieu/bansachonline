@@ -56,6 +56,7 @@ public class SessionManager {
     public static final String TINHTRANG_HOADON = "TENTHELOAI";
     //suggest book
     public static String SUGGEST_BOOK ="SUGGEST_BOOK";
+    public static String TOKEN ="TOKEN";
     public SessionManager(Context context) {
         this.context = context;
         sharedPreferences = context.getSharedPreferences(PREF_NAMR, PRIVATE_MODE);
@@ -109,6 +110,10 @@ public class SessionManager {
         editor.putString(LANDANHGIA, landanhgia);
         editor.apply();
     }
+    public void createToken(String token){
+        editor.putString(TOKEN, token);
+        editor.apply();
+    }
     public void createCart(String idSach, String iduser,String tensach, String giaban, String dathnahtoan){
         editor.putString(MASACH, idSach);
         editor.putString(ID, iduser);
@@ -146,6 +151,11 @@ public class SessionManager {
             context.startActivity(i);
             ((ProfileActivity)context).finish();
         }
+    }
+    public HashMap<String,String> getToken() {
+        HashMap<String, String> token = new HashMap<>();
+        token.put(TOKEN, sharedPreferences.getString(TOKEN, null));
+        return token;
     }
     // các hàm lấy dữ liệu
     public HashMap<String, String> getUserDetail(){

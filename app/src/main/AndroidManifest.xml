@@ -97,13 +97,17 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
-
+<!--     send all user-->
         <service android:name=".Service.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
+        <receiver android:name=".BroadcastReceiver.SendToken">
+            <intent-filter>
+                <action android:name="test.Broadcast"/>
+            </intent-filter>
+        </receiver>
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
