@@ -137,7 +137,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onNewToken(String token) {
         Log.d("Token", "Refreshed Token"+token);
         FirebaseMessaging.getInstance().subscribeToTopic("dispositivos");
-        sessionManager.createToken(token);
     }
 
     //The method will return Bitmap from an image URL

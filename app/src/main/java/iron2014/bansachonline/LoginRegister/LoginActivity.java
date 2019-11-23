@@ -27,7 +27,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,7 +36,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import iron2014.bansachonline.Service.FCM.SharedPrefManager;
 import iron2014.bansachonline.URL.EndPoints;
 import iron2014.bansachonline.fragmentVanChuyen.Activity.ShipperActivity;
 import iron2014.bansachonline.MainActivity;
@@ -80,7 +78,6 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<InstanceIdResult> task) {
                         if (task.isSuccessful()){
                             token = task.getResult().getToken();
-                            edtPassword.setText(token);
                         }
                     }
                 });
@@ -213,11 +210,11 @@ public class LoginActivity extends AppCompatActivity {
 
         final String email = edtEmail.getText().toString();
 
-        if (token == null) {
-            progressDialog.dismiss();
-            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
-            return;
-        }
+//        if (token == null) {
+//            progressDialog.dismiss();
+//            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
+//            return;
+//        }
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoints.URL_REGISTER_DEVICE,
                 new Response.Listener<String>() {

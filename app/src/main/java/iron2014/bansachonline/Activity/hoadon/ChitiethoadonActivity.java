@@ -62,7 +62,7 @@ public class ChitiethoadonActivity extends AppCompatActivity {
         recyclerView_cthd.setHasFixedSize(true);
 
         btnXacNhanHang = findViewById(R.id.btnXacNhanHang);
-        Toast.makeText(this, ""+tinhtrang, Toast.LENGTH_SHORT).show();
+
         if (tinhtrang!=null&&tinhtrang.equals("userxacnhan")){
             btnXacNhanHang.setVisibility(View.VISIBLE);
         }else if (tinhtrang!=null&&tinhtrang.equals("danggiao")){

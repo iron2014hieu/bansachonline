@@ -62,7 +62,10 @@ import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
 import iron2014.bansachonline.LoginRegister.CountryData;
+import iron2014.bansachonline.LoginRegister.RegisterActivity;
 import iron2014.bansachonline.Session.SessionManager;
+import iron2014.bansachonline.URL.EndPoints;
+import iron2014.bansachonline.URL.UrlSql;
 import iron2014.bansachonline.adapter.KhuyenMai.KhuyenMaiAdapter;
 import iron2014.bansachonline.adapter.ListSPAdapter;
 import iron2014.bansachonline.model.DatMua;
@@ -256,7 +259,8 @@ public class CartDetailActivity extends AppCompatActivity {
                     alertDialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            displayAlertDialog();
+//                            displayAlertDialog();
+                            ThemHoadon(mauser_session, String.valueOf(tongtien), edtSdt.getText().toString(), url_insert_hoadon);
                         }
                     });
                     alertDialog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
@@ -342,6 +346,8 @@ public class CartDetailActivity extends AppCompatActivity {
                                 String hinhanh = listDatmua.get(n).getHinhanh();
                                 ThemCTHD(String.valueOf(mahoadon), masach, tensach, giaban, soluong, hinhanh, url_insert_cthd);
                             }
+                            String mota = "Đơn hàng "+mahoadon +" đang chờ xủ lý. Vui lòng kiểm tra thời gian nhận trong chi tiết hóa đơn";
+                            InsertNotif(mota,String.valueOf(mahoadon));
                             Toast.makeText(CartDetailActivity.this, "Thêm thành công hóa đơn: " + mahoadon, Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -382,6 +388,7 @@ public class CartDetailActivity extends AppCompatActivity {
 //                            startActivity(new Intent(getBaseContext(), CartDetailActivity.class));
                             Intent intent = new Intent(getBaseContext(), MuahangActivity.class);
                             intent.putExtra("check", 0);
+
                             startActivity(intent);
                         }
                     }
@@ -418,10 +425,10 @@ public class CartDetailActivity extends AppCompatActivity {
                 .setSmallIcon(R.drawable.ic_arrow)
                 .setStyle(new NotificationCompat.InboxStyle()
                         .addLine(title + " " + message)
-                        .setBigContentTitle("1 đơn hàng mới")
-                        .setSummaryText("user@example.com"))
+                        .setBigContentTitle("Đơn hàng đang được xử lý")
+                        .setSummaryText("adumankhe2@gmail.com"))
                 .setPriority(NotificationCompat.PRIORITY_LOW)
-                .setGroup("example_group")
+                .setGroup("")
                 .setAutoCancel(true)
                 .setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN)
                 .setContentIntent(contentIntent)
@@ -547,4 +554,38 @@ public class CartDetailActivity extends AppCompatActivity {
             Toast.makeText(CartDetailActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     };
+    private void InsertNotif (final String mota, final String mahoadon){
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_INSERT_NOTIF,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.e("printStackTrace", e.toString());
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("VolleyError regis ", error.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("tieude", "Chờ xử lý đơn hàng");
+                params.put("mota", mota);
+                params.put("mahoadon", mahoadon);
+                params.put("mauser", mauser_session);
+                params.put("loaithongbao", "donhang");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
 }

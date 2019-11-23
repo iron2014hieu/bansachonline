@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import iron2014.bansachonline.Activity.GetBookByTheloaiActivity;
+import iron2014.bansachonline.Activity.hoadon.ChitiethoadonActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceNotif;
@@ -104,8 +105,12 @@ public class NotificationFragment extends Fragment {
                 recyclerview_thongbao_donhang, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Intent intent = new Intent(getContext(), MuahangActivity.class);
-                intent.putExtra("check", "3");
+                Notification notification = listDH.get(position);
+                String mahd = String.valueOf(notification.getMahoadon());
+                sessionManager.createHoadon("userxacnhan");
+                Intent intent = new Intent(getContext(), ChitiethoadonActivity.class);
+                intent.putExtra("mahd", mahd);
+                intent.putExtra("tinhtrang", "userxacnhan");
                 startActivity(intent);
 
             }
