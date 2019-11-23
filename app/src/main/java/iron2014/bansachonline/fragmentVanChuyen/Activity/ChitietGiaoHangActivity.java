@@ -83,6 +83,7 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
         tvSDT.setText(sdt);
         tvTongTien.setText(tongtien);
         tvTinhTrang.setText(tinhtrang);
+        Toast.makeText(this, ""+mauser, Toast.LENGTH_SHORT).show();
 
         if(tinhtrang!=null && tinhtrang.equals("userxacnhan")){
             btnGiaoHang.setVisibility(View.GONE);

@@ -224,12 +224,12 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
-                        try {
-                            JSONObject obj = new JSONObject(response);
-                            Toast.makeText(LoginActivity.this, obj.getString("message"), Toast.LENGTH_LONG).show();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+//                        try {
+//                            JSONObject obj = new JSONObject(response);
+//                            Toast.makeText(LoginActivity.this, obj.getString("message"), Toast.LENGTH_LONG).show();
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
                     }
                 },
                 new Response.ErrorListener() {
