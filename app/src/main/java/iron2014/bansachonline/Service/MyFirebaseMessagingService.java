@@ -13,18 +13,10 @@ import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
-import android.text.Html;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -33,19 +25,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.Map;
 
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
-
 import static android.content.ContentValues.TAG;
-
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     SessionManager sessionManager;
-    public static final int ID_BIG_NOTIFICATION = 234;
-    public static final int ID_SMALL_NOTIFICATION = 235;
+    public static final int ID_BIG_NOTIFICATION = 1;
+    public static final int ID_SMALL_NOTIFICATION = 2;
     @Override
     public void onCreate() {
         super.onCreate();

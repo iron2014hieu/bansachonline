@@ -124,6 +124,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 navigation.setSelectedItemId(R.id.nav_profile);
             }else if (check.equals("2")){
                 viewPager.setCurrentItem(2);
+                navigation.setSelectedItemId(R.id.nav_search);
+            }else if (check.equals("3")){
+                viewPager.setCurrentItem(3);
+                navigation.setSelectedItemId(R.id.nav_notif);
+            }else if (check.equals("1")){
+                viewPager.setCurrentItem(1);
                 navigation.setSelectedItemId(R.id.nav_library);
             }
         }

@@ -29,7 +29,7 @@
                 android:textSize="17sp"
                 android:gravity="left"
                 android:textColorHint="?attr/textcolor"
-                android:drawableRight="@drawable/ic_search_black_24dp"
+                android:drawableRight="@drawable/ic_search"
                 android:backgroundTint="?attr/buttoncolor"/>
             <ImageButton
                 android:id="@+id/cartButtonIV"

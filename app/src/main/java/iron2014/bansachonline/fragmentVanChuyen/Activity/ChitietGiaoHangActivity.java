@@ -1,7 +1,9 @@
 package iron2014.bansachonline.fragmentVanChuyen.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +31,8 @@ import java.util.Map;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
 import iron2014.bansachonline.R;
+import iron2014.bansachonline.Service.FCM.MyVolley;
+import iron2014.bansachonline.URL.EndPoints;
 import iron2014.bansachonline.adapter.hoadoncthd.CTHDAdapter;
 import iron2014.bansachonline.model.CTHD;
 import retrofit2.Call;
@@ -42,8 +46,8 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
     List<CTHD> cthdList = new ArrayList<>();
     CTHDAdapter cthdAdapter;
     ApiInTerFaceHoadon apiInTerFaceHoadon;
-    public static String mahd, tenkh, diachi, sdt, tongtien, tinhtrang;
-
+    public static String mahd, tenkh, diachi, sdt, tongtien, tinhtrang,mauser;
+    ProgressDialog progressDialog;
     String URL_UDATE = "https://bansachonline.xyz/bansach/hoadon/update_hoadon_tinhtrang.php";
 
     @Override
@@ -72,27 +76,28 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
         sdt = intent.getStringExtra("sdt");
         tongtien = intent.getStringExtra("tongtien");
         tinhtrang = intent.getStringExtra("tinhtrang");
-
+        mauser = intent.getStringExtra("mauser");
+        Toast.makeText(this, ""+mauser, Toast.LENGTH_SHORT).show();
         tvTenKH.setText(tenkh);
         tvDiaChi.setText(diachi);
         tvSDT.setText(sdt);
         tvTongTien.setText(tongtien);
         tvTinhTrang.setText(tinhtrang);
 
-        Toast.makeText(this, ""+tinhtrang, Toast.LENGTH_SHORT).show();
         if(tinhtrang!=null && tinhtrang.equals("userxacnhan")){
             btnGiaoHang.setVisibility(View.GONE);
         }
         if (tinhtrang!=null && tinhtrang.equals("danhgia")){
             btnGiaoHang.setVisibility(View.GONE);
         }
+        //thay đổi tình trạng sang chờ ng dùng xác nhận
         btnGiaoHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (tinhtrang.equals("danggiao")) {
                     UpdateTinhtrang( "userxacnhan", URL_UDATE);
                 }
-                Toast.makeText(ChitietGiaoHangActivity.this, tinhtrang, Toast.LENGTH_SHORT).show();
+
             }
 
         });
@@ -132,6 +137,7 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         Toast.makeText(ChitietGiaoHangActivity.this, ""+response, Toast.LENGTH_SHORT).show();
                         if (response.equals("tc")){
+                            sendSinglePush();
                             Toast.makeText(ChitietGiaoHangActivity.this, "tc", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplication(), ShipperActivity.class);
                             intent.putExtra("check", 1);
@@ -155,5 +161,44 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
+    }
+    private void sendSinglePush(){
+        final String title = "Đã giao hàng";
+        final String message = "Xác nhận đơn khi bạn đã nhận được hàng";
+        final String image = "https://www.incimages.com/uploaded_files/image/970x450/getty_549933903_2000133320009280405_105293.jpg";
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Sending Push");
+        progressDialog.show();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoints.URL_SEND_SINGLE_PUSH,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.dismiss();
+
+                        Toast.makeText(ChitietGiaoHangActivity.this, response, Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("title", title);
+                params.put("message", message);
+
+                if (!TextUtils.isEmpty(image))
+                    params.put("image", image);
+
+                params.put("mauser", mauser);
+                return params;
+            }
+        };
+
+        MyVolley.getInstance(this).addToRequestQueue(stringRequest);
     }
 }

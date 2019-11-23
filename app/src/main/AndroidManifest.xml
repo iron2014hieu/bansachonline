@@ -98,9 +98,11 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
 <!--     send all user-->
-        <service android:name=".Service.MyFirebaseMessagingService">
+        <!--        single service -->
+        <service android:name=".Service.FCM.MyFirebaseMessagingServiceSingle"
+            android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
         <receiver android:name=".BroadcastReceiver.SendToken">

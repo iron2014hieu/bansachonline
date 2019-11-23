@@ -1,5 +1,6 @@
 package iron2014.bansachonline.LoginRegister;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,6 +37,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import iron2014.bansachonline.Service.FCM.SharedPrefManager;
+import iron2014.bansachonline.URL.EndPoints;
 import iron2014.bansachonline.fragmentVanChuyen.Activity.ShipperActivity;
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.R;
@@ -52,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     public CheckBox cbRemember;
     SharedPref sharedPref;
     UrlSql urlSql;
-
+    private ProgressDialog progressDialog;
     EditText edtEmail, edtPassword;
     CircleImageView cicler_logo;
     Button btnLogin;
@@ -126,8 +129,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                     sessionManager.createSession(id, email,address,phone, name, quyen);
                                     //get token notif
-                                    enviarTokenToServer(token,id);
-                                    Toast.makeText(getApplicationContext(), ""+token, Toast.LENGTH_SHORT).show();
+                                    sendTokenToServer(id);
+
                                     if(quyen.equals("shipper")){
                                         startActivity(new Intent(LoginActivity.this, ShipperActivity.class));
                                     }else {
@@ -202,22 +205,50 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void enviarTokenToServer(final String token,final String iduser) {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                "https://bansachonline.xyz/bansach/thongbao/registrarToken.php/?Token="+token
-                        +"&iduser="+iduser,
+    //storing token to mysql server
+    private void sendTokenToServer(final String mauser) {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Registering Device...");
+        progressDialog.show();
+
+        final String email = edtEmail.getText().toString();
+
+        if (token == null) {
+            progressDialog.dismiss();
+            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoints.URL_REGISTER_DEVICE,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        progressDialog.dismiss();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            Toast.makeText(LoginActivity.this, obj.getString("message"), Toast.LENGTH_LONG).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "ERROR "+error, Toast.LENGTH_LONG).show();
-                Log.e("error: ", error.toString());
-            }
-        });
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressDialog.dismiss();
+                        Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
 
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("mauser", mauser);
+                params.put("email", email);
+                params.put("token", token);
+                return params;
+            }
+        };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
