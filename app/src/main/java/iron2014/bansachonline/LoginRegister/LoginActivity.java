@@ -210,23 +210,23 @@ public class LoginActivity extends AppCompatActivity {
 
         final String email = edtEmail.getText().toString();
 
-//        if (token == null) {
-//            progressDialog.dismiss();
-//            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
-//            return;
-//        }
+        if (token == null) {
+            progressDialog.dismiss();
+            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
+            return;
+        }
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoints.URL_REGISTER_DEVICE,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
-//                        try {
-//                            JSONObject obj = new JSONObject(response);
-//                            Toast.makeText(LoginActivity.this, obj.getString("message"), Toast.LENGTH_LONG).show();
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            Toast.makeText(LoginActivity.this, obj.getString("message"), Toast.LENGTH_LONG).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
