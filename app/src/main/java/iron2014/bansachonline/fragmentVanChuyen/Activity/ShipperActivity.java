@@ -11,10 +11,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 
-import iron2014.bansachonline.Fragment.donhang.ChoXacNhanFragment;
 import iron2014.bansachonline.LoginRegister.ProfileActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.adapter.ViewPagerFM.TabViewPagerAdapter;
+import iron2014.bansachonline.fragmentVanChuyen.ChoLayHangSPFragment;
+import iron2014.bansachonline.fragmentVanChuyen.ChoXacNhanFragment;
 import iron2014.bansachonline.fragmentVanChuyen.GiaoHangFragment;
 import iron2014.bansachonline.fragmentVanChuyen.NhanHangFragment;
 
@@ -47,6 +48,7 @@ public class ShipperActivity extends AppCompatActivity {
         tabViewPagerAdapter = new TabViewPagerAdapter(getSupportFragmentManager());
         //add fragmenr here
         tabViewPagerAdapter.AddFragment(new ChoXacNhanFragment(), "Chờ xác nhận");
+        tabViewPagerAdapter.AddFragment(new ChoLayHangSPFragment(), "Chờ lấy hàng");
         tabViewPagerAdapter.AddFragment(new GiaoHangFragment(), "Giao hàng");
         tabViewPagerAdapter.AddFragment(new NhanHangFragment(), "Nhận giao");
         viewPager.setAdapter(tabViewPagerAdapter);

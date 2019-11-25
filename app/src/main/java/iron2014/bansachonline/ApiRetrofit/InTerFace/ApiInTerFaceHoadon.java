@@ -30,8 +30,11 @@ public interface ApiInTerFaceHoadon {
     @GET("hoadon/cthd/get_5_cthd.php")
     Call<List<CTHD>> get_5_cthd(@Query("masach") String keyword);
 
-    @GET("hoadon/get_all_donhang.php")
+    @GET("hoadon/get_all_choxacnhan.php")
     Call<List<Hoadon>> get_all_donhang();
+
+    @GET("hoadon/get_all_cholayhang.php")
+    Call<List<Hoadon>> get_all_cholayhang();
 
     @GET("hoadon/get_all_danggiao.php")
     Call<List<Hoadon>> get_all_danggiao();

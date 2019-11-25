@@ -72,6 +72,21 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_profile);
+        Toolbar toolbar1 = (Toolbar) findViewById(R.id.toolbar_profile_edit);
+        toolbar1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileActivity.this, UpdateProfileActivity.class);
+                intent.putExtra("name", name);
+                intent.putExtra("email", email);
+                intent.putExtra("phone", phone);
+                intent.putExtra("address", address);
+                intent.putExtra("sex", sex);
+                intent.putExtra("ngaysinh", ngaysinh);
+                intent.putExtra("id", id);
+                startActivity(intent);
+            }
+        });
 
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -88,21 +103,21 @@ public class ProfileActivity extends AppCompatActivity {
         txtName=findViewById(R.id.txtName);
         txtEmail=findViewById(R.id.txtEmail);
         btnLogout=findViewById(R.id.btnLogout);
-        btnUpdateThongTin= findViewById(R.id.btnUpdateThongTin);
-        btnUpdateThongTin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProfileActivity.this, UpdateProfileActivity.class);
-                intent.putExtra("name", name);
-                intent.putExtra("email", email);
-                intent.putExtra("phone", phone);
-                intent.putExtra("address", address);
-                intent.putExtra("sex", sex);
-                intent.putExtra("ngaysinh", ngaysinh);
-                intent.putExtra("id", id);
-                startActivity(intent);
-            }
-        });
+//        btnUpdateThongTin= findViewById(R.id.btnUpdateThongTin);
+//        btnUpdateThongTin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(ProfileActivity.this, UpdateProfileActivity.class);
+//                intent.putExtra("name", name);
+//                intent.putExtra("email", email);
+//                intent.putExtra("phone", phone);
+//                intent.putExtra("address", address);
+//                intent.putExtra("sex", sex);
+//                intent.putExtra("ngaysinh", ngaysinh);
+//                intent.putExtra("id", id);
+//                startActivity(intent);
+//            }
+//        });
 
         profile_image = findViewById(R.id.profile_image);
 
