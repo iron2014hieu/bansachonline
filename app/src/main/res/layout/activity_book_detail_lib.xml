@@ -44,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:visibility="gone"
             android:orientation="horizontal">
             <RatingBar
                 android:id="@+id/ratingbar_book_detail_lib"
@@ -105,6 +106,54 @@
             android:layout_marginTop="15dp"
             android:drawableRight="@drawable/ic_chevron_right"
             android:text="@string/danhgia_doc"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RatingBar
+                    android:id="@+id/ratingbar_lib"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@android:style/Widget.Holo.Light.RatingBar.Indicator"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:id="@+id/txtDiem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="20dp"
+                    android:padding="5dp"
+                    android:layout_gravity="center"
+                    android:text="0"/>
+            </LinearLayout>
+            <EditText
+                android:id="@+id/edtNhanxet_lib"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhận xét của bạn"
+                android:textColor="?attr/textcolor"
+                android:text="ddddddddddddddddddddddddddddddđ"
+                android:enabled="false"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
+            android:textColor="?attr/textcolor"
+            android:gravity="center"
+            android:onClick="xemsachkhac"
+            android:drawableLeft="@drawable/ic_chevron_left"
+            android:text="Xem sách khác"/>
     </LinearLayout>
 
 </LinearLayout>

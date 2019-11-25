@@ -46,6 +46,7 @@ public class SessionManager {
 
     public static final String DATHANHTOAN = "DATHANHTOAN";
     public static final String LINK_BOOK_READ = "LINK_BOOK_READ";
+    public static final String AUDIO = "AUDIO";
 
     //bảng tấc giả
     public static final String MATACGIA = "MATACGIA";
@@ -57,6 +58,11 @@ public class SessionManager {
     //suggest book
     public static String SUGGEST_BOOK ="SUGGEST_BOOK";
     public static String TOKEN ="TOKEN";
+
+    public static String IDCTHD = "IDCTHD";
+    public static String NOIDUNGCTHD = "NOIDUNGCTHD";
+    public static String DIEMDANHGIACTHD ="DIEMDANHGIACTHD";
+
     public SessionManager(Context context) {
         this.context = context;
         sharedPreferences = context.getSharedPreferences(PREF_NAMR, PRIVATE_MODE);
@@ -110,8 +116,10 @@ public class SessionManager {
         editor.putString(LANDANHGIA, landanhgia);
         editor.apply();
     }
-    public void createToken(String token){
-        editor.putString(TOKEN, token);
+    public void createCTHD_ID(String idcthd,String noidungcthd,String diem){
+        editor.putString(IDCTHD, idcthd);
+        editor.putString(NOIDUNGCTHD, noidungcthd);
+        editor.putString(DIEMDANHGIACTHD, diem);
         editor.apply();
     }
     public void createCart(String idSach, String iduser,String tensach, String giaban, String dathnahtoan){
@@ -128,9 +136,11 @@ public class SessionManager {
         editor.putString(TEN_USER, nameUser);
         editor.apply();
     }
-    public void createGuiLinkBook(String tensach, String linkbook){
+    public void createGuiLinkBook(String tensach,String tacgia, String linkbook,String audio){
         editor.putString(TENSACH, tensach);
         editor.putString(LINK_BOOK_READ, linkbook);
+        editor.putString(AUDIO, audio);
+        editor.putString(TACGIA, tacgia);
         editor.apply();
     }
     public void createHoadon(String tinhtrang){
@@ -152,9 +162,11 @@ public class SessionManager {
             ((ProfileActivity)context).finish();
         }
     }
-    public HashMap<String,String> getToken() {
+    public HashMap<String,String> getCTHD_ID() {
         HashMap<String, String> token = new HashMap<>();
-        token.put(TOKEN, sharedPreferences.getString(TOKEN, null));
+        token.put(IDCTHD, sharedPreferences.getString(IDCTHD, null));
+        token.put(DIEMDANHGIACTHD, sharedPreferences.getString(DIEMDANHGIACTHD, null));
+        token.put(NOIDUNGCTHD, sharedPreferences.getString(NOIDUNGCTHD, null));
         return token;
     }
     // các hàm lấy dữ liệu
@@ -231,6 +243,8 @@ public class SessionManager {
 
         book.put(TENSACH, sharedPreferences.getString(TENSACH, null));
         book.put(LINK_BOOK_READ, sharedPreferences.getString(LINK_BOOK_READ, null));
+        book.put(AUDIO, sharedPreferences.getString(AUDIO, null));
+        book.put(TACGIA, sharedPreferences.getString(TACGIA, null));
         return book;
     }
     public HashMap<String, String> getHoadon(){

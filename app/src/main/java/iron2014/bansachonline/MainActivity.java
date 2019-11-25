@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
@@ -43,6 +45,8 @@ import com.google.firebase.iid.InstanceIdResult;
 
 import org.json.JSONArray;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -77,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static ClipData clipData;
     boolean doubleBackToExitPressedOnce = false;
     String quyen;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = new SharedPref(this);
@@ -92,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         viewPager = findViewById(R.id.viewpager); //Idnit Viewpager
         btnSearchView = findViewById(R.id.btnSearch);
         clipboardManager = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
+
 
         prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         firstStart = prefs.getBoolean("firstStart", true);
@@ -133,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 navigation.setSelectedItemId(R.id.nav_library);
             }
         }
-        HashMap<String,String> tk= sessionManager.getToken();
 
             HashMap<String,String> user = sessionManager.getUserDetail();
             name = user.get(sessionManager.NAME);
@@ -290,7 +295,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-               Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
         requestQueue.add(jsonArrayRequest);

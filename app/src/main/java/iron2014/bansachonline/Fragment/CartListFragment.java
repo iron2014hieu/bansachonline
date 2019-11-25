@@ -10,13 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Toolbar;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -134,22 +130,6 @@ public class CartListFragment extends Fragment {
                         txtTongtien.setText(total+" ");
                     }
 
-//                    btnnext.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//
-//                            for (int n =0;n<listDatmua.size();n++){
-//                                soluong = listDatmua.get(n).getSoluong();
-//                                giaban = listDatmua.get(n).getGia();
-//                                tientungsach = soluong*giaban;
-//                                tongTien+=tientungsach;
-//                            }
-//                            Intent intent = new Intent(getContext(), CartDetailActivity.class);
-//                            intent.putExtra("tongtien", tongTien);
-//                            startActivity(intent);
-//                        }
-//                    });
-//                    txtTongtien.setText(String.valueOf(tongTien));
                 }
             }
 
@@ -181,7 +161,6 @@ public class CartListFragment extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), "Loi roi nhe", Toast.LENGTH_SHORT).show();
                 Log.d("MYSQL", "Lỗi! \n" +error.toString());
             }
         }

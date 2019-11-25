@@ -13,7 +13,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -185,7 +184,6 @@ public class ListSPAdapter extends RecyclerView.Adapter<ListSPAdapter.MyViewHold
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "Loi roi nhe", Toast.LENGTH_SHORT).show();
                 Log.d("MYSQL", "Lỗi! \n" +error.toString());
             }
         }
@@ -215,7 +213,6 @@ public class ListSPAdapter extends RecyclerView.Adapter<ListSPAdapter.MyViewHold
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "Loi roi nhe", Toast.LENGTH_SHORT).show();
                 Log.d("MYSQL", "Lỗi! \n" +error.toString());
             }
         }
@@ -243,7 +240,6 @@ public class ListSPAdapter extends RecyclerView.Adapter<ListSPAdapter.MyViewHold
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "Loi roi nhe", Toast.LENGTH_SHORT).show();
                 Log.d("MYSQL", "Lỗi! \n" +error.toString());
             }
         }

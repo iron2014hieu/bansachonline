@@ -7,11 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-
-
 import java.util.HashMap;
 
 import iron2014.bansachonline.LoginRegister.LoginActivity;
@@ -38,6 +35,8 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
     SessionManager sessionManager;
     String email;
     Button btnDangnhap,btnDangky;
+
+
     View v;
 
     @Override
@@ -77,6 +76,9 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
 
         btnDangky.setOnClickListener(this);
         btnDangnhap.setOnClickListener(this);
+
+
+
         return v;
     }
     @Override

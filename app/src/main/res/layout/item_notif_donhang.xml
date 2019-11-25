@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
+    android:background="?attr/backgroundcolor"
     android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/img_dh"
@@ -25,13 +26,18 @@
             android:id="@+id/txtMota_notif_dh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="?attr/textcolor"
             android:layout_marginTop="5dp"
             android:text="Tất cả hàng đã dc vân chuyen trc nagyf 20/11/2019"/>
         <TextView
             android:id="@+id/txtThoigian_dh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="center"
             android:text="20/11/2019"
+            android:textColor="?attr/textcolor"
+            android:padding="5dp"
             android:drawableLeft="@drawable/ic_access_time"/>
     </LinearLayout>
 </LinearLayout>

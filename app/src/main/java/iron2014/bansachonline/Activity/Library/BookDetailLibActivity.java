@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -35,6 +36,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Service.App;
@@ -42,16 +45,18 @@ import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 
 public class BookDetailLibActivity extends AppCompatActivity {
-    String masach, linkbook,hinhanh, tensach, tongdiem, landanhgia;
+    String masach, linkbook,hinhanh, tensach, tongdiem, landanhgia,audio,tacgia;
 
     ImageView imgBook_lib;
-    TextView txtTensach_lib,numrating_book_detail_lib,txtDocsach,txtXemnhanxet,txtNgheaudio;
+    TextView txtTensach_lib,numrating_book_detail_lib,txtDocsach,txtXemnhanxet,txtNgheaudio,txtDiem;
     RatingBar ratingbar_book_detail_lib;
     String URL ="https://bansachonline.xyz/bansach/sach/getBookDetail.php/?masach=";
     SessionManager sessionManager;
     SharedPref sharedPref;
     NotificationManagerCompat notificationManagerCompat;
     MediaSessionCompat mediaSessionCompat;
+    RatingBar ratingbar_lib;
+    EditText edtNhanxet_lib;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,14 +68,23 @@ public class BookDetailLibActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         sessionManager = new SessionManager(this);
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         masach = intent.getStringExtra("masach");
         tensach = intent.getStringExtra("tensach");
         Log.d("tensach_lib", tensach);
         toolbar.setTitle(tensach);
         getDetailBook(URL+masach);
+
+        HashMap<String,String> commecn=sessionManager.getCTHD_ID();
+        String noidung = commecn.get(sessionManager.NOIDUNGCTHD);
+        String diem  = commecn.get(sessionManager.DIEMDANHGIACTHD);
+        edtNhanxet_lib.setText(noidung);
+        ratingbar_lib.setRating(Float.valueOf(diem));
+        txtDiem.setText(diem+" sao");
+
         notificationManagerCompat = NotificationManagerCompat.from(this);
         mediaSessionCompat = new MediaSessionCompat(this, "tag");
+
         Intent intent1 = new Intent(this, MainActivity.class);
         intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         String check = "4";
@@ -87,7 +101,7 @@ public class BookDetailLibActivity extends AppCompatActivity {
             public void onClick(View v) {
                 sendNotification();
                 Intent i = new Intent(getBaseContext(),AudioActivity.class);
-//                i.putExtra("audio", )
+                i.putExtra("masach", masach);
                 startActivity(i);
             }
         });
@@ -137,8 +151,10 @@ public class BookDetailLibActivity extends AppCompatActivity {
                                 hinhanh = object.getString("anhbia");
                                 tongdiem = object.getString("tongdiem");
                                 landanhgia = object.getString("landanhgia");
+                                audio=object.getString("audio");
+                                tacgia=object.getString("tacgia");
 
-                                sessionManager.createGuiLinkBook(tensach, linkbook);
+                                sessionManager.createGuiLinkBook(tensach,tacgia, linkbook,audio);
                                 txtTensach_lib.setText(tensach);
                                 Picasso.with(BookDetailLibActivity.this).load(hinhanh).into(imgBook_lib);
                                 numrating_book_detail_lib.setText(landanhgia);
@@ -177,6 +193,11 @@ public class BookDetailLibActivity extends AppCompatActivity {
         Intent intent = new Intent(getBaseContext(), ViewBookActivity.class);
         startActivity(intent);
     }
+    public void xemsachkhac(View view) {
+        Intent intent = new Intent(getBaseContext(), MainActivity.class);
+        intent.putExtra("check","2");
+        startActivity(intent);
+    }
     private void addcontrols() {
         imgBook_lib = findViewById(R.id.imgBook_lib_acti);
         txtTensach_lib = findViewById(R.id.txtTensach_lib);
@@ -185,5 +206,8 @@ public class BookDetailLibActivity extends AppCompatActivity {
         txtXemnhanxet= findViewById(R.id.txtXemnhanxet);
         ratingbar_book_detail_lib = findViewById(R.id.ratingbar_book_detail_lib);
         txtNgheaudio= findViewById(R.id.txtNgheaudio);
+        edtNhanxet_lib = findViewById(R.id.edtNhanxet_lib);
+        ratingbar_lib= findViewById(R.id.ratingbar_lib);
+        txtDiem = findViewById(R.id.txtDiem);
     }
 }

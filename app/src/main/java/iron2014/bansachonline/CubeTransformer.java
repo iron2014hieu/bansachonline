@@ -14,6 +14,6 @@ public class CubeTransformer implements ViewPager.PageTransformer {
         page.setPivotY(page.getHeight() * 0.5f);
 
         //it rotates with 90 degrees multiplied by current position
-        page.setRotationY(20f * position);
+        page.setRotationY(45f * position);
     }
 }

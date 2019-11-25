@@ -48,7 +48,7 @@ public class MyFirebaseMessagingServiceSingle extends FirebaseMessagingService {
 
             //creating an intent for the notification
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-
+            intent.putExtra("check","3");
             //if there is no image
             if(imageUrl.equals("null")){
                 //displaying small notification

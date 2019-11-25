@@ -5,6 +5,7 @@ import androidx.appcompat.widget.AppCompatSeekBar;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.PorterDuff;
 import android.media.AudioManager;
@@ -12,50 +13,69 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
+import java.util.HashMap;
+
 import iron2014.bansachonline.R;
+import iron2014.bansachonline.Session.SessionManager;
 
 public class AudioActivity extends AppCompatActivity {
 
     private View parent_view;
     private AppCompatSeekBar seek_song_progressbar;
     private FloatingActionButton btn_play;
-    private TextView tv_song_current_duration, tv_song_total_duration;
+    private TextView tv_song_current_duration, tv_song_total_duration,txtTensach,txtTacgia;
     private CircularImageView image;
 
     private MediaPlayer mediaPlayer;
     private Handler mHandler = new Handler();
 
     private MusicUtils utils;
+    SessionManager sessionManager;
 
-    String audioUrl = "http://files.giaoduccongdong.com/ThuVienSachNoi/VanHoaGiaoDuc/TieuThuyet_VanHoc/TTVH_TheGioi/NhungChiecDongHoKyLa/01.NhungChiecDongHoKyLa-P01.mp3 ";
+    String audioUrl,tensach,tentacgia;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audio);
-        setMusicPlayerComponents();
+        addControls();
+        sessionManager = new SessionManager(this);
+        HashMap<String,String> book = sessionManager.getLinkbook();
+        audioUrl= book.get(sessionManager.AUDIO);
+        tensach = book.get(sessionManager.TENSACH);
+        tentacgia = book.get(sessionManager.TACGIA);
+
+        txtTacgia.setText(tentacgia);
+        txtTensach.setText(tensach);
+        try {
+            if (audioUrl!=null) {
+                setMusicPlayerComponents();
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            }
+        }catch (Exception e){
+            Log.e("AUDIO ERR", e.toString());
+        }
+
     }
     private void setMusicPlayerComponents() {
-        parent_view = findViewById(R.id.parent_view);
-        seek_song_progressbar = findViewById(R.id.seek_song_progressbar);
-        btn_play = findViewById(R.id.btn_play);
+
 
         seek_song_progressbar.setProgress(0);
         seek_song_progressbar.setMax(MusicUtils.MAX_PROGRESS);
-
-        tv_song_current_duration =  findViewById(R.id.tv_song_current_duration);
-        tv_song_total_duration = findViewById(R.id.total_duration);
-        image =  findViewById(R.id.image);
 
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -207,6 +227,18 @@ public class AudioActivity extends AppCompatActivity {
             Snackbar.make(parent_view, item.getTitle(), Snackbar.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
+    }
+    private void addControls() {
+        txtTensach = findViewById(R.id.txtTensach);
+        txtTacgia = findViewById(R.id.txtTacgia);
+
+        parent_view = findViewById(R.id.parent_view);
+        seek_song_progressbar = findViewById(R.id.seek_song_progressbar);
+        btn_play = findViewById(R.id.btn_play);
+
+        tv_song_current_duration =  findViewById(R.id.tv_song_current_duration);
+        tv_song_total_duration = findViewById(R.id.total_duration);
+        image =  findViewById(R.id.image);
     }
 
 }

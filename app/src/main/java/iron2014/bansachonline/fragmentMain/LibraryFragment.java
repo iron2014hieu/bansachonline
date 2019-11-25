@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -79,6 +80,11 @@ public class LibraryFragment extends Fragment {
             @Override
             public void onClick(View view, int position) {
                 CTHD cthd = listLibrary.get(position);
+                String id = String.valueOf(cthd.getId());
+                String nd = cthd.getNoidungdanhgia();
+                String diem = String.valueOf(cthd.getDiemdanhgia());
+                sessionManager.createCTHD_ID(id,nd,diem);
+                Toast.makeText(getContext(), ""+nd+diem, Toast.LENGTH_SHORT).show();
                 String masach = String.valueOf(cthd.getMasach());
                 String tensach = cthd.getTensach();
                 Intent intent = new Intent(getContext(), BookDetailLibActivity.class);

@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".Activity.Library.AudioActivity"></activity>
+        <activity android:name=".Activity.Library.AudioActivity" />
         <activity android:name=".LoginRegister.VerifyPhoneActivity" />
         <activity android:name=".LoginRegister.LoginWithSMSActivity" />
         <activity android:name=".Activity.hoadon.ListAllCommentActivity" />
@@ -96,19 +96,20 @@
             android:resource="@drawable/khuyenmai_x32" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorAccent" />
-<!--     send all user-->
-        <!--        single service -->
+            android:resource="@color/colorAccent" /> <!-- send all user -->
+        <!-- single service -->
         <service android:name=".Service.FCM.MyFirebaseMessagingServiceSingle">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <receiver android:name=".BroadcastReceiver.SendToken">
             <intent-filter>
-                <action android:name="test.Broadcast"/>
+                <action android:name="test.Broadcast" />
             </intent-filter>
         </receiver>
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

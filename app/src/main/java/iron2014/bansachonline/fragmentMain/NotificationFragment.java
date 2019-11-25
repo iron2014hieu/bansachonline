@@ -74,7 +74,6 @@ public class NotificationFragment extends Fragment {
             recyclerview_thongbao_khuyenmai.setVisibility(View.GONE);
             txtCapnhatDonhang.setVisibility(View.GONE);
         }
-        Toast.makeText(getContext(), "mauser "+mauser, Toast.LENGTH_SHORT).show();
         StaggeredGridLayoutManager gridLayoutManagerVeticl =
                 new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         recyclerview_thongbao_khuyenmai.setLayoutManager(gridLayoutManagerVeticl);
@@ -106,13 +105,22 @@ public class NotificationFragment extends Fragment {
             @Override
             public void onClick(View view, int position) {
                 Notification notification = listDH.get(position);
-                String mahd = String.valueOf(notification.getMahoadon());
-                sessionManager.createHoadon("userxacnhan");
-                Intent intent = new Intent(getContext(), ChitiethoadonActivity.class);
-                intent.putExtra("mahd", mahd);
-                intent.putExtra("tinhtrang", "userxacnhan");
-                startActivity(intent);
-
+//                String mahd = String.valueOf(notification.getMahoadon());
+//                sessionManager.createHoadon("userxacnhan");
+//                Intent intent = new Intent(getContext(), ChitiethoadonActivity.class);
+//                intent.putExtra("mahd", mahd);
+//                intent.putExtra("tinhtrang", "userxacnhan");
+//                startActivity(intent);
+                String tinhtrang = notification.getTieude();
+                if (tinhtrang.equals("Chờ xử lý đơn hàng")){
+                    Intent intent = new Intent(getContext(), MuahangActivity.class);
+                    intent.putExtra("check", "0");
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(getContext(), MuahangActivity.class);
+                    intent.putExtra("check", "2");
+                    startActivity(intent);
+                }
             }
 
             @Override

@@ -2,6 +2,7 @@ package iron2014.bansachonline.fragmentVanChuyen.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.icu.util.LocaleData;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -23,16 +24,25 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
+import iron2014.bansachonline.LoginRegister.RegisterActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Service.FCM.MyVolley;
 import iron2014.bansachonline.URL.EndPoints;
+import iron2014.bansachonline.URL.UrlSql;
 import iron2014.bansachonline.adapter.hoadoncthd.CTHDAdapter;
 import iron2014.bansachonline.model.CTHD;
 import retrofit2.Call;
@@ -49,7 +59,10 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
     public static String mahd, tenkh, diachi, sdt, tongtien, tinhtrang,mauser;
     ProgressDialog progressDialog;
     String URL_UDATE = "https://bansachonline.xyz/bansach/hoadon/update_hoadon_tinhtrang.php";
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    Calendar defaultTime = Calendar.getInstance();
 
+    String now ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +79,6 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
 
 
         btnGiaoHang = findViewById(R.id.btnGiaoHang);
-
 
 
         Intent intent = getIntent();
@@ -102,6 +114,7 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
             }
 
         });
+        now = (dateFormat.format(defaultTime.getTime()));
 
         cthdAdapter = new CTHDAdapter(this, cthdList);
         fetchcthdbymahd(mahd);
@@ -170,13 +183,13 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Sending Push");
         progressDialog.show();
-
         StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoints.URL_SEND_SINGLE_PUSH,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
-
+                        String mota = "Tất cả sách trong đơn hàng " +mahd+ " đã giao đến bạn vào "+now+".";
+                        InsertNotif(mota,mahd);
                         Toast.makeText(ChitietGiaoHangActivity.this, response, Toast.LENGTH_LONG).show();
                     }
                 },
@@ -201,5 +214,39 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
         };
 
         MyVolley.getInstance(this).addToRequestQueue(stringRequest);
+    }
+    private void InsertNotif (final String mota, final String mahoadon){
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_INSERT_NOTIF,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.e("printStackTrace", e.toString());
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("VolleyError regis ", error.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("tieude", "Đơn hàng " + mahd +" giao thành công.");
+                params.put("mota", mota);
+                params.put("mahoadon", mahoadon);
+                params.put("mauser", mauser);
+                params.put("loaithongbao", "donhang");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 }

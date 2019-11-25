@@ -29,6 +29,7 @@ import java.util.Map;
 
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
+import iron2014.bansachonline.URL.UrlSql;
 import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 
 public class RatingBookCommentActivity extends AppCompatActivity {
@@ -36,7 +37,7 @@ public class RatingBookCommentActivity extends AppCompatActivity {
     private SessionManager sessionManager;
     private String nameuser,masach,idcthd, diemnhanxet;
     private EditText edtNhanxet;
-    private String URL_THEMNHATXET ="https://bansachonline.xyz/bansach/hoadon/them_nhanxet.php";
+
     SharedPref sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +121,7 @@ public class RatingBookCommentActivity extends AppCompatActivity {
         progressDialog.setMessage("Loading");
         progressDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_THEMNHATXET,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_THEMNHATXET,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

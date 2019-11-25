@@ -96,8 +96,8 @@ public class CartDetailActivity extends AppCompatActivity {
     ListSPAdapter cartAdapter;
     ApiInTerFaceDatmua apiInTerFaceDatmua;
     int tongtien;
-    String url_insert_cthd="https://bansachonline.xyz/bansach/hoadon/them_cthd.php",mauser_session;
-    String url_insert_hoadon ="https://bansachonline.xyz/bansach/hoadon/them_hoadon.php";
+    String mauser_session;
+
     int sizeList=0;
     SessionManager sessionManager;
     ProgressBar progress_hoadon;
@@ -260,7 +260,7 @@ public class CartDetailActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
 //                            displayAlertDialog();
-                            ThemHoadon(mauser_session, String.valueOf(tongtien), edtSdt.getText().toString(), url_insert_hoadon);
+                            ThemHoadon(mauser_session, String.valueOf(tongtien), edtSdt.getText().toString(), UrlSql.url_insert_hoadon);
                         }
                     });
                     alertDialog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
@@ -344,7 +344,7 @@ public class CartDetailActivity extends AppCompatActivity {
                                 String giaban = String.valueOf(listDatmua.get(n).getGia());
                                 String soluong = String.valueOf(listDatmua.get(n).getSoluong());
                                 String hinhanh = listDatmua.get(n).getHinhanh();
-                                ThemCTHD(String.valueOf(mahoadon), masach, tensach, giaban, soluong, hinhanh, url_insert_cthd);
+                                ThemCTHD(String.valueOf(mahoadon), masach, tensach, giaban, soluong, hinhanh, UrlSql.url_insert_cthd);
                             }
                             String mota = "Đơn hàng "+mahoadon +" đang chờ xủ lý. Vui lòng kiểm tra thời gian nhận trong chi tiết hóa đơn";
                             InsertNotif(mota,String.valueOf(mahoadon));
@@ -395,7 +395,6 @@ public class CartDetailActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Loi roi nhe", Toast.LENGTH_SHORT).show();
                 Log.d("MYSQL", "Lỗi! \n" +error.toString());
             }
         }
@@ -511,12 +510,12 @@ public class CartDetailActivity extends AppCompatActivity {
                         !edtSdt.getText().toString().trim().equals("") || !edtTenkh.getText().toString().trim().equals("")) {
                             progress_hoadon.setVisibility(View.VISIBLE);
 
-                            ThemHoadon(mauser_session, String.valueOf(tongtien), edtSdt.getText().toString(), url_insert_hoadon);
+                            ThemHoadon(mauser_session, String.valueOf(tongtien), edtSdt.getText().toString(), UrlSql.url_insert_hoadon);
                         }else {
                             Toast.makeText(CartDetailActivity.this, "Nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                         }
                         } else {
-                            Toast.makeText(CartDetailActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+//                            Toast.makeText(CartDetailActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });

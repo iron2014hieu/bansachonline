@@ -6,6 +6,10 @@ public class UrlSql {
     public static String URL_LOGIN_PHONE = baseURL+"bansach/loginregister/login_with_phone.php/?phone=";
     public static String URL_UPDATE_CARTS =baseURL+"bansach/giohang/update_carts.php";
     public static String URL_DELETE_CARTS =baseURL+"bansach/giohang/delete_carts.php";
+    //cthd
+    public static String url_insert_cthd="https://bansachonline.xyz/bansach/hoadon/cthd/them_cthd.php";
+    public  static String url_insert_hoadon ="https://bansachonline.xyz/bansach/hoadon/cthd/them_hoadon.php";
+    public static String URL_THEMNHATXET ="https://bansachonline.xyz/bansach/hoadon/cthd/them_nhanxet.php";
 
     public static String URL_INSERT_NOTIF = baseURL+"bansach/thongbao/insert_notif.php";
 }
