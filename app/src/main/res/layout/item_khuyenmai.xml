@@ -83,7 +83,7 @@
                     android:textStyle="bold"
                     android:textColor="#F44336"
                     android:layout_gravity="right"
-                    android:text="@string/ngaybd"
+                    android:text="NBD : "
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -91,7 +91,7 @@
                     android:textColor="#3F51B5"
                     android:id="@+id/tvNgayBatDau"
                     android:layout_gravity="right"
-                    android:text=" Ngày bắt đầu"
+                    android:text="Ngày bắt đầu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
