@@ -82,6 +82,9 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         fetchcthdbymahd(mahd);
+        if (tinhtrang.equals("choxacnhan")){
+            btnNhanhang.setVisibility(View.GONE);
+        }
 
         btnNhanhang.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +92,7 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
                 if (tinhtrang.equals("cholayhang")) {
                     UpdateTinhtrang( "danggiao", URL_UDATE);
                 }
+
             }
         });
     }
