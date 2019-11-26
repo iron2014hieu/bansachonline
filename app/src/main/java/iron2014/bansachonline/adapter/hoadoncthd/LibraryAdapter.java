@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,8 +43,9 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int i) {
+        String diem = String.valueOf(mData.get(i).getDiemdanhgia());
         holder.tv_name_book_lib.setText(mData.get(i).getTensach());
-
+        holder.tv_tacgia_book_lib.setRating(Float.valueOf(diem));
         try {
             Picasso.with(context).load(mData.get(i).getHinhanh()).into(holder.img_book_lib);
         }catch (Exception e){}
@@ -55,12 +57,12 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.MyViewHo
     }
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         private TextView tv_name_book_lib;
-
+        private RatingBar tv_tacgia_book_lib;
         private ImageView img_book_lib;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            tv_tacgia_book_lib = (RatingBar) itemView.findViewById(R.id.tv_tacgia_book_lib);
             tv_name_book_lib=(TextView)itemView.findViewById(R.id.tv_name_book_lib);
             img_book_lib=(ImageView) itemView.findViewById(R.id.img_book_lib);
 

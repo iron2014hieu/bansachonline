@@ -1,46 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<LinearLayout
+    android:layout_marginBottom="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/textcolor"
-    android:layout_margin="10dp">
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    android:backgroundTint="#F5F5F5"
+    android:background="?attr/textcolor">
+    <LinearLayout
+        android:backgroundTint="#F5F5F5"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="0.15dp"
         android:background="?attr/backgroundcolor"
         android:padding="15dp">
-
+        <ImageView
+            android:id="@+id/img_book_lib"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/book"/>
         <LinearLayout
             android:layout_below="@id/img_book_lib"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <TextView
+                android:textSize="15dp"
+                android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/textcolor"
+                android:textColor="#E91E63"
                 android:text="Teen sach"
-                android:layout_marginTop="15dp"
-                android:textStyle="bold"
-                android:maxLength="15"
+                android:textStyle="normal"
                 android:layout_below="@id/img_book_lib"
                 android:id="@+id/tv_name_book_lib"/>
-            <TextView
+
+            <RatingBar
+                android:id="@+id/tv_tacgia_book_lib"
+                style="@android:style/Widget.Holo.Light.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/textcolor"
-                android:text="..."
-                android:layout_marginTop="15dp"/>
+                android:layout_below="@id/img_book_lib"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Teen sach"
+                android:textColor="#3F51B5"
+                android:textStyle="bold" />
         </LinearLayout>
-
-    <ImageView
-        android:id="@+id/img_book_lib"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/book"/>
-    </RelativeLayout>
-</androidx.cardview.widget.CardView>
+    </LinearLayout>
+</LinearLayout>

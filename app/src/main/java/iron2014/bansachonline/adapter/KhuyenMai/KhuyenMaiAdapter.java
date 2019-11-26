@@ -43,11 +43,13 @@ public class KhuyenMaiAdapter extends RecyclerView.Adapter<KhuyenMaiAdapter.MyVi
         myViewHolder.tvTinhChat.setText(mData.get(i).getTinhChat());
         myViewHolder.tvNgayBatDau.setText(mData.get(i).getNgayBatDau());
         myViewHolder.tvNgayKetThuc.setText(mData.get(i).getHangSuDung());
-        double tc = Double.valueOf(mData.get(i).getTinhChat());
-        Toast.makeText(context, ""+tc, Toast.LENGTH_SHORT).show();
-//        int phantram = Integer.parseInt((1 - tc)*100);
 
-//            myViewHolder.tvTinhChat.setText(String.valueOf(phantram));
+//        double tc = Double.valueOf(mData.get(i).getTinhChat());
+//        double kq1 = 1-tc;
+//        String phantram = String.valueOf(100*kq1);
+//        Toast.makeText(context, ""+phantram, Toast.LENGTH_SHORT).show();
+//
+//        myViewHolder.tvTinhChat.setText(String.valueOf(phantram));
 
         myViewHolder.img_copy.setOnClickListener(new View.OnClickListener() {
             @Override

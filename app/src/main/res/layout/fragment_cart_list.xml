@@ -10,27 +10,55 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="5dp"
         android:background="?attr/backgroundcolor">
-        <TextView
-            android:background="#FFEB3B"
-            android:gravity="center"
-            android:textColor="#3F51B5"
-            android:textStyle="bold"
-            android:id="@+id/tvTTgiohang"
-            android:text="@string/giohangtrong"
+        <LinearLayout
+            android:weightSum="2"
             android:layout_width="match_parent"
-            android:layout_height="30dp"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:padding="10dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textColor="#A3030303"
+                android:textStyle="italic"
+                android:id="@+id/tvLaymaKM"
+                android:text="Nhận mã khuyến mãi >> "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?attr/textcolor"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listDatmua"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tvTTgiohang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="103dp"
+            android:textColor="?attr/textcolor"
+            android:drawableTop="@drawable/box_64db"
+            android:gravity="center"
+            android:text="Giỏ hàng trống"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
         <CheckBox
             android:id="@+id/checkbox_cartlist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:text="Chọn tất cả"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listDatmua"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+
 
         <LinearLayout
             android:layout_marginTop="10dp"
@@ -75,7 +103,7 @@
 
         <TextView
             android:id="@+id/tvMuatiep"
-            android:textStyle="normal"
+            android:textStyle="italic"
             android:layout_margin="20dp"
             android:textColor="#E91E63"
             android:gravity="center"
@@ -83,5 +111,6 @@
             android:text="@string/tieptucmua"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+    </LinearLayout>
     </LinearLayout>
 </ScrollView>

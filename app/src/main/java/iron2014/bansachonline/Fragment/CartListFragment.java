@@ -34,6 +34,7 @@ import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.adapter.CartAdapter;
 import iron2014.bansachonline.fragmentMain.HomeFragment;
+import iron2014.bansachonline.fragmentMain.TheloaiFragment;
 import iron2014.bansachonline.model.DatMua;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,7 +45,7 @@ import retrofit2.Callback;
  */
 public class CartListFragment extends Fragment {
 
-    TextView tvMuatiep, tvTTgiohang, tv_tongthanhtoan, txtDonvi;
+    TextView tvMuatiep, tvTTgiohang, tv_tongthanhtoan, txtDonvi, tvLaymaKM;
 
     View view;
     ApiInTerFaceDatmua apiInTerFaceDatmua;
@@ -66,6 +67,15 @@ public class CartListFragment extends Fragment {
         tv_tongthanhtoan = view.findViewById(R.id.tv_tongthanhtoan);
         txtDonvi = view.findViewById(R.id.txtDonvi);
         tvMuatiep = view.findViewById(R.id.tvMuatiep);
+        tvLaymaKM = view.findViewById(R.id.tvLaymaKM);
+        tvLaymaKM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), MainActivity.class);
+                i.putExtra("check", "1");
+                startActivity(i);
+            }
+        });
         tvMuatiep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,11 +130,13 @@ public class CartListFragment extends Fragment {
 
                 if (listDatmua.size() == 0){
                     tv_tongthanhtoan.setVisibility(View.GONE);
+                    tvLaymaKM.setVisibility(View.GONE);
                     txtDonvi.setVisibility(View.GONE);
                     btnnext.setVisibility(View.GONE);
                     txtTongtien.setVisibility(View.GONE);
                     tvTTgiohang.setVisibility(View.VISIBLE);
                 }else {
+                    tvLaymaKM.setVisibility(View.VISIBLE);
                     tv_tongthanhtoan.setVisibility(View.VISIBLE);
                     txtDonvi.setVisibility(View.VISIBLE);
                     btnnext.setVisibility(View.VISIBLE);

@@ -28,7 +28,8 @@
                 android:hint="@string/khuyenmaicucchat"
                 android:textSize="17sp"
                 android:gravity="left"
-                android:textColorHint="?attr/textcolor"
+                android:textStyle="normal"
+                android:textColorHint="#fff"
                 android:drawableRight="@drawable/ic_search"
                 android:backgroundTint="?attr/buttoncolor"/>
             <ImageButton

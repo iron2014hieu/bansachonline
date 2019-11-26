@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -27,10 +27,14 @@
             android:textColor="?attr/textcolor"
             android:background="?attr/cardbackground"
             android:textSize="20dp" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_thongbao_donhang"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+        </ScrollView>
     </LinearLayout>
     <TextView
         android:id="@+id/txtThongbaoNotif_null"
@@ -46,4 +50,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</LinearLayout>
