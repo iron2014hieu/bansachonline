@@ -5,9 +5,10 @@
     android:orientation="horizontal">
 
     <ImageView
+        android:layout_marginTop="5dp"
         android:id="@+id/image_view_flag"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
         android:src="@drawable/bill" />
 
     <LinearLayout
@@ -25,7 +26,7 @@
             android:gravity="center"
             android:text="@string/vanchuyen"
             android:textColor="#3F51B5"
-            android:textSize="17dp" />
+            android:textSize="15dp" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -42,7 +43,7 @@
                 android:gravity="center"
                 android:text="@string/cuoc"
                 android:textColor="#F44336"
-                android:textSize="17dp" />
+                android:textSize="13dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -54,7 +55,7 @@
                 android:gravity="center"
                 android:text="VNĐ"
                 android:textColor="#F44336"
-                android:textSize="17dp" />
+                android:textSize="13dp" />
         </LinearLayout>
 
     </LinearLayout>

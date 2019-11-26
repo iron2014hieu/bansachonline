@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
+    android:orientation="vertical"
     tools:context=".fragmentVanChuyen.Activity.ChitietVanChuyenActivity">
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_muahang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/topbottomcolor"
+        app:titleTextColor="#fff"
+        app:title="Chi tiết vận chuyển"
+        app:navigationIcon="@drawable/danggiao"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
         <TextView
             android:id="@+id/tvmaHD"
             android:visibility="gone"
@@ -22,143 +34,129 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Mã hóa đơn :"/>
-        <LinearLayout
-            android:weightSum="2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="#E91E63"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+            <TableRow
                 android:layout_height="wrap_content"
-                android:text="@string/tenkhachhangs"/>
-
-            <TextView
-                android:id="@+id/tvtenKH"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="#3F51B5"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="match_parent">
+                <TextView
+                    android:textSize="18dp"
+                    android:textStyle="normal"
+                    android:layout_weight="1"
+                    android:background="#A3CAC9C9"
+                    android:textColor="#3F51B5"
+                    android:padding="15dip"
+                    android:text="@string/tenkhachhangs"/>
+                <TextView
+                    android:textSize="18dp"
+                    android:textStyle="normal"
+                    android:id="@+id/tvtenKH"
+                    android:layout_weight="1"
+                    android:background="#B9DCDCDC"
+                    android:text="Thiết lập ngay"
+                    android:textColor="#E91E63"
+                    android:padding="15dip"
+                    android:gravity="center"/>
+            </TableRow>
+            <TableRow
                 android:layout_height="wrap_content"
-                android:text="Khách hàng :"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:weightSum="2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="#E91E63"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="match_parent">
+                <TextView
+                    android:textSize="18dp"
+                    android:textStyle="normal"
+                    android:layout_weight="1"
+                    android:background="#B9DCDCDC"
+                    android:textColor="#3F51B5"
+                    android:padding="15dip"
+                    android:text="@string/diachis"/>
+                <TextView
+                    android:textSize="18dp"
+                    android:textStyle="normal"
+                    android:id="@+id/tvDiaChi"
+                    android:layout_weight="1"
+                    android:background="#A3CAC9C9"
+                    android:text="Thiết lập ngay"
+                    android:textColor="#E91E63"
+                    android:padding="15dip"
+                    android:gravity="center"/>
+            </TableRow>
+            <TableRow
                 android:layout_height="wrap_content"
-                android:text="@string/diachis"/>
-
-            <TextView
-                android:id="@+id/tvDiaChi"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="#3F51B5"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="match_parent">
+                <TextView
+                    android:textSize="18dp"
+                    android:textStyle="normal"
+                    android:layout_weight="1"
+                    android:background="#A3CAC9C9"
+                    android:textColor="#3F51B5"
+                    android:padding="15dip"
+                    android:text="@string/SDT"/>
+                <TextView
+                    android:textSize="18dp"
+                    android:textStyle="normal"
+                    android:id="@+id/tvSDT"
+                    android:layout_weight="1"
+                    android:background="#B9DCDCDC"
+                    android:text="Thiết lập ngay"
+                    android:textColor="#E91E63"
+                    android:padding="15dip"
+                    android:gravity="center"/>
+            </TableRow>
+            <TableRow
                 android:layout_height="wrap_content"
-                android:text="Địa chỉ :"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:weightSum="2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="#E91E63"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="match_parent">
+                <TextView
+                    android:textSize="18dp"
+                    android:textStyle="normal"
+                    android:layout_weight="1"
+                    android:background="#B9DCDCDC"
+                    android:textColor="#3F51B5"
+                    android:padding="15dip"
+                    android:text="@string/tongtiens"/>
+                <TextView
+                    android:textSize="18dp"
+                    android:textStyle="normal"
+                    android:id="@+id/tvTongTien"
+                    android:layout_weight="1"
+                    android:background="#A3CAC9C9"
+                    android:text="Thiết lập ngay"
+                    android:textColor="#E91E63"
+                    android:padding="15dip"
+                    android:gravity="center"/>
+            </TableRow>
+            <TableRow
                 android:layout_height="wrap_content"
-                android:text="@string/SDT"/>
-
-            <TextView
-                android:id="@+id/tvSDT"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="#3F51B5"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="SĐT :"/>
-        </LinearLayout>
+                android:layout_width="match_parent">
+                <TextView
+                    android:textSize="18dp"
+                    android:textStyle="normal"
+                    android:layout_weight="1"
+                    android:background="#A3CAC9C9"
+                    android:textColor="#3F51B5"
+                    android:padding="15dip"
+                    android:text="@string/tinhtranghang"/>
+                <TextView
+                    android:textSize="18dp"
+                    android:textStyle="normal"
+                    android:id="@+id/tvTinhTrang"
+                    android:layout_weight="1"
+                    android:background="#B9DCDCDC"
+                    android:text="Thiết lập ngay"
+                    android:textColor="#E91E63"
+                    android:padding="15dip"
+                    android:gravity="center"/>
+            </TableRow>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_xacnhadonhang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:weightSum="2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="#E91E63"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/tongtiens"/>
-
-            <TextView
-                android:id="@+id/tvTongTien"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="#3F51B5"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tổng tiền :"/>
         </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:weightSum="2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="#E91E63"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/tinhtranghang"/>
-
-            <TextView
-                android:id="@+id/tvTinhTrang"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="#3F51B5"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tình trạng :"/>
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btnNhanhang"
-            android:layout_marginTop="10dp"
-            android:textColor="#fff"
-            android:background="@drawable/cutomsbtn"
-            android:text="@string/xacnhandonhang"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
     </LinearLayout>
-
-</ScrollView>
+    <Button
+        android:layout_gravity="bottom|end"
+        android:id="@+id/btnNhanhang"
+        android:layout_marginTop="10dp"
+        android:textColor="#fff"
+        android:background="@drawable/cutomsbtn"
+        android:text="@string/xacnhandonhang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

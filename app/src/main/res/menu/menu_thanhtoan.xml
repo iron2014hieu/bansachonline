@@ -6,6 +6,6 @@
         android:iconTint="#fff"
         android:id="@+id/iv_khuyenmai"
         android:title="@string/khuyenmai"
-        android:icon="@drawable/sale"
-        app:showAsAction="always"/>
-</menu>
+    android:icon="@drawable/sale"
+    app:showAsAction="always"/>
+    </menu>

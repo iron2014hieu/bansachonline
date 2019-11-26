@@ -95,13 +95,22 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
         tvSDT.setText(sdt);
         tvTongTien.setText(tongtien);
         tvTinhTrang.setText(tinhtrang);
-        Toast.makeText(this, ""+mauser, Toast.LENGTH_SHORT).show();
 
+        if(tinhtrang.equals("danhgia")){
+            tvTinhTrang.setText("Đã giao hàng");
+        }else if (tinhtrang.equals("danggiao")){
+            tvTinhTrang.setText("Đang vận chuyển");
+        }else if(tinhtrang.equals("userxacnhan")){
+            tvTinhTrang.setText("Xác nhận đơn hàng");
+        }
+        
         if(tinhtrang!=null && tinhtrang.equals("userxacnhan")){
             btnGiaoHang.setVisibility(View.GONE);
+
         }
         if (tinhtrang!=null && tinhtrang.equals("danhgia")){
             btnGiaoHang.setVisibility(View.GONE);
+
         }
         //thay đổi tình trạng sang chờ ng dùng xác nhận
         btnGiaoHang.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +128,7 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
         cthdAdapter = new CTHDAdapter(this, cthdList);
         fetchcthdbymahd(mahd);
         StaggeredGridLayoutManager gridLayoutManagerVeticl =
-                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
+                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(gridLayoutManagerVeticl);
         recyclerView.setHasFixedSize(true);
 

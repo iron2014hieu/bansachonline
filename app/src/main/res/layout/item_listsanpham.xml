@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="#F5F5F5"
     android:layout_marginTop="5dp">
     <LinearLayout
+        android:background="#F5F5F5"
         android:padding="5dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
     <CheckBox
@@ -23,7 +25,7 @@
         android:id="@+id/linear_cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?attr/backgroundcolor"
+        android:background="#F5F5F5"
         android:orientation="horizontal">
     <ImageView
         android:id="@+id/img_cart"
@@ -31,25 +33,26 @@
         android:layout_height="75dp"
         android:src="@drawable/book"/>
     <LinearLayout
+        android:background="#F5F5F5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?attr/backgroundcolor"
         android:orientation="vertical"
         android:layout_marginLeft="16dp">
+
         <TextView
+            android:id="@+id/tv_name_book_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#3F51B5"
-            android:text="Teen sach"
             android:maxLength="25"
-            android:textStyle="bold"
-            android:id="@+id/tv_name_book_cart"/>
+            android:text="Teen sach"
+            android:textColor="#3F51B5"
+            android:textStyle="normal" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Contact phone"
             android:textColor="#F44336"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:id="@+id/tv_giaban"/>
         <LinearLayout
             android:orientation="horizontal"
@@ -63,6 +66,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_chevron_left"/>
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số lượng : "/>
             <TextView
                 android:padding="10dp"
                 android:id="@+id/tv_soluongmua"
@@ -97,4 +105,4 @@
 </LinearLayout>
 </LinearLayout>
 </LinearLayout>
-</androidx.cardview.widget.CardView>
+</LinearLayout>

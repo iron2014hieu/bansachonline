@@ -74,6 +74,14 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
         tvTongTien.setText(tongtien);
         tvTinhTrang.setText(tinhtrang);
 
+        if (tinhtrang.equals("choxacnhan")){
+            tvTinhTrang.setText("Chờ xác nhận");
+        }else if (tinhtrang.equals("cholayhang")){
+            tvTinhTrang.setText("Chờ vận chuyển");
+        }else if(tinhtrang.equals("danhgia")){
+            tvTinhTrang.setText("Đã giao hàng");
+        }
+
         cthdAdapter = new CTHDAdapter(this, cthdList);
 
         StaggeredGridLayoutManager gridLayoutManagerVeticl =
@@ -85,7 +93,6 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
         if (tinhtrang.equals("choxacnhan")){
             btnNhanhang.setVisibility(View.GONE);
         }
-
         btnNhanhang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

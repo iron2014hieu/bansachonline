@@ -9,7 +9,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:orientation="vertical"
-        android:background="?attr/backgroundcolor"
+        android:background="#F5F5F5"
         android:gravity="center">
         <ImageView
             android:background="@drawable/cutomsimage"

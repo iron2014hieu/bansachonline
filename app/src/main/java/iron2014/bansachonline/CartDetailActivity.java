@@ -160,12 +160,12 @@ public class CartDetailActivity extends AppCompatActivity {
         toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator()).start();
 
         Giatri = Integer.valueOf(tongtien);
-        if (Giatri > 100000){
-            Giatri -= Giatri * 0.05 ;
-            txtTongtien.setText(String.valueOf(Giatri));
-        }else if(Giatri>250000) {
-            Toast.makeText(this, "free ship", Toast.LENGTH_SHORT).show();
-        }
+//        if (Giatri > 100000){
+//            Giatri -= Giatri * 0.05 ;
+//            txtTongtien.setText(String.valueOf(Giatri));
+//        }else if(Giatri>250000) {
+//            Toast.makeText(this, "free ship", Toast.LENGTH_SHORT).show();
+//        }
 
         txtTongtien.setText(tongtien+ " VNĐ");
 
@@ -290,22 +290,22 @@ public class CartDetailActivity extends AppCompatActivity {
         countryItems.add(new CountryItem("Giao hàng siêu tốc", "45000", R.drawable.vanchuyen));
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_thanhtoan, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.iv_khuyenmai:
-                Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                intent.putExtra("check","2");
-                startActivity(intent);
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_thanhtoan, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()){
+//            case R.id.iv_khuyenmai:
+//                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+//                intent.putExtra("check","2");
+//                startActivity(intent);
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     public void fetchTacgia(String mauser){
         apiInTerFaceDatmua = ApiClient.getApiClient().create(ApiInTerFaceDatmua.class);

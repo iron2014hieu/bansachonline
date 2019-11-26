@@ -1,62 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/textcolor"
     android:layout_margin="5dp"
     android:backgroundTint="?attr/backgroundcolor">
     <LinearLayout
+        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_gravity="center"
-        android:background="?attr/backgroundcolor"
-        android:padding="10dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Contact phone"
-            android:textColor="?attr/textcolor"
-            android:textStyle="bold"
-            android:id="@+id/txt_soluong_cthd"/>
+        android:background="?attr/backgroundcolor">
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="100dp"
+            android:src="@drawable/book"
+            android:id="@+id/img_cthd"/>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_height="75dp"
-                android:src="@drawable/book"
-                android:id="@+id/img_cthd"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="5dp"
             android:layout_gravity="center">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/textcolor"
+                android:textColor="#3F51B5"
                 android:text="Contact name"
-                android:gravity="center"
+                android:textSize="18dp"
                 android:textStyle="bold"
-                android:maxLength="20"
                 android:id="@+id/txt_books_name_cthd"/>
 
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Contact phone"
-                android:textColor="?attr/textcolor"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:id="@+id/txt_giaban_cthd"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tổng tiền : "
+                    android:textColor="#3F51B5"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contact phone"
+                    android:textColor="#F44336"
+                    android:textStyle="bold"
+                    android:id="@+id/txt_giaban_cthd"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Số lượng  : "
+                    android:textColor="#3F51B5"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Contact phone"
+                    android:textColor="#F44336"
+                    android:textStyle="bold"
+                    android:id="@+id/txt_soluong_cthd"/>
+            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

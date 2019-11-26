@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backgroundcolor"
     tools:context=".LoginRegister.ProfileActivity">
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -39,8 +39,8 @@
                     android:background="?attr/topbottomcolor"
                     app:titleTextColor="?attr/textcolor"/>
             </LinearLayout>
-
         </com.google.android.material.appbar.AppBarLayout>
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:visibility="gone"
             android:id="@+id/profile_image"
@@ -52,13 +52,7 @@
             android:layout_marginTop="10dp"
             android:onClick="getImage"
             android:layout_marginBottom="10dp"/>
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/book"
-            android:layout_marginTop="10dp"
-            android:onClick="getImage"
-            android:layout_marginBottom="10dp"/>
+
         <TableRow
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
@@ -66,18 +60,18 @@
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="#dcdcdc"
-                android:textColor="?attr/textcolor"
+                android:background="#A3CAC9C9"
+                android:textColor="#B2535353"
                 android:padding="15dip"
-                android:text="@string/ten" />
+                android:text="@string/ten"/>
             <TextView
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:id="@+id/txtName"
                 android:layout_weight="1"
-                android:background="#DCCAC9C9"
+                android:background="#B9DCDCDC"
                 android:text="Thiết lập ngay"
-                android:textColor="?attr/textcolor"
+                android:textColor="#B2535353"
                 android:padding="15dip"
                 android:gravity="center"/>
         </TableRow>
@@ -88,18 +82,18 @@
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="#dcdcdc"
-                android:textColor="?attr/textcolor"
+                android:background="#A3CAC9C9"
+                android:textColor="#B2535353"
                 android:padding="15dip"
-                android:text="Giới tính" />
+                android:text="Giới tính"/>
             <TextView
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:id="@+id/txtSex"
                 android:layout_weight="1"
-                android:background="#DCCAC9C9"
+                android:background="#B9DCDCDC"
                 android:text="Thiết lập ngay"
-                android:textColor="?attr/textcolor"
+                android:textColor="#B2535353"
                 android:padding="15dip"
                 android:gravity="center"/>
         </TableRow>
@@ -110,18 +104,18 @@
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="#dcdcdc"
-                android:textColor="?attr/textcolor"
+                android:background="#A3CAC9C9"
+                android:textColor="#B2535353"
                 android:padding="15dip"
-                android:text="Địa chỉ" />
+                android:text="Địa chỉ"/>
             <TextView
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:id="@+id/txtAddress"
                 android:layout_weight="1"
-                android:background="#DCCAC9C9"
+                android:background="#B9DCDCDC"
                 android:text="Thiết lập ngay"
-                android:textColor="?attr/textcolor"
+                android:textColor="#B2535353"
                 android:padding="15dip"
                 android:gravity="center"/>
         </TableRow>
@@ -132,18 +126,18 @@
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="#dcdcdc"
-                android:textColor="?attr/textcolor"
+                android:background="#A3CAC9C9"
+                android:textColor="#B2535353"
                 android:padding="15dip"
-                android:text="Ngày sinh" />
+                android:text="Ngày sinh"/>
             <TextView
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:id="@+id/txtNgaySinh"
                 android:layout_weight="1"
-                android:background="#DCCAC9C9"
+                android:background="#B9DCDCDC"
                 android:text="Thiết lập ngay"
-                android:textColor="?attr/textcolor"
+                android:textColor="#B2535353"
                 android:padding="15dip"
                 android:gravity="center"/>
         </TableRow>
@@ -154,18 +148,18 @@
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="#dcdcdc"
-                android:textColor="?attr/textcolor"
+                android:background="#A3CAC9C9"
+                android:textColor="#B2535353"
                 android:padding="15dip"
-                android:text="Số điện thoại" />
+                android:text="Số điện thoại"/>
             <TextView
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:id="@+id/txtPhone"
                 android:layout_weight="1"
-                android:background="#DCCAC9C9"
+                android:background="#B9DCDCDC"
                 android:text="Thiết lập ngay"
-                android:textColor="?attr/textcolor"
+                android:textColor="#B2535353"
                 android:padding="15dip"
                 android:gravity="center"/>
         </TableRow>
@@ -176,21 +170,22 @@
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="#dcdcdc"
-                android:textColor="?attr/textcolor"
+                android:background="#A3CAC9C9"
+                android:textColor="#B2535353"
                 android:padding="15dip"
-                android:text="Email" />
+                android:text="Email"/>
             <TextView
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:id="@+id/txtEmail"
                 android:layout_weight="1"
-                android:background="#DCCAC9C9"
+                android:background="#B9DCDCDC"
                 android:text="Thiết lập ngay"
-                android:textColor="?attr/textcolor"
+                android:textColor="#B2535353"
                 android:padding="15dip"
                 android:gravity="center"/>
         </TableRow>
+
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -222,15 +217,16 @@
             android:background="?attr/buttoncolor"
             android:textColor="?attr/textcolor"
             android:text="Cập nhật thông tin"/>
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_marginTop="25sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/buttoncolor"
-            android:textColor="?attr/textcolor"
-            android:text="@string/dangxuat"/>
 
-    </LinearLayout>
 
-</ScrollView>
+    </TableLayout>
+    <Button
+        android:layout_gravity="bottom|end"
+        android:id="@+id/btnLogout"
+        android:layout_marginTop="25sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/buttoncolor"
+        android:textColor="?attr/textcolor"
+        android:text="@string/dangxuat"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

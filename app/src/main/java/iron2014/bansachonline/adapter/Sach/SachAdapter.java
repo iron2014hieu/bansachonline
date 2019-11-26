@@ -51,6 +51,9 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
         myViewHolder.tv_name.setText(mData.get(i).getTensach());
         myViewHolder.tv_phone.setText("Giá: "+mData.get(i).getGia()+"₫");
+
+//        myViewHolder.tv_soluongsach.setText(String.valueOf(mData.get(i).getSoluong()));
+
         myViewHolder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +83,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
         private LinearLayout item_contact;
         private TextView tv_name;
         private TextView tv_phone;
+        private TextView tv_soluongsach;
         private TextView tv_sldaban;
         private RatingBar ratingBar;
         ImageView img, favorite;
@@ -90,7 +94,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
             tv_name=(TextView)itemView.findViewById(R.id.books_name);
             tv_phone=(TextView)itemView.findViewById(R.id.books_chitiet);
             img=(ImageView) itemView.findViewById(R.id.img_book_iv);
-            tv_sldaban=(TextView) itemView.findViewById(R.id.iv_sldabans);
+            tv_sldaban=(TextView) itemView.findViewById(R.id.tv_soluongsach);
         }
     }
     public interface ProductItemActionListener{

@@ -29,9 +29,11 @@ import iron2014.bansachonline.Activity.GetAllBookActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
 import iron2014.bansachonline.CartDetailActivity;
+import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.adapter.CartAdapter;
+import iron2014.bansachonline.fragmentMain.HomeFragment;
 import iron2014.bansachonline.model.DatMua;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,7 +44,7 @@ import retrofit2.Callback;
  */
 public class CartListFragment extends Fragment {
 
-    TextView tvMuatiep, tvTTgiohang;
+    TextView tvMuatiep, tvTTgiohang, tv_tongthanhtoan, txtDonvi;
 
     View view;
     ApiInTerFaceDatmua apiInTerFaceDatmua;
@@ -61,12 +63,13 @@ public class CartListFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_cart_list, container, false);
+        tv_tongthanhtoan = view.findViewById(R.id.tv_tongthanhtoan);
+        txtDonvi = view.findViewById(R.id.txtDonvi);
         tvMuatiep = view.findViewById(R.id.tvMuatiep);
         tvMuatiep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getContext(), GetAllBookActivity.class);
-                startActivity(i);
+                startActivity(new Intent(getContext(), MainActivity.class));
             }
         });
 
@@ -116,10 +119,14 @@ public class CartListFragment extends Fragment {
                 cartAdapter.notifyDataSetChanged();
 
                 if (listDatmua.size() == 0){
+                    tv_tongthanhtoan.setVisibility(View.GONE);
+                    txtDonvi.setVisibility(View.GONE);
                     btnnext.setVisibility(View.GONE);
                     txtTongtien.setVisibility(View.GONE);
                     tvTTgiohang.setVisibility(View.VISIBLE);
                 }else {
+                    tv_tongthanhtoan.setVisibility(View.VISIBLE);
+                    txtDonvi.setVisibility(View.VISIBLE);
                     btnnext.setVisibility(View.VISIBLE);
                     txtTongtien.setVisibility(View.VISIBLE);
                     tvTTgiohang.setVisibility(View.GONE);

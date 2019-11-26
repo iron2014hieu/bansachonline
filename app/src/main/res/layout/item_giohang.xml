@@ -3,14 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F6F6F6"
     android:layout_marginTop="10dp"
-    android:orientation="horizontal">
+    android:orientation="vertical">
+    <LinearLayout
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
     <CheckBox
         android:id="@+id/cb_giohang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
     <LinearLayout
+        android:background="#F6F6F6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -18,9 +27,10 @@
             android:id="@+id/linear_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/backgroundcolor"
+            android:background="#F6F6F6"
             android:orientation="horizontal">
             <ImageView
+                android:layout_gravity="center"
                 android:id="@+id/img_cart"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
@@ -28,7 +38,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="?attr/backgroundcolor"
+                android:background="#F6F6F6"
                 android:orientation="vertical"
                 android:layout_marginLeft="16dp">
                 <TextView
@@ -48,15 +58,17 @@
                     android:id="@+id/tv_giaban"/>
 
                 <LinearLayout
+                    android:background="#F6F6F6"
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                        android:layout_marginTop="10dp"
                         android:id="@+id/btn_numberQuality"
                         android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        app:backGroundColor="?attr/backgroundcolor"
-                        app:textColor="?attr/textcolor"/>
+                        android:layout_height="25dp"
+                        app:backGroundColor="#2196F3"
+                        app:textColor="#fff"/>
 <!--                    <ImageButton-->
 <!--                        android:background="@drawable/cutomstacgia"-->
 <!--                        android:layout_gravity="center"-->
@@ -85,7 +97,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="?attr/backgroundcolor">
+            android:background="#F6F6F6">
 
 
             <ImageView
@@ -96,5 +108,6 @@
                 android:layout_height="40dp"/>
 
         </LinearLayout>
+    </LinearLayout>
     </LinearLayout>
 </LinearLayout>

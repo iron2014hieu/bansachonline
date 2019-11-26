@@ -67,6 +67,8 @@ public class ChitiethoadonActivity extends AppCompatActivity {
             btnXacNhanHang.setVisibility(View.VISIBLE);
         }else if (tinhtrang!=null&&tinhtrang.equals("danggiao")){
             btnXacNhanHang.setVisibility(View.GONE);
+        }else if (tinhtrang!=null&&tinhtrang.equals("danhgia")){
+            btnXacNhanHang.setVisibility(View.GONE);
         }
 
         btnXacNhanHang.setOnClickListener(new View.OnClickListener() {
