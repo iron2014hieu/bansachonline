@@ -1,10 +1,6 @@
 package iron2014.bansachonline.Activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,21 +32,17 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import iron2014.bansachonline.Activity.AppChatActivity.HienthiTnActivity;
 import iron2014.bansachonline.Activity.hoadon.ListAllCommentActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
 import iron2014.bansachonline.LoginRegister.LoginActivity;
-import iron2014.bansachonline.Main2Activity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.UrlSql;
@@ -211,6 +203,13 @@ public class BookDetailActivity extends AppCompatActivity {
                 startActivity(Intent.createChooser(sharingIntent, "Chia sẻ"));
             }
         });
+        btn_Message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent o = new Intent(getBaseContext(), HienthiTnActivity.class);
+                startActivity(o);
+            }
+        });
         txtXemtataca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -345,6 +344,7 @@ public class BookDetailActivity extends AppCompatActivity {
     }
 
     private void addcontrols(){
+        btn_Message = findViewById(R.id.btn_chat);
         edtTensach = findViewById(R.id.edtTensach);
         edtGiaban=findViewById(R.id.edtGiaban);
         edtMotaChitiet=findViewById(R.id.edtMotaChitiet);

@@ -81,29 +81,38 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
-            btnLogin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String mEmail = edtEmail.getText().toString().trim();
-                    String mPassword = edtPassword.getText().toString().trim();
-                    if (!mEmail.isEmpty() || !mPassword.isEmpty()){
-                        if (cbRemember.isChecked()){
-                            Login(mEmail,mPassword);
-                            saveData(mEmail, mPassword);
-                        }else {
-                            Login(mEmail,mPassword);
-                            clearData();
-                        }
+        try {
+            Intent intent = getIntent();
+            String email = intent.getStringExtra("email");
+            String password = intent.getStringExtra("password");
+            edtEmail.setText(email);
+            edtPassword.setText(password);
+        }catch (Exception e){
+
+        }
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String mEmail = edtEmail.getText().toString().trim();
+                String mPassword = edtPassword.getText().toString().trim();
+                if (!mEmail.isEmpty() || !mPassword.isEmpty()){
+                    if (cbRemember.isChecked()){
+                        Login(mEmail,mPassword);
+                        saveData(mEmail, mPassword);
                     }else {
-                        edtEmail.setError("Vui lòng nhập email");
-                        edtPassword.setError("Vui lòng nhập password");
+                        Login(mEmail,mPassword);
+                        clearData();
                     }
+                }else {
+                    edtEmail.setError("Vui lòng nhập email");
+                    edtPassword.setError("Vui lòng nhập password");
                 }
-            });
-        }
-        public void loginsms(View view){
+            }
+        });
+    }
+    public void loginsms(View view){
         startActivity(new Intent(getBaseContext(), VerifyPhoneActivity.class));
-        }
+    }
     private void Login(final String email, final String password){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, urlSql.URL_LOGIN,
                 new Response.Listener<String>() {
@@ -127,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                                     sessionManager.createSession(id, email,address,phone, name, quyen);
                                     //get token notif
                                     sendTokenToServer(id);
-                                    updateDevicesToken("1",id);
+
                                     if(quyen.equals("shipper")){
                                         startActivity(new Intent(LoginActivity.this, ShipperActivity.class));
                                     }else {
@@ -210,23 +219,23 @@ public class LoginActivity extends AppCompatActivity {
 
         final String email = edtEmail.getText().toString();
 
-        if (token == null) {
-            progressDialog.dismiss();
-            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
-            return;
-        }
+//        if (token == null) {
+//            progressDialog.dismiss();
+//            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
+//            return;
+//        }
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoints.URL_REGISTER_DEVICE,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
-                        try {
-                            JSONObject obj = new JSONObject(response);
-                            Log.e("msg", obj.getString("message"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+//                        try {
+//                            JSONObject obj = new JSONObject(response);
+//                            Toast.makeText(LoginActivity.this, obj.getString("message"), Toast.LENGTH_LONG).show();
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
                     }
                 },
                 new Response.ErrorListener() {
@@ -243,48 +252,6 @@ public class LoginActivity extends AppCompatActivity {
                 params.put("mauser", mauser);
                 params.put("email", email);
                 params.put("token", token);
-                return params;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
-    private void updateDevicesToken(final String islogin,final String mauser){
-        final String email = edtEmail.getText().toString();
-
-        if (token == null) {
-            progressDialog.dismiss();
-            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoints.URL_UPDATE_DEVICES_ISLOGIN,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        progressDialog.dismiss();
-                        try {
-                            JSONObject obj = new JSONObject(response);
-                            Log.e("msg", obj.getString("message"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        progressDialog.dismiss();
-                        Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                }) {
-
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("mauser", mauser);
-                params.put("token", token);
-                params.put("islogin", islogin);
                 return params;
             }
         };

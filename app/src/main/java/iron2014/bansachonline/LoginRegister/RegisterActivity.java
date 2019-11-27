@@ -1,7 +1,9 @@
 package iron2014.bansachonline.LoginRegister;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +26,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
@@ -33,7 +36,13 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btnRegis;
     private ProgressBar loading;
     private String URL_REGIS = "https://bansachonline.xyz/bansach/loginregister/register.php";
-
+    private static final Pattern PASSWORD_PATTERN =
+            Pattern.compile("^" +
+                    "(?=.*[a-zA-Z])" +
+                    "(?=.*[@#$%^&+=])" +
+                    "(?=\\S+$)" +
+                    ".{4,}" +
+                    "$");
     SharedPref sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +58,10 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String nameInput = edtName.getText().toString().trim();
+                String passwordInput = edtPassword.getText().toString().trim();
+                String rePass = edtC_password.getText().toString().trim();
+                String emailInput = edtEmail.getEditableText().toString().trim();
                 loading.setVisibility(View.VISIBLE);
                 btnRegis.setVisibility(View.GONE);
                 final String name = edtName.getText().toString().trim();
@@ -58,13 +71,27 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                     loading.setVisibility(View.GONE);
                     btnRegis.setVisibility(View.VISIBLE);
-                }else {
+                }else if (edtName.length()>10){
+                    edtName.setError(" tên không quá 10 kí tự");
+                    btnRegis.setVisibility(View.VISIBLE);
+                }
+                else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+                    edtEmail.setError("Nhập một email đúng");
+                    btnRegis.setVisibility(View.VISIBLE);
+                }else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
+                    edtPassword.setError("Mật khẩu quá ngắn hoặc phải có kí tự đặc biệt");
+                    btnRegis.setVisibility(View.VISIBLE);
+                }else if (!password.equals(rePass)){
+                    btnRegis.setVisibility(View.VISIBLE);
+                    Toast.makeText(RegisterActivity.this, "mật khẩu không khớp", Toast.LENGTH_SHORT).show();
+                }
+                else {
                     Regis();
                 }
-
             }
         });
     }
+
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -92,10 +119,18 @@ public class RegisterActivity extends AppCompatActivity {
                                     loading.setVisibility(View.GONE);
                                     btnRegis.setVisibility(View.VISIBLE);
                                     Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                    intent.putExtra("email", email);
+                                    intent.putExtra("password", password);
+                                    startActivity(intent);
                                 }else {
+                                    btnRegis.setVisibility(View.VISIBLE);
+
                                     Toast.makeText(RegisterActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                                 }
                             }else {
+                                btnRegis.setVisibility(View.VISIBLE);
+
                                 Toast.makeText(RegisterActivity.this, "Tài khoản đã tồn tại!", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
