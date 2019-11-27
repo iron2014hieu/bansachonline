@@ -6,23 +6,29 @@
     android:layout_height="match_parent"
     android:background="?attr/backgroundcolor"
     tools:context=".fragmentMain.LibraryFragment">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_vanchuyen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="#fff"
+        android:background="#2196F3"
+        app:title="Thư viện">
+    </androidx.appcompat.widget.Toolbar>
     <ProgressBar
         android:id="@+id/progress_lib"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"/>
     <TextView
-        android:gravity="center"
-        android:padding="5dp"
-        android:background="#F5F5F5"
+        android:layout_below="@+id/toolbar_vanchuyen"
         android:id="@+id/tvTusach"
-        android:textSize="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:textColor="#3F51B5"
+        android:layout_height="50dp"
+        android:gravity="center"
         android:text="Tủ sách của tôi"
-        android:textStyle="normal" />
+        android:textColor="?attr/textcolor"
+        android:background="?attr/cardbackground"
+        android:textSize="20dp" />
     <View
         android:id="@+id/vvvv"
         android:layout_below="@+id/tvTusach"

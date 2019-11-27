@@ -64,7 +64,7 @@ public class SliderAdapterExample extends
                 viewHolder.textViewDescription.setTextColor(Color.WHITE);
                 viewHolder.imageGifContainer.setVisibility(View.GONE);
                 Glide.with(viewHolder.itemView)
-                        .load("http://blog.komo.vn/wp-content/uploads/2016/01/banner_gia-dinh-ngo.jpg")
+                        .load("https://3r98nw2w9uto3s66qn2k1ho2-wpengine.netdna-ssl.com/wp-content/uploads/sites/2/2019/03/idaog-promo.png")
                         .fitCenter()
                         .into(viewHolder.imageViewBackground);
                 break;

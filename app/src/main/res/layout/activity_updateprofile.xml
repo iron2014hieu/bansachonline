@@ -86,37 +86,85 @@
                 android:inputType="number"
                 />
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:passwordToggleEnabled="true">
+                <EditText
+                    android:enabled="false"
+                    android:background="@drawable/rounded_edittext"
+                    android:id="@+id/edtNgaySinh"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Ngày sinh" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <ImageButton
+                android:background="@drawable/cutomsimage"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="DATE"
+                android:id="@+id/btn_date"
+                android:src="@drawable/ic_today_black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:weightSum="2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:passwordToggleEnabled="true">
-            <EditText
-                android:background="@drawable/rounded_edittext"
-                android:id="@+id/edtNgaySinh"
-                android:layout_width="match_parent"
+            android:orientation="horizontal">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_weight="1"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_height="50dp"
-                android:hint="Ngày sinh"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:passwordToggleEnabled="true">
-            <EditText
-                android:background="@drawable/rounded_edittext"
-                android:id="@+id/edtGioiTinh"
-                android:layout_width="match_parent"
+                app:passwordToggleEnabled="true">
+                <EditText
+                    android:background="@drawable/rounded_edittext"
+                    android:id="@+id/edtGioiTinh"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="50dp"
+                    android:hint="Giới tính"
+                    android:enabled="false"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+            <RadioGroup
+                android:gravity="right"
+                android:layout_weight="1"
                 android:layout_marginTop="10dp"
-                android:layout_height="50dp"
-                android:hint="Giới tính"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:id="@+id/rg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <RadioButton
+                    android:id="@+id/rb_nam"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nam"
+                    />
+                <RadioButton
+                    android:id="@+id/rb_nu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nữ"
+                    />
+            </RadioGroup>
+        </LinearLayout>
+
 
 
     </LinearLayout>
+
+
     <Button
         android:layout_marginTop="20dp"
         android:background="#2196F3"

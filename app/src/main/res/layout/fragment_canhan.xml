@@ -9,6 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_vanchuyen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="#fff"
+            android:background="#2196F3"
+            app:title="Thiết lập">
+        </androidx.appcompat.widget.Toolbar>
        <androidx.cardview.widget.CardView
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
@@ -17,7 +25,6 @@
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:padding="5dp"
                android:orientation="vertical">
                <androidx.cardview.widget.CardView
                    android:id="@+id/cardview_canhan"
@@ -53,7 +60,6 @@
                    <LinearLayout
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
-                       android:padding="10dp"
                        android:background="?attr/backgroundcolor"
                        android:orientation="vertical">
                    <LinearLayout
@@ -61,6 +67,7 @@
                        android:layout_height="wrap_content"
                        android:orientation="horizontal">
                        <TextView
+                           android:layout_marginLeft="5dp"
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content"
                            android:text="@string/donhang"
@@ -157,6 +164,11 @@
 
            </LinearLayout>
        </androidx.cardview.widget.CardView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="?attr/textcolor"/>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -165,7 +177,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp"
             android:background="?attr/backgroundcolor"
             android:orientation="vertical">
         <TextView

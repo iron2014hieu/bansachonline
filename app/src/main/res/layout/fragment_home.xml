@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backgroundcolor"
+    android:background="?attr/cardbackground"
     tools:context=".fragmentMain.HomeFragment">
     <!--            toolbar-->
     <include
@@ -76,10 +76,9 @@
                 <LinearLayout
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
-                    android:background="@drawable/backgroundxml"
                     android:layout_height="wrap_content">
                     <androidx.recyclerview.widget.RecyclerView
-                        android:layout_marginLeft="5dp"
+                        android:background="?attr/cardbackground"
                         android:id="@+id/recyclerview_theloai"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -122,7 +121,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_gravity="center"
                 android:id="@+id/recyclerview_book_home"
-                android:backgroundTint="?attr/backgroundcolor"
+                android:background="?attr/cardbackground"
                 android:layout_below="@id/inlayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
@@ -155,7 +154,7 @@
                         android:layout_height="match_parent"
                         android:layout_below="@id/textView2"
                         android:layout_gravity="center"
-                        android:backgroundTint="?attr/backgroundcolor" />
+                        android:background="?attr/cardbackground"/>
                 </LinearLayout>
             </LinearLayout>
             <TextView
@@ -170,9 +169,10 @@
                 android:layout_height="wrap_content"
                 android:text="Tìm kiếm gần đây"/>
             <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:id="@+id/recyclerview_book_suggest"
-                android:backgroundTint="?attr/backgroundcolor"
+                android:background="?attr/cardbackground"
                 android:layout_below="@id/textsuggest"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
@@ -205,7 +205,7 @@
                         android:layout_height="match_parent"
                         android:layout_below="@id/texttacgia"
                         android:layout_gravity="center"
-                        android:backgroundTint="?attr/backgroundcolor" />
+                        android:background="?attr/cardbackground"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

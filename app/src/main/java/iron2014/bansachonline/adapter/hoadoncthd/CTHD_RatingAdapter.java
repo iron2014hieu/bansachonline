@@ -53,7 +53,6 @@ public class CTHD_RatingAdapter extends RecyclerView.Adapter<CTHD_RatingAdapter.
         holder.txt_books_name_cthd.setText("Sách "+mData.get(i).getTensach());
         holder.txt_giaban_cthd.setText(mData.get(i).getGiaban()+"₫");
         holder.txt_soluong_cthd.setText("x"+mData.get(i).getSoluong());
-
         try {
             Picasso.with(context).load(mData.get(i).getHinhanh()).into(holder.img_cthd);
         }catch (Exception e){}
@@ -76,7 +75,6 @@ public class CTHD_RatingAdapter extends RecyclerView.Adapter<CTHD_RatingAdapter.
                 String idcthd = String.valueOf(mData.get(i).getId());
                 intent.putExtra("masach", masach);
                 intent.putExtra("idcthd", idcthd);
-
                 context.startActivity(intent);
             }
         });
@@ -86,7 +84,7 @@ public class CTHD_RatingAdapter extends RecyclerView.Adapter<CTHD_RatingAdapter.
         return mData.size();
     }
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        private TextView txt_soluong_cthd;
+        private TextView txt_soluong_cthd, tvTenkhachhang;
         private TextView txt_books_name_cthd;
         private TextView txt_giaban_cthd;
         private TextView txtDanhgia_sach;
@@ -96,7 +94,7 @@ public class CTHD_RatingAdapter extends RecyclerView.Adapter<CTHD_RatingAdapter.
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            tvTenkhachhang = (TextView)itemView.findViewById(R.id.tvTenkhachhang);
             txt_soluong_cthd=(TextView)itemView.findViewById(R.id.txt_soluong_cthd);
             txt_books_name_cthd=(TextView)itemView.findViewById(R.id.txt_books_name_cthd);
             txt_giaban_cthd=(TextView) itemView.findViewById(R.id.txt_giaban_cthd);

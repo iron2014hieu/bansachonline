@@ -6,14 +6,14 @@
     <ImageView
         android:id="@+id/img_dh"
         android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:background="?attr/cardbackground"
+        android:layout_height="120dp"
+        android:background="?attr/backgroundcolor"
         android:padding="20dp"
         android:src="@drawable/book"/>
     <LinearLayout
-        android:background="?attr/cardbackground"
+        android:background="?attr/backgroundcolor"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="120dp"
         android:orientation="vertical"
         android:padding="10dp">
         <TextView
@@ -25,6 +25,7 @@
             android:textStyle="bold"
             android:text="Đang vận chuyển"/>
         <TextView
+            android:textSize="13dp"
             android:id="@+id/txtMota_notif_dh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

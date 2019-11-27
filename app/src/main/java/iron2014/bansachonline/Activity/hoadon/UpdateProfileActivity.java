@@ -1,12 +1,16 @@
 package iron2014.bansachonline.Activity.hoadon;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +26,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,12 +37,17 @@ import iron2014.bansachonline.fragmentVanChuyen.Activity.ChitietGiaoHangActivity
 import iron2014.bansachonline.fragmentVanChuyen.Activity.ChitietVanChuyenActivity;
 
 
-public class UpdateProfileActivity extends AppCompatActivity {
+public class UpdateProfileActivity extends AppCompatActivity implements View.OnClickListener{
 
-    EditText edtNameUser,edtEmailUser,edtSdtUser,edtNgaySinh,edtGioiTinh, edtAddress, edtid;
+    EditText edtNameUser, edtEmailUser, edtSdtUser, edtNgaySinh, edtGioiTinh, edtAddress, edtid;
     Button btnUpdateUser;
+    ImageButton btnDatePicker;
     String URL_UDATE = "https://bansachonline.xyz/bansach/user/update.php";
     String id;
+
+    RadioGroup radioGroup;
+
+    private int mYear, mMonth, mDay;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +72,8 @@ public class UpdateProfileActivity extends AppCompatActivity {
         edtNgaySinh.setText(ngaysinh);
         edtGioiTinh.setText(sex);
         edtAddress.setText(address);
-
+        btnDatePicker = findViewById(R.id.btn_date);
+        btnDatePicker.setOnClickListener(this);
         btnUpdateUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,20 +84,54 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 final String phone1 = edtSdtUser.getText().toString();
                 saveDetail(id, name1, address1, sex1, ngaysinh1, phone1);
             }
-    });
-    }
+        });
 
-    private void saveDetail(final String strid, final String strname, final String strdiachi, final String strsex, final String strngaysinh, final String strphone){
+        radioGroup = findViewById(R.id.rg);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i){
+                    case R.id.rb_nam:
+                        edtGioiTinh.setText("Nam");
+                        break;
+                    case R.id.rb_nu:
+                        edtGioiTinh.setText("Nữ");
+                        break;
+                }
+            }
+        });
+    }
+    @Override
+    public void onClick(View v) {
+
+        if (v == btnDatePicker) {
+            final Calendar c = Calendar.getInstance();
+            mYear = c.get(Calendar.YEAR);
+            mMonth = c.get(Calendar.MONTH);
+            mDay = c.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+                            edtNgaySinh.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                        }
+                    }, mYear, mMonth, mDay);
+            datePickerDialog.show();
+        }
+    }
+    private void saveDetail(final String strid, final String strname, final String strdiachi, final String strsex, final String strngaysinh, final String strphone) {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading");
         progressDialog.show();
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_UDATE+"?id="+strid+"&name="
-                +strname+"&address="+strdiachi+"&sex="+strsex+"&ngaysinh="+strngaysinh+"&phone="+strphone,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_UDATE + "?id=" + strid + "&name="
+                + strname + "&address=" + strdiachi + "&sex=" + strsex + "&ngaysinh=" + strngaysinh + "&phone=" + strphone,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
-                        if (response.equals("success")){
+                        if (response.equals("success")) {
                             Toast.makeText(UpdateProfileActivity.this, "Sửa thành công", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(UpdateProfileActivity.this, ProfileActivity.class));
                             finish();
@@ -103,6 +148,8 @@ public class UpdateProfileActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
+
     private void Anhxa() {
         edtid = findViewById(R.id.edtid);
         edtNameUser = findViewById(R.id.edtNameUser);
@@ -147,4 +194,5 @@ public class UpdateProfileActivity extends AppCompatActivity {
 //        RequestQueue requestQueue = Volley.newRequestQueue(this);
 //        requestQueue.add(request);
 //    }
+
 }

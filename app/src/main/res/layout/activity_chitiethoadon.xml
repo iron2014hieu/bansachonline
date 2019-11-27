@@ -1,18 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="?attr/backgroundcolor"
+    android:background="?attr/cardbackground"
     tools:context=".Activity.hoadon.ChitiethoadonActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            app:title="Chi tiết đơn hàng"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/topbottomcolor"
+            app:titleTextColor="#fff"/>
+    </com.google.android.material.appbar.AppBarLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/lnThongtin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+            <TextView
+                android:textSize="18dp"
+                android:textStyle="normal"
+                android:layout_weight="1"
+                android:background="#A3CAC9C9"
+                android:textColor="#3F51B5"
+                android:padding="15dip"
+                android:text="Tên khách hàng : "/>
+            <TextView
+                android:textSize="18dp"
+                android:textStyle="normal"
+                android:id="@+id/tvTenkhachhang"
+                android:layout_weight="1"
+                android:background="#B9DCDCDC"
+                android:text="Thiết lập ngay"
+                android:textColor="#E91E63"
+                android:padding="15dip"
+                android:gravity="center"/>
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+            <TextView
+                android:textSize="18dp"
+                android:textStyle="normal"
+                android:layout_weight="1"
+                android:background="#B9DCDCDC"
+                android:textColor="#3F51B5"
+                android:padding="15dip"
+                android:text="Địa chỉ : "/>
+            <TextView
+                android:textSize="18dp"
+                android:textStyle="normal"
+                android:id="@+id/tvdiachiKh"
+                android:layout_weight="1"
+                android:background="#A3CAC9C9"
+                android:text="Thiết lập ngay"
+                android:textColor="#E91E63"
+                android:padding="15dip"
+                android:gravity="center"/>
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+            <TextView
+                android:textSize="18dp"
+                android:textStyle="normal"
+                android:layout_weight="1"
+                android:background="#A3CAC9C9"
+                android:textColor="#3F51B5"
+                android:padding="15dip"
+                android:text="Số điện thoại : "/>
+            <TextView
+                android:textSize="18dp"
+                android:textStyle="normal"
+                android:id="@+id/tvsdtKH"
+                android:layout_weight="1"
+                android:background="#B9DCDCDC"
+                android:text="Thiết lập ngay"
+                android:textColor="#E91E63"
+                android:padding="15dip"
+                android:gravity="center"/>
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+            <TextView
+                android:textSize="18dp"
+                android:textStyle="normal"
+                android:layout_weight="1"
+                android:background="#B9DCDCDC"
+                android:textColor="#3F51B5"
+                android:padding="15dip"
+                android:text="Tình trạng : "/>
+            <TextView
+                android:textSize="18dp"
+                android:textStyle="normal"
+                android:id="@+id/tvtinhtrangsp"
+                android:layout_weight="1"
+                android:background="#A3CAC9C9"
+                android:text="Thiết lập ngay"
+                android:textColor="#E91E63"
+                android:padding="15dip"
+                android:gravity="center"/>
+        </TableRow>
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_cthd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
+    </LinearLayout>
     <Button
+        android:layout_gravity="bottom|end"
         android:visibility="gone"
         android:id="@+id/btnXacNhanHang"
         android:textColor="#fff"
@@ -20,5 +130,4 @@
         android:text="Xác nhận"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

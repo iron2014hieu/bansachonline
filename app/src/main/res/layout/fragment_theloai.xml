@@ -7,7 +7,14 @@
     android:orientation="vertical"
     tools:context=".fragmentMain.TheloaiFragment"
     android:background="?attr/backgroundcolor">
-
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_vanchuyen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="#fff"
+        android:background="#2196F3"
+        app:title="Ưu đãi">
+    </androidx.appcompat.widget.Toolbar>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_khuyenmai"
         android:layout_width="match_parent"

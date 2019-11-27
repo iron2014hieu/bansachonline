@@ -14,10 +14,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_vanchuyen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="#fff"
+            android:background="#2196F3"
+            app:title="Thông báo">
+        </androidx.appcompat.widget.Toolbar>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_thongbao_khuyenmai"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?attr/textcolor"/>
         <TextView
             android:id="@+id/txtCapnhatDonhang"
             android:layout_width="match_parent"
@@ -27,6 +39,7 @@
             android:textColor="?attr/textcolor"
             android:background="?attr/cardbackground"
             android:textSize="20dp" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">

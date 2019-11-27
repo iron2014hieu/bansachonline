@@ -71,9 +71,15 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
             public void onClick(View v) {
                 Intent intent = new Intent(context, ChitiethoadonActivity.class);
                 String mahd = String.valueOf(mData.get(i).getMahoadon());
+                String tenkh = String.valueOf(mData.get(i).getTenkh());
+                String diachi = String.valueOf(mData.get(i).getDiachi());
+                String sdt = String.valueOf(mData.get(i).getSdt());
                 String tinhtrang = mData.get(i).getTinhtrang();
                 intent.putExtra("mahd", mahd);
                 intent.putExtra("tinhtrang", tinhtrang);
+                intent.putExtra("tenkh", tenkh);
+                intent.putExtra("diachi", diachi);
+                intent.putExtra("sdt", sdt);
                 sessionManager.createHoadon(tinhtrang);
                 context.startActivity(intent);
             }
