@@ -31,7 +31,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -47,6 +51,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import iron2014.bansachonline.Activity.hoadon.UpdateProfileActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
+import iron2014.bansachonline.URL.EndPoints;
 import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -55,7 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
     Button btnLogout, btnUpdateThongTin;
     SessionManager sessionManager;
     private String TAG = "TAG_PROFILE";
-
+    private String token;
     private static String URL_READ ="https://bansachonline.xyz/bansach/loginregister/read_detail.php";
     private static String URL_EDIT ="https://bansachonline.xyz/bansach/loginregister/edit_detail.php";
     private static String URL_UPLOAD ="https://bansachonline.xyz/bansach/loginregister/upload.php";
@@ -103,6 +108,16 @@ public class ProfileActivity extends AppCompatActivity {
         txtName=findViewById(R.id.txtName);
         txtEmail=findViewById(R.id.txtEmail);
         btnLogout=findViewById(R.id.btnLogout);
+
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (task.isSuccessful()){
+                            token = task.getResult().getToken();
+                        }
+                    }
+                });
 //        btnUpdateThongTin= findViewById(R.id.btnUpdateThongTin);
 //        btnUpdateThongTin.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -134,6 +149,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
                 sessionManager.Logout();
                 FirebaseAuth.getInstance().signOut();
+                updateDevicesToken("0", id);
             }
         });
     }
@@ -393,5 +409,43 @@ public class ProfileActivity extends AppCompatActivity {
         if (sharedPref.loadNightModeState() == true){
             setTheme(R.style.darktheme);
         }else setTheme(R.style.AppTheme);
+    }
+    private void updateDevicesToken(final String islogin,final String mauser){
+
+        if (token == null) {
+            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoints.URL_UPDATE_DEVICES_ISLOGIN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            Log.e("msg", obj.getString("message"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("mauser", mauser);
+                params.put("token", token);
+                params.put("islogin", islogin);
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 }

@@ -2,20 +2,36 @@ package iron2014.bansachonline.LoginRegister;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.R;
+import iron2014.bansachonline.URL.UrlSql;
+import iron2014.bansachonline.fragmentVanChuyen.Activity.ShipperActivity;
 
 public class VerifyPhoneActivity extends AppCompatActivity {
     private Spinner spinner;
     private EditText editText;
-
+    boolean check =true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,12 +54,18 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                     editText.setError("Vui lòng nhập số hợp lệ");
                     editText.requestFocus();
                     return;
+                }else {
+                    LoginWithphone(number);
+                    if (check == false){
+                        Toast.makeText(VerifyPhoneActivity.this, "Số "+number+" chưa được đăng ký!", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 String phoneNumber = "+" + code + number;
 
                 Intent intent = new Intent(VerifyPhoneActivity.this, LoginWithSMSActivity.class);
                 intent.putExtra("phonenumber", phoneNumber);
+                intent.putExtra("sodienthoai", editText.getText().toString());
                 startActivity(intent);
 
             }
@@ -60,5 +82,31 @@ public class VerifyPhoneActivity extends AppCompatActivity {
 
             startActivity(intent);
         }
+    }
+    private void LoginWithphone(final String phone){
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, UrlSql.URL_LOGIN_PHONE+phone,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                            if (!success.equals("1")){
+                                check = false;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.e("Login error: ", e.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Login error: ", error.toString());
+                    }
+                });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 }

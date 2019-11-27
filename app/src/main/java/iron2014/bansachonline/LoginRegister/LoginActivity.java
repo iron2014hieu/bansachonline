@@ -127,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
                                     sessionManager.createSession(id, email,address,phone, name, quyen);
                                     //get token notif
                                     sendTokenToServer(id);
-
+                                    updateDevicesToken("1",id);
                                     if(quyen.equals("shipper")){
                                         startActivity(new Intent(LoginActivity.this, ShipperActivity.class));
                                     }else {
@@ -223,7 +223,7 @@ public class LoginActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         try {
                             JSONObject obj = new JSONObject(response);
-                            Toast.makeText(LoginActivity.this, obj.getString("message"), Toast.LENGTH_LONG).show();
+                            Log.e("msg", obj.getString("message"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -243,6 +243,48 @@ public class LoginActivity extends AppCompatActivity {
                 params.put("mauser", mauser);
                 params.put("email", email);
                 params.put("token", token);
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+    private void updateDevicesToken(final String islogin,final String mauser){
+        final String email = edtEmail.getText().toString();
+
+        if (token == null) {
+            progressDialog.dismiss();
+            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoints.URL_UPDATE_DEVICES_ISLOGIN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.dismiss();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            Log.e("msg", obj.getString("message"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressDialog.dismiss();
+                        Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("mauser", mauser);
+                params.put("token", token);
+                params.put("islogin", islogin);
                 return params;
             }
         };

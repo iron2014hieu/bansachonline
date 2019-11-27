@@ -7,7 +7,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
@@ -23,11 +25,14 @@ import java.util.List;
 import iron2014.bansachonline.Activity.BookDetailActivity;
 import iron2014.bansachonline.Activity.GetAllBookActivity;
 import iron2014.bansachonline.Activity.GetBookByTheloaiActivity;
+import iron2014.bansachonline.Activity.SearchBooksActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
+import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceNXB;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceTacgia;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceTheloai;
+import iron2014.bansachonline.Main2Activity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.RecycerViewTouch.RecyclerTouchListener;
 import iron2014.bansachonline.Session.SessionManager;
@@ -37,7 +42,9 @@ import iron2014.bansachonline.adapter.Sach.SachAdapter;
 import iron2014.bansachonline.adapter.Slider.SliderAdapterExample;
 import iron2014.bansachonline.adapter.TacgiaAdapter;
 import iron2014.bansachonline.adapter.TheLoaiAdapter;
+import iron2014.bansachonline.listener.QuantityChangeListener;
 import iron2014.bansachonline.model.Books;
+import iron2014.bansachonline.model.DatMua;
 import iron2014.bansachonline.model.Nhaxuatban;
 import iron2014.bansachonline.model.Tacgia;
 import iron2014.bansachonline.model.TheLoai;
@@ -68,10 +75,15 @@ public class HomeFragment extends Fragment {
     private ApiInTerFaceTacgia apiInTerFaceTacgia;
     private ApiInTerFaceTheloai apiInTerFaceTheloai;
     private ApiInTerFace apiInTerFace;
+    private ApiInTerFaceDatmua apiInTerFaceDatmua;
     ImageButton buttonRecord;
     View view;
-    String suggesst;
+    String suggesst, mauser;
     SessionManager sessionManager;
+    Button btnSearchView;
+    ImageView chk_icon;
+    TextView counttxt;
+    int numcount =0;
     public static LibraryFragment newInstance() {
         LibraryFragment fragment = new LibraryFragment();
         return fragment;
@@ -92,12 +104,12 @@ public class HomeFragment extends Fragment {
             }
         });
         sessionManager = new SessionManager(getContext());
-        sachAdapter = new SachAdapter(getContext(), listBookhome);
-        nhaxuatbanAdapter = new NhaxuatbanAdapter(getContext(), listNhaxuatbanHome);
-        tacgiaAdapter = new TacgiaAdapter(getContext(), listTacgia);
+
 
         HashMap<String,String> sugess = sessionManager.getSuggest();
         suggesst = sugess.get(sessionManager.SUGGEST_BOOK);
+        HashMap<String,String> user = sessionManager.getUserDetail();
+        mauser =user.get(sessionManager.ID);
 
         final SliderAdapterExample adapter = new SliderAdapterExample(getContext());
         adapter.setCount(5);
@@ -221,69 +233,32 @@ public class HomeFragment extends Fragment {
                 recyclerview_book_home, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Books books =   listBookhome.get(position);
-                String masach = String.valueOf(books.getMasach());
-                String tensach = String.valueOf(books.getTensach());
-                String manxb = String.valueOf(books.getManxb());
-                String matheloai = String.valueOf(books.getMatheloai());
-                String ngayxb = books.getNgayxb();
-                String noidung = books.getNoidung();
-                String anhbia =books.getAnhbia();
-                String gia = String.valueOf( books.getGia());
-                String tennxb= String.valueOf(books.getTennxb());
-                String soluong = String.valueOf(books.getSoluong());
-                String tacgia = books.getTacgia();
-                String matacgia = String.valueOf(books.getMatacgia());
-
-
-                String tongdiem = String.valueOf(books.getTongdiem());
-                String landanhgia = String.valueOf(books.getLandanhgia());
-
-                sessionManager.createSessionSendInfomationBook(masach,tensach,manxb,matheloai,ngayxb,noidung,
-                        anhbia,gia,tennxb,soluong,tacgia,matacgia, tongdiem, landanhgia);
-                startActivity(new Intent(getContext(), BookDetailActivity.class));
             }
             @Override
             public void onLongClick(View view, int position) {
 
             }
         }));
-        recyclerview_book_suggest.addOnItemTouchListener(new RecyclerTouchListener(getContext(),
-                recyclerview_book_suggest, new RecyclerTouchListener.ClickListener() {
+
+                btnSearchView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view, int position) {
-                Books books =   listSuggest.get(position);
-                String masach = String.valueOf(books.getMasach());
-                String tensach = String.valueOf(books.getTensach());
-                String manxb = String.valueOf(books.getManxb());
-                String matheloai = String.valueOf(books.getMatheloai());
-                String ngayxb = books.getNgayxb();
-                String noidung = books.getNoidung();
-                String anhbia =books.getAnhbia();
-                String gia = String.valueOf( books.getGia());
-                String tennxb= String.valueOf(books.getTennxb());
-                String soluong = String.valueOf(books.getSoluong());
-                String tacgia = books.getTacgia();
-                String matacgia = String.valueOf(books.getMatacgia());
-
-
-                String tongdiem = String.valueOf(books.getTongdiem());
-                String landanhgia = String.valueOf(books.getLandanhgia());
-
-                sessionManager.createSessionSendInfomationBook(masach,tensach,manxb,matheloai,ngayxb,noidung,
-                        anhbia,gia,tennxb,soluong,tacgia,matacgia, tongdiem, landanhgia);
-                startActivity(new Intent(getContext(), BookDetailActivity.class));
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), SearchBooksActivity.class));
             }
+        });
+        chk_icon.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onLongClick(View view, int position) {
-
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Main2Activity.class);
+                startActivity(intent);
             }
-        }));
+        });
         fetchTheloai();
         fetchUser("");
         fetchNXB();
         fetchTacgia();
         fetchBookSuggest(suggesst);
+        fetchSoluong(mauser);
         return view;
     }
     public void fetchTheloai(){
@@ -392,7 +367,27 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+    public void fetchSoluong(String mauser){
+        apiInTerFaceDatmua = ApiClient.getApiClient().create(ApiInTerFaceDatmua.class);
+        Call<List<DatMua>> call = apiInTerFaceDatmua.get_soluong(mauser);
 
+        call.enqueue(new Callback<List<DatMua>>() {
+            @Override
+            public void onResponse(Call<List<DatMua>> call, retrofit2.Response<List<DatMua>> response) {
+                int soluong =0;
+                for (int i = 0; i<response.body().size(); i++){
+                    soluong = response.body().get(i).getSoluong();
+                    numcount +=soluong;
+                }
+                counttxt.setText(String.valueOf(numcount));
+            }
+
+            @Override
+            public void onFailure(Call<List<DatMua>> call, Throwable t) {
+                Log.e("Error Search:","Error on: "+t.toString());
+            }
+        });
+    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -408,5 +403,9 @@ public class HomeFragment extends Fragment {
         recyclerview_nxb_home = view.findViewById(R.id.recyclerview_nxb_home);
         recyclerViewTacgia = view.findViewById(R.id.recyclerview_tacgia_home);
         recyclerview_book_suggest=view.findViewById(R.id.recyclerview_book_suggest);
+
+        btnSearchView= view.findViewById(R.id.btnSearch);
+        chk_icon = view.findViewById(R.id.chk_icon);
+        counttxt= view.findViewById(R.id.counttxt);
     }
 }

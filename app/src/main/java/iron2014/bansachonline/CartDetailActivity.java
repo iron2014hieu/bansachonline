@@ -345,6 +345,7 @@ public class CartDetailActivity extends AppCompatActivity {
                                 String soluong = String.valueOf(listDatmua.get(n).getSoluong());
                                 String hinhanh = listDatmua.get(n).getHinhanh();
                                 ThemCTHD(String.valueOf(mahoadon), masach, tensach, giaban, soluong, hinhanh, UrlSql.url_insert_cthd);
+                                UpdateSoluong(masach, soluong);
                             }
                             String mota = "Đơn hàng "+mahoadon +" đang chờ xủ lý. Vui lòng kiểm tra thời gian nhận trong chi tiết hóa đơn";
                             InsertNotif(mota,String.valueOf(mahoadon));
@@ -414,7 +415,30 @@ public class CartDetailActivity extends AppCompatActivity {
         };
         requestQueue.add(stringRequest);
     }
-
+    private void UpdateSoluong( final String masach, final String soluong) {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_UPDATE_SOLUONG,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("MYSQL", "Lỗi! \n" +error.toString());
+            }
+        }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String > params = new HashMap<>();
+                params.put("masach", masach);
+                params.put("soluong", soluong);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
     private void sendOnChannel(String title, String message) {
         Intent activityIntent = new Intent(this, MuahangActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(this,

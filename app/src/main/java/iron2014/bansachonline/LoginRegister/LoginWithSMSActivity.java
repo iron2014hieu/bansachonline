@@ -39,17 +39,15 @@ import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.UrlSql;
 
 public class LoginWithSMSActivity extends AppCompatActivity {
-    private String verificationId,phonenumber;
+    private String verificationId,phonenumber,sodienthoai;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
     private EditText editText;
-    UrlSql urlSql;
     SessionManager sessionManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_with_sms);
-        urlSql = new UrlSql();
         sessionManager = new SessionManager(this);
         mAuth = FirebaseAuth.getInstance();
 
@@ -57,6 +55,7 @@ public class LoginWithSMSActivity extends AppCompatActivity {
         editText = findViewById(R.id.editTextCode);
 
         phonenumber = getIntent().getStringExtra("phonenumber");
+        sodienthoai = getIntent().getStringExtra("sodienthoai");
         sendVerificationCode(phonenumber);
 
         findViewById(R.id.buttonSignIn).setOnClickListener(new View.OnClickListener() {
@@ -67,7 +66,7 @@ public class LoginWithSMSActivity extends AppCompatActivity {
 
                 if (code.isEmpty() || code.length() < 6) {
 
-                    editText.setError("Enter code...");
+                    editText.setError("Nhập mã...");
                     editText.requestFocus();
                     return;
                 }
@@ -87,7 +86,7 @@ public class LoginWithSMSActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            LoginWithphone(phonenumber);
+                            LoginWithphone(sodienthoai);
                         } else {
                             String massage = task.getException().getMessage();
                             Toast.makeText(LoginWithSMSActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
@@ -133,7 +132,7 @@ public class LoginWithSMSActivity extends AppCompatActivity {
         }
     };
     private void LoginWithphone(final String phone){
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, urlSql.URL_LOGIN_PHONE+phone,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, UrlSql.URL_LOGIN_PHONE+phone,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -160,6 +159,8 @@ public class LoginWithSMSActivity extends AppCompatActivity {
                                         Toast.makeText(LoginWithSMSActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
                                     }
                                 }
+                            }else {
+                                Toast.makeText(LoginWithSMSActivity.this, "Bạn chưa đăng ký số điện thoại này", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

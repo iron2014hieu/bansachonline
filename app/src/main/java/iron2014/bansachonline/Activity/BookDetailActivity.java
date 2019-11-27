@@ -53,6 +53,7 @@ import iron2014.bansachonline.LoginRegister.LoginActivity;
 import iron2014.bansachonline.Main2Activity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
+import iron2014.bansachonline.URL.UrlSql;
 import iron2014.bansachonline.adapter.NhanxetAdapter;
 import iron2014.bansachonline.adapter.Sach.SachAdapter;
 import iron2014.bansachonline.model.Books;
@@ -74,9 +75,8 @@ public class BookDetailActivity extends AppCompatActivity {
     private String URL_INSERT ="http://hieuttpk808.000webhostapp.com/books/cart_bill/insert.php";
     private String URL_CHECK ="https://hieuttpk808.000webhostapp.com/books/cart_bill/checklibrary.php";
 
-    String URL_INSERT_GIOHANG ="https://bansachonline.xyz/bansach/giohang/create_carts.php";
+
     String idUser, name, quyen;
-    private int item_count =1;
     private Double giabansach = 0.0;
     private Float diemdanhgia;
     private String idBook, tensach,mota,hinhanh, giaban,
@@ -202,31 +202,13 @@ public class BookDetailActivity extends AppCompatActivity {
         btn_Share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // chỉ cần truyền ảnh từ URL thành bitmap bên dưới là ok
-                Drawable myDrawable  = img_book.getDrawable();
-                Bitmap bitmap = ((BitmapDrawable) myDrawable).getBitmap();
-
-                //sharing image
-                try {
-                    File file= new File(BookDetailActivity.this.getExternalCacheDir(), tensach+".jpg");
-                    FileOutputStream fOut = new FileOutputStream(file);
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fOut);
-                    fOut.flush();
-                    fOut.close();
-                    file.setReadable(true, false);
-                    //sharing intent
-                    Intent intent = new Intent(Intent.ACTION_SEND);
-
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
-                    intent.setType("image/png");
-
-                    startActivity(Intent.createChooser(intent, "Share image vie"));
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                String text = "https://play.google.com/store/audiobooks/details/Max_Gladstone_Bookburners_The_Complete_Season_2?id=AQAAAEDMAm1CsM&hl=vi";
+                // sharing intent
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Viết gì đó");
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, text);
+                startActivity(Intent.createChooser(sharingIntent, "Chia sẻ"));
             }
         });
         txtXemtataca.setOnClickListener(new View.OnClickListener() {
@@ -240,7 +222,7 @@ public class BookDetailActivity extends AppCompatActivity {
 
     private void ThemDatmua(final String masach, final String sp, final String hinhanhsach, final String mauser){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_INSERT_GIOHANG,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_INSERT_GIOHANG,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -253,7 +235,6 @@ public class BookDetailActivity extends AppCompatActivity {
 
                                 if (success.equals("1")){
                                   Toast.makeText(BookDetailActivity.this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(getApplicationContext(), Main2Activity.class));
                                 }
                             }
                         } catch (JSONException e) {
@@ -369,7 +350,6 @@ public class BookDetailActivity extends AppCompatActivity {
         edtMotaChitiet=findViewById(R.id.edtMotaChitiet);
         btn_muangay=findViewById(R.id.btn_muangay);
         img_book=findViewById(R.id.imgBook);
-        textNotify= findViewById(R.id.textNotify);
         btn_Share= findViewById(R.id.btn_Share);
         ratingbar_below_detail = findViewById(R.id.ratingbar_below_detail);
         ratingbar_book_detail = findViewById(R.id.ratingbar_book_detail);

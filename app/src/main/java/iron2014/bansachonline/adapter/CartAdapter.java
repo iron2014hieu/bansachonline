@@ -1,6 +1,8 @@
 package iron2014.bansachonline.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -84,12 +86,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     update_selected(maSach,"1", url_UD);
-                    tongTienTungsach = listGiohang.get(i).getGia() * listGiohang.get(i).getSoluong();
-                    tongTienSach +=tongTienTungsach;
                 } else {
                     update_selected(maSach,"0", url_UD);
-                    tongTienTungsach = listGiohang.get(i).getGia() * listGiohang.get(i).getSoluong();
-                    tongTienSach -=tongTienTungsach;
                 }
             }
         });
@@ -101,7 +99,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             @Override
             public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
                 DatMua datMua = listGiohang.get(i);
-                updateSoluongTongtien(String.valueOf(newValue),iduser, masach, urlSql.URL_UPDATE_CARTS);
+                String masach1 = String.valueOf(datMua.getMasach());
+                updateSoluongTongtien(String.valueOf(newValue),iduser, masach1, UrlSql.URL_UPDATE_CARTS);
                 datMua.setSoluong(newValue);
                 total = (Integer.valueOf(datMua.getGia()))*(Integer.valueOf(datMua.getSoluong()));
 
@@ -116,7 +115,26 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         holder.btn_iv_Xoa_giohang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteGiohang(iduser, masach,urlSql.URL_DELETE_CARTS);
+                final String masach2 = String.valueOf(listGiohang.get(i).getMasach());
+                AlertDialog.Builder alertDialog = new  AlertDialog.Builder(context);
+                alertDialog.setMessage("Bạn có muốn xóa sách "+listGiohang.get(i).getSanpham()+" này không");
+                alertDialog.setIcon(R.drawable.shockedelete);
+                alertDialog.setTitle("Xóa sản phẩm");
+                alertDialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        deleteGiohang(iduser, masach2,UrlSql.URL_DELETE_CARTS);
+                    }
+                });
+                alertDialog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+
+                });
+                alertDialog.show();
+
             }
         });
 

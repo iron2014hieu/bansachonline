@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,6 +7,10 @@
     android:orientation="vertical"
     android:background="?attr/backgroundcolor"
     tools:context=".LoginRegister.SettingsActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -81,4 +85,45 @@
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-</LinearLayout>
+    </LinearLayout>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+        <TableRow>
+            <TextView
+                android:text="Liên hệ: "
+                android:textColor="?attr/textcolor"
+                android:textSize="20dp"/>
+            <TextView
+                android:text="0333756922"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:layout_weight="1"
+                android:textColor="?attr/textcolor"
+                android:padding="5dp"
+                android:autoLink="phone"
+                android:drawableRight="@drawable/ic_local_phone"
+                />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="Ghé thăm  "
+                android:textColor="?attr/textcolor"
+                android:textSize="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="bansachonline.xyz"
+                android:drawableRight="@drawable/ic_web"
+                android:padding="5dp"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:layout_weight="1"
+                android:textColor="?attr/textcolor"
+                android:autoLink="web"
+                />
+        </TableRow>
+    </TableLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

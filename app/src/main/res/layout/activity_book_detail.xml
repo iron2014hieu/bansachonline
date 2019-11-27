@@ -235,16 +235,27 @@
         android:layout_height="40dp"
         android:layout_gravity="bottom|end"
         android:layout_weight="3"
-        android:background="?attr/backgroundcolor"
+        android:background="?attr/buttoncolor"
         android:orientation="horizontal">
+
         <ImageButton
-            android:background="?attr/buttoncolor"
             android:id="@+id/btn_Share"
-            android:layout_width="40dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_gravity="center"
+            android:background="?attr/buttoncolor"
+            android:layout_marginLeft="10dp"
             android:src="@drawable/ic_share"
-            android:textSize="12dp"/>
+            android:textSize="12dp" />
+        <ImageButton
+            android:id="@+id/btn_Share_fb"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="?attr/buttoncolor"
+            android:src="@drawable/facebook"
+            android:layout_marginLeft="10dp"
+            android:textSize="12dp" />
         <ImageButton
             android:layout_marginLeft="10dp"
             android:background="?attr/buttoncolor"

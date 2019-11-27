@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -142,13 +144,6 @@ public class CartListFragment extends Fragment {
                     btnnext.setVisibility(View.VISIBLE);
                     txtTongtien.setVisibility(View.VISIBLE);
                     tvTTgiohang.setVisibility(View.GONE);
-                    for (int i=0;i<sizeList;i++){
-                        DatMua datMua = listDatmua.get(i);
-                        total = (Integer.valueOf(datMua.getGia()))*(Integer.valueOf(datMua.getSoluong()));
-
-                        txtTongtien.setText(total+" ");
-                    }
-
                 }
             }
 

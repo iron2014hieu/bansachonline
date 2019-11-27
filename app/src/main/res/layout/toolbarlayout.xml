@@ -15,51 +15,52 @@
         app:titleTextColor="?attr/textcolor"
         android:background="?attr/topbottomcolor"
         app:elevation="0dp">
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/cartRelativeLayout"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            android:layout_height="wrap_content">
             <Button
                 android:id="@+id/btnSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/cartButtonIV"
-                android:hint="@string/khuyenmaicucchat"
-                android:textSize="17sp"
-                android:gravity="left"
-                android:textStyle="normal"
-                android:textColorHint="#fff"
+                android:backgroundTint="?attr/buttoncolor"
                 android:drawableRight="@drawable/ic_search"
-                android:backgroundTint="?attr/buttoncolor"/>
-            <ImageButton
-                android:id="@+id/cartButtonIV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:visibility="gone"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="8dp"
-                android:background="@null"
-                android:clickable="false"
-                android:padding="5dip"
-                android:src="@drawable/ic_shopping_cart" />
-            <TextView
-                android:id="@+id/textNotify"
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="9dp"
-                android:layout_marginEnd="-11dp"
-                android:layout_toStartOf="@+id/cartButtonIV"
-                android:background="@drawable/notification_circle"
-                android:gravity="center"
-                android:visibility="gone"
-                android:text="0"
-                android:textStyle="bold"
-                android:textColor="?attr/backgroundcolor"
-                android:textSize="10dp" />
-        </RelativeLayout>
+                android:hint="@string/khuyenmaicucchat"
+                android:textColorHint="#fff"
+                android:textSize="17sp"
+                android:layout_weight="1"
+                android:textStyle="normal" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4">
+
+                <ImageView
+                    android:id="@+id/chk_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="31dp"
+                    android:layout_marginBottom="6dp"
+                    android:src="@drawable/ic_shopping_cart" />
+
+                <TextView
+                    android:id="@+id/counttxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/chk_icon"
+                    android:layout_marginEnd="-14dp"
+                    android:background="@drawable/count_circle"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 </com.google.android.material.appbar.AppBarLayout>

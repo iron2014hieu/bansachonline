@@ -2,6 +2,7 @@ package iron2014.bansachonline.adapter.Sach;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,22 +11,50 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import iron2014.bansachonline.Activity.BookDetailActivity;
+import iron2014.bansachonline.ApiRetrofit.ApiClient;
+import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
+import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceTacgia;
+import iron2014.bansachonline.Main2Activity;
 import iron2014.bansachonline.R;
+import iron2014.bansachonline.Session.SessionManager;
+import iron2014.bansachonline.URL.UrlSql;
+import iron2014.bansachonline.adapter.TacgiaAdapter;
 import iron2014.bansachonline.model.Books;
+import iron2014.bansachonline.model.DatMua;
+import iron2014.bansachonline.model.Tacgia;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> {
 
     Context context;
     List<Books> mData;
     Dialog myDialog;
+    SessionManager sessionManager;
+    String iduser;
+    ApiInTerFaceDatmua apiInTerFaceDatmua;
     private ProductItemActionListener actionListener;
 
     public SachAdapter(Context context, List<Books> mData) {
@@ -43,7 +72,9 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
 
         final MyViewHolder viewHolder= new MyViewHolder(view);
 
-
+        sessionManager = new SessionManager(context);
+        HashMap<String,String> user = sessionManager.getUserDetail();
+        iduser = user.get(sessionManager.ID);
         return viewHolder;
     }
 
@@ -71,7 +102,39 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
         }catch (Exception e){
             Log.e("IMG", e.toString());
         }
+        Books books =   mData.get(i);
+        final String masach = String.valueOf(books.getMasach());
+        final String tensach = String.valueOf(books.getTensach());
+        final String manxb = String.valueOf(books.getManxb());
+        final String matheloai = String.valueOf(books.getMatheloai());
+        final String ngayxb = books.getNgayxb();
+        final String noidung = books.getNoidung();
+        final String anhbia =books.getAnhbia();
+        final String gia = String.valueOf( books.getGia());
+        final String tennxb= String.valueOf(books.getTennxb());
+        final String soluong = String.valueOf(books.getSoluong());
+        final String tacgia = books.getTacgia();
+        final String matacgia = String.valueOf(books.getMatacgia());
 
+
+        final String tongdiem = String.valueOf(books.getTongdiem());
+        final String landanhgia = String.valueOf(books.getLandanhgia());
+
+        myViewHolder.tv_soluongsach.setText(soluong+ " cuốn");
+        myViewHolder.img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sessionManager.createSessionSendInfomationBook(masach,tensach,manxb,matheloai,ngayxb,noidung,
+                        anhbia,gia,tennxb,soluong,tacgia,matacgia, tongdiem, landanhgia);
+                context.startActivity(new Intent(context, BookDetailActivity.class));
+            }
+        });
+        myViewHolder.img_add_tocart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ThemDatmua(masach, tensach, anhbia,iduser, gia);
+            }
+        });
     }
 
     @Override
@@ -86,18 +149,65 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
         private TextView tv_soluongsach;
         private TextView tv_sldaban;
         private RatingBar ratingBar;
-        ImageView img, favorite;
+        ImageView img, img_add_tocart;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            tv_soluongsach = itemView.findViewById(R.id.tv_soluongsach);
             tv_name=(TextView)itemView.findViewById(R.id.books_name);
             tv_phone=(TextView)itemView.findViewById(R.id.books_chitiet);
             img=(ImageView) itemView.findViewById(R.id.img_book_iv);
             tv_sldaban=(TextView) itemView.findViewById(R.id.tv_soluongsach);
+            img_add_tocart= itemView.findViewById(R.id.img_add_tocart);
         }
     }
     public interface ProductItemActionListener{
         void onItemTap(ImageView imageView);
+    }
+
+    private void ThemDatmua(final String masach, final String sp, final String hinhanhsach, final String mauser, final String giaban){
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_INSERT_GIOHANG,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                            String check = jsonObject.getString("check");
+
+                            if(check.equals("chuatontai")){
+
+                                if (success.equals("1")){
+                                    Toast.makeText(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                                }
+                            }else {
+                                context.startActivity(new Intent(context, Main2Activity.class));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.e("printStackTrace", e.toString());
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("MYSQL", "Lỗi! \n" +error.toString());
+            }
+        }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String > params = new HashMap<>();
+                params.put("masach", masach);
+                params.put("sanpham", sp);
+                params.put("hinhanh", hinhanhsach);
+                params.put("gia", giaban);
+                params.put("soluong", "1");
+                params.put("mauser", mauser);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 }

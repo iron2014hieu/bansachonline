@@ -7,5 +7,6 @@ public class EndPoints {
     public static final String URL_SEND_MULTIPLE_PUSH = baseUrl+"sendMultiplePush.php";
     public static final String URL_FETCH_DEVICES = baseUrl+"GetRegisteredDevices.php";
 
+    public static final String URL_UPDATE_DEVICES_ISLOGIN = baseUrl+"update_islogin.php";
 }
 

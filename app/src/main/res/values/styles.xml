@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="backgroundcolor">#fcfcfc</item>
         <item name="backgroundcolor2">#C0BFBF</item>
-        <item name="cardbackground">#F0EBEB</item>
+        <item name="cardbackground">#F5F5F5</item>
         <item name="textcolor">#383838</item>
         <item name="tincolor">#000000</item>
         <item name="buttoncolor">#BFDDF7</item>

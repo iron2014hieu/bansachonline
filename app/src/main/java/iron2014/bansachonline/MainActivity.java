@@ -68,8 +68,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     SessionManager sessionManager;
     BottomNavigationView navigation;
     ViewPager viewPager;
-    private TextView textNotify;
-    private ImageButton cartButtonIV;
+//    private TextView textNotify;
+//    private ImageButton cartButtonIV;
     private Button btnSearchView;
     private UrlSql urlSql;
     LinearLayout linearLayoutMain;
@@ -89,13 +89,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setAppLocale(sharedPref.loadLanguage());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        textNotify=findViewById(R.id.textNotify);
-        cartButtonIV= findViewById(R.id.cartButtonIV);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        textNotify=findViewById(R.id.textNotify);
+//        cartButtonIV= findViewById(R.id.cartButtonIV);
         linearLayoutMain= findViewById(R.id.linearLayoutM);
         navigation = findViewById(R.id.bottom_navigation);
         viewPager = findViewById(R.id.viewpager); //Idnit Viewpager
-        btnSearchView = findViewById(R.id.btnSearch);
+//        btnSearchView = findViewById(R.id.btnSearch);
         clipboardManager = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
 
 
@@ -105,8 +105,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ShowFirstAppStart();
         }
 //        Toobar đã như ActionBar
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
+//        setSupportActionBar(toolbar);
+//        ActionBar actionBar = getSupportActionBar();
 
 
 
@@ -158,12 +158,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
         //Setup seerch view
-        btnSearchView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), SearchBooksActivity.class));
-            }
-        });
+//        btnSearchView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(), SearchBooksActivity.class));
+//            }
+//        });
 
     }
     // thay đổi ngôn ngữ
@@ -266,17 +266,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return true;
     }
 
-    @Override
+
+        @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+//        val itemData = menu.findItem(R.id.action_addcart)
+//        val actionView = itemData.actionView as CartCounterActionView
+//        actionView.setItemData(menu, itemData)
+//        actionView.setCount(cartCount)
+//        return super.onPrepareOptionsMenu(menu)
         if (name != null) {
             switch (item.getItemId()) {
-                case R.id.cart_mn:
+                case R.id.action_addcart:
                     startActivity(new Intent(MainActivity.this, Main2Activity.class));
                     break;
             }
         } else {
             switch (item.getItemId()) {
-                case R.id.cart_mn:
+                case R.id.action_addcart:
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
                     break;
             }

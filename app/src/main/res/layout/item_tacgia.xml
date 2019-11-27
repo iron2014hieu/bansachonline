@@ -9,7 +9,7 @@
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:orientation="vertical"
-        android:background="#F5F5F5"
+        android:background="?attr/cardbackground"
         android:gravity="center"
         android:id="@+id/theloai_item">
         <ImageView

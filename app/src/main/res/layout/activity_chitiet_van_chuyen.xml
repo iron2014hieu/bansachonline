@@ -69,6 +69,7 @@
                     android:text="@string/diachis"/>
                 <TextView
                     android:textSize="18dp"
+                    android:autoLink="all"
                     android:textStyle="normal"
                     android:id="@+id/tvDiaChi"
                     android:layout_weight="1"
@@ -95,6 +96,7 @@
                     android:id="@+id/tvSDT"
                     android:layout_weight="1"
                     android:background="#B9DCDCDC"
+                    android:autoLink="phone"
                     android:text="Thiết lập ngay"
                     android:textColor="#E91E63"
                     android:padding="15dip"
