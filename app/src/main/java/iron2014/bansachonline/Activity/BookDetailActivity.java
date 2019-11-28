@@ -1,6 +1,7 @@
 package iron2014.bansachonline.Activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +28,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareHashtag;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -43,7 +52,8 @@ import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceFav;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
-import iron2014.bansachonline.LoginRegister.LoginActivity;
+import iron2014.bansachonline.BottomSheet.ExampleBottomSheetDialog;
+import iron2014.bansachonline.Main2Activity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.UrlSql;
@@ -56,7 +66,7 @@ import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class BookDetailActivity extends AppCompatActivity {
+public class BookDetailActivity extends AppCompatActivity implements ExampleBottomSheetDialog.BottomSheetListener{
     SharedPref sharedPref;
     Button btn_themgh,btn_muangay;
     private ImageView img_book;
@@ -69,6 +79,8 @@ public class BookDetailActivity extends AppCompatActivity {
     private String URL_INSERT ="http://hieuttpk808.000webhostapp.com/books/cart_bill/insert.php";
     private String URL_CHECK ="https://hieuttpk808.000webhostapp.com/books/cart_bill/checklibrary.php";
 
+    CallbackManager callbackManager;
+    ShareDialog shareDialog;
     String idUser, name, quyen;
     private Double giabansach = 0.0;
     private Float diemdanhgia;
@@ -82,14 +94,35 @@ public class BookDetailActivity extends AppCompatActivity {
     NhanxetAdapter nhanxetAdapter;
     ApiInTerFaceHoadon apiInTerFaceHoadon;
     ApiInTerFace apiInTerFace;
-    ImageButton img_like,img_unlike;
+    ImageButton img_like,img_unlike,btn_Share_fb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = new SharedPref(this);
         theme();
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_book_detail);
         addcontrols();
+
+        callbackManager = CallbackManager.Factory.create();
+        shareDialog = new ShareDialog(this);
+        shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+            @Override
+            public void onSuccess(Sharer.Result result) {
+
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
+
 
         Toolbar toolbar = findViewById(R.id.toolbar_sach_chitiet);
         ActionBar actionBar = getSupportActionBar();
@@ -124,7 +157,6 @@ public class BookDetailActivity extends AppCompatActivity {
         linkImage = book.get(sessionManager.ANHBIA);
         Picasso.with(this)
                 .load(linkImage).into(img_book);
-        try {
             HashMap<String,String> user = sessionManager.getUserDetail();
             quyen = user.get(sessionManager.QUYEN);
             name = user.get(sessionManager.NAME);
@@ -132,11 +164,7 @@ public class BookDetailActivity extends AppCompatActivity {
 
             if (quyen.equals("user")){
                 CheckLibrary(idBook, idUser);
-            }else {
             }
-        }catch (Exception e){
-            Log.e("LOG", e.toString());
-        }
 
         if (Float.valueOf(tongdiem) == 0.0)
         {
@@ -175,19 +203,17 @@ public class BookDetailActivity extends AppCompatActivity {
         btn_muangay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    HashMap<String,String> user = sessionManager.getUserDetail();
-                    idUser = user.get(sessionManager.ID);
-                    if (idUser==null){
-                        Toast.makeText(BookDetailActivity.this, "Bạn chưa đăng nhập!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(BookDetailActivity.this, LoginActivity.class));
-                    }else {
-                        ThemDatmua(masach, tensach, linkImage,idUser);
-                        //final String masach, final String sp, final String hinhanhsach, final String mauser
-                    }
-                }catch (Exception e){
-
-                }
+                ExampleBottomSheetDialog bottomSheet = new ExampleBottomSheetDialog();
+                bottomSheet.show(getSupportFragmentManager(), "exampleBottomSheet");
+//                    HashMap<String,String> user = sessionManager.getUserDetail();
+//                    idUser = user.get(sessionManager.ID);
+//                    if (idUser==null){
+//                        Toast.makeText(BookDetailActivity.this, "Bạn chưa đăng nhập!", Toast.LENGTH_SHORT).show();
+//                        startActivity(new Intent(BookDetailActivity.this, LoginActivity.class));
+//                    }else {
+//                        ThemDatmua(masach, tensach, linkImage,"5",idUser);
+//                        //final String masach, final String sp, final String hinhanhsach, final String mauser
+//                    }
             }
         });
         //share text
@@ -205,6 +231,26 @@ public class BookDetailActivity extends AppCompatActivity {
                 startActivity(Intent.createChooser(sharingIntent, "Chia sẻ"));
             }
         });
+
+
+
+
+        //share fb api
+        btn_Share_fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ShareDialog.canShow(ShareLinkContent.class)) {
+                    ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                            .setContentUrl(Uri.parse("http://developers.facebook.com/android"))
+                            .setShareHashtag((new ShareHashtag.Builder()
+                                    .setHashtag("#ConnectTheWorld")
+                                    .build()))
+                            .build();
+                    shareDialog.show(linkContent);
+                }
+            }
+        });
+
         btn_Message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -239,7 +285,7 @@ public class BookDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void ThemDatmua(final String masach, final String sp, final String hinhanhsach, final String mauser){
+    private void ThemDatmua(final String masach, final String sp, final String hinhanhsach,final String soluongdat, final String mauser){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_INSERT_GIOHANG,
                 new Response.Listener<String>() {
@@ -276,7 +322,7 @@ public class BookDetailActivity extends AppCompatActivity {
                 params.put("sanpham", sp);
                 params.put("hinhanh", hinhanhsach);
                 params.put("gia", giaban);
-                params.put("soluong", "1");
+                params.put("soluong", soluongdat);
                 params.put("mauser", mauser);
                 return params;
             }
@@ -303,8 +349,8 @@ public class BookDetailActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(BookDetailActivity.this, "Loi roi nhe", Toast.LENGTH_SHORT).show();
                 Log.d("MYSQL", "Lỗi! \n" +error.toString());
+                Toast.makeText(BookDetailActivity.this, "loi: "+error, Toast.LENGTH_SHORT).show();
             }
         }
         ){
@@ -340,7 +386,6 @@ public class BookDetailActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(BookDetailActivity.this, "Loi roi nhe", Toast.LENGTH_SHORT).show();
                 Log.d("MYSQL", "Lỗi! \n" +error.toString());
             }
         }
@@ -455,6 +500,12 @@ public class BookDetailActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onButtonClicked(String text) {
+        ThemDatmua(masach, tensach, linkImage,text,idUser);
+        Toast.makeText(this, ""+text, Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getApplicationContext(), Main2Activity.class));
+    }
     private void addcontrols(){
         btn_Message = findViewById(R.id.btn_chat);
         edtTensach = findViewById(R.id.edtTensach);
@@ -471,6 +522,7 @@ public class BookDetailActivity extends AppCompatActivity {
         linnear_nhanxet=findViewById(R.id.linnear_nhanxet);
         recyclerview_sach_tacgia= findViewById(R.id.recyclerview_sach_tacgia);
         txtXemtataca= findViewById(R.id.txtXemtataca);
+        btn_Share_fb=findViewById(R.id.btn_Share_fb);
 
         img_like= findViewById(R.id.img_like);
         img_unlike = findViewById(R.id.img_unlike);

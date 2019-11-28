@@ -5,12 +5,17 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Base64;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,6 +50,8 @@ import com.google.firebase.iid.InstanceIdResult;
 
 import org.json.JSONArray;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -156,14 +163,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (quyen!=null&&quyen.equals("shipper")){
                 startActivity(new Intent(getBaseContext(), ShipperActivity.class));
             }
-
-        //Setup seerch view
-//        btnSearchView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getApplicationContext(), SearchBooksActivity.class));
-//            }
-//        });
 
     }
     // thay đổi ngôn ngữ

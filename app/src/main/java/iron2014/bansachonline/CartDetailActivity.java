@@ -6,8 +6,12 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -52,6 +56,8 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -259,7 +265,7 @@ public class CartDetailActivity extends AppCompatActivity {
                     alertDialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-//                            displayAlertDialog();
+                            displayAlertDialog();
                             ThemHoadon(mauser_session, String.valueOf(tongtien), edtSdt.getText().toString(), UrlSql.url_insert_hoadon);
                         }
                     });
@@ -283,6 +289,12 @@ public class CartDetailActivity extends AppCompatActivity {
             setTheme(R.style.darktheme);
         }else setTheme(R.style.AppTheme);
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(), Main2Activity.class));
+    }
+
     private void initList(){
         countryItems = new ArrayList<>();
         countryItems.add(new CountryItem("Giao hàng tiết kiệm","20000", R.drawable.vanchuyen));

@@ -69,26 +69,6 @@
                         android:layout_height="25dp"
                         app:backGroundColor="#2196F3"
                         app:textColor="#fff"/>
-<!--                    <ImageButton-->
-<!--                        android:background="@drawable/cutomstacgia"-->
-<!--                        android:layout_gravity="center"-->
-<!--                        android:id="@+id/btnGiam_sl"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:src="@drawable/ic_remove_24dp"/>-->
-<!--                    <TextView-->
-<!--                        android:padding="10dp"-->
-<!--                        android:id="@+id/tv_soluongmua"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="0"/>-->
-<!--                    <ImageButton-->
-<!--                        android:background="@drawable/cutomstacgia"-->
-<!--                        android:layout_gravity="center"-->
-<!--                        android:id="@+id/btnTang_sl"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:src="@drawable/ic_add_24dp"/>-->
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

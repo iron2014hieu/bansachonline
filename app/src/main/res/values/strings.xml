@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Sách</string>
+    <string name="facebook_app_id">982539198779504</string>
+    <string name="facebook_login_protocol_schema">fb982539198779504</string>
+
     <string name="hello_blank_fragment">ddd</string>
     <string name="string_internet_connection_not_available">Không có kết nối internet!</string>
     <string name="thaydoingonngu">Ngôn ngữ</string>

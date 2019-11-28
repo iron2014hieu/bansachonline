@@ -1,10 +1,14 @@
 package iron2014.bansachonline.LoginRegister;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +36,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar progressBar;
     SessionManager sessionManager;
     String token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,6 +117,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
     public void loginsms(View view){
         startActivity(new Intent(getBaseContext(), VerifyPhoneActivity.class));
     }

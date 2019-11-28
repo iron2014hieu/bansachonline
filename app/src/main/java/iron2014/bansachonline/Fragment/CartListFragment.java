@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -61,6 +62,7 @@ public class CartListFragment extends Fragment {
     String quyen, name, idUser;
     SessionManager sessionManager;
     public static int total=0;
+    public static int total1=0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -105,14 +107,8 @@ public class CartListFragment extends Fragment {
         recyclerView_dat_mua.setHasFixedSize(true);
         fetchDatmua(idUser);
 
-        btnnext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                            Intent intent = new Intent(getContext(), CartDetailActivity.class);
-                            intent.putExtra("tongtien", String.valueOf(total));
-                            startActivity(intent);
-            }
-        });
+
+        txtTongtien.setText(" "+ CartAdapter.tongTienSach);
         return view;
     }
 
@@ -144,6 +140,30 @@ public class CartListFragment extends Fragment {
                     btnnext.setVisibility(View.VISIBLE);
                     txtTongtien.setVisibility(View.VISIBLE);
                     tvTTgiohang.setVisibility(View.GONE);
+
+                    for (int m =0; m<listDatmua.size();m++){
+                        if (listDatmua.get(m).getSelected() == 1){
+                            DatMua datMua = listDatmua.get(m);
+
+                            int gia = datMua.getGia();
+                            int soluongg= datMua.getSoluong();
+
+                            int tongTienTungsach = gia*soluongg;
+
+                            total+= tongTienTungsach;
+                        }
+
+                    }
+                    txtTongtien.setText(total+" ");
+                    btnnext.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getContext(), CartDetailActivity.class);
+                            intent.putExtra("tongtien", txtTongtien.getText().toString().trim());
+                            startActivity(intent);
+                        }
+                    });
+                    total =1;
                 }
             }
 
@@ -153,6 +173,13 @@ public class CartListFragment extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+
+        super.onActivityCreated(savedInstanceState);
+    }
+
     private List<DatMua> getModel(int isSelect){
         for(int i = 0; i < sizeList ; i++){
 

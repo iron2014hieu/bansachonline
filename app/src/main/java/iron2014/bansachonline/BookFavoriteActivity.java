@@ -35,7 +35,6 @@ public class BookFavoriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_favorite);
         txtFav_empty = findViewById(R.id.txtFav_empty);
-        txtFav_empty.setVisibility(View.GONE);
 
         recyclerview_fav = findViewById(R.id.recyclerview_fav);
         sessionManager= new SessionManager(this);

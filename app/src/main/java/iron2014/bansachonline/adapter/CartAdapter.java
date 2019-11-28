@@ -13,6 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -60,6 +61,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         view = LayoutInflater.from(context).inflate(R.layout.item_giohang, viewGroup, false);
         urlSql = new UrlSql();
         final MyViewHolder holder= new MyViewHolder(view);
+
         return holder;
     }
 
@@ -91,6 +93,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 }
             }
         });
+
 
         iduser = listGiohang.get(i).getMauser();
         masach = String.valueOf(listGiohang.get(i).getMasach());
