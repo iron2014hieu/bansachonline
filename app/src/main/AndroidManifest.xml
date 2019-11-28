@@ -19,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".Activity.AppChatActivity.HienthiTnActivity"></activity>
+        <activity android:name=".BookFavoriteActivity"></activity>
+        <activity android:name=".Activity.AppChatActivity.HienthiTnActivity" />
         <activity android:name=".Activity.AppChatActivity.MainCHATActivity" />
         <activity android:name=".Activity.Library.AudioActivity" />
         <activity android:name=".LoginRegister.VerifyPhoneActivity" />

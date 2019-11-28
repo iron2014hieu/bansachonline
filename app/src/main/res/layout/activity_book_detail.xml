@@ -106,11 +106,24 @@
                         android:layout_gravity="center"
                         android:textColor="?attr/textcolor"
                         android:text="Đã bán 123"/>
-                    <ImageButton
+                    <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="100dp"
-                        android:background="@drawable/ic_fatevori"/>
+                        android:layout_height="wrap_content">
+                        <ImageButton
+                            android:id="@+id/img_like"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="100dp"
+                            android:layout_gravity="right"
+                            android:visibility="gone"
+                            android:background="@drawable/ic_fatevori_like"/>
+                        <ImageButton
+                            android:id="@+id/img_unlike"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="100dp"
+                            android:background="@drawable/ic_fav_outline"/>
+                    </RelativeLayout>
                 </LinearLayout>
                 <TextView
                     android:id="@+id/edtMotaChitiet"

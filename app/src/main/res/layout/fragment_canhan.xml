@@ -135,13 +135,14 @@
                            android:drawableTop="@drawable/rating"/>
                    </LinearLayout>
                        <TextView
+                           android:id="@+id/txtFav"
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content"
                            android:text="@string/sachdathich"
                            android:textStyle="normal"
                            android:textSize="18dp"
                            android:gravity="left"
-                           android:padding="5dp"
+                           android:padding="10dp"
                            android:textColor="?attr/textcolor"
                            android:layout_marginTop="25dp"
                            android:drawableLeft="@drawable/ic_fatevori"
@@ -150,7 +151,7 @@
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content"
                            android:text="@string/danhgiacutoi"
-                           android:padding="5dp"
+                           android:padding="10dp"
                            android:textStyle="normal"
                            android:textSize="18dp"
                            android:layout_marginTop="25dp"
@@ -187,7 +188,7 @@
             android:layout_marginTop="25dp"
             android:textStyle="normal"
             android:textSize="18dp"
-            android:padding="5dp"
+            android:padding="10dp"
             android:textColor="?attr/textcolor"
             android:drawableLeft="@drawable/ic_person"
             android:drawableRight="@drawable/ic_chevron_right"/>
@@ -200,7 +201,7 @@
                 android:text="@string/caidatkhac"
                 android:visibility="visible"
                 android:gravity="left"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:textColor="?attr/textcolor"
                 android:layout_marginTop="15dp"
                 android:textStyle="normal"

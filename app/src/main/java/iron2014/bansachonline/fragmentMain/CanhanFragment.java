@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import java.util.HashMap;
 
+import iron2014.bansachonline.BookFavoriteActivity;
 import iron2014.bansachonline.LoginRegister.LoginActivity;
 import iron2014.bansachonline.LoginRegister.ProfileActivity;
 import iron2014.bansachonline.LoginRegister.RegisterActivity;
@@ -26,7 +27,7 @@ import iron2014.bansachonline.Session.SessionManager;
 public class CanhanFragment extends Fragment implements View.OnClickListener {
     private TextView txtSetting,txtTaikhoan;
 
-    private TextView txtChoxacnhan, txtCholayhang,txtDanggiao,txtDanhgia;
+    private TextView txtChoxacnhan, txtCholayhang,txtDanggiao,txtDanhgia,txtFav;
     private CardView cardview_canhan;
 
     public CanhanFragment() {
@@ -76,7 +77,7 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
 
         btnDangky.setOnClickListener(this);
         btnDangnhap.setOnClickListener(this);
-
+        txtFav.setOnClickListener(this);
 
 
         return v;
@@ -101,6 +102,9 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btnDangnhap:
                 goTologin();
+                break;
+            case R.id.txtFav:
+                startActivity(new Intent(getContext(), BookFavoriteActivity.class));
                 break;
         }
     }
@@ -131,5 +135,6 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
         cardview_canhan = v.findViewById(R.id.cardview_canhan);
         btnDangnhap= v.findViewById(R.id.btnDangnhap);
         btnDangky= v.findViewById(R.id.btnDangky);
+        txtFav = v.findViewById(R.id.txtFav);
     }
 }

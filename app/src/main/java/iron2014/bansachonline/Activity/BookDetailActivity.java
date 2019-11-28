@@ -41,6 +41,7 @@ import iron2014.bansachonline.Activity.AppChatActivity.HienthiTnActivity;
 import iron2014.bansachonline.Activity.hoadon.ListAllCommentActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
+import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceFav;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
 import iron2014.bansachonline.LoginRegister.LoginActivity;
 import iron2014.bansachonline.R;
@@ -48,6 +49,7 @@ import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.UrlSql;
 import iron2014.bansachonline.adapter.NhanxetAdapter;
 import iron2014.bansachonline.adapter.Sach.SachAdapter;
+import iron2014.bansachonline.model.BookFavorite;
 import iron2014.bansachonline.model.Books;
 import iron2014.bansachonline.model.CTHD;
 import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
@@ -63,10 +65,9 @@ public class BookDetailActivity extends AppCompatActivity {
     private RatingBar ratingbar_book_detail, ratingbar_below_detail;
     private ImageButton btn_Share,btn_Message;
     LinearLayout linnear_nhanxet;
-
+    ApiInTerFaceFav apiInTerFaceFav;
     private String URL_INSERT ="http://hieuttpk808.000webhostapp.com/books/cart_bill/insert.php";
     private String URL_CHECK ="https://hieuttpk808.000webhostapp.com/books/cart_bill/checklibrary.php";
-
 
     String idUser, name, quyen;
     private Double giabansach = 0.0;
@@ -81,6 +82,7 @@ public class BookDetailActivity extends AppCompatActivity {
     NhanxetAdapter nhanxetAdapter;
     ApiInTerFaceHoadon apiInTerFaceHoadon;
     ApiInTerFace apiInTerFace;
+    ImageButton img_like,img_unlike;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = new SharedPref(this);
@@ -217,6 +219,24 @@ public class BookDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        checkLike(masach, idUser);
+        img_unlike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ThemYeuthich();
+                img_unlike.setVisibility(View.GONE);
+                img_like.setVisibility(View.VISIBLE);
+            }
+        });
+        img_like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BoYeuthich();
+                img_like.setVisibility(View.GONE);
+                img_unlike.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     private void ThemDatmua(final String masach, final String sp, final String hinhanhsach, final String mauser){
@@ -263,7 +283,78 @@ public class BookDetailActivity extends AppCompatActivity {
         };
         requestQueue.add(stringRequest);
     }
-
+    private void ThemYeuthich(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_INSERT_FAVORITE,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                            if (success.equals("1")){
+                                Toast.makeText(BookDetailActivity.this, "Đã thêm yêu thích", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.e("printStackTrace", e.toString());
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(BookDetailActivity.this, "Loi roi nhe", Toast.LENGTH_SHORT).show();
+                Log.d("MYSQL", "Lỗi! \n" +error.toString());
+            }
+        }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String > params = new HashMap<>();
+                params.put("masach", idBook);
+                params.put("mauser", idUser);
+                params.put("tensach", tensach);
+                params.put("anhbia", hinhanh);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+    private void BoYeuthich(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_DELETE_FAVORITE,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                            if (success.equals("1")){
+                                Toast.makeText(BookDetailActivity.this, "Đã bỏ thích", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.e("printStackTrace", e.toString());
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(BookDetailActivity.this, "Loi roi nhe", Toast.LENGTH_SHORT).show();
+                Log.d("MYSQL", "Lỗi! \n" +error.toString());
+            }
+        }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String > params = new HashMap<>();
+                params.put("masach", idBook);
+                params.put("mauser", idUser);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
     private void CheckLibrary(final String idBook, final String idUser){
         RequestQueue requestQueue = Volley.newRequestQueue(BookDetailActivity.this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_CHECK,
@@ -342,7 +433,28 @@ public class BookDetailActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
+    private void checkLike(String masach, String mauser){
+        apiInTerFaceFav = ApiClient.getApiClient().create(ApiInTerFaceFav.class);
+        Call<List<BookFavorite>> call = apiInTerFaceFav.check_like(masach, mauser);
 
+        call.enqueue(new Callback<List<BookFavorite>>() {
+            @Override
+            public void onResponse(Call<List<BookFavorite>> call, retrofit2.Response<List<BookFavorite>> response) {
+                if (response.body().size()==0){
+                    img_like.setVisibility(View.GONE);
+                    img_unlike.setVisibility(View.VISIBLE);
+                }else {
+                    img_like.setVisibility(View.VISIBLE);
+                    img_unlike.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<BookFavorite>> call, Throwable t) {
+                Log.e("Error Search:","Error on: "+t.toString());
+            }
+        });
+    }
     private void addcontrols(){
         btn_Message = findViewById(R.id.btn_chat);
         edtTensach = findViewById(R.id.edtTensach);
@@ -359,5 +471,8 @@ public class BookDetailActivity extends AppCompatActivity {
         linnear_nhanxet=findViewById(R.id.linnear_nhanxet);
         recyclerview_sach_tacgia= findViewById(R.id.recyclerview_sach_tacgia);
         txtXemtataca= findViewById(R.id.txtXemtataca);
+
+        img_like= findViewById(R.id.img_like);
+        img_unlike = findViewById(R.id.img_unlike);
     }
 }

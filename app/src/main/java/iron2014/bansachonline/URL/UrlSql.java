@@ -18,4 +18,8 @@ public class UrlSql {
 
     //giam số lượng sách sau mua
     public static String URL_UPDATE_SOLUONG = "https://bansachonline.xyz/bansach/hoadon/cthd/update_soluong_sach.php";
+
+    //yeu thich
+    public static String URL_INSERT_FAVORITE = "https://bansachonline.xyz/bansach/yeuthich/insert_favorite.php";
+    public static String URL_DELETE_FAVORITE ="https://bansachonline.xyz/bansach/yeuthich/delete_favorite.php";
 }
