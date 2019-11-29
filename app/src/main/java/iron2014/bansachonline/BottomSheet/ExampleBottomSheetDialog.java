@@ -17,7 +17,6 @@ import iron2014.bansachonline.R;
 
 public class ExampleBottomSheetDialog extends BottomSheetDialogFragment {
     private BottomSheetListener mListener;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -27,14 +26,15 @@ public class ExampleBottomSheetDialog extends BottomSheetDialogFragment {
         ElegantNumberButton elegantNumberButton = v.findViewById(R.id.btn_numberQuality_bs);
         elegantNumberButton.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
             @Override
-            public void onValueChange(ElegantNumberButton view, int oldValue, final int newValue) {
+            public void onValueChange(ElegantNumberButton view, final int oldValue, final int newValue) {
 
                 button1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (newValue>0)
-                        mListener.onButtonClicked(String.valueOf(newValue));
-                        dismiss();
+                        if (newValue != 0){
+                            mListener.onButtonClicked(String.valueOf(newValue));
+                            dismiss();
+                        }
                     }
                 });
             }

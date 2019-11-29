@@ -2,6 +2,8 @@ package iron2014.bansachonline;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +22,8 @@ import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 public class MuahangActivity extends AppCompatActivity {
     TabViewPagerAdapter tabViewPagerAdapter;
     ViewPager viewPager;
+    Button btnThuvien, btnHome;
+    Toolbar toolbar_reload;
     TabLayout tabLayout;
     TabLayout.Tab tab;
     String check;
@@ -38,6 +42,32 @@ public class MuahangActivity extends AppCompatActivity {
         final ActionBar actionBar = getSupportActionBar();
         Intent intent = getIntent();
         check = intent.getStringExtra("check");
+
+        btnHome = findViewById(R.id.btnHome);
+        btnThuvien = findViewById(R.id.btnThuvien);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MuahangActivity.this, MainActivity.class));
+            }
+        });
+        btnThuvien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MuahangActivity.this, MainActivity.class);
+                i.putExtra("check", "2");
+                startActivity(i);
+            }
+        });
+
+        toolbar_reload = findViewById(R.id.toolbar_reload);
+        toolbar_reload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MuahangActivity.this, MuahangActivity.class));
+            }
+        });
+
 
         tabViewPagerAdapter = new TabViewPagerAdapter(getSupportFragmentManager());
         //add fragmenr here

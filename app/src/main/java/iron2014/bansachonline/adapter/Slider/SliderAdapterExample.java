@@ -1,6 +1,7 @@
 package iron2014.bansachonline.adapter.Slider;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
+import iron2014.bansachonline.Activity.GetAllBookActivity;
 import iron2014.bansachonline.R;
 
 
@@ -42,7 +44,7 @@ public class SliderAdapterExample extends
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
+
             }
         });
 

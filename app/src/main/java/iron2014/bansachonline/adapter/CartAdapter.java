@@ -45,7 +45,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     public static int tongTienSach;
     private int tongTienTungsach;
     UrlSql urlSql;
-    private  int total =0;
+    private  int total = 0;
     String iduser, masach;
     public  static String url_UD = "https://bansachonline.xyz/bansach/giohang/update_status_carts.php";
 

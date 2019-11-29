@@ -1,6 +1,7 @@
 package iron2014.bansachonline.model;
 
 public class DatMua {
+    private  int id;
     private int  selected;
     int masach;
     String sanpham;
@@ -12,7 +13,8 @@ public class DatMua {
     public DatMua() {
     }
 
-    public DatMua(int selected, int masach, String sanpham, int gia, int soluong, String hinhanh, String mauser) {
+    public DatMua(int id, int selected, int masach, String sanpham, int gia, int soluong, String hinhanh, String mauser) {
+        this.id = id;
         this.selected = selected;
         this.masach = masach;
         this.sanpham = sanpham;
@@ -20,6 +22,14 @@ public class DatMua {
         this.soluong = soluong;
         this.hinhanh = hinhanh;
         this.mauser = mauser;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getSelected() {

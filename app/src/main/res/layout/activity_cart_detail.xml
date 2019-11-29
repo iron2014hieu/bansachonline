@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="?attr/backgroundcolor"
     android:layout_height="match_parent"
     tools:context=".CartDetailActivity">
     <androidx.core.widget.NestedScrollView
@@ -138,6 +139,7 @@
                 android:textSize="15dp" />
 
             <Spinner
+                android:background="?attr/cardbackground"
                 android:id="@+id/spinner_countries"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

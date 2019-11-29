@@ -75,7 +75,7 @@ public class GetBookByTheloaiActivity extends AppCompatActivity {
         sachAdapter = new SachAdapter(this, listBook);
 
         StaggeredGridLayoutManager gridLayoutManagerVeticl =
-                new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL);
+                new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerview_book.setLayoutManager(gridLayoutManagerVeticl);
         recyclerview_book.setHasFixedSize(true);
 

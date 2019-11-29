@@ -4,7 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/cardbackground"
     tools:context=".BookFavoriteActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_vanchuyen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="#fff"
+        android:background="#2196F3"
+        app:title="Danh sách yêu thích">
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/txtFav_empty"
@@ -23,7 +33,10 @@
         android:drawableTop="@drawable/favorite"
         android:text="Danh sách trống" />
 
+
+
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="60dp"
         android:id="@+id/recyclerview_fav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

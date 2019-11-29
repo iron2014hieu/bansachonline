@@ -64,8 +64,8 @@ public class CTHDAdapter extends RecyclerView.Adapter<CTHDAdapter.MyViewHolder> 
         private TextView txt_soluong_cthd;
         private TextView txt_books_name_cthd;
         private TextView txt_giaban_cthd;
-
         private ImageView img_cthd;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,7 +73,7 @@ public class CTHDAdapter extends RecyclerView.Adapter<CTHDAdapter.MyViewHolder> 
             txt_soluong_cthd=(TextView)itemView.findViewById(R.id.txt_soluong_cthd);
             txt_books_name_cthd=(TextView)itemView.findViewById(R.id.txt_books_name_cthd);
             txt_giaban_cthd=(TextView) itemView.findViewById(R.id.txt_giaban_cthd);
-
+            img_cthd= (ImageView) itemView.findViewById(R.id.img_cthd);
         }
     }
     public interface ProductItemActionListener{

@@ -22,4 +22,6 @@ public class UrlSql {
     //yeu thich
     public static String URL_INSERT_FAVORITE = "https://bansachonline.xyz/bansach/yeuthich/insert_favorite.php";
     public static String URL_DELETE_FAVORITE ="https://bansachonline.xyz/bansach/yeuthich/delete_favorite.php";
+
+    public static String URL_DELETE_GIOHANG ="https://bansachonline.xyz/bansach/giohang/delete_giohang.php";
 }

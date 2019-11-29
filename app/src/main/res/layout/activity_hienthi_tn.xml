@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/cardbackground"
     tools:context=".Activity.AppChatActivity.HienthiTnActivity">
-
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_vanchuyen"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="60dp"
-        android:id="@+id/recyclerview_tn"/>
+        android:layout_height="wrap_content"
+        app:titleTextColor="#fff"
+        android:background="#2196F3"
+        app:title="Cộng đồng">
+    </androidx.appcompat.widget.Toolbar>
     <LinearLayout
+        android:layout_marginTop="70dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:background="?attr/cardbackground"
+            android:id="@+id/recyclerview_tn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="60dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_gravity="bottom|end"
         android:id="@+id/form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,6 +39,9 @@
         android:orientation="horizontal"
         android:paddingBottom="2dp" >
         <EditText
+            android:hint="Nhập văn bản"
+            android:maxLines="1"
+            android:lines="1"
             android:id="@+id/etMessage"
             android:layout_width="252dp"
             android:layout_height="wrap_content"
@@ -39,6 +60,6 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:background="@drawable/ic_send_black_24dp"
-           />
+            />
     </LinearLayout>
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -5,9 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="?attr/backgroundcolor"
-    tools:context=".Activity.GetBookByTheloaiActivity"
-    android:gravity="center">
+    android:background="?attr/cardbackground"
+    tools:context=".Activity.GetBookByTheloaiActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_theloai"
@@ -30,8 +29,10 @@
         android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_gravity="center"
+        android:padding="5dp"
         android:id="@+id/recyclerview_book_bymatheloai"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

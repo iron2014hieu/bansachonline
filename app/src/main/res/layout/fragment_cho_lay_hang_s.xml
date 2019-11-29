@@ -20,5 +20,4 @@
         android:text="Chưa có đơn hàng"
         android:textStyle="bold"
         android:visibility="gone"  />
-
 </FrameLayout>

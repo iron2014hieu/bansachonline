@@ -126,6 +126,7 @@ public class CartListFragment extends Fragment {
                 recyclerView_dat_mua.setAdapter(cartAdapter);
                 cartAdapter.notifyDataSetChanged();
 
+
                 if (listDatmua.size() == 0){
                     tv_tongthanhtoan.setVisibility(View.GONE);
                     tvLaymaKM.setVisibility(View.GONE);
@@ -144,7 +145,7 @@ public class CartListFragment extends Fragment {
                     for (int m =0; m<listDatmua.size();m++){
                         if (listDatmua.get(m).getSelected() == 1){
                             DatMua datMua = listDatmua.get(m);
-
+                            int id = datMua.getId();
                             int gia = datMua.getGia();
                             int soluongg= datMua.getSoluong();
 
@@ -152,7 +153,6 @@ public class CartListFragment extends Fragment {
 
                             total+= tongTienTungsach;
                         }
-
                     }
                     txtTongtien.setText(total+" ");
                     btnnext.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +163,7 @@ public class CartListFragment extends Fragment {
                             startActivity(intent);
                         }
                     });
-                    total =1;
+                    total = 0;
                 }
             }
 

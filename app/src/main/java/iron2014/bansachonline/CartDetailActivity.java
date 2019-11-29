@@ -138,7 +138,6 @@ public class CartDetailActivity extends AppCompatActivity {
         tenkh = user.get(sessionManager.NAME);
         diachi = user.get(sessionManager.ADDRESS);
         sodienthoai = user.get(sessionManager.PHONE);
-        Toast.makeText(this, "ten "+tenkh+" diachi "+diachi+" sdt "+sodienthoai, Toast.LENGTH_SHORT).show();
 
         Intent intent = getIntent();
         tongtien = Integer.valueOf(intent.getStringExtra("tongtien"));
@@ -266,7 +265,7 @@ public class CartDetailActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             displayAlertDialog();
-                            ThemHoadon(mauser_session, String.valueOf(tongtien), edtSdt.getText().toString(), UrlSql.url_insert_hoadon);
+                            //ThemHoadon(mauser_session, String.valueOf(tongtien), edtSdt.getText().toString(), UrlSql.url_insert_hoadon);
                         }
                     });
                     alertDialog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
@@ -356,9 +355,13 @@ public class CartDetailActivity extends AppCompatActivity {
                                 String giaban = String.valueOf(listDatmua.get(n).getGia());
                                 String soluong = String.valueOf(listDatmua.get(n).getSoluong());
                                 String hinhanh = listDatmua.get(n).getHinhanh();
+                                int id = (listDatmua.get(n).getId());
+
                                 ThemCTHD(String.valueOf(mahoadon), masach, tensach, giaban, soluong, hinhanh, UrlSql.url_insert_cthd);
                                 UpdateSoluong(masach, soluong);
+                                xoaGiohang(String.valueOf(id),mauser);
                             }
+                            sendOnChannel("Hóa đơn: "+mahoadon,"Xem đơn hàng của bạn");
                             String mota = "Đơn hàng "+mahoadon +" đang chờ xủ lý. Vui lòng kiểm tra thời gian nhận trong chi tiết hóa đơn";
                             InsertNotif(mota,String.valueOf(mahoadon));
                             Toast.makeText(CartDetailActivity.this, "Thêm thành công hóa đơn: " + mahoadon, Toast.LENGTH_SHORT).show();
@@ -397,7 +400,7 @@ public class CartDetailActivity extends AppCompatActivity {
                         if (response.trim().equals("tc")){
                             progress_hoadon.setVisibility(View.GONE);
                             btnThanhtoan.setVisibility(View.VISIBLE);
-                            sendOnChannel("Hóa đơn: "+mahd,"Xem đơn hàng của bạn");
+
 //                            startActivity(new Intent(getBaseContext(), CartDetailActivity.class));
                             Intent intent = new Intent(getBaseContext(), MuahangActivity.class);
                             intent.putExtra("check", 0);
@@ -422,6 +425,34 @@ public class CartDetailActivity extends AppCompatActivity {
                 params.put("soluong", soluong);
                 params.put("hinhanh", hinhanh);
                 params.put("mauser", mauser_session);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+    private void xoaGiohang( final String iddatmua, final String mauser) {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_DELETE_GIOHANG,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.trim().equals("tc")){
+
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(CartDetailActivity.this, ""+error, Toast.LENGTH_SHORT).show();
+                Log.d("MYSQL", "Lỗi!" +error.toString());
+            }
+        }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String > params = new HashMap<>();
+                params.put("id", iddatmua);
+                params.put("mauser", mauser);
                 return params;
             }
         };

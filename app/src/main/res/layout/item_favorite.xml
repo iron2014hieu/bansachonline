@@ -3,10 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="#fff"
+    android:padding="5dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
     android:orientation="vertical">
     <ImageView
         android:id="@+id/img_book_favorite"
-        android:layout_width="180dp"
+        android:layout_width="140dp"
         android:layout_height="180dp"
         android:src="@drawable/book"/>
     <LinearLayout
@@ -19,14 +23,15 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:gravity="center"
-            android:drawableLeft="@drawable/ic_fatevori_like"
-            android:text="25"/>
+            android:drawableLeft="@drawable/ic_fatevori_like" />
         <TextView
+            android:maxLength="15"
+            android:textColor="#000000"
             android:id="@+id/txt_namebook_favorite"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:gravity="center"
             android:text="@string/dangnhap"/>
     </LinearLayout>

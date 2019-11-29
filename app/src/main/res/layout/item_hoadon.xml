@@ -38,7 +38,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FF0000"
+            android:textColor="?attr/textcolor"
             android:text="Tong tien"
             android:textSize="15sp"
             android:textStyle="bold"
@@ -51,7 +51,7 @@
             android:gravity="right"
             android:padding="5dp"
             android:textColor="#FF0000"
-            android:text="@string/xemchitiet"/>
+            android:drawableRight="@drawable/ic_remove_red_eye" />
     </LinearLayout>
         <LinearLayout
             android:weightSum="2"
@@ -66,7 +66,7 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="10dp"
                 android:text="Nhận vào: 11/11/2019"
-                android:textColor="#21DA2B"
+                android:textColor="?attr/textcolor"
                 android:textSize="15dp" />
 
             <TextView
@@ -77,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:text="Chờ Xác Nhận"
-                android:textSize="18dp"
+                android:textSize="15dp"
                 android:textColor="#3F51B5"/>
 
 

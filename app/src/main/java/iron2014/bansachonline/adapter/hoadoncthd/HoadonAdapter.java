@@ -73,6 +73,7 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
                 String mahd = String.valueOf(mData.get(i).getMahoadon());
                 String tenkh = String.valueOf(mData.get(i).getTenkh());
                 String diachi = String.valueOf(mData.get(i).getDiachi());
+                String tongtien = String.valueOf(mData.get(i).getTongtien());
                 String sdt = String.valueOf(mData.get(i).getSdt());
                 String tinhtrang = mData.get(i).getTinhtrang();
                 intent.putExtra("mahd", mahd);
@@ -80,6 +81,7 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
                 intent.putExtra("tenkh", tenkh);
                 intent.putExtra("diachi", diachi);
                 intent.putExtra("sdt", sdt);
+                intent.putExtra("tongtien", tongtien);
                 sessionManager.createHoadon(tinhtrang);
                 context.startActivity(intent);
             }

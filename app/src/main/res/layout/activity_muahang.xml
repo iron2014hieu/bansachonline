@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="?attr/backgroundcolor"
     tools:context=".MuahangActivity">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_muahang"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/topbottomcolor"
-        app:titleTextColor="?attr/textcolor"
-        app:title="@string/muahang"
-        app:navigationIcon="@drawable/danggiao"/>
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:weightSum="7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_muahang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/topbottomcolor"
+                app:titleTextColor="?attr/textcolor"
+                app:title="@string/muahang"
+                android:layout_weight="1"
+                app:navigationIcon="@drawable/danggiao"/>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_reload"
+                android:layout_weight="6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:navigationIcon="@drawable/ic_cached_black_24dp"
+                android:background="?attr/topbottomcolor"
+                app:titleTextColor="?attr/textcolor"/>
+        </LinearLayout>
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,10 +42,35 @@
         app:tabBackground="?attr/backgroundcolor"
         app:tabSelectedTextColor="#FF0000"
         android:id="@+id/tablayout_id"/>
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/fragment_container_muahang"
-        android:layout_below="@id/tablayout_id"
-        android:background="?attr/backgroundcolor"
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/fragment_container_muahang"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:layout_below="@id/tablayout_id"
+            android:background="?attr/backgroundcolor" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_gravity="bottom|end"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <Button
+            android:id="@+id/btnThuvien"
+            android:textColor="#fff"
+            android:background="#64B5F8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Đến thư viện"/>
+        <Button
+            android:id="@+id/btnHome"
+            android:textColor="#fff"
+            android:background="#FF8F88"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Trang chủ"/>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

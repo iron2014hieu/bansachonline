@@ -149,6 +149,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
         tensach = book.get(sessionManager.TENSACH);
         masach = book.get(sessionManager.MASACH);
         matacgia = book.get(sessionManager.MATACGIA);
+        hinhanh= book.get(sessionManager.ANHBIA);
         toolbar.setTitle(tensach);
 
         Log.d("Masach", masach);

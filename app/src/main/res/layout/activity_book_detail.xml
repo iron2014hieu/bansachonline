@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backgroundcolor"
+    android:background="?attr/cardbackground"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Activity.BookDetailActivity">
     <ScrollView
@@ -14,7 +14,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/backgroundcolor"
+        android:background="?attr/cardbackground"
         android:orientation="vertical">
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -32,13 +32,13 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="?attr/backgroundcolor">
+            android:backgroundTint="?attr/cardbackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:background="?attr/backgroundcolor"
+                android:background="?attr/cardbackground"
                 android:orientation="vertical">
                 <ImageView
                     android:id="@+id/imgBook"
@@ -81,7 +81,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginTop="5dp"
                     android:background="?attr/backgroundcolor"
                     android:orientation="horizontal">
@@ -107,20 +107,21 @@
                         android:textColor="?attr/textcolor"
                         android:text="Đã bán 123"/>
                     <RelativeLayout
+                        android:layout_marginTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <ImageButton
                             android:id="@+id/img_like"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginLeft="100dp"
                             android:layout_gravity="right"
                             android:visibility="gone"
                             android:background="@drawable/ic_fatevori_like"/>
                         <ImageButton
                             android:id="@+id/img_unlike"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginLeft="100dp"
                             android:background="@drawable/ic_fav_outline"/>
                     </RelativeLayout>
@@ -154,7 +155,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/backgroundcolor"/>
+                    android:background="?attr/cardbackground"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -188,10 +189,10 @@
             android:layout_marginBottom="40dp">
 
             <LinearLayout
+                android:padding="5dp"
                 android:id="@+id/linnear_nhanxet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:background="?attr/backgroundcolor"
                 android:orientation="vertical">
 
@@ -236,7 +237,7 @@
                     android:id="@+id/recyclerview_nhanxet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/backgroundcolor"/>
+                    android:background="?attr/cardbackground"/>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -245,7 +246,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_gravity="bottom|end"
         android:layout_weight="3"
         android:background="?attr/buttoncolor"
@@ -270,8 +271,14 @@
             android:src="@drawable/facebook"
             android:layout_marginLeft="10dp"
             android:textSize="12dp" />
-        <ImageButton
+        <View
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="?attr/textcolor"/>
+        <ImageButton
             android:background="?attr/buttoncolor"
             android:id="@+id/btn_chat"
             android:layout_width="40dp"
@@ -279,11 +286,17 @@
             android:layout_gravity="center"
             android:src="@drawable/ic_chat"
             android:textSize="12dp"/>
+        <View
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="?attr/textcolor"/>
         <Button
             android:layout_weight="1"
             android:id="@+id/btn_themvaogio"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:background="?attr/buttoncolor"
             android:text="Thêm vào giỏ"
@@ -293,11 +306,11 @@
             android:layout_weight="1"
             android:id="@+id/btn_muangay"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="?attr/buttoncolor"
             android:text="@string/mungay_ban"
-            android:textColor="?attr/textcolor"
+            android:textColor="#fff"
+            android:background="#C1F44336"
             android:textSize="12dp" />
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

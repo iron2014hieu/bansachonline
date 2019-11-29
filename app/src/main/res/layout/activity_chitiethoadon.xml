@@ -34,7 +34,7 @@
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="#A3CAC9C9"
+                android:background="#B9DCDCDC"
                 android:textColor="#3F51B5"
                 android:padding="15dip"
                 android:text="Tên khách hàng : "/>
@@ -43,7 +43,7 @@
                 android:textStyle="normal"
                 android:id="@+id/tvTenkhachhang"
                 android:layout_weight="1"
-                android:background="#B9DCDCDC"
+                android:background="#A3CAC9C9"
                 android:text="Thiết lập ngay"
                 android:textColor="#E91E63"
                 android:padding="15dip"
@@ -56,7 +56,7 @@
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="#B9DCDCDC"
+                android:background="#A3CAC9C9"
                 android:textColor="#3F51B5"
                 android:padding="15dip"
                 android:text="Địa chỉ : "/>
@@ -65,6 +65,28 @@
                 android:textStyle="normal"
                 android:id="@+id/tvdiachiKh"
                 android:layout_weight="1"
+                android:background="#B9DCDCDC"
+                android:text="Thiết lập ngay"
+                android:textColor="#E91E63"
+                android:padding="15dip"
+                android:gravity="center"/>
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+            <TextView
+                android:textSize="18dp"
+                android:textStyle="normal"
+                android:layout_weight="1"
+                android:background="#B9DCDCDC"
+                android:textColor="#3F51B5"
+                android:padding="15dip"
+                android:text="Số điện thoại : "/>
+            <TextView
+                android:textSize="18dp"
+                android:textStyle="normal"
+                android:id="@+id/tvsdtKH"
+                android:layout_weight="1"
                 android:background="#A3CAC9C9"
                 android:text="Thiết lập ngay"
                 android:textColor="#E91E63"
@@ -81,11 +103,11 @@
                 android:background="#A3CAC9C9"
                 android:textColor="#3F51B5"
                 android:padding="15dip"
-                android:text="Số điện thoại : "/>
+                android:text="Tổng tiền : "/>
             <TextView
                 android:textSize="18dp"
                 android:textStyle="normal"
-                android:id="@+id/tvsdtKH"
+                android:id="@+id/tvtongtienKH"
                 android:layout_weight="1"
                 android:background="#B9DCDCDC"
                 android:text="Thiết lập ngay"
@@ -116,10 +138,11 @@
                 android:gravity="center"/>
         </TableRow>
     </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_cthd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_cthd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
     <Button
         android:layout_gravity="bottom|end"

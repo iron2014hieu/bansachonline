@@ -43,7 +43,6 @@ public class CTHD_RatingAdapter extends RecyclerView.Adapter<CTHD_RatingAdapter.
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
         view = LayoutInflater.from(context).inflate(R.layout.item_cthd_rating, viewGroup, false);
-
         final MyViewHolder viewHolder= new MyViewHolder(view);
         return viewHolder;
     }

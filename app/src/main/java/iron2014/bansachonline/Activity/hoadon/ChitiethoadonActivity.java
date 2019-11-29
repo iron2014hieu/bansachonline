@@ -28,6 +28,7 @@ import java.util.Map;
 
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
+import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.MuahangActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.adapter.hoadoncthd.CTHDAdapter;
@@ -38,13 +39,13 @@ import retrofit2.Callback;
 
 public class ChitiethoadonActivity extends AppCompatActivity {
     LinearLayout lnThongtin;
-    TextView tvTenkhachhang, tvdiachiKh, tvsdtKH, tvtinhtrangsp;
+    TextView tvTenkhachhang, tvdiachiKh, tvsdtKH, tvtinhtrangsp, tvtongtienKH;
     RecyclerView recyclerView_cthd;
     Button btnXacNhanHang;
     List<CTHD> cthdList = new ArrayList<>();
     CTHDAdapter cthdAdapter;
     ApiInTerFaceHoadon apiInTerFaceHoadon;
-    public static String mahd, tinhtrang, tenkh, diachi, sdt;
+    public static String mahd, tinhtrang, tenkh, diachi, sdt, tongtien;
     SharedPref sharedPref;
     String URL_UDATE = "https://bansachonline.xyz/bansach/hoadon/update_hoadon_tinhtrang.php";
     @Override
@@ -54,12 +55,14 @@ public class ChitiethoadonActivity extends AppCompatActivity {
         theme();
         setContentView(R.layout.activity_chitiethoadon);
         Anhxa();
+
         Intent intent = getIntent();
         mahd = intent.getStringExtra("mahd");
         tinhtrang = intent.getStringExtra("tinhtrang");
         tenkh = intent.getStringExtra("tenkh");
         diachi = intent.getStringExtra("diachi");
         sdt = intent.getStringExtra("sdt");
+        tongtien = intent.getStringExtra("tongtien");
         cthdAdapter = new CTHDAdapter(this, cthdList);
 
         StaggeredGridLayoutManager gridLayoutManagerVeticl =
@@ -71,9 +74,11 @@ public class ChitiethoadonActivity extends AppCompatActivity {
         tvdiachiKh = findViewById(R.id.tvdiachiKh);
         tvsdtKH = findViewById(R.id.tvsdtKH);
         tvtinhtrangsp = findViewById(R.id.tvtinhtrangsp);
+        tvtongtienKH = findViewById(R.id.tvtongtienKH);
         tvtinhtrangsp.setText(tinhtrang);
         tvTenkhachhang.setText(tenkh);
         tvdiachiKh.setText(diachi);
+        tvtongtienKH.setText(tongtien);
         tvsdtKH.setText(sdt);
 
         lnThongtin = findViewById(R.id.lnThongtin);
@@ -81,6 +86,9 @@ public class ChitiethoadonActivity extends AppCompatActivity {
         if(tinhtrang!=null&&tinhtrang.equals("choxacnhan")){
             tvtinhtrangsp.setText("Chờ xác nhận");
             lnThongtin.setVisibility(View.VISIBLE);
+        }else if (tinhtrang!=null&&tinhtrang.equals("cholayhang")){
+            lnThongtin.setVisibility(View.VISIBLE);
+            tvtinhtrangsp.setText("Chờ lấy hàng");
         }
         btnXacNhanHang = findViewById(R.id.btnXacNhanHang);
         btnXacNhanHang.setVisibility(View.GONE);
@@ -97,19 +105,20 @@ public class ChitiethoadonActivity extends AppCompatActivity {
             tvtinhtrangsp.setText("Đã nhận hàng");
         }
 
+//        btnXacNhanHang.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (tinhtrang.equals("userxacnhan")) {
+//                    UpdateTinhtrang( "danhgia", URL_UDATE);
+//                }
+//            }
+//        });
         btnXacNhanHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (tinhtrang.equals("userxacnhan")) {
                     UpdateTinhtrang( "danhgia", URL_UDATE);
-                }
-            }
-        });
-        btnXacNhanHang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (tinhtrang.equals("userxacnhan")) {
-                    UpdateTinhtrang( "danhgia", URL_UDATE);
+
                 }
             }
         });
@@ -151,7 +160,7 @@ public class ChitiethoadonActivity extends AppCompatActivity {
                         if (response.equals("tc")){
                             Toast.makeText(ChitiethoadonActivity.this, "tc", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplication(), MuahangActivity.class);
-                            intent.putExtra("check", 3);
+                            intent.putExtra("check", "3");
                             startActivity(intent);
                         }
                     }

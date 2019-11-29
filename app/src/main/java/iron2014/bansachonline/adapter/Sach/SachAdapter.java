@@ -129,6 +129,9 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
                 context.startActivity(new Intent(context, BookDetailActivity.class));
             }
         });
+        if(iduser == null){
+            myViewHolder.img_add_tocart.setVisibility(View.GONE);
+        }
         myViewHolder.img_add_tocart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
