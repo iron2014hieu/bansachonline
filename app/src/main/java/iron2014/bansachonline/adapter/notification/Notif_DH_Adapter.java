@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,7 +32,6 @@ public class Notif_DH_Adapter extends RecyclerView.Adapter<Notif_DH_Adapter.MyVi
         view = LayoutInflater.from(context).inflate(R.layout.item_notif_donhang, viewGroup, false);
 
         final MyViewHolder viewHolder= new MyViewHolder(view);
-
 
         return viewHolder;
     }
@@ -60,14 +60,37 @@ public class Notif_DH_Adapter extends RecyclerView.Adapter<Notif_DH_Adapter.MyVi
         private TextView txtMota_tieude_dh;
         private TextView txtMota_notif_dh;
         private TextView txtThoigian_dh;
+        private TextView tvXemchitiet, tvAnchitiet;
+        private LinearLayout lnMota;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            tvXemchitiet = (TextView)itemView.findViewById(R.id.tvXemchitiet);
+            tvAnchitiet = (TextView)itemView.findViewById(R.id.tvAnchitiet);
             txtMota_tieude_dh=(TextView)itemView.findViewById(R.id.txtMota_tieude_dh);
             txtMota_notif_dh=(TextView)itemView.findViewById(R.id.txtMota_notif_dh);
             txtThoigian_dh = (TextView)itemView.findViewById(R.id.txtThoigian_dh);
             img_dh=(ImageView) itemView.findViewById(R.id.img_dh);
+
+            tvAnchitiet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    txtMota_notif_dh.setVisibility(View.GONE);
+                    txtThoigian_dh.setVisibility(View.GONE);
+                    tvAnchitiet.setVisibility(View.GONE);
+                    tvXemchitiet.setVisibility(View.VISIBLE);
+                }
+            });
+
+            tvXemchitiet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    txtMota_notif_dh.setVisibility(View.VISIBLE);
+                    txtThoigian_dh.setVisibility(View.VISIBLE);
+                    tvXemchitiet.setVisibility(View.GONE);
+                    tvAnchitiet.setVisibility(View.VISIBLE);
+                }
+            });
         }
     }
 }

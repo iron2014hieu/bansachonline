@@ -163,7 +163,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
             name = user.get(sessionManager.NAME);
             idUser = user.get(sessionManager.ID);
 
-            if (quyen.equals("user")){
+            if (quyen != null && quyen.equals("user")){
                 CheckLibrary(idBook, idUser);
             }
 

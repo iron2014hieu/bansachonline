@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:background="?attr/backgroundcolor"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:background="?attr/cardbackground"
+    android:layout_marginTop="10dp"
     android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/img_dh"
-        android:layout_width="110dp"
-        android:layout_height="120dp"
-        android:background="?attr/backgroundcolor"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="?attr/cardbackground"
         android:padding="20dp"
-        android:src="@drawable/book"/>
+        android:src="@drawable/icon_media"/>
     <LinearLayout
-        android:background="?attr/backgroundcolor"
+        android:background="?attr/cardbackground"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp">
         <TextView
@@ -25,22 +27,40 @@
             android:textStyle="bold"
             android:text="Đang vận chuyển"/>
         <TextView
-            android:textSize="13dp"
-            android:id="@+id/txtMota_notif_dh"
+            android:id="@+id/tvXemchitiet"
+            android:textColor="#F44336"
+            android:text="Xem chi tiết"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="?attr/textcolor"
-            android:layout_marginTop="5dp"
-            android:text="Tất cả hàng đã dc vân chuyen trc nagyf 20/11/2019"/>
+            android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/txtThoigian_dh"
+            android:visibility="gone"
+            android:id="@+id/tvAnchitiet"
+            android:textColor="#F44336"
+            android:text="Ẩn chi tiết"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="center"
-            android:text="20/11/2019"
-            android:textColor="?attr/textcolor"
-            android:padding="5dp"
-            android:drawableLeft="@drawable/ic_access_time"/>
+            android:layout_height="wrap_content"/>
+
+            <TextView
+                android:visibility="gone"
+                android:textSize="13dp"
+                android:id="@+id/txtMota_notif_dh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/textcolor"
+                android:layout_marginTop="5dp"
+                android:text="Tất cả hàng đã dc vân chuyen trc nagyf 20/11/2019"/>
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/txtThoigian_dh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity="center"
+                android:text="20/11/2019"
+                android:textColor="?attr/textcolor"
+                android:padding="5dp"
+                android:drawableLeft="@drawable/ic_access_time"/>
+
+
     </LinearLayout>
 </LinearLayout>

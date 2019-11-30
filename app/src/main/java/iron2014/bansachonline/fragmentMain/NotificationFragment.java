@@ -100,32 +100,32 @@ public class NotificationFragment extends Fragment {
             @Override
             public void onLongClick(View view, int position) {}})
         );
-        recyclerview_thongbao_donhang.addOnItemTouchListener(new RecyclerTouchListener(getActivity(),
-                recyclerview_thongbao_donhang, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Notification notification = listDH.get(position);
-//                String mahd = String.valueOf(notification.getMahoadon());
-//                sessionManager.createHoadon("userxacnhan");
-//                Intent intent = new Intent(getContext(), ChitiethoadonActivity.class);
-//                intent.putExtra("mahd", mahd);
-//                intent.putExtra("tinhtrang", "userxacnhan");
-//                startActivity(intent);
-                String tinhtrang = notification.getTieude();
-                if (tinhtrang.equals("Chờ xử lý đơn hàng")){
-                    Intent intent = new Intent(getContext(), MuahangActivity.class);
-                    intent.putExtra("check", "0");
-                    startActivity(intent);
-                }else {
-                    Intent intent = new Intent(getContext(), MuahangActivity.class);
-                    intent.putExtra("check", "2");
-                    startActivity(intent);
-                }
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {}})
-        );
+//        recyclerview_thongbao_donhang.addOnItemTouchListener(new RecyclerTouchListener(getActivity(),
+//                recyclerview_thongbao_donhang, new RecyclerTouchListener.ClickListener() {
+//            @Override
+//            public void onClick(View view, int position) {
+//                Notification notification = listDH.get(position);
+////                String mahd = String.valueOf(notification.getMahoadon());
+////                sessionManager.createHoadon("userxacnhan");
+////                Intent intent = new Intent(getContext(), ChitiethoadonActivity.class);
+////                intent.putExtra("mahd", mahd);
+////                intent.putExtra("tinhtrang", "userxacnhan");
+////                startActivity(intent);
+//                String tinhtrang = notification.getTieude();
+//                if (tinhtrang.equals("Chờ xử lý đơn hàng")){
+//                    Intent intent = new Intent(getContext(), MuahangActivity.class);
+//                    intent.putExtra("check", "0");
+//                    startActivity(intent);
+//                }else {
+//                    Intent intent = new Intent(getContext(), MuahangActivity.class);
+//                    intent.putExtra("check", "2");
+//                    startActivity(intent);
+//                }
+//            }
+//
+//            @Override
+//            public void onLongClick(View view, int position) {}})
+//        );
         return view;
     }
 
