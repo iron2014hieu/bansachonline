@@ -23,192 +23,191 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
             <LinearLayout
-                android:id="@+id/cartview"
-                android:background="@drawable/bgchinhthuc"
-                android:layout_width="wrap_content"
-                android:layout_height="220dp"
-                android:orientation="vertical"
-                android:padding="10dp">
-                <com.smarteist.autoimageslider.SliderView
-                    android:id="@+id/imageSlider"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="@drawable/cutomsbg"
-                    android:padding="5dp"
-                    app:sliderAnimationDuration="600"
-                    app:sliderAutoCycleDirection="back_and_forth"
-                    app:sliderAutoCycleEnabled="true"
-                    app:sliderCircularHandlerEnabled="true"
-                    app:sliderIndicatorAnimationDuration="600"
-                    app:sliderIndicatorGravity="center_horizontal|bottom"
-                    app:sliderIndicatorMargin="15dp"
-                    app:sliderIndicatorOrientation="horizontal"
-                    app:sliderIndicatorPadding="3dp"
-                    app:sliderIndicatorRadius="2dp"
-                    app:sliderIndicatorSelectedColor="#5A5A5A"
-                    app:sliderIndicatorUnselectedColor="#FFF"
-                    app:sliderScrollTimeInSec="5"
-                    app:sliderStartAutoCycle="true" />
-            </LinearLayout>
-            <LinearLayout
-                android:background="#2196F3"
-                android:id="@+id/linnear_theloai"
-                android:layout_below="@id/cartview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="5dp"
-                    android:text="@string/theloai"
-                    android:textColor="#fff"
-                    android:textSize="18dp"
-                    android:textStyle="normal"></TextView>
-
                 <LinearLayout
-                    android:layout_marginBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:background="?attr/cardbackground"
-                        android:id="@+id/recyclerview_theloai"
+                    android:id="@+id/cartview"
+                    android:background="@drawable/bgchinhthuc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="210dp"
+                    android:orientation="vertical">
+                    <com.smarteist.autoimageslider.SliderView
+                        android:id="@+id/imageSlider"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="200dp"
+                        android:background="@drawable/cutomsbg"
+                        android:padding="5dp"
+                        app:sliderAnimationDuration="600"
+                        app:sliderAutoCycleDirection="back_and_forth"
+                        app:sliderAutoCycleEnabled="true"
+                        app:sliderCircularHandlerEnabled="true"
+                        app:sliderIndicatorAnimationDuration="600"
+                        app:sliderIndicatorGravity="center_horizontal|bottom"
+                        app:sliderIndicatorMargin="15dp"
+                        app:sliderIndicatorOrientation="horizontal"
+                        app:sliderIndicatorPadding="3dp"
+                        app:sliderIndicatorRadius="2dp"
+                        app:sliderIndicatorSelectedColor="#5A5A5A"
+                        app:sliderIndicatorUnselectedColor="#FFF"
+                        app:sliderScrollTimeInSec="5"
+                        app:sliderStartAutoCycle="true" />
+                </LinearLayout>
+                <LinearLayout
+                    android:background="#2196F3"
+                    android:id="@+id/linnear_theloai"
+                    android:layout_below="@id/cartview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/theloai"
+                        android:textColor="#fff"
+                        android:textSize="18dp"
+                        android:textStyle="normal"></TextView>
+
+                    <LinearLayout
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:background="?attr/cardbackground"
+                            android:id="@+id/recyclerview_theloai"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
                 </LinearLayout>
 
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/inlayout"
+                    android:layout_below="@id/recyclerview_theloai"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:textColor="?attr/textcolor"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="normal"
+                        android:textSize="17dp"
+                        android:id="@+id/textView"
+                        android:layout_below="@id/recyclerview_theloai"
+                        android:text="@string/truyenmoicapnhat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp">
+                    </TextView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/inlayout"
-                android:layout_below="@id/recyclerview_theloai"
-                android:orientation="horizontal">
+                    <TextView
+                        android:layout_marginRight="5dp"
+                        android:textStyle="normal"
+                        android:id="@+id/tvXemthem"
+                        android:layout_marginTop="10dp"
+                        android:gravity="right"
+                        android:textColor="?attr/textcolor"
+                        android:text="@string/xemthem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </TextView>
+
+                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_gravity="center"
+                    android:id="@+id/recyclerview_book_home"
+                    android:background="?attr/cardbackground"
+                    android:layout_below="@id/inlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <LinearLayout
+                    android:id="@+id/linnear_nhaxuaban"
+                    android:background="#2196F3"
+                    android:layout_below="@id/recyclerview_book_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_below="@id/recyclerview_book_home"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/nhaxuatban"
+                        android:textColor="#fff"
+                        android:textSize="18dp"
+                        android:textStyle="normal" />
+                    <LinearLayout
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/backgroundxml"
+                        android:layout_height="wrap_content">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerview_nxb_home"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@id/textView2"
+                            android:layout_gravity="center"
+                            android:background="?attr/cardbackground"/>
+                    </LinearLayout>
+                </LinearLayout>
                 <TextView
+                    android:id="@+id/textsuggest"
                     android:layout_marginLeft="5dp"
                     android:textColor="?attr/textcolor"
                     android:layout_marginTop="10dp"
                     android:textStyle="normal"
                     android:textSize="17dp"
-                    android:id="@+id/textView"
-                    android:layout_below="@id/recyclerview_theloai"
-                    android:text="@string/truyenmoicapnhat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp">
-                </TextView>
-
-                <TextView
-                    android:layout_marginRight="5dp"
-                    android:textStyle="normal"
-                    android:id="@+id/tvXemthem"
-                    android:layout_marginTop="10dp"
-                    android:gravity="right"
-                    android:textColor="?attr/textcolor"
-                    android:text="@string/xemthem"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </TextView>
-
-            </LinearLayout>
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_gravity="center"
-                android:id="@+id/recyclerview_book_home"
-                android:background="?attr/cardbackground"
-                android:layout_below="@id/inlayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-            <LinearLayout
-                android:id="@+id/linnear_nhaxuaban"
-                android:background="#2196F3"
-                android:layout_below="@id/recyclerview_book_home"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_below="@id/recyclerview_book_home"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/nhaxuatban"
-                    android:textColor="#fff"
-                    android:textSize="18dp"
-                    android:textStyle="normal" />
-                <LinearLayout
-                    android:layout_marginBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:background="@drawable/backgroundxml"
-                    android:layout_height="wrap_content">
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerview_nxb_home"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_below="@id/textView2"
-                        android:layout_gravity="center"
-                        android:background="?attr/cardbackground"/>
-                </LinearLayout>
-            </LinearLayout>
-            <TextView
-                android:id="@+id/textsuggest"
-                android:layout_marginLeft="5dp"
-                android:textColor="?attr/textcolor"
-                android:layout_marginTop="10dp"
-                android:textStyle="normal"
-                android:textSize="17dp"
-                android:layout_below="@+id/recyclerview_nxb_home"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tìm kiếm gần đây"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:id="@+id/recyclerview_book_suggest"
-                android:background="?attr/cardbackground"
-                android:layout_below="@id/textsuggest"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-            <LinearLayout
-                android:background="#2196F3"
-                android:layout_below="@id/linnear_nhaxuaban"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/texttacgia"
+                    android:layout_below="@+id/recyclerview_nxb_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/linnear_nhaxuaban"
-                    android:layout_marginLeft="5dp"
+                    android:text="Tìm kiếm gần đây"/>
+                <androidx.recyclerview.widget.RecyclerView
                     android:layout_marginTop="10dp"
-                    android:text="@string/tacgia"
-                    android:textColor="#fff"
-                    android:textSize="18dp"
-                    android:textStyle="normal" />
-                <LinearLayout
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/recyclerview_book_suggest"
+                    android:background="?attr/cardbackground"
+                    android:layout_below="@id/textsuggest"
                     android:layout_width="match_parent"
-                    android:background="@drawable/backgroundxml"
-                    android:layout_height="wrap_content">
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerview_tacgia_home"
+                    android:layout_height="match_parent"/>
+                <LinearLayout
+                    android:background="#2196F3"
+                    android:layout_below="@id/linnear_nhaxuaban"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/texttacgia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/linnear_nhaxuaban"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/tacgia"
+                        android:textColor="#fff"
+                        android:textSize="18dp"
+                        android:textStyle="normal" />
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_below="@id/texttacgia"
-                        android:layout_gravity="center"
-                        android:background="?attr/cardbackground"/>
+                        android:background="@drawable/backgroundxml"
+                        android:layout_height="wrap_content">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerview_tacgia_home"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@id/texttacgia"
+                            android:layout_gravity="center"
+                            android:background="?attr/cardbackground"/>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
     <ImageButton

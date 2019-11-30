@@ -1,159 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="?attr/backgroundcolor"
+    android:background="?attr/cardbackground"
     tools:context=".Activity.Library.BookDetailLibActivity">
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_lib"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:titleTextColor="?attr/textcolor"
-            app:title="Sách"
-            app:navigationIcon="@drawable/ic_close"/>
-    </com.google.android.material.appbar.AppBarLayout>
     <LinearLayout
-        android:orientation="vertical"
-        android:padding="10dp"
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/imgBook_lib_acti"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:src="@drawable/gmbapdful" />
-        <TextView
-            android:id="@+id/txtTensach_lib"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@android:color/transparent"
-            android:enabled="false"
-            android:hint="Teen sacs"
-            android:textColor="?attr/textcolor"
-            android:textColorHint="?attr/textcolor" />
 
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_lib"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:titleTextColor="?attr/textcolor"
+                app:title="Sách"
+                app:navigationIcon="@drawable/ic_close"/>
+        </com.google.android.material.appbar.AppBarLayout>
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:visibility="gone"
-            android:orientation="horizontal">
-            <RatingBar
-                android:id="@+id/ratingbar_book_detail_lib"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/imgBook_lib_acti"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_gravity="center"
-                style="@android:style/Widget.Holo.Light.RatingBar.Small"/>
+                android:src="@drawable/gmbapdful" />
             <TextView
-                android:id="@+id/numrating_book_detail_lib"
-                android:layout_width="wrap_content"
+                android:id="@+id/txtTensach_lib"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:textColor="?attr/textcolor" />
-        </LinearLayout>
-        <LinearLayout
-            android:weightSum="2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:background="#2196F3"
-                android:layout_weight="1"
-                android:id="@+id/txtDocsach"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:text="@string/docsach"
-                android:layout_marginTop="10dp"
-                android:padding="5dp"
-                android:textStyle="bold"
-                android:gravity="left"
-                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:color/transparent"
+                android:enabled="false"
+                android:hint="Teen sacs"
                 android:textColor="?attr/textcolor"
-                android:drawableRight="@drawable/ic_remove_red_eye_black_24dp"
-                android:onClick="DocSach"
-                />
-            <TextView
-                android:background="#00BCD4"
-                android:padding="5dp"
-                android:layout_weight="1"
-                android:id="@+id/txtNgheaudio"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:text="@string/audio"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="?attr/textcolor"
-                android:drawableRight="@drawable/ic_audiotrack_black_24dp"
-                android:onClick="DocSach" />
-        </LinearLayout>
-        <TextView
-            android:id="@+id/txtXemnhanxet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#F44336"
-            android:gravity="center"
-            android:layout_marginTop="15dp"
-            android:drawableRight="@drawable/ic_chevron_right"
-            android:text="@string/danhgia_doc"/>
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+                android:textColorHint="?attr/textcolor" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="5dp"
+                android:visibility="gone"
+                android:orientation="horizontal">
                 <RatingBar
-                    android:id="@+id/ratingbar_lib"
+                    android:id="@+id/ratingbar_book_detail_lib"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@android:style/Widget.Holo.Light.RatingBar.Indicator"
-                    android:layout_gravity="center"/>
-                <TextView
-                    android:id="@+id/txtDiem"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:textSize="20dp"
-                    android:padding="5dp"
                     android:layout_gravity="center"
-                    android:text="0"/>
+                    style="@android:style/Widget.Holo.Light.RatingBar.Small"/>
+                <TextView
+                    android:id="@+id/numrating_book_detail_lib"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="?attr/textcolor" />
             </LinearLayout>
-            <EditText
-                android:id="@+id/edtNhanxet_lib"
+            <LinearLayout
+                android:weightSum="2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nhận xét của bạn"
-                android:textColor="?attr/textcolor"
-                android:text="ddddddddddddddddddddddddddddddđ"
-                android:enabled="false"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:background="#2196F3"
+                    android:layout_weight="1"
+                    android:id="@+id/txtDocsach"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/docsach"
+                    android:layout_marginTop="10dp"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:textColor="?attr/textcolor"
+                    android:drawableRight="@drawable/ic_remove_red_eye_black_24dp"
+                    android:onClick="DocSach"
+                    />
+                <TextView
+                    android:background="#00BCD4"
+                    android:padding="5dp"
+                    android:layout_weight="1"
+                    android:id="@+id/txtNgheaudio"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/audio"
+                    android:layout_marginTop="10dp"
+                    android:gravity="left"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="?attr/textcolor"
+                    android:drawableRight="@drawable/ic_audiotrack_black_24dp"
+                    android:onClick="DocSach" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:padding="5dp"
-            android:layout_marginTop="5dp"
-            android:textColor="?attr/textcolor"
-            android:gravity="center"
-            android:onClick="xemsachkhac"
-            android:drawableLeft="@drawable/ic_chevron_left"
-            android:text="Xem sách khác"/>
-    </LinearLayout>
+            <TextView
+                android:id="@+id/txtXemnhanxet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F44336"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:drawableRight="@drawable/ic_chevron_right"
+                android:text="@string/danhgia_doc"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <RatingBar
+                            android:id="@+id/ratingbar_lib"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@android:style/Widget.Holo.Light.RatingBar.Indicator"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:id="@+id/txtDiem"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="20dp"
+                            android:padding="5dp"
+                            android:layout_gravity="center"
+                            android:text="0"/>
+                    </LinearLayout>
+                    <EditText
+                        android:textSize="15dp"
+                        android:id="@+id/edtNhanxet_lib"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nhận xét của bạn"
+                        android:textColor="?attr/textcolor"
+                        android:text="ddddddddddddddddddddddddddddddđ"
+                        android:enabled="false"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:textColor="?attr/textcolor"
+                android:gravity="center"
+                android:onClick="xemsachkhac"
+                android:drawableLeft="@drawable/ic_chevron_left"
+                android:text="Xem sách khác"/>
 
-</LinearLayout>
+            <TextView
+                android:padding="5dp"
+                android:background="?attr/backgroundcolor"
+                android:layout_marginTop="5dp"
+                android:textSize="18dp"
+                android:textStyle="normal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sách được đề xuất" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_sach_sachdexuat"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/cardbackground"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

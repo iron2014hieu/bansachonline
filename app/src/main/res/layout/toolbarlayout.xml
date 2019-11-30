@@ -16,15 +16,17 @@
         android:background="?attr/topbottomcolor"
         app:elevation="0dp">
         <LinearLayout
+
             android:id="@+id/cartRelativeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
+                android:background="@drawable/cutomsbg"
                 android:id="@+id/btnSearch"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:backgroundTint="?attr/buttoncolor"
                 android:drawableRight="@drawable/ic_search"
                 android:hint="@string/khuyenmaicucchat"

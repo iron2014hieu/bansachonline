@@ -148,6 +148,7 @@
                            android:drawableLeft="@drawable/ic_fatevori"
                            android:drawableRight="@drawable/ic_chevron_right"/>
                        <TextView
+                           android:id="@+id/txtXemdanhgia"
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content"
                            android:text="@string/danhgiacutoi"

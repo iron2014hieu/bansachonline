@@ -32,6 +32,7 @@ import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceNXB;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceTacgia;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceTheloai;
+import iron2014.bansachonline.LoginRegister.LoginActivity;
 import iron2014.bansachonline.Main2Activity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.RecycerViewTouch.RecyclerTouchListener;
@@ -249,8 +250,12 @@ public class HomeFragment extends Fragment {
         chk_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Main2Activity.class);
-                startActivity(intent);
+                if(mauser!=null) {
+                    Intent intent = new Intent(getContext(), Main2Activity.class);
+                    startActivity(intent);
+                }else {
+                    startActivity(new Intent(getContext(), LoginActivity.class));
+                }
             }
         });
         fetchTheloai();

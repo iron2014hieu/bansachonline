@@ -40,16 +40,15 @@ public class KhuyenMaiAdapter extends RecyclerView.Adapter<KhuyenMaiAdapter.MyVi
     public void onBindViewHolder(@NonNull KhuyenMaiAdapter.MyViewHolder myViewHolder,final int i) {
         myViewHolder.tvTenKM.setText(mData.get(i).getTenKM());
         myViewHolder.tvMaKM.setText(mData.get(i).getMaKM());
-        myViewHolder.tvTinhChat.setText(mData.get(i).getTinhChat());
         myViewHolder.tvNgayBatDau.setText(mData.get(i).getNgayBatDau());
         myViewHolder.tvNgayKetThuc.setText(mData.get(i).getHangSuDung());
 
-//        double tc = Double.valueOf(mData.get(i).getTinhChat());
-//        double kq1 = 1-tc;
-//        String phantram = String.valueOf(100*kq1);
-//        Toast.makeText(context, ""+phantram, Toast.LENGTH_SHORT).show();
-//
-//        myViewHolder.tvTinhChat.setText(String.valueOf(phantram));
+        double tc = Double.valueOf(mData.get(i).getTinhChat());
+        double kq1 = 1-tc;
+
+        double phantram = 100*kq1;
+
+        myViewHolder.tvTinhChat.setText(String.valueOf(Math.round(phantram)+ " %"));
 
         myViewHolder.img_copy.setOnClickListener(new View.OnClickListener() {
             @Override

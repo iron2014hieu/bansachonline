@@ -144,7 +144,7 @@ public class LoginActivity extends AppCompatActivity {
                                     sessionManager.createSession(id, email,address,phone, name, quyen);
                                     //get token notif
                                     sendTokenToServer(id);
-
+                                    updateDevicesToken("1",id);
                                     if(quyen.equals("shipper")){
                                         startActivity(new Intent(LoginActivity.this, ShipperActivity.class));
                                     }else {
@@ -173,6 +173,44 @@ public class LoginActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
                 params.put("email", email);
                 params.put("password", password);
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+    private void updateDevicesToken(final String islogin,final String mauser){
+
+        if (token == null) {
+            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoints.URL_UPDATE_DEVICES_ISLOGIN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            Log.e("msg", obj.getString("message"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("mauser", mauser);
+                params.put("token", token);
+                params.put("islogin", islogin);
                 return params;
             }
         };

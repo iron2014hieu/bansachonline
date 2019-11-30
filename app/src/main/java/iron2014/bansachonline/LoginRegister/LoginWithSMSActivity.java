@@ -4,13 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -25,13 +28,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import iron2014.bansachonline.URL.EndPoints;
 import iron2014.bansachonline.fragmentVanChuyen.Activity.ShipperActivity;
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.R;
@@ -41,9 +49,12 @@ import iron2014.bansachonline.URL.UrlSql;
 public class LoginWithSMSActivity extends AppCompatActivity {
     private String verificationId,phonenumber,sodienthoai;
     private FirebaseAuth mAuth;
-    private ProgressBar progressBar;
+    private ProgressBar progressBar,progess_success_login;
     private EditText editText;
+    private TextView textView;
     SessionManager sessionManager;
+    String token;
+    Button buttonSignIn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,13 +63,24 @@ public class LoginWithSMSActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         progressBar = findViewById(R.id.progressbar);
+        progess_success_login= findViewById(R.id.progess_success_login);
         editText = findViewById(R.id.editTextCode);
+        textView=findViewById(R.id.textView);
+        buttonSignIn= findViewById(R.id.buttonSignIn);
 
         phonenumber = getIntent().getStringExtra("phonenumber");
         sodienthoai = getIntent().getStringExtra("sodienthoai");
         sendVerificationCode(phonenumber);
-
-        findViewById(R.id.buttonSignIn).setOnClickListener(new View.OnClickListener() {
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (task.isSuccessful()){
+                            token = task.getResult().getToken();
+                        }
+                    }
+                });
+        buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -86,10 +108,15 @@ public class LoginWithSMSActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            textView.setVisibility(View.GONE);
+                            buttonSignIn.setVisibility(View.GONE);
+                            editText.setVisibility(View.GONE);
+                            progressBar.setVisibility(View.GONE);
+                            progess_success_login.setVisibility(View.VISIBLE);
                             LoginWithphone(sodienthoai);
                         } else {
                             String massage = task.getException().getMessage();
-                            Toast.makeText(LoginWithSMSActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            //Toast.makeText(LoginWithSMSActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                             Log.d("massage",massage);
                         }
                     }
@@ -151,7 +178,7 @@ public class LoginWithSMSActivity extends AppCompatActivity {
                                     String id = object.getString("id").trim();
                                     String quyen = object.getString("quyen").trim();
                                     sessionManager.createSession(id, email,address,phone, name, quyen);
-                                    Log.e("loginphone",name+email+phone+id+quyen);
+                                    updateDevicesToken("1", id);
                                     if(quyen.equals("shipper")){
                                         startActivity(new Intent(LoginWithSMSActivity.this, ShipperActivity.class));
                                     }else {
@@ -174,6 +201,44 @@ public class LoginWithSMSActivity extends AppCompatActivity {
                         Log.e("Login error: ", error.toString());
                     }
                 });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+    private void updateDevicesToken(final String islogin,final String mauser){
+
+        if (token == null) {
+            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoints.URL_UPDATE_DEVICES_ISLOGIN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            Log.e("msg", obj.getString("message"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("mauser", mauser);
+                params.put("token", token);
+                params.put("islogin", islogin);
+                return params;
+            }
+        };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }

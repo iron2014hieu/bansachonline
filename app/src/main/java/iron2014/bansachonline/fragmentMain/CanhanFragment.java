@@ -16,6 +16,7 @@ import iron2014.bansachonline.LoginRegister.LoginActivity;
 import iron2014.bansachonline.LoginRegister.ProfileActivity;
 import iron2014.bansachonline.LoginRegister.RegisterActivity;
 import iron2014.bansachonline.LoginRegister.SettingsActivity;
+import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.MuahangActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
@@ -36,7 +37,7 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
     SessionManager sessionManager;
     String email;
     Button btnDangnhap,btnDangky;
-
+    TextView txtXemdanhgia;
 
     View v;
 
@@ -79,7 +80,7 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
         btnDangnhap.setOnClickListener(this);
         txtFav.setOnClickListener(this);
 
-
+        txtXemdanhgia.setOnClickListener(this);
         return v;
     }
     @Override
@@ -105,6 +106,11 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.txtFav:
                 startActivity(new Intent(getContext(), BookFavoriteActivity.class));
+                break;
+            case R.id.txtXemdanhgia:
+                Intent intent =(new Intent(getContext(), MainActivity.class));
+                intent.putExtra("check","2");
+                startActivity(intent);
                 break;
         }
     }
@@ -136,5 +142,6 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
         btnDangnhap= v.findViewById(R.id.btnDangnhap);
         btnDangky= v.findViewById(R.id.btnDangky);
         txtFav = v.findViewById(R.id.txtFav);
+        txtXemdanhgia = v.findViewById(R.id.txtXemdanhgia);
     }
 }

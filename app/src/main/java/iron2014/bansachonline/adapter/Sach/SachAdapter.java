@@ -34,6 +34,7 @@ import java.util.Map;
 
 import iron2014.bansachonline.Activity.BookDetailActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
+import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceTacgia;
 import iron2014.bansachonline.Main2Activity;
@@ -55,6 +56,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
     SessionManager sessionManager;
     String iduser;
     ApiInTerFaceDatmua apiInTerFaceDatmua;
+    ApiInTerFace apiInTerFace;
     private ProductItemActionListener actionListener;
 
     public SachAdapter(Context context, List<Books> mData) {
@@ -135,7 +137,8 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
         myViewHolder.img_add_tocart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ThemDatmua(masach, tensach, anhbia,iduser, gia);
+                fetchBookDetails(String.valueOf(mData.get(i).getMasach()));
+
             }
         });
     }
@@ -167,7 +170,35 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
     public interface ProductItemActionListener{
         void onItemTap(ImageView imageView);
     }
+    public void fetchBookDetails(String masach){
+        apiInTerFace = ApiClient.getApiClient().create(ApiInTerFace.class);
+        Call<List<Books>> call = apiInTerFace.getBookDetail(masach);
 
+        call.enqueue(new Callback<List<Books>>() {
+            @Override
+            public void onResponse(Call<List<Books>> call, retrofit2.Response<List<Books>> response) {
+                for (int m =0; m<response.body().size();m++){
+                    Books books =response.body().get(m);
+                    final int soluong = (books.getSoluong());
+                    final String tensach = books.getTensach();
+                    final String anhbia = books.getAnhbia();
+                    final String masach =String.valueOf(books.getMasach());
+                    final String gia = String.valueOf(books.getGia());
+                    if (soluong>0){
+                        ThemDatmua(masach, tensach, anhbia,iduser, gia);
+                    }else {
+                        Toast.makeText(context, "Sách "+tensach+" đã hết!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Books>> call, Throwable t) {
+                Log.e("Error Search:","Error on: "+t.toString());
+            }
+        });
+    }
     private void ThemDatmua(final String masach, final String sp, final String hinhanhsach, final String mauser, final String giaban){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_INSERT_GIOHANG,

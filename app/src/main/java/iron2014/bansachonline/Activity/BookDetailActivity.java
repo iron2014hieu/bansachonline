@@ -87,7 +87,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
     private String idBook, tensach,mota,hinhanh, giaban,
             soluong, landanhgia, tongdiem, linkImage, masach,matacgia;
     SessionManager sessionManager;
-    RecyclerView recyclerview_nhanxet,recyclerview_sach_tacgia;
+    RecyclerView recyclerview_nhanxet,recyclerview_sach_tacgia,recyclerview_sach_sachkhac;
     List<CTHD> listNhanxet = new ArrayList<>();
     List<Books> listBooks = new ArrayList<>();
     SachAdapter sachAdapter;
@@ -197,7 +197,13 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                 new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
         recyclerview_sach_tacgia.setLayoutManager(gridLayoutManagerVeticl1);
         recyclerview_sach_tacgia.setHasFixedSize(true);
-        //Toast.makeText(this, "Lấy dữ liệu "+matacgia, Toast.LENGTH_SHORT).show();
+        StaggeredGridLayoutManager gridLayoutManagerVeticl2 =
+                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
+        recyclerview_sach_sachkhac.setLayoutManager(gridLayoutManagerVeticl2);
+        recyclerview_sach_sachkhac.setHasFixedSize(true);
+        fetchBookRandom();
+
+
         fetchNhanxet(masach);
         fetchSach_tacgia(matacgia);
 
@@ -285,7 +291,25 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
             }
         });
     }
+    public void fetchBookRandom(){
+        apiInTerFace = ApiClient.getApiClient().create(ApiInTerFace.class);
+        Call<List<Books>> call = apiInTerFace.getBookRandom("");
 
+        call.enqueue(new Callback<List<Books>>() {
+            @Override
+            public void onResponse(Call<List<Books>> call, retrofit2.Response<List<Books>> response) {
+                listBooks= response.body();
+                sachAdapter = new SachAdapter(BookDetailActivity.this,listBooks);
+                recyclerview_sach_sachkhac.setAdapter(sachAdapter);
+                sachAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<Books>> call, Throwable t) {
+                Log.e("Error Search:","Error on: "+t.toString());
+            }
+        });
+    }
     private void ThemDatmua(final String masach, final String sp, final String hinhanhsach,final String soluongdat, final String mauser){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_INSERT_GIOHANG,
@@ -527,5 +551,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
 
         img_like= findViewById(R.id.img_like);
         img_unlike = findViewById(R.id.img_unlike);
+
+        recyclerview_sach_sachkhac= findViewById(R.id.recyclerview_sach_sachkhac);
     }
 }

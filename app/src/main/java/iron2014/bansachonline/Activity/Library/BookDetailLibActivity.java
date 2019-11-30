@@ -23,6 +23,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,17 +38,26 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import iron2014.bansachonline.Activity.BookDetailActivity;
+import iron2014.bansachonline.ApiRetrofit.ApiClient;
+import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Service.App;
 import iron2014.bansachonline.Session.SessionManager;
+import iron2014.bansachonline.adapter.Sach.SachAdapter;
+import iron2014.bansachonline.model.Books;
 import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class BookDetailLibActivity extends AppCompatActivity {
     String masach, linkbook,hinhanh, tensach, tongdiem, landanhgia,audio,tacgia;
-
+    RecyclerView recyclerview_sach_sachdexuat;
     ImageView imgBook_lib;
     TextView txtTensach_lib,numrating_book_detail_lib,txtDocsach,txtXemnhanxet,txtNgheaudio,txtDiem;
     RatingBar ratingbar_book_detail_lib;
@@ -57,6 +68,9 @@ public class BookDetailLibActivity extends AppCompatActivity {
     MediaSessionCompat mediaSessionCompat;
     RatingBar ratingbar_lib;
     EditText edtNhanxet_lib;
+    ApiInTerFace apiInTerFace;
+    List<Books> listBooks = new ArrayList<>();
+    SachAdapter sachAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,7 +119,31 @@ public class BookDetailLibActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        recyclerview_sach_sachdexuat = findViewById(R.id.recyclerview_sach_sachdexuat);
+        StaggeredGridLayoutManager gridLayoutManagerVeticl2 =
+                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
+        recyclerview_sach_sachdexuat.setLayoutManager(gridLayoutManagerVeticl2);
+        recyclerview_sach_sachdexuat.setHasFixedSize(true);
+        fetchBookRandom();
+    }
+    public void fetchBookRandom(){
+        apiInTerFace = ApiClient.getApiClient().create(ApiInTerFace.class);
+        Call<List<Books>> call = apiInTerFace.getBookRandom("");
 
+        call.enqueue(new Callback<List<Books>>() {
+            @Override
+            public void onResponse(Call<List<Books>> call, retrofit2.Response<List<Books>> response) {
+                listBooks= response.body();
+                sachAdapter = new SachAdapter(BookDetailLibActivity.this,listBooks);
+                recyclerview_sach_sachdexuat.setAdapter(sachAdapter);
+                sachAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<Books>> call, Throwable t) {
+                Log.e("Error Search:","Error on: "+t.toString());
+            }
+        });
     }
     private void sendNotification(){
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sach3);
@@ -120,8 +158,8 @@ public class BookDetailLibActivity extends AppCompatActivity {
                 .addAction(R.drawable.ic_skip_next, "xx10", null)
                 .addAction(R.drawable.ic_fast_forward, "pause", null)
                 .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
-                .setShowActionsInCompactView(1,2,3)
-                .setMediaSession(mediaSessionCompat.getSessionToken()))
+                        .setShowActionsInCompactView(1,2,3)
+                        .setMediaSession(mediaSessionCompat.getSessionToken()))
                 .setSubText("Sub text")
                 .build();
         notificationManagerCompat.notify(1, channel);
@@ -144,25 +182,25 @@ public class BookDetailLibActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                            try {
-                                JSONObject object = response.getJSONObject(0);
-                                tensach = object.getString("tensach");
-                                linkbook = object.getString("linkbook");
-                                hinhanh = object.getString("anhbia");
-                                tongdiem = object.getString("tongdiem");
-                                landanhgia = object.getString("landanhgia");
-                                audio=object.getString("audio");
-                                tacgia=object.getString("tacgia");
+                        try {
+                            JSONObject object = response.getJSONObject(0);
+                            tensach = object.getString("tensach");
+                            linkbook = object.getString("linkbook");
+                            hinhanh = object.getString("anhbia");
+                            tongdiem = object.getString("tongdiem");
+                            landanhgia = object.getString("landanhgia");
+                            audio=object.getString("audio");
+                            tacgia=object.getString("tacgia");
 
-                                sessionManager.createGuiLinkBook(tensach,tacgia, linkbook,audio);
-                                txtTensach_lib.setText(tensach);
-                                Picasso.with(BookDetailLibActivity.this).load(hinhanh).into(imgBook_lib);
-                                numrating_book_detail_lib.setText(landanhgia);
-                                ratingbar_book_detail_lib.setRating(Float.valueOf(tongdiem)/Float.valueOf(landanhgia));
-                            }catch (JSONException e){
-                                e.printStackTrace();
-                                Toast.makeText(BookDetailLibActivity.this, ""+e.toString(), Toast.LENGTH_SHORT).show();
-                            }
+                            sessionManager.createGuiLinkBook(tensach,tacgia, linkbook,audio);
+                            txtTensach_lib.setText(tensach);
+                            Picasso.with(BookDetailLibActivity.this).load(hinhanh).into(imgBook_lib);
+                            numrating_book_detail_lib.setText(landanhgia);
+                            ratingbar_book_detail_lib.setRating(Float.valueOf(tongdiem)/Float.valueOf(landanhgia));
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                            Toast.makeText(BookDetailLibActivity.this, ""+e.toString(), Toast.LENGTH_SHORT).show();
+                        }
 
                     }
                 }, new Response.ErrorListener() {

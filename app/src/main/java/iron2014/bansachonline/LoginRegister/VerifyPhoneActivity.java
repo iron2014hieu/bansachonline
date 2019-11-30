@@ -31,7 +31,8 @@ import iron2014.bansachonline.fragmentVanChuyen.Activity.ShipperActivity;
 public class VerifyPhoneActivity extends AppCompatActivity {
     private Spinner spinner;
     private EditText editText;
-    boolean check =true;
+    boolean check =false;
+    String code,number;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +47,9 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         findViewById(R.id.buttonContinue).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
+                code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
 
-                String number = editText.getText().toString().trim();
+                number = editText.getText().toString().trim();
 
                 if (number.isEmpty() || number.length() < 10) {
                     editText.setError("Vui lòng nhập số hợp lệ");
@@ -56,17 +57,19 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                     return;
                 }else {
                     LoginWithphone(number);
-                    if (check == false){
-                        Toast.makeText(VerifyPhoneActivity.this, "Số "+number+" chưa được đăng ký!", Toast.LENGTH_SHORT).show();
-                    }
+//                    if (check == false){
+//                        Toast.makeText(VerifyPhoneActivity.this, "Số "+number+" chưa được đăng ký!"+check, Toast.LENGTH_SHORT).show();
+//                    }else {
+//                        String phoneNumber = "+" + code + number;
+//                        Toast.makeText(VerifyPhoneActivity.this, ""+check, Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(VerifyPhoneActivity.this, LoginWithSMSActivity.class);
+//                        intent.putExtra("phonenumber", phoneNumber);
+//                        intent.putExtra("sodienthoai", editText.getText().toString());
+//                        startActivity(intent);
+//                    }
                 }
 
-                String phoneNumber = "+" + code + number;
 
-                Intent intent = new Intent(VerifyPhoneActivity.this, LoginWithSMSActivity.class);
-                intent.putExtra("phonenumber", phoneNumber);
-                intent.putExtra("sodienthoai", editText.getText().toString());
-                startActivity(intent);
 
             }
         });
@@ -91,8 +94,14 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
-                            if (!success.equals("1")){
-                                check = false;
+                            if (success.equals("1")){
+                                String phoneNumber = "+" + code + number;
+                                Intent intent = new Intent(VerifyPhoneActivity.this, LoginWithSMSActivity.class);
+                                intent.putExtra("phonenumber", phoneNumber);
+                                intent.putExtra("sodienthoai", editText.getText().toString());
+                                startActivity(intent);
+                            }else {
+                                Toast.makeText(VerifyPhoneActivity.this, "Số "+number+" chưa được đăng ký!", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
