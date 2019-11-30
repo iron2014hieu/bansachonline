@@ -210,8 +210,14 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
         btn_muangay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ExampleBottomSheetDialog bottomSheet = new ExampleBottomSheetDialog();
-                bottomSheet.show(getSupportFragmentManager(), "exampleBottomSheet");
+                if(soluong.equals("0")){
+                    Toast.makeText(BookDetailActivity.this, "Sản phẩm tạm hết", Toast.LENGTH_SHORT).show();
+                }else {
+                    ExampleBottomSheetDialog bottomSheet = new ExampleBottomSheetDialog();
+                    bottomSheet.show(getSupportFragmentManager(), "exampleBottomSheet");
+                }
+
+
 //                    HashMap<String,String> user = sessionManager.getUserDetail();
 //                    idUser = user.get(sessionManager.ID);
 //                    if (idUser==null){

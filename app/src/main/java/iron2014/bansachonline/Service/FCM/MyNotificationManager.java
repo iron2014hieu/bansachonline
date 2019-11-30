@@ -48,13 +48,13 @@ public class MyNotificationManager {
         Notification notification;
         Uri sound = Uri.parse("android.resource://"
                 + mCtx.getPackageName() + "/" + R.raw.ongoi_co_tinnhan);
-        notification = mBuilder.setSmallIcon(R.mipmap.ic_launcher).setTicker(title).setWhen(0)
+        notification = mBuilder.setSmallIcon(R.drawable.book).setTicker(title).setWhen(0)
                 .setAutoCancel(true)
                 .setSound(sound)
                 .setContentIntent(resultPendingIntent)
                 .setContentTitle(title)
                 .setStyle(bigPictureStyle)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.book)
                 .setLargeIcon(BitmapFactory.decodeResource(mCtx.getResources(), R.mipmap.ic_launcher))
                 .setContentText(message)
                 .build();
@@ -82,12 +82,12 @@ public class MyNotificationManager {
         Notification notification;
         Uri sound = Uri.parse("android.resource://"
                 + mCtx.getPackageName() + "/" + R.raw.drum);
-        notification = mBuilder.setSmallIcon(R.mipmap.ic_launcher).setTicker(title).setWhen(0)
+        notification = mBuilder.setSmallIcon(R.drawable.book).setTicker(title).setWhen(0)
                 .setAutoCancel(true)
                 .setSound(sound)
                 .setContentIntent(resultPendingIntent)
                 .setContentTitle(title)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.book/)
                 .setLargeIcon(BitmapFactory.decodeResource(mCtx.getResources(), R.mipmap.ic_launcher))
                 .setContentText(message)
                 .build();

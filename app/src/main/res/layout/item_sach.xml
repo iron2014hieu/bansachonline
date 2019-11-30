@@ -10,70 +10,97 @@
     android:backgroundTint="?attr/backgroundcolor"
     android:layout_marginLeft="5dp"
     android:layout_marginBottom="5dp">
-    <LinearLayout
-        android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
             <ImageView
-                android:layout_marginTop="5dp"
                 android:id="@+id/img_book_iv"
                 android:layout_width="320px"
                 android:layout_height="140dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:src="@drawable/book"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="2dp"
                 tools:layout_editor_absoluteY="0dp" />
-        <LinearLayout
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/books_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" Contact name"
-                android:maxLength="20"
-                android:textColor="?attr/textcolor"
-                android:textStyle="normal"
-                android:visibility="visible" />
-            <TextView
-                android:id="@+id/books_chitiet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" Contact name"
-                android:textColor="#F44336"
-                android:textStyle="normal"
-                android:visibility="visible" />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="#fff"/>
+
             <LinearLayout
-                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <TextView
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:id="@+id/tv_soluongsach"
-                    android:textColor="?attr/textcolor"
+                    android:id="@+id/books_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="20 bán"/>
-                <ImageView
-                    android:id="@+id/img_add_tocart"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_shopping_light"
-                    android:background="@drawable/cutomsimage"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
+                    android:maxLength="20"
+                    android:text=" Contact name"
+                    android:textColor="?attr/textcolor"
+                    android:textStyle="normal"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/books_chitiet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Contact name"
+                    android:textColor="#F44336"
+                    android:textStyle="normal"
+                    android:visibility="visible" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#fff" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_soluongsach"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="20 bán"
+                        android:textColor="?attr/textcolor" />
+
+                    <ImageView
+                        android:id="@+id/img_add_tocart"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/cutomsimage"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_shopping_light" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-</LinearLayout>
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/imghethang"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:src="@drawable/hethang"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

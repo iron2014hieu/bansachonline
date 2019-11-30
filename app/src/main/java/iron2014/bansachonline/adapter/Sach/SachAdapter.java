@@ -50,6 +50,7 @@ import retrofit2.Callback;
 
 public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> {
 
+
     Context context;
     List<Books> mData;
     Dialog myDialog;
@@ -86,7 +87,9 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
         myViewHolder.tv_phone.setText("Giá: "+mData.get(i).getGia()+"₫");
 
 //        myViewHolder.tv_soluongsach.setText(String.valueOf(mData.get(i).getSoluong()));
-
+        if(mData.get(i).getSoluong()== 0) {
+            myViewHolder.imghethang.setVisibility(View.VISIBLE);
+        }
         myViewHolder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,7 +159,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
         private TextView tv_sldaban;
         private RatingBar ratingBar;
         ImageView img, img_add_tocart;
-
+        ImageView imghethang;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_soluongsach = itemView.findViewById(R.id.tv_soluongsach);
@@ -165,6 +168,8 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
             img=(ImageView) itemView.findViewById(R.id.img_book_iv);
             tv_sldaban=(TextView) itemView.findViewById(R.id.tv_soluongsach);
             img_add_tocart= itemView.findViewById(R.id.img_add_tocart);
+            imghethang =(ImageView) itemView.findViewById(R.id.imghethang);
+
         }
     }
     public interface ProductItemActionListener{
