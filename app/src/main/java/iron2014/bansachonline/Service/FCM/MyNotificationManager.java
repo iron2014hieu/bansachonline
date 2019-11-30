@@ -55,7 +55,7 @@ public class MyNotificationManager {
                 .setContentTitle(title)
                 .setStyle(bigPictureStyle)
                 .setSmallIcon(R.drawable.book)
-                .setLargeIcon(BitmapFactory.decodeResource(mCtx.getResources(), R.mipmap.ic_launcher))
+                .setLargeIcon(BitmapFactory.decodeResource(mCtx.getResources(), R.drawable.book))
                 .setContentText(message)
                 .build();
 
@@ -87,8 +87,8 @@ public class MyNotificationManager {
                 .setSound(sound)
                 .setContentIntent(resultPendingIntent)
                 .setContentTitle(title)
-                .setSmallIcon(R.drawable.book/)
-                .setLargeIcon(BitmapFactory.decodeResource(mCtx.getResources(), R.mipmap.ic_launcher))
+                .setSmallIcon(R.drawable.book)
+                .setLargeIcon(BitmapFactory.decodeResource(mCtx.getResources(), R.drawable.book))
                 .setContentText(message)
                 .build();
 
