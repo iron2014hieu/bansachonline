@@ -4,11 +4,10 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Notification;
 import android.app.PendingIntent;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Base64;
@@ -64,6 +63,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import iron2014.bansachonline.Activity.ChonMaKhuyenmaiActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
@@ -95,25 +95,31 @@ public class CartDetailActivity extends AppCompatActivity {
     ProgressBar progressBar;
     private String verificationId;
     EditText edtMaGiamGia, edtSdt, edtDiachi, edtTenkh,  edtEnterPhone,editTextCode_dialog;
-    TextView txtTongtien;
+    TextView txtTongtien, txtTiensanpham, txtTienvanchuyen, txtTongthanhtoan;
     Button btnCheckMGG,btnThanhtoan  ,btnTieptuc;
     RecyclerView recyclerview_create_bill;
     List<DatMua> listDatmua = new ArrayList<>();
     ListSPAdapter cartAdapter;
     ApiInTerFaceDatmua apiInTerFaceDatmua;
-    int tongtien;
+
     String mauser_session;
+
 
     int sizeList=0;
     SessionManager sessionManager;
     ProgressBar progress_hoadon;
     String phoneNumber;
-    int Giamgia = 0;
-    int Giatri;
-    int Phivanchuyen = 0;
+
+    Double tongtien = 0.0;
+    Double trukhuyenmai =0.0;
+    Double tienvanchuyen =0.0;
+
+    Double tienthanhtoan = 0.0;
+
     SharedPref sharedPref;
     private String tenkh,diachi,sodienthoai;
     private NotificationManagerCompat notificationManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,9 +145,25 @@ public class CartDetailActivity extends AppCompatActivity {
         diachi = user.get(sessionManager.ADDRESS);
         sodienthoai = user.get(sessionManager.PHONE);
 
-        Intent intent = getIntent();
-        tongtien = Integer.valueOf(intent.getStringExtra("tongtien"));
+        txtTienvanchuyen = findViewById(R.id.txtTienvanchuyen);
+        txtTiensanpham = findViewById(R.id.txtTiensanpham);
+        txtTongthanhtoan = findViewById(R.id.txtTongthanhtoan);
 
+
+
+
+
+        Intent intent = getIntent();
+        HashMap<String,String> dathang = sessionManager.getTongtien();
+        tongtien = Double.valueOf(dathang.get(sessionManager.TONGTIEN));
+
+//        tongtien = Double.valueOf(intent.getStringExtra("tongtien"));
+
+        tienthanhtoan = tongtien+trukhuyenmai+tienvanchuyen;
+
+        txtTongthanhtoan.setText(String.valueOf(tienthanhtoan));
+
+        Toast.makeText(this, ""+tongtien, Toast.LENGTH_SHORT).show();
         Toolbar toolbar = findViewById(R.id.toolbargh);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -161,10 +183,10 @@ public class CartDetailActivity extends AppCompatActivity {
             }
         });
 
+
         toolbar.animate().translationY(-toolbar.getBottom()).setInterpolator(new AccelerateInterpolator()).start();
         toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator()).start();
 
-        Giatri = Integer.valueOf(tongtien);
 //        if (Giatri > 100000){
 //            Giatri -= Giatri * 0.05 ;
 //            txtTongtien.setText(String.valueOf(Giatri));
@@ -172,7 +194,14 @@ public class CartDetailActivity extends AppCompatActivity {
 //            Toast.makeText(this, "free ship", Toast.LENGTH_SHORT).show();
 //        }
 
-        txtTongtien.setText(tongtien+ " VNĐ");
+
+        txtTiensanpham.setText(String.valueOf(tongtien));
+
+
+
+
+
+
 
         cartAdapter = new ListSPAdapter(this,listDatmua);
 
@@ -180,17 +209,21 @@ public class CartDetailActivity extends AppCompatActivity {
         Spinner spinner = findViewById(R.id.spinner_countries);
         countryAdapter = new CountryAdapter(this, countryItems);
         spinner.setAdapter(countryAdapter);
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 CountryItem clickItem = (CountryItem) adapterView.getItemAtPosition(i);
                 String clickItemContry = clickItem.getCountryName();
                 String clickItemPrice = clickItem.getPrice();
-                int tt = Integer.valueOf(tongtien);
-                tt+= Integer.valueOf(clickItemPrice);
-                tt-= Giamgia;
-                Phivanchuyen = Integer.valueOf(clickItemPrice);
-                txtTongtien.setText(tt+ " VNĐ");
+
+
+                tienvanchuyen = Double.valueOf(clickItemPrice);
+
+                tienthanhtoan = tongtien+trukhuyenmai+tienvanchuyen;
+
+                txtTongthanhtoan.setText(String.valueOf(tienthanhtoan));
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -198,6 +231,17 @@ public class CartDetailActivity extends AppCompatActivity {
             }
         });
 
+
+
+        edtMaGiamGia.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ChonMaKhuyenmaiActivity.class));
+                Toast.makeText(CartDetailActivity.this, "Hãy chọn mã mong muốn!", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+        });
         StaggeredGridLayoutManager gridLayoutManager3 =
                 new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
         recyclerview_create_bill.setLayoutManager(gridLayoutManager3);
@@ -220,24 +264,29 @@ public class CartDetailActivity extends AppCompatActivity {
                         public void onClick(View view) {
                             for (int i = 0; i < listKhuyenMai.size(); i++) {
                                 String makm = listKhuyenMai.get(i).getMaKM();
-                                String phantram = listKhuyenMai.get(i).getTinhChat();
+                                Double phantram = Double.valueOf(listKhuyenMai.get(i).getTinhChat());
                                 String s = edtMaGiamGia.getText().toString();
                                 if (!s.equals("")) {
                                     if (makm.equals(s)) {
                                         Toast.makeText(CartDetailActivity.this, "Hợp lệ " + makm, Toast.LENGTH_SHORT).show();
-                                        Double tt = tongtien * Double.valueOf(phantram) + Phivanchuyen;
-                                        txtTongtien.setText(tt + " VNĐ");
+
+                                        trukhuyenmai = (tongtien*phantram) - tongtien;
+                                        tienthanhtoan = tongtien+trukhuyenmai+tienvanchuyen;
+
+                                        txtTongthanhtoan.setText(String.valueOf(tienthanhtoan));
                                         break;
                                     } else {
                                         Toast.makeText(CartDetailActivity.this, "Mã không tồn tại", Toast.LENGTH_SHORT).show();
                                         break;
                                     }
+
                                 }
                                 else {
                                     Toast.makeText(CartDetailActivity.this, "Bạn chưa nhập mã", Toast.LENGTH_SHORT).show();
                                     break;
                                 }
                             }
+
                         }
                     });
                 }
@@ -287,6 +336,18 @@ public class CartDetailActivity extends AppCompatActivity {
         if (sharedPref.loadNightModeState() == true){
             setTheme(R.style.darktheme);
         }else setTheme(R.style.AppTheme);
+    }
+
+    @Override
+    protected void onResume() {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        try {
+            CharSequence textToPaste = clipboard.getPrimaryClip().getItemAt(0).getText();
+            edtMaGiamGia.setText(textToPaste);
+        } catch (Exception e) {
+            return;
+        }
+        super.onResume();
     }
 
     @Override
@@ -577,7 +638,7 @@ public class CartDetailActivity extends AppCompatActivity {
                         !edtSdt.getText().toString().trim().equals("") || !edtTenkh.getText().toString().trim().equals("")) {
                             progress_hoadon.setVisibility(View.VISIBLE);
 
-                            ThemHoadon(mauser_session, String.valueOf(tongtien), edtSdt.getText().toString(), UrlSql.url_insert_hoadon);
+                            ThemHoadon(mauser_session, String.valueOf(tienthanhtoan), edtSdt.getText().toString(), UrlSql.url_insert_hoadon);
                         }else {
                             Toast.makeText(CartDetailActivity.this, "Nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                         }

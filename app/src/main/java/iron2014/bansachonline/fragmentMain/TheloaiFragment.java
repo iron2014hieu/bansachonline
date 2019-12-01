@@ -49,6 +49,7 @@ public class TheloaiFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_theloai, container, false);
 
         addControls();
+
         sessionManager = new SessionManager(getContext());
         StaggeredGridLayoutManager gridLayoutManagerVeticl =
                 new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
@@ -64,7 +65,6 @@ public class TheloaiFragment extends Fragment {
     public void fetchHoadon(){
         apiInTerFaceHoadon = ApiClient.getApiClient().create(ApiInTerFaceHoadon.class);
         Call<List<KhuyenMai>> call = apiInTerFaceHoadon.get_all_khuyenmai();
-
         call.enqueue(new Callback<List<KhuyenMai>>() {
             @Override
             public void onResponse(Call<List<KhuyenMai>> call, retrofit2.Response<List<KhuyenMai>> response) {

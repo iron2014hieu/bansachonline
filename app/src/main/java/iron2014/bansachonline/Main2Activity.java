@@ -58,5 +58,6 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        finish();
     }
 }

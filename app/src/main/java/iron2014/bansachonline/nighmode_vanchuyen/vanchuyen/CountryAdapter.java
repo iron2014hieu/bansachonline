@@ -16,6 +16,8 @@ import iron2014.bansachonline.R;
 
 public class CountryAdapter extends ArrayAdapter<CountryItem> {
 
+    public static TextView drop_down;
+
     public CountryAdapter(Context context, ArrayList<CountryItem> countryList) {
         super(context, 0, countryList);
     }
@@ -37,6 +39,8 @@ public class CountryAdapter extends ArrayAdapter<CountryItem> {
                     R.layout.item_spinner, parent, false
             );
         }
+
+
 
         ImageView imageViewFlag = convertView.findViewById(R.id.image_view_flag);
         TextView textViewName = convertView.findViewById(R.id.text_view_name);

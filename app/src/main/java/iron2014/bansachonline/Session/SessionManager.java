@@ -63,6 +63,8 @@ public class SessionManager {
     public static String NOIDUNGCTHD = "NOIDUNGCTHD";
     public static String DIEMDANHGIACTHD ="DIEMDANHGIACTHD";
 
+    public static String TONGTIEN = "TONGTIEN";
+
     public SessionManager(Context context) {
         this.context = context;
         sharedPreferences = context.getSharedPreferences(PREF_NAMR, PRIVATE_MODE);
@@ -77,6 +79,10 @@ public class SessionManager {
         editor.putString(PHONE, phone);
         editor.putString(NAME, name);
         editor.putString(QUYEN, quyen);
+        editor.apply();
+    }
+    public void createTongtien(String tongtien){
+        editor.putString(TONGTIEN, tongtien);
         editor.apply();
     }
     public void createSessionGuimatheloai(String matheloai,String tentheloai){
@@ -161,6 +167,11 @@ public class SessionManager {
             context.startActivity(i);
             ((ProfileActivity)context).finish();
         }
+    }
+    public HashMap<String,String> getTongtien() {
+        HashMap<String, String> token = new HashMap<>();
+        token.put(TONGTIEN, sharedPreferences.getString(TONGTIEN, null));
+        return token;
     }
     public HashMap<String,String> getCTHD_ID() {
         HashMap<String, String> token = new HashMap<>();

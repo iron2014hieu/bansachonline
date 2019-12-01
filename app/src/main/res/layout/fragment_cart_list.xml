@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="?attr/backgroundcolor"
     tools:context=".Fragment.CartListFragment">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,6 +19,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
+                android:visibility="gone"
                 android:padding="10dp"
                 android:layout_weight="1"
                 android:gravity="right"
@@ -25,17 +29,28 @@
                 android:text="Nhận mã khuyến mãi >> "
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-        </LinearLayout>
-            <View
+            <TextView
+                android:padding="10dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textColor="#A3030303"
+                android:textStyle="italic"
+                android:id="@+id/tvMuatiep"
+                android:text="@string/tieptucmua"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="?attr/textcolor"/>
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?attr/textcolor"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listDatmua"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"/>
+            android:layout_height="450dp" />
         <TextView
+            android:visibility="gone"
             android:id="@+id/tvTTgiohang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,65 +67,55 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <CheckBox
-            android:id="@+id/checkbox_cartlist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:text="Chọn tất cả"/>
+            <CheckBox
+                android:id="@+id/checkbox_cartlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="Chọn tất cả"/>
 
-
+        </LinearLayout>
+    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    <LinearLayout
+        android:background="?attr/cardbackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom|end">
         <LinearLayout
-            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/tv_tongthanhtoan"
-                    android:textSize="15dp"
-                    android:textColor="?attr/textcolor"
-                    android:text="Tổng thanh toán : "
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/txtTongtien"
-                    android:textSize="20dp"
-                    android:textColor="#F44336"
-                    android:text=""/>
-                <TextView
-                    android:id="@+id/txtDonvi"
-                    android:textSize="15dp"
-                    android:textColor="#F44336"
-                    android:text=" VNĐ"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <Button
-                android:layout_marginTop="10dp"
-                android:textColor="#fff"
-                android:background="#2196F3"
-                android:text="@string/thanhtoan"
-                android:id="@+id/next"
-                android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_tongthanhtoan"
+                android:textSize="15dp"
+                android:textColor="?attr/textcolor"
+                android:text="Tổng thanh toán : "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtTongtien"
+                android:textSize="20dp"
+                android:textColor="#F44336"
+                android:text=""/>
+            <TextView
+                android:id="@+id/txtDonvi"
+                android:textSize="15dp"
+                android:textColor="#F44336"
+                android:text=" VNĐ"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvMuatiep"
-            android:textStyle="italic"
-            android:layout_margin="20dp"
-            android:textColor="#E91E63"
-            android:gravity="center"
-            android:textSize="18dp"
-            android:text="@string/tieptucmua"
+        <Button
+            android:id="@+id/next"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#2196F3"
+            android:text="@string/thanhtoan"
+            android:textColor="#fff" />
     </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

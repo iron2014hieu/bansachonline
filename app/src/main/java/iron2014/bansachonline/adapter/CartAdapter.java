@@ -98,8 +98,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     update_selected(maSach,"1", url_UD);
+                    context.startActivity(new Intent(context, Main2Activity.class));
                 } else {
                     update_selected(maSach,"0", url_UD);
+                    context.startActivity(new Intent(context, Main2Activity.class));
                 }
             }
         });
@@ -107,7 +109,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
         iduser = listGiohang.get(i).getMauser();
         masach = String.valueOf(listGiohang.get(i).getMasach());
-
+        holder.btn_quality.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int num = Integer.valueOf(holder.btn_quality.getNumber());
+                Toast.makeText(context, ""+num, Toast.LENGTH_SHORT).show();
+            }
+        });
         holder.btn_quality.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
             @Override
             public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
@@ -121,6 +129,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                     updateSoluongTongtien(String.valueOf(newValue),iduser, masach1);
                     datMua.setSoluong(newValue);
                     total = (Integer.valueOf(datMua.getGia()))*(Integer.valueOf(datMua.getSoluong()));
+                    context.startActivity(new Intent(context, Main2Activity.class));
                 }else {
                     Toast.makeText(context, "Sách "+ten+" không đủ số lượng!", Toast.LENGTH_SHORT).show();
                 }
@@ -202,11 +211,17 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         call.enqueue(new Callback<List<Books>>() {
             @Override
             public void onResponse(Call<List<Books>> call, retrofit2.Response<List<Books>> response) {
-                for (int m =0; m<response.body().size();m++){
-                    Books books =response.body().get(m);
-                    soluong = (books.getSoluong());
-                }
+                if (response.isSuccessful()){
+                    if (response.body().size()>0){
+//                        for (int m =0; m<response.body().size();m++){
+//                            Books books =response.body().get(m);
+//                            soluong = (books.getSoluong());
+//
+//                        }
+                    }else {
 
+                    }
+                }
             }
 
             @Override

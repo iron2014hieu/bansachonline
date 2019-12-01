@@ -8,7 +8,7 @@
     tools:context=".CartDetailActivity">
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
     <LinearLayout
         android:background="?attr/backgroundcolor"
         android:layout_width="match_parent"
@@ -108,22 +108,24 @@
                 android:layout_height="wrap_content"
                 android:background="?attr/backgroundcolor"
                 android:orientation="horizontal">
-
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4">
                 <EditText
                     android:id="@+id/edtMaGiamGia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:textColor="#000"
                     android:textColorHint="?attr/textcolor"
                     android:hint="Nhập mã khuyến mãi" />
-
+                </com.google.android.material.textfield.TextInputLayout>
                 <Button
                     android:padding="5dp"
                     android:id="@+id/CheckMGG"
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:background="#2196F3"
                     android:text="@string/kientrama"
                     android:backgroundTint="?attr/buttoncolor"
@@ -132,14 +134,13 @@
 
             <TextView
                 android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/phuongthucvanchuyen"
                 android:textColor="?attr/textcolor"
                 android:textSize="15dp" />
 
             <Spinner
-                android:background="?attr/cardbackground"
                 android:id="@+id/spinner_countries"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -147,10 +148,27 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="18dp" />
 
+
+
         </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
 
-
-
+            <TextView
+                android:id="@+id/txtTiensanpham"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="tiensanpham" />
+            <TextView
+                android:id="@+id/txtTienvanchuyen"
+                android:text="tienvanchuyen"
+                android:layout_width="wrap_content"
+                android:textSize="15dp"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
 
     </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -183,7 +201,19 @@
                 android:text="Tổng thanh toán"
                 android:textColor="#3F51B5"
                 android:textSize="15dp" />
+
+
             <TextView
+                android:layout_marginRight="5dp"
+                android:id="@+id/txtTongthanhtoan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tongtien"
+                android:textColor="#F44336"
+                android:textSize="13dp" />
+            <TextView
+                android:visibility="gone"
                 android:layout_marginRight="5dp"
                 android:id="@+id/txtTongtienthanhtoan"
                 android:layout_width="wrap_content"
@@ -192,8 +222,9 @@
                 android:text="@string/tongtien"
                 android:textColor="#F44336"
                 android:textSize="13dp" />
-        </LinearLayout>
 
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnThanhtoan"

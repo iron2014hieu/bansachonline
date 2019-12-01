@@ -91,6 +91,7 @@ public class MuahangActivity extends AppCompatActivity {
         Intent intent = (new Intent(getApplicationContext(), MainActivity.class));
         intent.putExtra("check", "5");
         startActivity(intent);
+        finish();
     }
     //settheme
     public  void theme(){

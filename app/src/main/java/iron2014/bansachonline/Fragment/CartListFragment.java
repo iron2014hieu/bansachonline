@@ -48,14 +48,13 @@ import retrofit2.Callback;
  */
 public class CartListFragment extends Fragment {
 
-    TextView tvMuatiep, tvTTgiohang, tv_tongthanhtoan, txtDonvi, tvLaymaKM;
+    TextView tvMuatiep, tv_tongthanhtoan, txtDonvi, tvLaymaKM,txtnull_list;
 
     View view;
     ApiInTerFaceDatmua apiInTerFaceDatmua;
     CartAdapter cartAdapter;
     RecyclerView recyclerView_dat_mua;
     private List<DatMua> listDatmua = new ArrayList<>();
-    public  static CheckBox checkbox_cartlist;
     int sizeList;
     public  static TextView txtTongtien;
     private Button btnnext;
@@ -71,15 +70,17 @@ public class CartListFragment extends Fragment {
         tv_tongthanhtoan = view.findViewById(R.id.tv_tongthanhtoan);
         txtDonvi = view.findViewById(R.id.txtDonvi);
         tvMuatiep = view.findViewById(R.id.tvMuatiep);
-        tvLaymaKM = view.findViewById(R.id.tvLaymaKM);
-        tvLaymaKM.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getContext(), MainActivity.class);
-                i.putExtra("check", "1");
-                startActivity(i);
-            }
-        });
+
+//        txtnull_list= view.findViewById(R.id.txtnull_list);
+//        tvLaymaKM = view.findViewById(R.id.tvLaymaKM);
+//        tvLaymaKM.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(getContext(), MainActivity.class);
+//                i.putExtra("check", "1");
+//                startActivity(i);
+//            }
+//        });
         tvMuatiep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,9 +91,7 @@ public class CartListFragment extends Fragment {
         cartAdapter  = new CartAdapter(getContext(), listDatmua);
         recyclerView_dat_mua = view.findViewById(R.id.listDatmua);
         txtTongtien=view.findViewById(R.id.txtTongtien);
-        tvTTgiohang = view.findViewById(R.id.tvTTgiohang);
         btnnext = (Button) view.findViewById(R.id.next);
-        checkbox_cartlist=(CheckBox) view.findViewById(R.id.checkbox_cartlist);
 
         sessionManager= new SessionManager(getContext());
 
@@ -129,18 +128,18 @@ public class CartListFragment extends Fragment {
 
                 if (listDatmua.size() == 0){
                     tv_tongthanhtoan.setVisibility(View.GONE);
-                    tvLaymaKM.setVisibility(View.GONE);
+//                    tvLaymaKM.setVisibility(View.GONE);
                     txtDonvi.setVisibility(View.GONE);
                     btnnext.setVisibility(View.GONE);
                     txtTongtien.setVisibility(View.GONE);
-                    tvTTgiohang.setVisibility(View.VISIBLE);
+//                    txtnull_list.setVisibility(View.VISIBLE);
                 }else {
-                    tvLaymaKM.setVisibility(View.VISIBLE);
+//                    tvLaymaKM.setVisibility(View.VISIBLE);
                     tv_tongthanhtoan.setVisibility(View.VISIBLE);
                     txtDonvi.setVisibility(View.VISIBLE);
                     btnnext.setVisibility(View.VISIBLE);
                     txtTongtien.setVisibility(View.VISIBLE);
-                    tvTTgiohang.setVisibility(View.GONE);
+//                    txtnull_list.setVisibility(View.GONE);
 
                     for (int m =0; m<listDatmua.size();m++){
                         if (listDatmua.get(m).getSelected() == 1){
@@ -159,7 +158,8 @@ public class CartListFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(getContext(), CartDetailActivity.class);
-                            intent.putExtra("tongtien", txtTongtien.getText().toString().trim());
+//                            intent.putExtra("tongtien", txtTongtien.getText().toString().trim());
+                            sessionManager.createTongtien(txtTongtien.getText().toString().trim());
                             startActivity(intent);
                         }
                     });
@@ -180,15 +180,6 @@ public class CartListFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-    private List<DatMua> getModel(int isSelect){
-        for(int i = 0; i < sizeList ; i++){
-
-            DatMua datMua = new DatMua();
-            listDatmua.get(i).setSelected(1);
-//            listDatmua.add(datMua);
-        }
-        return listDatmua;
-    }
     public void update_selected( final String masach,final String selected, String url) {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -215,8 +206,5 @@ public class CartListFragment extends Fragment {
             }
         };
         requestQueue.add(stringRequest);
-    }
-    private void loadListCart() {
-        cartAdapter.notifyDataSetChanged();
     }
 }
