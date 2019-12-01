@@ -43,6 +43,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import iron2014.bansachonline.Activity.BookDetailActivity;
+import iron2014.bansachonline.Activity.hoadon.RatingBookCommentActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
 import iron2014.bansachonline.MainActivity;
@@ -56,7 +57,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class BookDetailLibActivity extends AppCompatActivity {
-    String masach, linkbook,hinhanh, tensach, tongdiem, landanhgia,audio,tacgia;
+    String masach,idcthd, linkbook,hinhanh, tensach, tongdiem, landanhgia,audio,tacgia;
     RecyclerView recyclerview_sach_sachdexuat;
     ImageView imgBook_lib;
     TextView txtTensach_lib,numrating_book_detail_lib,txtDocsach,txtXemnhanxet,txtNgheaudio,txtDiem;
@@ -92,9 +93,38 @@ public class BookDetailLibActivity extends AppCompatActivity {
         HashMap<String,String> commecn=sessionManager.getCTHD_ID();
         String noidung = commecn.get(sessionManager.NOIDUNGCTHD);
         String diem  = commecn.get(sessionManager.DIEMDANHGIACTHD);
-        edtNhanxet_lib.setText(noidung);
-        ratingbar_lib.setRating(Float.valueOf(diem));
-        txtDiem.setText(diem+" sao");
+        idcthd = commecn.get(sessionManager.IDCTHD);
+        if (noidung==null){
+            edtNhanxet_lib.setVisibility(View.GONE);
+            ratingbar_lib.setVisibility(View.GONE);
+            txtDiem.setVisibility(View.GONE);
+            txtXemnhanxet.setText("Thêm đánh giá");
+
+            txtXemnhanxet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intentThemnx  = new Intent(getBaseContext(), RatingBookCommentActivity.class);
+                    intentThemnx.putExtra("masach",masach);
+                    intentThemnx.putExtra("idcthd", idcthd);
+                    startActivity(intentThemnx);
+                }
+            });
+        }else {
+            edtNhanxet_lib.setText(noidung);
+            ratingbar_lib.setRating(Float.valueOf(diem));
+            txtDiem.setText(diem+"");
+
+            txtXemnhanxet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intentThemnx1  = new Intent(getBaseContext(), RatingBookCommentActivity.class);
+                    intentThemnx1.putExtra("masach",masach);
+                    intentThemnx1.putExtra("idcthd", idcthd);
+                    startActivity(intentThemnx1);
+                }
+            });
+        }
+
 
         notificationManagerCompat = NotificationManagerCompat.from(this);
         mediaSessionCompat = new MediaSessionCompat(this, "tag");
@@ -147,10 +177,20 @@ public class BookDetailLibActivity extends AppCompatActivity {
     }
     private void sendNotification(){
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sach3);
+
+
+        Intent intent = new Intent(this, AudioActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,
+                Integer.parseInt(App.CHANNEL_ID_1),
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT
+        );
         Notification channel = new NotificationCompat.Builder(getApplicationContext(), App.CHANNEL_ID_1)
                 .setSmallIcon(R.drawable.ic_music)
-                .setContentTitle("2 con vit")
-                .setContentText("By Hoang dang luaan")
+                .setContentTitle(tensach)
+                .setContentText(tacgia)
+                .setContentIntent(pendingIntent)
                 .setLargeIcon(bitmap)
                 .addAction(R.drawable.ic_fast_rewind, "xx10", null)
                 .addAction(R.drawable.ic_skip_previous, "prev", null)

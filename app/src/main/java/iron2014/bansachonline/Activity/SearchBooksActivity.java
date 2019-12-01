@@ -127,41 +127,6 @@ public class SearchBooksActivity extends AppCompatActivity {
                 buttonRecord.setVisibility(View.GONE);
             }
         });
-
-        recyclerview_book_search.addOnItemTouchListener(new RecyclerTouchListener(this,
-                recyclerview_book_search, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Books books =   listBookSearch.get(position);
-                String masach = String.valueOf(books.getMasach());
-                String tensach = String.valueOf(books.getTensach());
-                String manxb = String.valueOf(books.getManxb());
-                String matheloai = String.valueOf(books.getMatheloai());
-                String ngayxb = books.getNgayxb();
-                String noidung = books.getNoidung();
-                String anhbia =books.getAnhbia();
-                String gia = String.valueOf( books.getGia());
-                String tennxb= String.valueOf(books.getTennxb());
-                String soluong = String.valueOf(books.getSoluong());
-                String tacgia = books.getTacgia();
-                String matacgia = String.valueOf(books.getMatacgia());
-                String tongdiem = String.valueOf(books.getTongdiem());
-                String landanhgia = String.valueOf(books.getLandanhgia());
-
-                sessionManager.createSessionSendInfomationBook(masach,tensach,manxb,matheloai,ngayxb,noidung,
-                        anhbia,gia,tennxb,soluong,tacgia,matacgia, tongdiem, landanhgia);
-
-                startActivity(new Intent(SearchBooksActivity.this, BookDetailActivity.class));
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-                // code here
-            }
-        }));
-
-//        searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
-
         searchView.setSuggestions(GetStringArray(arrayList));
         //speech to text
         final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);

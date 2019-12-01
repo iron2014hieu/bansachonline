@@ -145,25 +145,20 @@ public class CartDetailActivity extends AppCompatActivity {
         diachi = user.get(sessionManager.ADDRESS);
         sodienthoai = user.get(sessionManager.PHONE);
 
+
+
         txtTienvanchuyen = findViewById(R.id.txtTienvanchuyen);
         txtTiensanpham = findViewById(R.id.txtTiensanpham);
         txtTongthanhtoan = findViewById(R.id.txtTongthanhtoan);
-
-
-
-
 
         Intent intent = getIntent();
         HashMap<String,String> dathang = sessionManager.getTongtien();
         tongtien = Double.valueOf(dathang.get(sessionManager.TONGTIEN));
 
-//        tongtien = Double.valueOf(intent.getStringExtra("tongtien"));
 
         tienthanhtoan = tongtien+trukhuyenmai+tienvanchuyen;
-
         txtTongthanhtoan.setText(String.valueOf(tienthanhtoan));
 
-        Toast.makeText(this, ""+tongtien, Toast.LENGTH_SHORT).show();
         Toolbar toolbar = findViewById(R.id.toolbargh);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -187,19 +182,8 @@ public class CartDetailActivity extends AppCompatActivity {
         toolbar.animate().translationY(-toolbar.getBottom()).setInterpolator(new AccelerateInterpolator()).start();
         toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator()).start();
 
-//        if (Giatri > 100000){
-//            Giatri -= Giatri * 0.05 ;
-//            txtTongtien.setText(String.valueOf(Giatri));
-//        }else if(Giatri>250000) {
-//            Toast.makeText(this, "free ship", Toast.LENGTH_SHORT).show();
-//        }
-
 
         txtTiensanpham.setText(String.valueOf(tongtien));
-
-
-
-
 
 
 
@@ -340,6 +324,7 @@ public class CartDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        super.onResume();
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         try {
             CharSequence textToPaste = clipboard.getPrimaryClip().getItemAt(0).getText();
@@ -347,7 +332,7 @@ public class CartDetailActivity extends AppCompatActivity {
         } catch (Exception e) {
             return;
         }
-        super.onResume();
+
     }
 
     @Override
@@ -362,22 +347,6 @@ public class CartDetailActivity extends AppCompatActivity {
         countryItems.add(new CountryItem("Giao hàng siêu tốc", "45000", R.drawable.vanchuyen));
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_thanhtoan, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()){
-//            case R.id.iv_khuyenmai:
-//                Intent intent = new Intent(getBaseContext(), MainActivity.class);
-//                intent.putExtra("check","2");
-//                startActivity(intent);
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     public void fetchTacgia(String mauser){
         apiInTerFaceDatmua = ApiClient.getApiClient().create(ApiInTerFaceDatmua.class);
@@ -549,7 +518,7 @@ public class CartDetailActivity extends AppCompatActivity {
                 0, activityIntent, 0);
 
         Notification summaryNotification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
-                .setSmallIcon(R.drawable.ic_arrow)
+                .setSmallIcon(R.drawable.book)
                 .setStyle(new NotificationCompat.InboxStyle()
                         .addLine(title + " " + message)
                         .setBigContentTitle("Đơn hàng đang được xử lý")
@@ -586,24 +555,28 @@ public class CartDetailActivity extends AppCompatActivity {
         final LinearLayout linearLayout_xacminh =(LinearLayout) dialog.findViewById(R.id.container_dialog);
         spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryAreaCodes));
 
+        if (sodienthoai!=null){
+            edtEnterPhone.setText(sodienthoai);
+        }
         // if button is clicked, close the custom dialog
         btnTieptuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
-
-                String number = edtEnterPhone.getText().toString().trim();
+                String number =edtEnterPhone.getText().toString().trim();;
 
                 if (number.isEmpty() || number.length() < 10) {
                     edtEnterPhone.setError("Vui lòng nhập số hợp lệ");
                     edtEnterPhone.requestFocus();
                     return;
+                }else {
+                    phoneNumber = "+" + code + number;
+                    linearLayout_nhap.setVisibility(View.GONE);
+                    linearLayout_xacminh.setVisibility(View.VISIBLE);
+                    sendVerificationCode(phoneNumber);
                 }
 
-                phoneNumber = "+" + code + number;
-                linearLayout_nhap.setVisibility(View.GONE);
-                linearLayout_xacminh.setVisibility(View.VISIBLE);
-                sendVerificationCode(phoneNumber);
+
             }
         });
         btnHoanthanh.setOnClickListener(new View.OnClickListener() {

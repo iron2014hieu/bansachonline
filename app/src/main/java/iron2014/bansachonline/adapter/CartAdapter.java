@@ -121,18 +121,17 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
                 DatMua datMua = listGiohang.get(i);
                 String masach1 = String.valueOf(datMua.getMasach());
-                String ten = datMua.getSanpham();
 
-                fetchCheckSoluong(String.valueOf(listGiohang.get(i).getMasach()));
+                fetchCheckSoluong(String.valueOf(listGiohang.get(i).getMasach()), newValue, masach1);
 
-                if (newValue<=soluong){
-                    updateSoluongTongtien(String.valueOf(newValue),iduser, masach1);
-                    datMua.setSoluong(newValue);
-                    total = (Integer.valueOf(datMua.getGia()))*(Integer.valueOf(datMua.getSoluong()));
-                    context.startActivity(new Intent(context, Main2Activity.class));
-                }else {
-                    Toast.makeText(context, "Sách "+ten+" không đủ số lượng!", Toast.LENGTH_SHORT).show();
-                }
+//                if (newValue<=soluong){
+//                    updateSoluongTongtien(String.valueOf(newValue),iduser, masach1);
+//                    datMua.setSoluong(newValue);
+//                    total = (Integer.valueOf(datMua.getGia()))*(Integer.valueOf(datMua.getSoluong()));
+//                    context.startActivity(new Intent(context, Main2Activity.class));
+//                }else {
+//                    Toast.makeText(context, "Sách "+ten+" không đủ số lượng!", Toast.LENGTH_SHORT).show();
+//                }
 
 
                 if (listGiohang.get(i).getSoluong()==0){
@@ -204,7 +203,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             btn_quality = itemView.findViewById(R.id.btn_numberQuality);
         }
     }
-    public void fetchCheckSoluong(String masach){
+    public void fetchCheckSoluong(String masach, final int newValue,final String masach1){
         apiInTerFace = ApiClient.getApiClient().create(ApiInTerFace.class);
         Call<List<Books>> call = apiInTerFace.getBookDetail(masach);
 
@@ -213,11 +212,22 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             public void onResponse(Call<List<Books>> call, retrofit2.Response<List<Books>> response) {
                 if (response.isSuccessful()){
                     if (response.body().size()>0){
-//                        for (int m =0; m<response.body().size();m++){
-//                            Books books =response.body().get(m);
-//                            soluong = (books.getSoluong());
-//
-//                        }
+                        for (int m =0; m<response.body().size();m++){
+                            Books books =response.body().get(m);
+                            soluong = (books.getSoluong());
+                            for (int n =0; n<listGiohang.size();n++){
+                                DatMua datMua = listGiohang.get(n);
+                                if (newValue<=soluong){
+                                    updateSoluongTongtien(String.valueOf(newValue),iduser, masach1);
+                                    datMua.setSoluong(newValue);
+                                    total = (Integer.valueOf(listGiohang.get(m).getGia()))*(Integer.valueOf(datMua.getSoluong()));
+                                    context.startActivity(new Intent(context, Main2Activity.class));
+                                }else {
+                                    Toast.makeText(context, "Sách "+datMua.getSanpham()+" không đủ số lượng!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                        }
                     }else {
 
                     }

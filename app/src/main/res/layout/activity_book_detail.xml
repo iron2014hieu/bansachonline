@@ -99,13 +99,15 @@
                             android:layout_marginLeft="15dp"
                             android:textColor="?attr/textcolor"
                             android:text=""/>
+
                         <TextView
+                            android:id="@+id/txtDaban"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
                             android:layout_gravity="center"
-                            android:textColor="?attr/textcolor"
-                            android:text="Đã bán 123"/>
+                            android:layout_marginLeft="15dp"
+                            android:text="Đã bán 123"
+                            android:textColor="?attr/textcolor" />
                         <RelativeLayout
                             android:layout_marginTop="5dp"
                             android:layout_width="wrap_content"

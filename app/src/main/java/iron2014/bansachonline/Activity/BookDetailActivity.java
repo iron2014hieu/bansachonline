@@ -53,6 +53,7 @@ import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceFav;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
 import iron2014.bansachonline.BottomSheet.ExampleBottomSheetDialog;
+import iron2014.bansachonline.LoginRegister.LoginActivity;
 import iron2014.bansachonline.Main2Activity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
@@ -95,6 +96,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
     ApiInTerFaceHoadon apiInTerFaceHoadon;
     ApiInTerFace apiInTerFace;
     ImageButton img_like,img_unlike,btn_Share_fb;
+    TextView txtDaban;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = new SharedPref(this);
@@ -179,13 +181,15 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
             ratingbar_book_detail.setRating(diemdanhgia);
             ratingbar_below_detail.setRating(diemdanhgia);
 
-            txt_numrating_book_detail.setText(""+diemdanhgia);
+
+            txt_numrating_book_detail.setText(""+Math.round(diemdanhgia));
             txt_numrating_below_deatil.setText(diemdanhgia+" ("+landanhgia+" đánh giá)");
         }
 
         edtTensach.setText(tensach);
         edtGiaban.setText(giaban+" VNĐ");
         edtMotaChitiet.setText(mota);
+        txtDaban.setText("Đã bán: "+landanhgia);
 
         giabansach = Double.valueOf(giaban);
         StaggeredGridLayoutManager gridLayoutManagerVeticl =
@@ -213,20 +217,15 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                 if(soluong.equals("0")){
                     Toast.makeText(BookDetailActivity.this, "Sản phẩm tạm hết", Toast.LENGTH_SHORT).show();
                 }else {
-                    ExampleBottomSheetDialog bottomSheet = new ExampleBottomSheetDialog();
-                    bottomSheet.show(getSupportFragmentManager(), "exampleBottomSheet");
+                    if (idUser!=null) {
+                        ExampleBottomSheetDialog bottomSheet = new ExampleBottomSheetDialog();
+                        bottomSheet.show(getSupportFragmentManager(), "exampleBottomSheet");
+                    }else {
+                        startActivity(new Intent(BookDetailActivity.this, LoginActivity.class));
+                    }
                 }
 
 
-//                    HashMap<String,String> user = sessionManager.getUserDetail();
-//                    idUser = user.get(sessionManager.ID);
-//                    if (idUser==null){
-//                        Toast.makeText(BookDetailActivity.this, "Bạn chưa đăng nhập!", Toast.LENGTH_SHORT).show();
-//                        startActivity(new Intent(BookDetailActivity.this, LoginActivity.class));
-//                    }else {
-//                        ThemDatmua(masach, tensach, linkImage,"5",idUser);
-//                        //final String masach, final String sp, final String hinhanhsach, final String mauser
-//                    }
             }
         });
         //share text
@@ -554,7 +553,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
         recyclerview_sach_tacgia= findViewById(R.id.recyclerview_sach_tacgia);
         txtXemtataca= findViewById(R.id.txtXemtataca);
         btn_Share_fb=findViewById(R.id.btn_Share_fb);
-
+        txtDaban = findViewById(R.id.txtDaban);
         img_like= findViewById(R.id.img_like);
         img_unlike = findViewById(R.id.img_unlike);
 

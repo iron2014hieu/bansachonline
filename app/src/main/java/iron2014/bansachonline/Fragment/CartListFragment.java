@@ -71,16 +71,8 @@ public class CartListFragment extends Fragment {
         txtDonvi = view.findViewById(R.id.txtDonvi);
         tvMuatiep = view.findViewById(R.id.tvMuatiep);
 
-//        txtnull_list= view.findViewById(R.id.txtnull_list);
-//        tvLaymaKM = view.findViewById(R.id.tvLaymaKM);
-//        tvLaymaKM.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(getContext(), MainActivity.class);
-//                i.putExtra("check", "1");
-//                startActivity(i);
-//            }
-//        });
+        txtnull_list= view.findViewById(R.id.txtnull_list);
+
         tvMuatiep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,18 +120,19 @@ public class CartListFragment extends Fragment {
 
                 if (listDatmua.size() == 0){
                     tv_tongthanhtoan.setVisibility(View.GONE);
-//                    tvLaymaKM.setVisibility(View.GONE);
                     txtDonvi.setVisibility(View.GONE);
                     btnnext.setVisibility(View.GONE);
                     txtTongtien.setVisibility(View.GONE);
-//                    txtnull_list.setVisibility(View.VISIBLE);
+                    txtnull_list.setVisibility(View.VISIBLE);
+                    recyclerView_dat_mua.setVisibility(View.GONE
+                    );
                 }else {
-//                    tvLaymaKM.setVisibility(View.VISIBLE);
                     tv_tongthanhtoan.setVisibility(View.VISIBLE);
                     txtDonvi.setVisibility(View.VISIBLE);
                     btnnext.setVisibility(View.VISIBLE);
                     txtTongtien.setVisibility(View.VISIBLE);
-//                    txtnull_list.setVisibility(View.GONE);
+                    txtnull_list.setVisibility(View.GONE);
+                    recyclerView_dat_mua.setVisibility(View.VISIBLE);
 
                     for (int m =0; m<listDatmua.size();m++){
                         if (listDatmua.get(m).getSelected() == 1){

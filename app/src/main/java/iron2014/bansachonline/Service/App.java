@@ -7,8 +7,8 @@ import android.app.NotificationManager;
 import android.os.Build;
 
 public class App extends Application {
-    public static final String CHANNEL_ID_1="CHANNEL_ID_1";
-    public static final String CHANNEL_NAME_1="CHANNEL_NAME_1";
+    public static final String CHANNEL_ID_1="1";
+    public static final String CHANNEL_NAME_1="2";
 
     @Override
     public void onCreate() {

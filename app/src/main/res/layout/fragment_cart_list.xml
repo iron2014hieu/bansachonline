@@ -6,9 +6,12 @@
     android:orientation="vertical"
     android:background="?attr/backgroundcolor"
     tools:context=".Fragment.CartListFragment">
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -33,7 +36,7 @@
                 android:padding="10dp"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:textColor="#A3030303"
+                android:textColor="?attr/textcolor"
                 android:textStyle="italic"
                 android:id="@+id/tvMuatiep"
                 android:text="@string/tieptucmua"
@@ -44,7 +47,19 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="?attr/textcolor"/>
-
+        <TextView
+            android:id="@+id/txtnull_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="55dp"
+            android:drawableTop="@drawable/box_64db"
+            android:textSize="15dp"
+            android:textColor="?attr/textcolor"
+            android:textStyle="bold"
+            android:text="Giỏ hàng trống"
+            android:gravity="center"
+            android:visibility="gone" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listDatmua"
             android:layout_width="match_parent"

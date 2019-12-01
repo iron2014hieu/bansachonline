@@ -18,8 +18,9 @@
 
             <Spinner
                 android:id="@+id/spinner_dialog_Countries"
-                android:layout_width="120dp"
-                android:layout_height="50dp" />
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"/>
 
             <EditText
                 android:id="@+id/editTextPhone_dialog"
@@ -27,7 +28,7 @@
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:digits="0123456789"
-                android:hint="Nhập số điện thoại của bạn"
+                android:hint="@string/sodienthoaikhach"
                 android:maxLength="10" />
 
         </LinearLayout>
@@ -39,6 +40,7 @@
             android:background="?attr/buttoncolor"
             android:textColor="?attr/textcolor"
             android:textAllCaps="true"
+            android:layout_margin="15dp"
             android:text="Tiếp tục"/>
     </LinearLayout>
     <LinearLayout
