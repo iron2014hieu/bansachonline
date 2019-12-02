@@ -223,7 +223,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                                     total = (Integer.valueOf(listGiohang.get(m).getGia()))*(Integer.valueOf(datMua.getSoluong()));
                                     context.startActivity(new Intent(context, Main2Activity.class));
                                 }else {
-                                    Toast.makeText(context, "Sách "+datMua.getSanpham()+" không đủ số lượng!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "Sách  không đủ số lượng!", Toast.LENGTH_SHORT).show();
+                                    break;
                                 }
                             }
 

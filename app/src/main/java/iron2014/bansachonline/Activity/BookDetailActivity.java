@@ -182,6 +182,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
             ratingbar_below_detail.setRating(diemdanhgia);
 
 
+
             txt_numrating_book_detail.setText(""+Math.round(diemdanhgia));
             txt_numrating_below_deatil.setText(diemdanhgia+" ("+landanhgia+" đánh giá)");
         }

@@ -91,8 +91,8 @@ public class BookDetailLibActivity extends AppCompatActivity {
         getDetailBook(URL+masach);
 
         HashMap<String,String> commecn=sessionManager.getCTHD_ID();
-        String noidung = commecn.get(sessionManager.NOIDUNGCTHD);
-        String diem  = commecn.get(sessionManager.DIEMDANHGIACTHD);
+        final String noidung = commecn.get(sessionManager.NOIDUNGCTHD);
+        final String diem  = commecn.get(sessionManager.DIEMDANHGIACTHD);
         idcthd = commecn.get(sessionManager.IDCTHD);
         if (noidung==null){
             edtNhanxet_lib.setVisibility(View.GONE);
@@ -106,6 +106,8 @@ public class BookDetailLibActivity extends AppCompatActivity {
                     Intent intentThemnx  = new Intent(getBaseContext(), RatingBookCommentActivity.class);
                     intentThemnx.putExtra("masach",masach);
                     intentThemnx.putExtra("idcthd", idcthd);
+                    intentThemnx.putExtra("noidung", noidung);
+                    intentThemnx.putExtra("diem", diem);
                     startActivity(intentThemnx);
                 }
             });
@@ -113,7 +115,7 @@ public class BookDetailLibActivity extends AppCompatActivity {
             edtNhanxet_lib.setText(noidung);
             ratingbar_lib.setRating(Float.valueOf(diem));
             txtDiem.setText(diem+"");
-
+            txtXemnhanxet.setVisibility(View.GONE);
             txtXemnhanxet.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

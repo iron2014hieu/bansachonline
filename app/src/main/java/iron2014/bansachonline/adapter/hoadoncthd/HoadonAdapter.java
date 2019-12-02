@@ -66,7 +66,7 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
         if (quyen.equals("shipper")){
             holder.txtXemchitiet.setVisibility(View.GONE);
         }
-        holder.txtXemchitiet.setOnClickListener(new View.OnClickListener() {
+        holder.linnear_hoadon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ChitiethoadonActivity.class);
@@ -84,6 +84,12 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
                 intent.putExtra("tongtien", tongtien);
                 sessionManager.createHoadon(tinhtrang);
                 context.startActivity(intent);
+            }
+        });
+        holder.txtXemchitiet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
         int amount = 3;
@@ -126,6 +132,8 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
         private TextView txtUoctinh;
         private TextView txtUserXacnhan;
 
+        LinearLayout linnear_hoadon;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -135,6 +143,8 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
 
             txtUoctinh=(TextView) itemView.findViewById(R.id.txtUoctinhnhan);
             txtUserXacnhan= itemView.findViewById(R.id.txtUserXacnhan);
+
+            linnear_hoadon = itemView.findViewById(R.id.linnear_hoadon);
         }
     }
     public static void UpDownDate() {

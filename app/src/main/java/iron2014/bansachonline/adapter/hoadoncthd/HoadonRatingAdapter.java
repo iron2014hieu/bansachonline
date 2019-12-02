@@ -77,7 +77,7 @@ public class HoadonRatingAdapter extends RecyclerView.Adapter<HoadonRatingAdapte
         private TextView tv_tongtien;
         private TextView txtXemchitiet;
         TextView txtUserXacnhan;
-
+        LinearLayout linnear_hoadon;
         //tùy từng tab
         private TextView txtUoctinh;
 
@@ -90,6 +90,7 @@ public class HoadonRatingAdapter extends RecyclerView.Adapter<HoadonRatingAdapte
 
             txtUoctinh=(TextView) itemView.findViewById(R.id.txtUoctinhnhan);
             txtUserXacnhan= itemView.findViewById(R.id.txtUserXacnhan);
+            linnear_hoadon=itemView.findViewById(R.id.linnear_hoadon);
         }
     }
     public interface ProductItemActionListener{

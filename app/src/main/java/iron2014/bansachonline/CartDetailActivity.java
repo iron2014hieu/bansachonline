@@ -101,6 +101,7 @@ public class CartDetailActivity extends AppCompatActivity {
     List<DatMua> listDatmua = new ArrayList<>();
     ListSPAdapter cartAdapter;
     ApiInTerFaceDatmua apiInTerFaceDatmua;
+    TextView TxtTienKhuyenmai;
 
     String mauser_session;
 
@@ -134,7 +135,7 @@ public class CartDetailActivity extends AppCompatActivity {
         edtTenkh=findViewById(R.id.edtTenkh);
         btnCheckMGG = findViewById(R.id.CheckMGG);
         btnThanhtoan= findViewById(R.id.btnThanhtoan);
-
+        TxtTienKhuyenmai=findViewById(R.id.TxtTienKhuyenmai);
         recyclerview_create_bill= findViewById(R.id.recyclerview_create_bill);
         sessionManager = new SessionManager(this);
         notificationManager = NotificationManagerCompat.from(this);
@@ -183,8 +184,9 @@ public class CartDetailActivity extends AppCompatActivity {
         toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator()).start();
 
 
-        txtTiensanpham.setText(String.valueOf(tongtien));
-
+        txtTiensanpham.setText("Tổng Tiền sách: "+(tongtien));
+        TxtTienKhuyenmai.setText("Trừ Khuyến mãi: "+trukhuyenmai);
+        txtTienvanchuyen.setText("Phí vận chuyển: "+ tienvanchuyen);
 
 
         cartAdapter = new ListSPAdapter(this,listDatmua);
@@ -207,6 +209,10 @@ public class CartDetailActivity extends AppCompatActivity {
                 tienthanhtoan = tongtien+trukhuyenmai+tienvanchuyen;
 
                 txtTongthanhtoan.setText(String.valueOf(tienthanhtoan));
+
+                txtTiensanpham.setText("Tổng Tiền sách: "+(tongtien)+" VNĐ");
+                TxtTienKhuyenmai.setText("Trừ Khuyến mãi: "+trukhuyenmai+" VNĐ");
+                txtTienvanchuyen.setText("Phí vận chuyển: "+ tienvanchuyen+" VNĐ");
 
             }
             @Override
@@ -258,6 +264,10 @@ public class CartDetailActivity extends AppCompatActivity {
                                         tienthanhtoan = tongtien+trukhuyenmai+tienvanchuyen;
 
                                         txtTongthanhtoan.setText(String.valueOf(tienthanhtoan));
+
+                                        txtTiensanpham.setText("Tổng Tiền sách: "+(tongtien)+" VNĐ");
+                                        TxtTienKhuyenmai.setText("Trừ Khuyến mãi: "+trukhuyenmai+" VNĐ");
+                                        txtTienvanchuyen.setText("Phí vận chuyển: "+ tienvanchuyen+" VNĐ");
                                         break;
                                     } else {
                                         Toast.makeText(CartDetailActivity.this, "Mã không tồn tại", Toast.LENGTH_SHORT).show();

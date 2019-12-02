@@ -27,6 +27,8 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
+import iron2014.bansachonline.Activity.Library.BookDetailLibActivity;
+import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.UrlSql;
@@ -39,6 +41,7 @@ public class RatingBookCommentActivity extends AppCompatActivity {
     private EditText edtNhanxet;
 
     SharedPref sharedPref;
+    String noidungnhan,diemnhan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,9 +55,23 @@ public class RatingBookCommentActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
 
-        Intent intent = getIntent();
-        masach = intent.getStringExtra("masach");
-        idcthd = intent.getStringExtra("idcthd");
+        try {
+            Intent intent = getIntent();
+            masach = intent.getStringExtra("masach");
+            idcthd = intent.getStringExtra("idcthd");
+
+            diemnhan = intent.getStringExtra("diem");
+            noidungnhan = intent.getStringExtra("noidung");
+
+
+            if (noidungnhan!=null){
+                edtNhanxet.setText(noidungnhan);
+                ratingbarComment.setRating(Float.valueOf(diemnhan));
+            }
+        }catch (Exception e){
+
+        }
+
 
 
         try {
@@ -97,22 +114,48 @@ public class RatingBookCommentActivity extends AppCompatActivity {
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_save_comment, menu);
+        if (noidungnhan ==null){
+            getMenuInflater().inflate(R.menu.menu_save_comment, menu);
+        }else {
+            getMenuInflater().inflate(R.menu.menu_save_comment, menu);
+
+        }
+
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.menu_send:
-                if (!edtNhanxet.getText().toString().trim().equals("") && ratingbarComment.getRating()>0){
-                    diemnhanxet =String.valueOf(ratingbarComment.getRating());
-                    LuuNhanxet(masach,diemnhanxet, idcthd);
-                    break;
-                }else {
-                    Toast.makeText(this, "Bạn phải nhập nhận xét và cho điểm đánh giá", Toast.LENGTH_SHORT).show();
-                }
+        if (noidungnhan == null){
+            switch (item.getItemId()){
+                case R.id.menu_send:
+                    if (!edtNhanxet.getText().toString().trim().equals("") && ratingbarComment.getRating()>0){
+                        diemnhanxet =String.valueOf(ratingbarComment.getRating());
+                        LuuNhanxet(masach,diemnhanxet, idcthd);
+                        break;
+                    }else {
+                        Toast.makeText(this, "Bạn phải nhập nhận xét và cho điểm đánh giá", Toast.LENGTH_SHORT).show();
+                    }
 
+            }
+        }else {
+            switch (item.getItemId()){
+                case R.id.menu_save_comment:
+                    if (!edtNhanxet.getText().toString().trim().equals("") && ratingbarComment.getRating()>0){
+                        diemnhanxet =String.valueOf(ratingbarComment.getRating());
+                        if (diemnhan.equals(diemnhanxet)){
+                            String diemchenh ="0";
+                            UpdateNhanxet(diemchenh);
+                        }else {
+
+                        }
+
+                        break;
+                    }else {
+                        Toast.makeText(this, "Bạn phải nhập nhận xét và cho điểm đánh giá", Toast.LENGTH_SHORT).show();
+                    }
+
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -127,6 +170,8 @@ public class RatingBookCommentActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         progressDialog.dismiss();
                         if (response.equals("tc")){
+                            Intent intent =(new Intent(getApplicationContext(), MainActivity.class));
+                            intent.putExtra("check","2");
                             finish();
                         }
                     }
@@ -152,7 +197,44 @@ public class RatingBookCommentActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+    private void UpdateNhanxet(final String diemchenhlech){
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading");
+        progressDialog.show();
 
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_THEMNHATXET,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.dismiss();
+                        if (response.equals("tc")){
+                            finish();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressDialog.dismiss();
+                        Toast.makeText(RatingBookCommentActivity.this, "err   "+error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("masach", masach);
+                params.put("diemdanhgia", String.valueOf(ratingbarComment.getRating()));
+                params.put("noidungdanhgia", edtNhanxet.getText().toString());
+                params.put("diemchenhlech",diemchenhlech);
+                params.put("id", idcthd);
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
 
 
     private void Addcontrols(){

@@ -40,20 +40,21 @@
                     android:textSize="18dp"
                     android:textStyle="normal"
                     android:layout_weight="1"
-                    android:background="#A3CAC9C9"
+                    android:background="?attr/cardbackground"
                     android:textColor="#3F51B5"
                     android:padding="15dip"
                     android:text="@string/tenkhachhangs"/>
+
                 <TextView
-                    android:textSize="18dp"
-                    android:textStyle="normal"
                     android:id="@+id/tvtenKH"
                     android:layout_weight="1"
-                    android:background="#B9DCDCDC"
-                    android:text="Thiết lập ngay"
-                    android:textColor="#E91E63"
+                    android:background="?attr/cardbackground"
+                    android:gravity="center"
                     android:padding="15dip"
-                    android:gravity="center"/>
+                    android:text="Thiết lập ngay"
+                    android:textColor="?attr/textcolor"
+                    android:textSize="18dp"
+                    android:textStyle="normal" />
             </TableRow>
             <TableRow
                 android:layout_height="wrap_content"
@@ -62,7 +63,7 @@
                     android:textSize="18dp"
                     android:textStyle="normal"
                     android:layout_weight="1"
-                    android:background="#B9DCDCDC"
+                    android:background="?attr/cardbackground"
                     android:textColor="#3F51B5"
                     android:padding="15dip"
                     android:text="@string/diachis"/>
@@ -71,9 +72,9 @@
                     android:textStyle="normal"
                     android:id="@+id/tvDiaChi"
                     android:layout_weight="1"
-                    android:background="#A3CAC9C9"
+                    android:background="?attr/cardbackground"
                     android:text="Thiết lập ngay"
-                    android:textColor="#E91E63"
+                    android:textColor="?attr/textcolor"
                     android:padding="15dip"
                     android:gravity="center"/>
             </TableRow>
@@ -84,7 +85,7 @@
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="#A3CAC9C9"
+                android:background="?attr/cardbackground"
                 android:textColor="#3F51B5"
                 android:padding="15dip"
                 android:text="@string/SDT"/>
@@ -93,9 +94,9 @@
                 android:textStyle="normal"
                 android:id="@+id/tvSDT"
                 android:layout_weight="1"
-                android:background="#B9DCDCDC"
+                android:background="?attr/cardbackground"
                 android:text="Thiết lập ngay"
-                android:textColor="#E91E63"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:gravity="center"/>
         </TableRow>
@@ -106,7 +107,7 @@
                     android:textSize="18dp"
                     android:textStyle="normal"
                     android:layout_weight="1"
-                    android:background="#B9DCDCDC"
+                    android:background="?attr/cardbackground"
                     android:textColor="#3F51B5"
                     android:padding="15dip"
                     android:text="@string/tongtiens"/>
@@ -115,9 +116,9 @@
                     android:textStyle="normal"
                     android:id="@+id/tvTongTien"
                     android:layout_weight="1"
-                    android:background="#A3CAC9C9"
+                    android:background="?attr/cardbackground"
                     android:text="Thiết lập ngay"
-                    android:textColor="#E91E63"
+                    android:textColor="?attr/textcolor"
                     android:padding="15dip"
                     android:gravity="center"/>
             </TableRow>
@@ -128,7 +129,7 @@
                     android:textSize="18dp"
                     android:textStyle="normal"
                     android:layout_weight="1"
-                    android:background="#A3CAC9C9"
+                    android:background="?attr/cardbackground"
                     android:textColor="#3F51B5"
                     android:padding="15dip"
                     android:text="@string/tinhtranghang"/>
@@ -137,9 +138,9 @@
                     android:textStyle="normal"
                     android:id="@+id/tvTinhTrang"
                     android:layout_weight="1"
-                    android:background="#B9DCDCDC"
+                    android:background="?attr/cardbackground"
                     android:text="Thiết lập ngay"
-                    android:textColor="#E91E63"
+                    android:textColor="?attr/textcolor"
                     android:padding="15dip"
                     android:gravity="center"/>
             </TableRow>
