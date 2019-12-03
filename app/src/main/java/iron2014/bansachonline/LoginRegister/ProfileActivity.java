@@ -1,6 +1,5 @@
 package iron2014.bansachonline.LoginRegister;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -48,7 +47,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import iron2014.bansachonline.Activity.hoadon.UpdateProfileActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.EndPoints;
@@ -158,7 +156,9 @@ public class ProfileActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
-
+    public void doimk(View view){
+        startActivity(new Intent(getApplicationContext(), DoiMatkhauActivity.class));
+    }
     @Override
     public void onBackPressed() {
         if (replayedt) {
@@ -184,14 +184,10 @@ public class ProfileActivity extends AppCompatActivity {
         chooseFile();
     }
     private void getDetail(final String email){
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading");
-        progressDialog.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_READ,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        progressDialog.dismiss();
                         Log.i(TAG, response);
                         try {
                             JSONObject jsonobject = new JSONObject(response);
@@ -219,15 +215,12 @@ public class ProfileActivity extends AppCompatActivity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            progressDialog.dismiss();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        progressDialog.dismiss();
-                        Log.e("Error reading: ", error.toString());
                         txtEmail.setText(error.toString());
                     }
                 })
@@ -285,15 +278,11 @@ public class ProfileActivity extends AppCompatActivity {
         final String name = txtName.getText().toString().trim();
         final String email = txtEmail.getText().toString().trim();
         final String id = strid;
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading");
-        progressDialog.show();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_EDIT,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        progressDialog.dismiss();
 
                         try {
                             JSONObject jsonObject = new JSONObject(response);
@@ -305,7 +294,6 @@ public class ProfileActivity extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            progressDialog.dismiss();
                             Log.e("Error saveProfile on: ", e.toString());
                         }
                     }
@@ -313,7 +301,6 @@ public class ProfileActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        progressDialog.dismiss();
                         Log.e("Error: ", error.toString());
                     }
                 })
@@ -353,35 +340,26 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void uploadPicture(final String id, final String photo) {
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading");
-        progressDialog.show();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_UPLOAD,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        progressDialog.dismiss();
                         Log.i(TAG, response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
 
                             if (success.equals("1")){
-                                progressDialog.dismiss();
-                                Toast.makeText(ProfileActivity.this, "Thành công", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            progressDialog.dismiss();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        progressDialog.dismiss();
-//                        Toast.makeText(ProfileActivity.this, "Error ! "+error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 })
         {

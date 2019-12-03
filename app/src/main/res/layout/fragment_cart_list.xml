@@ -129,8 +129,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="#2196F3"
+            android:background="@drawable/cutomsbtn"
             android:text="@string/thanhtoan"
-            android:textColor="#fff" />
+            android:textColor="?attr/textcolor" />
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

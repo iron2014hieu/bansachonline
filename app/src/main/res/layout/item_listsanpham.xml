@@ -3,10 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="#F5F5F5"
+    android:background="?attr/cardbackground"
     android:layout_marginTop="5dp">
     <LinearLayout
-        android:background="#F5F5F5"
         android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +24,6 @@
         android:id="@+id/linear_cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#F5F5F5"
         android:orientation="horizontal">
     <ImageView
         android:id="@+id/img_cart"
@@ -33,7 +31,6 @@
         android:layout_height="75dp"
         android:src="@drawable/book"/>
     <LinearLayout
-        android:background="#F5F5F5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"

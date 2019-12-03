@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:titleTextColor="?attr/textcolor"
-            android:background="?attr/backgroundcolor"
+            android:background="?attr/topbottomcolor"
             app:title="Cài đặt"
             app:navigationIcon="@drawable/ic_close"
             />

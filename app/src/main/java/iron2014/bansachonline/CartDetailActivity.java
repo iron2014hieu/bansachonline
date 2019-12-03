@@ -8,6 +8,8 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Base64;
@@ -21,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -89,7 +92,6 @@ public class CartDetailActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ArrayList<CountryItem> countryItems;
     private CountryAdapter countryAdapter;
-    private KhuyenMaiAdapter khuyenMaiAdapter;
     private List<KhuyenMai> listKhuyenMai = new ArrayList<>();
     ApiInTerFaceHoadon apiInTerFaceHoadon;
     ProgressBar progressBar;
@@ -185,7 +187,7 @@ public class CartDetailActivity extends AppCompatActivity {
 
 
         txtTiensanpham.setText("Tổng Tiền sách: "+(tongtien));
-        TxtTienKhuyenmai.setText("Trừ Khuyến mãi: "+trukhuyenmai);
+        TxtTienKhuyenmai.setText("Khuyến mãi: "+trukhuyenmai);
         txtTienvanchuyen.setText("Phí vận chuyển: "+ tienvanchuyen);
 
 
@@ -211,7 +213,7 @@ public class CartDetailActivity extends AppCompatActivity {
                 txtTongthanhtoan.setText(String.valueOf(tienthanhtoan));
 
                 txtTiensanpham.setText("Tổng Tiền sách: "+(tongtien)+" VNĐ");
-                TxtTienKhuyenmai.setText("Trừ Khuyến mãi: "+trukhuyenmai+" VNĐ");
+                TxtTienKhuyenmai.setText("Khuyến mãi: "+trukhuyenmai+" VNĐ");
                 txtTienvanchuyen.setText("Phí vận chuyển: "+ tienvanchuyen+" VNĐ");
 
             }
@@ -266,7 +268,7 @@ public class CartDetailActivity extends AppCompatActivity {
                                         txtTongthanhtoan.setText(String.valueOf(tienthanhtoan));
 
                                         txtTiensanpham.setText("Tổng Tiền sách: "+(tongtien)+" VNĐ");
-                                        TxtTienKhuyenmai.setText("Trừ Khuyến mãi: "+trukhuyenmai+" VNĐ");
+                                        TxtTienKhuyenmai.setText("Khuyến mãi: "+trukhuyenmai+" VNĐ");
                                         txtTienvanchuyen.setText("Phí vận chuyển: "+ tienvanchuyen+" VNĐ");
                                         break;
                                     } else {
@@ -558,16 +560,22 @@ public class CartDetailActivity extends AppCompatActivity {
         editTextCode_dialog =(EditText)dialog.findViewById(R.id.editTextCode_dialog);
         final Spinner spinner = (Spinner) dialog.findViewById(R.id.spinner_dialog_Countries);
         final Button btnHoanthanh = dialog.findViewById(R.id.buttonsuccess_dialog);
-         progressBar =(ProgressBar) dialog.findViewById(R.id.progressbar_dialog);
         final TextView txtVuilongdoi =(TextView) dialog.findViewById(R.id.textView_dialog);
 
         final LinearLayout linearLayout_nhap =(LinearLayout) dialog.findViewById(R.id.linearLayoutdialog_Nhap);
         final LinearLayout linearLayout_xacminh =(LinearLayout) dialog.findViewById(R.id.container_dialog);
+        final ImageView img_close = dialog.findViewById(R.id.img_close);
         spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryAreaCodes));
 
         if (sodienthoai!=null){
             edtEnterPhone.setText(sodienthoai);
         }
+        img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
         // if button is clicked, close the custom dialog
         btnTieptuc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -603,6 +611,8 @@ public class CartDetailActivity extends AppCompatActivity {
                 verifyCode(code);
             }
         });
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
     }
 
@@ -697,5 +707,22 @@ public class CartDetailActivity extends AppCompatActivity {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_home, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.mn_home:
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

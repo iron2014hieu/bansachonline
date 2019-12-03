@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -70,10 +71,12 @@ public class Adaptertinnhan extends RecyclerView.Adapter<Adaptertinnhan.viewHold
 
     @Override
     public int getItemViewType(int position) {
-        if (modeltinnhanList.get(position).getSender().equals(email)){
-            return phai;
-        }else {
-            return trai;
-        }
+        Toast.makeText(context, ""+modeltinnhanList.get(position).getSender(), Toast.LENGTH_SHORT).show();
+//        if (modeltinnhanList.get(position).getSender().equals(email)){
+//            return phai;
+//        }else {
+//            return trai;
+//        }
+        return 1;
     }
 }

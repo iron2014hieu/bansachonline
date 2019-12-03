@@ -19,7 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".Activity.ChonMaKhuyenmaiActivity"></activity>
+        <activity android:name=".LoginRegister.NewPasswordActivity"></activity>
+        <activity android:name=".LoginRegister.DoiMatkhauActivity" />
+        <activity android:name=".Activity.ChonMaKhuyenmaiActivity" />
         <activity android:name=".BookFavoriteActivity" />
         <activity android:name=".Activity.AppChatActivity.HienthiTnActivity" />
         <activity android:name=".Activity.AppChatActivity.MainCHATActivity" />
@@ -49,7 +51,7 @@
         <activity android:name=".Activity.GetBookByTheloaiActivity" />
         <activity android:name=".LoginRegister.ProfileActivity" />
         <activity android:name=".Activity.Library.ViewBookActivity" />
-        <activity android:name=".Activity.hoadon.UpdateProfileActivity" />
+        <activity android:name=".LoginRegister.UpdateProfileActivity" />
         <activity android:name=".Activity.hoadon.Chitiethoadon_RatingActivity" />
         <activity android:name=".Activity.hoadon.ChitiethoadonActivity" />
         <activity android:name=".Main2Activity" />

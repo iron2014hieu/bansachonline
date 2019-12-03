@@ -15,8 +15,8 @@
             android:layout_width="match_parent"
             app:navigationIcon="@drawable/ic_arrow"
             app:title="@string/giohang"
-            app:titleTextColor="#FFF"
-            android:background="#2196F3"
+            app:titleTextColor="?attr/textcolor"
+            android:background="?attr/topbottomcolor"
             android:layout_height="wrap_content"
             />
     </com.google.android.material.appbar.AppBarLayout>

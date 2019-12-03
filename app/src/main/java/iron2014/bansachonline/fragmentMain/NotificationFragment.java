@@ -22,7 +22,9 @@ import iron2014.bansachonline.Activity.GetBookByTheloaiActivity;
 import iron2014.bansachonline.Activity.hoadon.ChitiethoadonActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
+import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceNotif;
+import iron2014.bansachonline.Main2Activity;
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.MuahangActivity;
 import iron2014.bansachonline.R;
@@ -32,6 +34,7 @@ import iron2014.bansachonline.adapter.Sach.SachAdapter;
 import iron2014.bansachonline.adapter.notification.Notif_DH_Adapter;
 import iron2014.bansachonline.adapter.notification.Notif_KM_Adapter;
 import iron2014.bansachonline.model.Books;
+import iron2014.bansachonline.model.DatMua;
 import iron2014.bansachonline.model.Notification;
 import iron2014.bansachonline.model.TheLoai;
 import retrofit2.Call;
@@ -56,6 +59,8 @@ public class NotificationFragment extends Fragment {
 
     Notif_KM_Adapter notif_km_adapter;
     Notif_DH_Adapter notif_dh_adapter;
+    TextView counttxt_notif;
+    ApiInTerFaceDatmua apiInTerFaceDatmua;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -100,35 +105,33 @@ public class NotificationFragment extends Fragment {
             @Override
             public void onLongClick(View view, int position) {}})
         );
-//        recyclerview_thongbao_donhang.addOnItemTouchListener(new RecyclerTouchListener(getActivity(),
-//                recyclerview_thongbao_donhang, new RecyclerTouchListener.ClickListener() {
-//            @Override
-//            public void onClick(View view, int position) {
-//                Notification notification = listDH.get(position);
-////                String mahd = String.valueOf(notification.getMahoadon());
-////                sessionManager.createHoadon("userxacnhan");
-////                Intent intent = new Intent(getContext(), ChitiethoadonActivity.class);
-////                intent.putExtra("mahd", mahd);
-////                intent.putExtra("tinhtrang", "userxacnhan");
-////                startActivity(intent);
-//                String tinhtrang = notification.getTieude();
-//                if (tinhtrang.equals("Chờ xử lý đơn hàng")){
-//                    Intent intent = new Intent(getContext(), MuahangActivity.class);
-//                    intent.putExtra("check", "0");
-//                    startActivity(intent);
-//                }else {
-//                    Intent intent = new Intent(getContext(), MuahangActivity.class);
-//                    intent.putExtra("check", "2");
-//                    startActivity(intent);
-//                }
-//            }
-//
-//            @Override
-//            public void onLongClick(View view, int position) {}})
-//        );
-        return view;
-    }
+        fetchSoluong(mauser);
 
+        return  view;
+    }
+    public void GotoCart(View view){
+        startActivity(new Intent(getContext(), Main2Activity.class));
+    }
+    public void fetchSoluong(String mauser){
+        apiInTerFaceDatmua = ApiClient.getApiClient().create(ApiInTerFaceDatmua.class);
+        Call<List<DatMua>> call = apiInTerFaceDatmua.get_soluong(mauser);
+
+        call.enqueue(new Callback<List<DatMua>>() {
+            @Override
+            public void onResponse(Call<List<DatMua>> call, retrofit2.Response<List<DatMua>> response) {
+                int soluong =0;
+                for (int i = 0; i<response.body().size(); i++){
+                    soluong = response.body().get(i).getSoluong();
+                }
+                counttxt_notif.setText(String.valueOf(soluong));
+            }
+
+            @Override
+            public void onFailure(Call<List<DatMua>> call, Throwable t) {
+                Log.e("Error Search:","Error on: "+t.toString());
+            }
+        });
+    }
     public void fetchKhuyenmai(){
         apiInTerFaceNotif = ApiClient.getApiClient().create(ApiInTerFaceNotif.class);
         Call<List<Notification>> call = apiInTerFaceNotif.get_notif_km();
@@ -176,6 +179,7 @@ public class NotificationFragment extends Fragment {
         recyclerview_thongbao_khuyenmai = view.findViewById(R.id.recyclerview_thongbao_khuyenmai);
         txtThongbaoNotif_null= view.findViewById(R.id.txtThongbaoNotif_null);
         txtCapnhatDonhang=view.findViewById(R.id.txtCapnhatDonhang);
+        counttxt_notif= view.findViewById(R.id.counttxt_notif);
     }
 
 }

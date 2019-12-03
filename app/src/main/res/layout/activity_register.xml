@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/zzzz"
+    android:background="?attr/buttoncolor"
     tools:context=".LoginRegister.RegisterActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarDangky"
         app:navigationIcon="@drawable/ic_close"
         app:title="Đăng ký"
-        android:background="#03A9F4"
-        app:titleTextColor="#FFFFFF"
+        android:background="?attr/topbottomcolor"
+        app:titleTextColor="?attr/textcolor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"/>
@@ -41,7 +41,7 @@
                 android:id="@+id/edtName"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="Tên tài khoản"
+                android:hint="Tên"
                 android:textColor="?attr/textcolor"
                 android:textColorHint="?attr/textcolor"
                 android:background="@drawable/rounded_edittext"

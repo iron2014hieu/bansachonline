@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/zzzz"
+    android:background="?attr/buttoncolor"
     android:padding="10dp"
     tools:context=".LoginRegister.LoginActivity">
     <de.hdodenhof.circleimageview.CircleImageView

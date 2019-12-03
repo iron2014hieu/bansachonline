@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:padding="10dp"
-    tools:context=".Activity.hoadon.UpdateProfileActivity">
+    tools:context=".LoginRegister.UpdateProfileActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -167,8 +167,8 @@
 
     <Button
         android:layout_marginTop="20dp"
-        android:background="#2196F3"
-        android:textColor="#fff"
+        android:background="@drawable/cutomsbtn"
+        android:textColor="?attr/textcolor"
         android:id="@+id/btnUpdateUser"
         android:layout_width="match_parent"
         android:layout_height="50dp"

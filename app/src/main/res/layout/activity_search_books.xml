@@ -5,19 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:backgroundTint="?attr/backgroundcolor"
     tools:context=".Activity.SearchBooksActivity">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
-        android:background="?attr/backgroundcolor"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/backgroundcolor">
+            android:layout_height="match_parent">
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appbarlayout"
                 android:layout_width="match_parent"
@@ -51,7 +48,7 @@
                                android:layout_width="match_parent"
                                android:layout_height="match_parent"
                                android:layout_below="@id/appbarlayout"
-                               android:background="?attr/backgroundcolor"
+                               android:background="?attr/cardbackground"
                                android:orientation="vertical">
                                <androidx.recyclerview.widget.RecyclerView
                                    android:layout_gravity="center"

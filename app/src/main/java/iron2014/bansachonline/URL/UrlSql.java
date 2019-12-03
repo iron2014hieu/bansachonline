@@ -5,6 +5,8 @@ public class UrlSql {
     public static String URL_LOGIN = baseURL+"bansach/loginregister/login.php";
     public static String URL_LOGIN_PHONE = baseURL+"bansach/loginregister/login_with_phone.php/?phone=";
 
+    public static String URL_CHANGE_PASSWORD = "https://bansachonline.xyz/bansach/loginregister/replay_password.php";
+
     //cthd
     public static String url_insert_cthd="https://bansachonline.xyz/bansach/hoadon/cthd/them_cthd.php";
     public  static String url_insert_hoadon ="https://bansachonline.xyz/bansach/hoadon/them_hoadon.php";

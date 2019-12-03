@@ -4,83 +4,82 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:backgroundTint="?attr/backgroundcolor"
-    android:layout_weight="1"
-    android:layout_marginLeft="5dp"
     android:layout_marginBottom="5dp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/img_book_iv"
-                android:layout_width="320px"
-                android:layout_height="140dp"
+                android:layout_width="380px"
+                android:layout_height="220px"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:src="@drawable/book"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="2dp"
-                tools:layout_editor_absoluteY="0dp" />
+                tools:ignore="MissingConstraints" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_weight="1"
+                android:weightSum="5"
                 android:orientation="vertical">
-
                 <TextView
                     android:id="@+id/books_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
                     android:maxLength="15"
-                    android:text=" Contact name"
-                    android:textColor="?attr/textcolor"
-                    android:textStyle="normal"
-                    android:visibility="visible" />
+                    android:text=" Book name"
+                    android:layout_weight="2"
+                    android:textSize="18sp"
+                    android:textColor="?attr/textcolor"/>
 
                 <TextView
                     android:id="@+id/books_chitiet"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=" Contact name"
                     android:textColor="#F44336"
-                    android:textStyle="normal"
+                    android:padding="5dp"
+                    android:layout_weight="1"
                     android:visibility="visible" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="10dp"
-                    android:background="#fff" />
+                    android:layout_weight="1"
+                    android:background="?attr/textcolor" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:layout_weight="1"
                     android:padding="5dp">
 
                     <TextView
                         android:id="@+id/tv_soluongsach"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center"
                         android:text="20 bán"
                         android:textColor="?attr/textcolor" />
 
@@ -88,6 +87,7 @@
                         android:id="@+id/img_add_tocart"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:layout_gravity="center"
                         android:background="@drawable/cutomsimage"
                         android:padding="5dp"
                         android:src="@drawable/ic_shopping_light" />

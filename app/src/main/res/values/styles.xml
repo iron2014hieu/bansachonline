@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="backgroundcolor">#fff</item>
         <item name="backgroundcolor2">#C0BFBF</item>
-        <item name="cardbackground">#F5F5F5</item>
+        <item name="cardbackground">#F1F1F1</item>
         <item name="textcolor">#383838</item>
         <item name="tincolor">#000000</item>
         <item name="buttoncolor">#BFDDF7</item>
@@ -24,9 +24,9 @@
         <item name="colorPrimary">#212121</item>
         <item name="colorPrimaryDark">#000000</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="backgroundcolor">#303030</item>
+        <item name="backgroundcolor">#1A1818</item>
         <item name="backgroundcolor2">#C0AEAE</item>
-        <item name="cardbackground">#2B2828</item>
+        <item name="cardbackground">#2E2E2E</item>
         <item name="textcolor">#ffffff</item>
         <item name="tincolor">#FCF6F6</item>
         <item name="buttoncolor">#1D1D20</item>

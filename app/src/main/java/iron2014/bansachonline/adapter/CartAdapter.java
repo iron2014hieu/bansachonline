@@ -134,9 +134,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 //                }
 
 
-                if (listGiohang.get(i).getSoluong()==0){
+                if (newValue ==0){
                     holder.checkBox.setChecked(false);
                     update_selected(maSach,"0", url_UD);
+                }
+                if (newValue >0){
+                    holder.checkBox.setChecked(true);
+                    update_selected(maSach,"1", url_UD);
                 }
 
             }

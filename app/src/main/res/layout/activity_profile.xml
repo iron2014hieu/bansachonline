@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backgroundcolor"
+    android:background="?attr/cardbackground"
     tools:context=".LoginRegister.ProfileActivity">
     <TableLayout
         android:layout_width="match_parent"
@@ -57,38 +57,42 @@
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="?attr/cardbackground"
-                android:textColor="#B2535353"
+                android:drawableRight="@drawable/ic_chevron_right"
+                android:background="?attr/buttoncolor"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:text="@string/ten"/>
             <TextView
                 android:textSize="18dp"
-                android:background="?attr/cardbackground"
+                android:background="?attr/buttoncolor"
                 android:textStyle="normal"
                 android:id="@+id/txtName"
                 android:layout_weight="1"
                 android:text="Thiết lập ngay"
-                android:textColor="#B2535353"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:gravity="center"/>
         </TableRow>
         <TableRow>
+
             <TextView
-                android:textSize="18dp"
-                android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="?attr/cardbackground"
-                android:textColor="#B2535353"
+                android:background="?attr/buttoncolor"
                 android:padding="15dip"
-                android:text="Giới tính"/>
+                android:text="Giới tính"
+                android:drawableRight="@drawable/ic_chevron_right"
+                android:textColor="?attr/textcolor"
+                android:textSize="18dp"
+                android:textStyle="normal" />
+
             <TextView
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:id="@+id/txtSex"
                 android:layout_weight="1"
-                android:background="?attr/cardbackground"
+                android:background="?attr/buttoncolor"
                 android:text="Thiết lập ngay"
-                android:textColor="#B2535353"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:gravity="center"/>
         </TableRow>
@@ -97,18 +101,19 @@
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="?attr/cardbackground"
-                android:textColor="#B2535353"
+                android:background="?attr/buttoncolor"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
+                android:drawableRight="@drawable/ic_chevron_right"
                 android:text="Địa chỉ"/>
             <TextView
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:id="@+id/txtAddress"
                 android:layout_weight="1"
-                android:background="?attr/cardbackground"
+                android:background="?attr/buttoncolor"
                 android:text="Thiết lập ngay"
-                android:textColor="#B2535353"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:gravity="center"/>
         </TableRow>
@@ -117,8 +122,9 @@
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="?attr/cardbackground"
-                android:textColor="#B2535353"
+                android:drawableRight="@drawable/ic_chevron_right"
+                android:background="?attr/buttoncolor"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:text="Ngày sinh"/>
             <TextView
@@ -126,19 +132,20 @@
                 android:textStyle="normal"
                 android:id="@+id/txtNgaySinh"
                 android:layout_weight="1"
-                android:background="?attr/cardbackground"
+                android:background="?attr/buttoncolor"
                 android:text="Thiết lập ngay"
-                android:textColor="#B2535353"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:gravity="center"/>
         </TableRow>
         <TableRow>
             <TextView
                 android:textSize="18dp"
+                android:drawableRight="@drawable/ic_chevron_right"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="?attr/cardbackground"
-                android:textColor="#B2535353"
+                android:background="?attr/buttoncolor"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:text="Điện thoại"/>
             <TextView
@@ -146,9 +153,9 @@
                 android:textStyle="normal"
                 android:id="@+id/txtPhone"
                 android:layout_weight="1"
-                android:background="?attr/cardbackground"
+                android:background="?attr/buttoncolor"
                 android:text="Thiết lập ngay"
-                android:textColor="#B2535353"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:gravity="center"/>
         </TableRow>
@@ -157,8 +164,9 @@
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="?attr/cardbackground"
-                android:textColor="#B2535353"
+                android:background="?attr/buttoncolor"
+                android:drawableRight="@drawable/ic_chevron_right"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:text="Email"/>
             <TextView
@@ -166,9 +174,9 @@
                 android:textStyle="normal"
                 android:id="@+id/txtEmail"
                 android:layout_weight="1"
-                android:background="?attr/cardbackground"
+                android:background="?attr/buttoncolor"
                 android:text="Thiết lập ngay"
-                android:textColor="#B2535353"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:autoLink="email"
                 android:gravity="center"/>
@@ -178,18 +186,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="2"
-            android:background="?attr/cardbackground"
-            android:layout_marginTop="15dp"
+            android:background="?attr/buttoncolor"
+            android:layout_marginTop="1dp"
             android:padding="5dp">
             <TextView
                 android:textSize="18dp"
                 android:padding="5dp"
+                android:textColor="?attr/textcolor"
+                android:drawableRight="@drawable/ic_chevron_right"
                 android:text="Thay đổi mật khẩu"/>
             <TextView
                 android:textSize="18dp"
                 android:text="Thiết lập ngay"
+                android:onClick="doimk"
                 android:drawableRight="@drawable/ic_chevron_right"
                 android:padding="5dp"
+                android:textColor="?attr/textcolor"
                 android:layout_gravity="right"/>
         </GridLayout>
         <Button
@@ -209,7 +221,7 @@
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/buttoncolor"
+        android:background="@drawable/cutomsbtn"
         android:textColor="?attr/textcolor"
         android:drawableRight="@drawable/ic_power"
         android:text="@string/dangxuat"/>

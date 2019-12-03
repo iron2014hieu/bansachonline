@@ -12,6 +12,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -52,7 +54,6 @@ import iron2014.bansachonline.model.TheLoai;
 import retrofit2.Call;
 import retrofit2.Callback;
 public class HomeFragment extends Fragment {
-    UrlSql urlSql = new UrlSql();
     SliderView sliderView;
     TextView tvXemThem;
     TheLoaiAdapter theLoaiAdapter;
@@ -106,7 +107,7 @@ public class HomeFragment extends Fragment {
         });
         sessionManager = new SessionManager(getContext());
 
-
+        numcount =0;
         HashMap<String,String> sugess = sessionManager.getSuggest();
         suggesst = sugess.get(sessionManager.SUGGEST_BOOK);
         HashMap<String,String> user = sessionManager.getUserDetail();
@@ -266,6 +267,13 @@ public class HomeFragment extends Fragment {
         fetchSoluong(mauser);
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        fetchSoluong(mauser);
+    }
+
     public void fetchTheloai(){
         apiInTerFaceTheloai = ApiClient.getApiClient().create(ApiInTerFaceTheloai.class);
         Call<List<TheLoai>> call = apiInTerFaceTheloai.getTheloai();
@@ -382,9 +390,8 @@ public class HomeFragment extends Fragment {
                 int soluong =0;
                 for (int i = 0; i<response.body().size(); i++){
                     soluong = response.body().get(i).getSoluong();
-                    numcount +=soluong;
                 }
-                counttxt.setText(String.valueOf(numcount));
+                counttxt.setText(String.valueOf(soluong));
             }
 
             @Override

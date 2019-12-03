@@ -75,7 +75,7 @@ public class GetBookByTheloaiActivity extends AppCompatActivity {
         sachAdapter = new SachAdapter(this, listBook);
 
         StaggeredGridLayoutManager gridLayoutManagerVeticl =
-                new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+                new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL);
         recyclerview_book.setLayoutManager(gridLayoutManagerVeticl);
         recyclerview_book.setHasFixedSize(true);
 
@@ -122,27 +122,27 @@ public class GetBookByTheloaiActivity extends AppCompatActivity {
                 recyclerview_book, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Books books =   listBook.get(position);
-                String masach = String.valueOf(books.getMasach());
-                String tensach = String.valueOf(books.getTensach());
-                String manxb = String.valueOf(books.getManxb());
-                String matheloai = String.valueOf(books.getMatheloai());
-                String ngayxb = books.getNgayxb();
-                String noidung = books.getNoidung();
-                String anhbia =books.getAnhbia();
-                String gia = String.valueOf( books.getGia());
-                String tennxb= String.valueOf(books.getTennxb());
-                String soluong = String.valueOf(books.getSoluong());
-                String tacgia = books.getTacgia();
-                String matacgia = String.valueOf(books.getMatacgia());
-                String tongdiem = String.valueOf(books.getTongdiem());
-                String landanhgia = String.valueOf(books.getLandanhgia());
-
-                sessionManager.createSessionSendInfomationBook(masach,tensach,manxb,matheloai,ngayxb,noidung,
-                        anhbia,gia,tennxb,soluong,tacgia,matacgia, tongdiem, landanhgia);
-                Toast.makeText(GetBookByTheloaiActivity.this, ""+masach, Toast.LENGTH_SHORT).show();
-
-                startActivity(new Intent(GetBookByTheloaiActivity.this, BookDetailActivity.class));
+//                Books books =   listBook.get(position);
+//                String masach = String.valueOf(books.getMasach());
+//                String tensach = String.valueOf(books.getTensach());
+//                String manxb = String.valueOf(books.getManxb());
+//                String matheloai = String.valueOf(books.getMatheloai());
+//                String ngayxb = books.getNgayxb();
+//                String noidung = books.getNoidung();
+//                String anhbia =books.getAnhbia();
+//                String gia = String.valueOf( books.getGia());
+//                String tennxb= String.valueOf(books.getTennxb());
+//                String soluong = String.valueOf(books.getSoluong());
+//                String tacgia = books.getTacgia();
+//                String matacgia = String.valueOf(books.getMatacgia());
+//                String tongdiem = String.valueOf(books.getTongdiem());
+//                String landanhgia = String.valueOf(books.getLandanhgia());
+//
+//                sessionManager.createSessionSendInfomationBook(masach,tensach,manxb,matheloai,ngayxb,noidung,
+//                        anhbia,gia,tennxb,soluong,tacgia,matacgia, tongdiem, landanhgia);
+//                Toast.makeText(GetBookByTheloaiActivity.this, ""+masach, Toast.LENGTH_SHORT).show();
+//
+//                startActivity(new Intent(GetBookByTheloaiActivity.this, BookDetailActivity.class));
             }
 
             @Override

@@ -30,7 +30,7 @@
 
                 <LinearLayout
                     android:id="@+id/cartview"
-                    android:background="@drawable/bgchinhthuc"
+                    android:background="?attr/buttoncolor"
                     android:layout_width="wrap_content"
                     android:layout_height="210dp"
                     android:orientation="vertical">
@@ -56,7 +56,7 @@
                         app:sliderStartAutoCycle="true" />
                 </LinearLayout>
                 <LinearLayout
-                    android:background="#2196F3"
+                    android:background="?attr/buttoncolor"
                     android:id="@+id/linnear_theloai"
                     android:layout_below="@id/cartview"
                     android:layout_width="match_parent"
@@ -176,7 +176,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
                 <LinearLayout
-                    android:background="#2196F3"
+                    android:background="?attr/buttoncolor"
                     android:layout_below="@id/linnear_nhaxuaban"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

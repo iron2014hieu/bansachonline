@@ -72,18 +72,23 @@ public class RegisterActivity extends AppCompatActivity {
                     loading.setVisibility(View.GONE);
                     btnRegis.setVisibility(View.VISIBLE);
                 }else if (edtName.length()>10){
+                    loading.setVisibility(View.GONE);
                     edtName.setError(" tên không quá 10 kí tự");
                     btnRegis.setVisibility(View.VISIBLE);
                 }
                 else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
-                    edtEmail.setError("Nhập một email đúng");
+                    loading.setVisibility(View.GONE);
+                    edtEmail.setError("Nhập một email đúng dạng email123@mail.abc");
                     btnRegis.setVisibility(View.VISIBLE);
                 }else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
-                    edtPassword.setError("Mật khẩu quá ngắn hoặc phải có kí tự đặc biệt");
+                    loading.setVisibility(View.GONE);
+//                    edtPassword.setError("Mật khẩu quá ngắn hoặc phải có kí tự đặc biệt");
+                    Toast.makeText(RegisterActivity.this, "Mật khẩu quá ngắn hoặc phải có kí tự đặc biệt", Toast.LENGTH_SHORT).show();
                     btnRegis.setVisibility(View.VISIBLE);
                 }else if (!password.equals(rePass)){
                     btnRegis.setVisibility(View.VISIBLE);
-                    Toast.makeText(RegisterActivity.this, "mật khẩu không khớp", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
+                    loading.setVisibility(View.GONE);
                 }
                 else {
                     Regis();

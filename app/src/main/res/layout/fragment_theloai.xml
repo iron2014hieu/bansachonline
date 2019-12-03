@@ -14,6 +14,55 @@
         app:titleTextColor="#fff"
         android:background="#2196F3"
         app:title="Ưu đãi">
+        <LinearLayout
+
+            android:id="@+id/cartRelativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textSize="17sp"
+                android:layout_weight="1"
+                android:textColor="?attr/textcolor"
+                android:padding="8dp"
+                android:gravity="left"
+                android:text="Ưu đãi"
+                android:textStyle="bold" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4">
+
+                <ImageView
+                    android:id="@+id/chk_icon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="31dp"
+                    android:layout_marginBottom="6dp"
+                    android:src="@drawable/ic_shopping_cart" />
+
+                <TextView
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/counttxt_thuviern"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignEnd="@+id/chk_icon"
+                    android:layout_marginEnd="-14dp"
+                    android:background="@drawable/count_circle"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_khuyenmai"

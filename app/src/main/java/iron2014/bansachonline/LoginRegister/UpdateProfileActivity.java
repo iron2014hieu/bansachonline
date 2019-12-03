@@ -1,4 +1,4 @@
-package iron2014.bansachonline.Activity.hoadon;
+package iron2014.bansachonline.LoginRegister;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -23,18 +22,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Map;
 
-import iron2014.bansachonline.fragmentVanChuyen.Activity.ShipperActivity;
-import iron2014.bansachonline.LoginRegister.ProfileActivity;
 import iron2014.bansachonline.R;
-import iron2014.bansachonline.fragmentVanChuyen.Activity.ChitietGiaoHangActivity;
-import iron2014.bansachonline.fragmentVanChuyen.Activity.ChitietVanChuyenActivity;
+import iron2014.bansachonline.Session.SessionManager;
 
 
 public class UpdateProfileActivity extends AppCompatActivity implements View.OnClickListener{
@@ -46,24 +38,28 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
     String id;
 
     RadioGroup radioGroup;
+    SessionManager sessionManager;
 
     private int mYear, mMonth, mDay;
-
+    String name,address,phone,ngaysinh,sex,email, quyen;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_updateprofile);
         Anhxa();
 
         Intent intent = getIntent();
-
-        String email = intent.getStringExtra("email");
-        final String name = intent.getStringExtra("name");
-        final String address = intent.getStringExtra("address");
-        final String phone = intent.getStringExtra("phone");
-        final String ngaysinh = intent.getStringExtra("ngaysinh");
-        final String sex = intent.getStringExtra("sex");
+        sessionManager = new SessionManager(getApplicationContext());
+         name= intent.getStringExtra("name");
+         address = intent.getStringExtra("address");
+         phone = intent.getStringExtra("phone");
+         ngaysinh = intent.getStringExtra("ngaysinh");
+         sex = intent.getStringExtra("sex");
 
         id = intent.getStringExtra("id");
+
+        HashMap<String, String> user = sessionManager.getUserDetail();
+        quyen = user.get(sessionManager.QUYEN);
+        email = user.get(sessionManager.EMAIL);
 
         edtid.setText(id);
         edtNameUser.setText(name);
@@ -122,18 +118,16 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
         }
     }
     private void saveDetail(final String strid, final String strname, final String strdiachi, final String strsex, final String strngaysinh, final String strphone) {
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading");
-        progressDialog.show();
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_UDATE + "?id=" + strid + "&name="
                 + strname + "&address=" + strdiachi + "&sex=" + strsex + "&ngaysinh=" + strngaysinh + "&phone=" + strphone,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        progressDialog.dismiss();
                         if (response.equals("success")) {
-                            Toast.makeText(UpdateProfileActivity.this, "Sửa thành công", Toast.LENGTH_SHORT).show();
+                            sessionManager.createSession(id, email,address,phone, name, quyen);
                             startActivity(new Intent(UpdateProfileActivity.this, ProfileActivity.class));
+                            Toast.makeText(UpdateProfileActivity.this, "Sửa thành công", Toast.LENGTH_SHORT).show();
                             finish();
                         }
                     }
@@ -141,7 +135,6 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        progressDialog.dismiss();
                         Log.e("Error: ", error.toString());
                     }
                 });

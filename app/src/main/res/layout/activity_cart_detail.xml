@@ -55,7 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="@string/tenkhachhang"
-                    android:textColor="#000"
+                    android:textColor="?attr/textcolor"
                     android:background="@drawable/rounded_edittext" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,7 +70,7 @@
                     android:layout_width="match_parent"
                     android:hint="@string/diachi"
                     android:layout_height="50dp"
-                    android:textColor="#000"
+                    android:textColor="?attr/textcolor"
                     android:background="@drawable/rounded_edittext" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,7 +84,7 @@
                     android:id="@+id/edtSdt"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:textColor="#000"
+                    android:textColor="?attr/textcolor"
                     android:hint="@string/sodienthoaikhach"
                     android:background="@drawable/rounded_edittext" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -115,15 +115,16 @@
                     app:errorEnabled="true"
                     app:counterMaxLength="15"
                     app:counterEnabled="true"
+                    android:textColorHint="?attr/textcolor"
                     android:layout_weight="4">
                 <EditText
                     android:id="@+id/edtMaGiamGia"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:maxLength="15"
-                    android:textColor="#000"
+                    android:textColor="?attr/textcolor"
                     android:textColorHint="?attr/textcolor"
-                    android:hint="Nhập mã khuyến mãi" />
+                    android:hint="Nhấp giữ để chọn mã khuyến mãi" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <Button
                     android:padding="5dp"
@@ -131,10 +132,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#2196F3"
+                    android:background="@drawable/cutomsbtn"
                     android:text="@string/kientrama"
-                    android:backgroundTint="?attr/buttoncolor"
-                    android:textColor="#3F51B5" />
+                    android:textColor="?attr/textcolor" />
             </LinearLayout>
 
             <TextView
@@ -184,6 +184,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textColor="?attr/textcolor"
+
                 android:text="dsds"
                 android:textSize="15dp"
                 />
@@ -192,13 +193,12 @@
     </LinearLayout>
     </androidx.core.widget.NestedScrollView>
     <LinearLayout
-        android:backgroundTint="#F6F6F6"
         android:weightSum="3"
         android:layout_gravity="bottom|end"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="?attr/backgroundcolor"
+        android:background="?attr/cardbackground"
         android:orientation="horizontal">
 
         <ImageView
@@ -249,9 +249,9 @@
             android:id="@+id/btnThanhtoan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#2196F3"
+            android:background="@drawable/cutomsbtn"
             android:text="@string/thanhtoanhang"
-            android:backgroundTint="?attr/buttoncolor"
-            android:textColor="#3F51B5" />
+            android:padding="10dp"
+            android:textColor="?attr/textcolor" />
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

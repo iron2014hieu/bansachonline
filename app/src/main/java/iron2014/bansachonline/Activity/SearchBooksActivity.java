@@ -41,6 +41,7 @@ import iron2014.bansachonline.R;
 import iron2014.bansachonline.RecycerViewTouch.RecyclerTouchListener;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.adapter.Sach.SachAdapter;
+import iron2014.bansachonline.adapter.Sach.SachVeticalAdapter;
 import iron2014.bansachonline.model.Books;
 import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 import retrofit2.Call;
@@ -49,7 +50,7 @@ import retrofit2.Callback;
 public class SearchBooksActivity extends AppCompatActivity {
     MaterialSearchView searchView;
     ApiInTerFace apiInTerFace;
-    private SachAdapter sachAdapter;
+    private SachVeticalAdapter sachAdapter;
     private List<Books> listBookSearch = new ArrayList<>();
     ImageButton buttonRecord;
     RecyclerView recyclerview_book_search;
@@ -88,9 +89,9 @@ public class SearchBooksActivity extends AppCompatActivity {
                     }
                 }).check();
 
-        sachAdapter = new SachAdapter(SearchBooksActivity.this, listBookSearch);
+
         StaggeredGridLayoutManager gridLayoutManager =
-                new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         recyclerview_book_search.setLayoutManager(gridLayoutManager);
         recyclerview_book_search.setAdapter(sachAdapter);
         recyclerview_book_search.setHasFixedSize(true);
@@ -249,7 +250,7 @@ public class SearchBooksActivity extends AppCompatActivity {
                     txtSearch_null.setVisibility(View.GONE);
                 }
                 listBookSearch= response.body();
-                sachAdapter = new SachAdapter(SearchBooksActivity.this,listBookSearch);
+                sachAdapter = new SachVeticalAdapter(SearchBooksActivity.this,listBookSearch);
                 recyclerview_book_search.setAdapter(sachAdapter);
                 sachAdapter.notifyDataSetChanged();
             }

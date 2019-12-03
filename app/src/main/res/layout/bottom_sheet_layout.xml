@@ -19,14 +19,16 @@
             android:layout_height="wrap_content"
             android:text="Số lượng"
             android:textSize="20sp" />
+
         <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
             android:id="@+id/btn_numberQuality_bs"
             android:layout_width="100dp"
-            android:layout_marginTop="10dp"
             android:layout_height="30dp"
             android:layout_gravity="right"
+            android:layout_marginTop="10dp"
+            app:initialNumber="1"
             app:backGroundColor="#2196F3"
-            app:textColor="#fff"/>
+            app:textColor="#fff" />
     </LinearLayout>
     <Button
         android:layout_marginTop="10dp"

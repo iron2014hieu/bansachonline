@@ -97,6 +97,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
     ApiInTerFace apiInTerFace;
     ImageButton img_like,img_unlike,btn_Share_fb;
     TextView txtDaban;
+    Button btn_themvaogio;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = new SharedPref(this);
@@ -206,6 +207,13 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                 new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
         recyclerview_sach_sachkhac.setLayoutManager(gridLayoutManagerVeticl2);
         recyclerview_sach_sachkhac.setHasFixedSize(true);
+
+        btn_themvaogio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ThemDatmua(masach, tensach, linkImage,"1",idUser);
+            }
+        });
         fetchBookRandom();
 
 
@@ -331,7 +339,11 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
 
                                 if (success.equals("1")){
                                   Toast.makeText(BookDetailActivity.this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                                }else {
+
                                 }
+                            }else {
+                                startActivity(new Intent(getApplicationContext(), Main2Activity.class));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -341,7 +353,6 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(BookDetailActivity.this, "Loi roi nhe", Toast.LENGTH_SHORT).show();
                 Log.d("MYSQL", "Lỗi! \n" +error.toString());
             }
         }
@@ -381,7 +392,6 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("MYSQL", "Lỗi! \n" +error.toString());
-                Toast.makeText(BookDetailActivity.this, "loi: "+error, Toast.LENGTH_SHORT).show();
             }
         }
         ){
@@ -531,12 +541,15 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
             }
         });
     }
+
+
+
     @Override
     public void onButtonClicked(String text) {
         ThemDatmua(masach, tensach, linkImage,text,idUser);
-        Toast.makeText(this, ""+text, Toast.LENGTH_SHORT).show();
         startActivity(new Intent(getApplicationContext(), Main2Activity.class));
     }
+
     private void addcontrols(){
         btn_Message = findViewById(R.id.btn_chat);
         edtTensach = findViewById(R.id.edtTensach);
@@ -559,5 +572,6 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
         img_unlike = findViewById(R.id.img_unlike);
 
         recyclerview_sach_sachkhac= findViewById(R.id.recyclerview_sach_sachkhac);
+        btn_themvaogio = findViewById(R.id.btn_themvaogio);
     }
 }

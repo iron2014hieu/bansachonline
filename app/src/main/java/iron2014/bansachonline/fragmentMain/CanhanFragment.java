@@ -2,6 +2,7 @@ package iron2014.bansachonline.fragmentMain;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +11,23 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import java.util.HashMap;
+import java.util.List;
 
+import iron2014.bansachonline.ApiRetrofit.ApiClient;
+import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
 import iron2014.bansachonline.BookFavoriteActivity;
 import iron2014.bansachonline.LoginRegister.LoginActivity;
 import iron2014.bansachonline.LoginRegister.ProfileActivity;
 import iron2014.bansachonline.LoginRegister.RegisterActivity;
 import iron2014.bansachonline.LoginRegister.SettingsActivity;
+import iron2014.bansachonline.Main2Activity;
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.MuahangActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
+import iron2014.bansachonline.model.DatMua;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 
 /**
@@ -27,7 +35,7 @@ import iron2014.bansachonline.Session.SessionManager;
  */
 public class CanhanFragment extends Fragment implements View.OnClickListener {
     private TextView txtSetting,txtTaikhoan;
-
+    ApiInTerFaceDatmua apiInTerFaceDatmua;
     private TextView txtChoxacnhan, txtCholayhang,txtDanggiao,txtDanhgia,txtFav;
     private CardView cardview_canhan;
 
@@ -37,7 +45,7 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
     SessionManager sessionManager;
     String email;
     Button btnDangnhap,btnDangky;
-    TextView txtXemdanhgia;
+    TextView txtXemdanhgia,chk_icon_canhan;
 
     View v;
 
@@ -81,6 +89,8 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
         txtFav.setOnClickListener(this);
 
         txtXemdanhgia.setOnClickListener(this);
+
+        fetchSoluong(user.get(sessionManager.ID));
         return v;
     }
     @Override
@@ -114,6 +124,29 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
+    public void GotoCart(View view) {
+        startActivity(new Intent(getContext(), Main2Activity.class));
+    }
+    public void fetchSoluong(String mauser){
+        apiInTerFaceDatmua = ApiClient.getApiClient().create(ApiInTerFaceDatmua.class);
+        Call<List<DatMua>> call = apiInTerFaceDatmua.get_soluong(mauser);
+
+        call.enqueue(new Callback<List<DatMua>>() {
+            @Override
+            public void onResponse(Call<List<DatMua>> call, retrofit2.Response<List<DatMua>> response) {
+                int soluong =0;
+                for (int i = 0; i<response.body().size(); i++){
+                    soluong = response.body().get(i).getSoluong();
+                }
+                chk_icon_canhan.setText(String.valueOf(soluong));
+            }
+
+            @Override
+            public void onFailure(Call<List<DatMua>> call, Throwable t) {
+                Log.e("Error Search:","Error on: "+t.toString());
+            }
+        });
+    }
     private void chuyenMuahang(String check) {
         Intent intent = new Intent(getContext(), MuahangActivity.class);
         intent.putExtra("check", check);
@@ -143,5 +176,6 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
         btnDangky= v.findViewById(R.id.btnDangky);
         txtFav = v.findViewById(R.id.txtFav);
         txtXemdanhgia = v.findViewById(R.id.txtXemdanhgia);
+        chk_icon_canhan=v.findViewById(R.id.counttxt_canhan);
     }
 }

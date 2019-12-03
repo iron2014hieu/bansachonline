@@ -25,7 +25,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentStart="true"
-                    android:src="@drawable/profile2" />
+                    android:src="@drawable/book" />
 
                 <TextView
                     android:id="@+id/txtNameuser_item"
@@ -34,7 +34,7 @@
                     android:layout_toEndOf="@+id/img_prf"
                     android:layout_marginLeft="15dp"
                     android:textColor="?attr/textcolor"
-                    android:text="Traanf hieeus tong" />
+                    android:text="Người dùng" />
             </LinearLayout>
 
             <RatingBar
