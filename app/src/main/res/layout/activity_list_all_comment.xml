@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:titleTextColor="?attr/textcolor"
-                app:title="Tất cả đánh giá "
+                app:title="@string/tatca_danhgia"
                 app:navigationIcon="@drawable/ic_close"/>
         </com.google.android.material.appbar.AppBarLayout>
             <androidx.recyclerview.widget.RecyclerView

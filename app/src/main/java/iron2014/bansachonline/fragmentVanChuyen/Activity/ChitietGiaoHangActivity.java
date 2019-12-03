@@ -96,11 +96,11 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
         tvTinhTrang.setText(tinhtrang);
 
         if(tinhtrang.equals("danhgia")){
-            tvTinhTrang.setText("Đã giao hàng");
+            tvTinhTrang.setText(getString(R.string.dagiaohang));
         }else if (tinhtrang.equals("danggiao")){
-            tvTinhTrang.setText("Đang vận chuyển");
+            tvTinhTrang.setText(getString(R.string.dangvanchuyen));
         }else if(tinhtrang.equals("userxacnhan")){
-            tvTinhTrang.setText("Xác nhận đơn hàng");
+            tvTinhTrang.setText(getString(R.string.xacnhandonhang));
         }
         
         if(tinhtrang!=null && tinhtrang.equals("userxacnhan")){
@@ -183,8 +183,8 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
         requestQueue.add(request);
     }
     private void sendSinglePush(){
-        final String title = "Đã giao hàng";
-        final String message = "Xác nhận đơn khi bạn đã nhận được hàng";
+        final String title = getString(R.string.dagiaohang);
+        final String message = getString(R.string.xacnhankhibannhan);
         final String image = "https://www.incimages.com/uploaded_files/image/970x450/getty_549933903_2000133320009280405_105293.jpg";
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Sending Push");
@@ -194,7 +194,7 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
-                        String mota = "Tất cả sách trong đơn hàng " +mahd+ " đã giao đến bạn vào "+now+".";
+                        String mota = getString(R.string.tatcassach) +mahd+ getString(R.string.giaodenban) +now+".";
                         InsertNotif(mota,mahd);
                         Toast.makeText(ChitietGiaoHangActivity.this, response, Toast.LENGTH_LONG).show();
                     }
@@ -244,7 +244,7 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("tieude", "Đơn hàng " + mahd +" giao thành công.");
+                params.put("tieude", getString(R.string.donhang) + mahd +getString(R.string.giaothanhcong));
                 params.put("mota", mota);
                 params.put("mahoadon", mahoadon);
                 params.put("mauser", mauser);

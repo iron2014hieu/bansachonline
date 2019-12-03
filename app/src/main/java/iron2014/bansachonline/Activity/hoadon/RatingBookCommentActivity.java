@@ -91,14 +91,14 @@ public class RatingBookCommentActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Bạn có muốn thoát?")
+        builder.setMessage(getString(R.string.bancomuonthoat))
                 .setCancelable(false)
-                .setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.co), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         RatingBookCommentActivity.this.finish();
                     }
                 })
-                .setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.khong), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }
@@ -134,7 +134,7 @@ public class RatingBookCommentActivity extends AppCompatActivity {
                         LuuNhanxet(masach,diemnhanxet, idcthd);
                         break;
                     }else {
-                        Toast.makeText(this, "Bạn phải nhập nhận xét và cho điểm đánh giá", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, getString(R.string.nhapnxvadanhgia), Toast.LENGTH_SHORT).show();
                     }
 
             }
@@ -152,7 +152,7 @@ public class RatingBookCommentActivity extends AppCompatActivity {
 
                         break;
                     }else {
-                        Toast.makeText(this, "Bạn phải nhập nhận xét và cho điểm đánh giá", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, getString(R.string.nhapnxvadanhgia), Toast.LENGTH_SHORT).show();
                     }
 
             }

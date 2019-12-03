@@ -84,7 +84,7 @@
                     android:textStyle="bold"
                     android:textColor="#F44336"
                     android:layout_gravity="right"
-                    android:text="NBD : "
+                    android:text="@string/ngaybd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -105,7 +105,7 @@
                     android:textStyle="bold"
                     android:textColor="#F44336"
                     android:layout_gravity="right"
-                    android:text="HSD : "
+                    android:text="@string/hansudung"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView

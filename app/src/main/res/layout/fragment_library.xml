@@ -28,7 +28,7 @@
                 android:textColor="?attr/textcolor"
                 android:padding="8dp"
                 android:gravity="left"
-                android:text="Thư viện"
+                android:text="@string/thuvien"
                 android:textStyle="bold" />
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -74,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="Tủ sách của tôi"
+        android:text="@string/tusach_cuatoi"
         android:textColor="?attr/textcolor"
         android:background="?attr/cardbackground"
         android:textSize="20dp" />
@@ -99,7 +99,7 @@
         android:layout_marginTop="103dp"
         android:drawableTop="@drawable/box_64db"
         android:gravity="center"
-        android:text="Chưa có sách trong thư viện"
+        android:text="@string/chuaco_sachthuvien"
         android:textStyle="bold"
         android:visibility="gone"  />
 </RelativeLayout>

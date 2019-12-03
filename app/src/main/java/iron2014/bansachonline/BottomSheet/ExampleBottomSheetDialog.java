@@ -48,7 +48,8 @@ public class ExampleBottomSheetDialog extends BottomSheetDialogFragment {
         kho = book.get(sessionManager.SOLUONG);
 
         txtBTGiaban.setText(giaban+"đ");
-        txtKho.setText("Kho: "+kho);
+        txtKho.setText(getString(R.string.kho) +kho);
+
         Picasso.with(getContext()).load(linkImage).into(img_book_bt);
         img_close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +57,6 @@ public class ExampleBottomSheetDialog extends BottomSheetDialogFragment {
                 dismiss();
             }
         });
-
         elegantNumberButton.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
             @Override
             public void onValueChange(ElegantNumberButton view, final int oldValue, final int newValue) {
@@ -68,7 +68,7 @@ public class ExampleBottomSheetDialog extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 if (soluong > Integer.valueOf(kho)){
-                    Toast.makeText(getContext(), "Sách "+tensach+" đã chỉ còn "+kho+" cuốn.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.sachs) +tensach+getString(R.string.chicon) +kho+getString(R.string.cuon) , Toast.LENGTH_SHORT).show();
 
                 }else {
                     mListener.onButtonClicked(String.valueOf(soluong));

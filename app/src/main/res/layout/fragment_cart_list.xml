@@ -29,7 +29,7 @@
                 android:textColor="#A3030303"
                 android:textStyle="italic"
                 android:id="@+id/tvLaymaKM"
-                android:text="Nhận mã khuyến mãi >> "
+                android:text="@string/nhanmakhuyenmai"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -57,7 +57,7 @@
             android:textSize="15dp"
             android:textColor="?attr/textcolor"
             android:textStyle="bold"
-            android:text="Giỏ hàng trống"
+            android:text="@string/giohangtrong"
             android:gravity="center"
             android:visibility="gone" />
         <androidx.recyclerview.widget.RecyclerView
@@ -74,7 +74,7 @@
             android:textColor="?attr/textcolor"
             android:drawableTop="@drawable/box_64db"
             android:gravity="center"
-            android:text="Giỏ hàng trống"
+            android:text="@string/giohangtrong"
             android:textStyle="bold" />
         <LinearLayout
             android:padding="5dp"
@@ -87,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:text="Chọn tất cả"/>
+                android:text="@string/chontatca"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -106,7 +106,7 @@
                 android:id="@+id/tv_tongthanhtoan"
                 android:textSize="15dp"
                 android:textColor="?attr/textcolor"
-                android:text="Tổng thanh toán : "
+                android:text="@string/tong_thanhtoa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView

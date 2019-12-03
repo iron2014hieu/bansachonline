@@ -31,7 +31,7 @@
                     android:textColor="?attr/textcolor"
                     android:padding="8dp"
                     android:gravity="left"
-                    android:text="Thiết lập"
+                    android:text="@string/thietlap"
                     android:textStyle="bold" />
                 <RelativeLayout
                     android:layout_width="match_parent"

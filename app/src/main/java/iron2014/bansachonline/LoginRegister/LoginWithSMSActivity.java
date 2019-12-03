@@ -88,7 +88,7 @@ public class LoginWithSMSActivity extends AppCompatActivity {
 
                 if (code.isEmpty() || code.length() < 6) {
 
-                    editText.setError("Nhập mã...");
+                    editText.setError(getString(R.string.nhapma));
                     editText.requestFocus();
                     return;
                 }
@@ -183,11 +183,11 @@ public class LoginWithSMSActivity extends AppCompatActivity {
                                         startActivity(new Intent(LoginWithSMSActivity.this, ShipperActivity.class));
                                     }else {
                                         startActivity(new Intent(LoginWithSMSActivity.this, MainActivity.class));
-                                        Toast.makeText(LoginWithSMSActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(LoginWithSMSActivity.this, getString(R.string.dangnhaptc), Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             }else {
-                                Toast.makeText(LoginWithSMSActivity.this, "Bạn chưa đăng ký số điện thoại này", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginWithSMSActivity.this, getString(R.string.banchuadksdtnay), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

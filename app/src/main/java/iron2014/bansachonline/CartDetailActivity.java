@@ -186,9 +186,9 @@ public class CartDetailActivity extends AppCompatActivity {
         toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator()).start();
 
 
-        txtTiensanpham.setText("Tổng Tiền sách: "+(tongtien));
-        TxtTienKhuyenmai.setText("Khuyến mãi: "+trukhuyenmai);
-        txtTienvanchuyen.setText("Phí vận chuyển: "+ tienvanchuyen);
+        txtTiensanpham.setText(getString(R.string.tongtiensach)+(tongtien));
+        TxtTienKhuyenmai.setText(getString(R.string.khuyenmais)+trukhuyenmai);
+        txtTienvanchuyen.setText(getString(R.string.phivc)+ tienvanchuyen);
 
 
         cartAdapter = new ListSPAdapter(this,listDatmua);
@@ -212,9 +212,9 @@ public class CartDetailActivity extends AppCompatActivity {
 
                 txtTongthanhtoan.setText(String.valueOf(tienthanhtoan));
 
-                txtTiensanpham.setText("Tổng Tiền sách: "+(tongtien)+" VNĐ");
-                TxtTienKhuyenmai.setText("Khuyến mãi: "+trukhuyenmai+" VNĐ");
-                txtTienvanchuyen.setText("Phí vận chuyển: "+ tienvanchuyen+" VNĐ");
+                txtTiensanpham.setText(getString(R.string.tongtiensach) +(tongtien)+" VNĐ");
+                TxtTienKhuyenmai.setText(getString(R.string.khuyenmais) +trukhuyenmai+" VNĐ");
+                txtTienvanchuyen.setText(getString(R.string.phivanchuyen)+ tienvanchuyen+" VNĐ");
 
             }
             @Override
@@ -229,7 +229,7 @@ public class CartDetailActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View view) {
                 startActivity(new Intent(getApplicationContext(), ChonMaKhuyenmaiActivity.class));
-                Toast.makeText(CartDetailActivity.this, "Hãy chọn mã mong muốn!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CartDetailActivity.this, getString(R.string.haychonmacan), Toast.LENGTH_SHORT).show();
                 return false;
             }
 
@@ -249,7 +249,7 @@ public class CartDetailActivity extends AppCompatActivity {
             public void onResponse(Call<List<KhuyenMai>> call, retrofit2.Response<List<KhuyenMai>> response) {
                 listKhuyenMai = response.body();
                 if (listKhuyenMai.size() == 0) {
-                    Toast.makeText(CartDetailActivity.this, "Không có khuyến mãi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CartDetailActivity.this, getString(R.string.khongcokm), Toast.LENGTH_SHORT).show();
                 } else {
                     btnCheckMGG.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -260,25 +260,25 @@ public class CartDetailActivity extends AppCompatActivity {
                                 String s = edtMaGiamGia.getText().toString();
                                 if (!s.equals("")) {
                                     if (makm.equals(s)) {
-                                        Toast.makeText(CartDetailActivity.this, "Hợp lệ " + makm, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(CartDetailActivity.this, getString(R.string.hople) + makm, Toast.LENGTH_SHORT).show();
 
                                         trukhuyenmai = (tongtien*phantram) - tongtien;
                                         tienthanhtoan = tongtien+trukhuyenmai+tienvanchuyen;
 
                                         txtTongthanhtoan.setText(String.valueOf(tienthanhtoan));
 
-                                        txtTiensanpham.setText("Tổng Tiền sách: "+(tongtien)+" VNĐ");
-                                        TxtTienKhuyenmai.setText("Khuyến mãi: "+trukhuyenmai+" VNĐ");
-                                        txtTienvanchuyen.setText("Phí vận chuyển: "+ tienvanchuyen+" VNĐ");
+                                        txtTiensanpham.setText(getString(R.string.tongtiensach) +(tongtien)+" VNĐ");
+                                        TxtTienKhuyenmai.setText(getString(R.string.khuyenmai) +trukhuyenmai+" VNĐ");
+                                        txtTienvanchuyen.setText(getString(R.string.phivanchuyen) + tienvanchuyen+" VNĐ");
                                         break;
                                     } else {
-                                        Toast.makeText(CartDetailActivity.this, "Mã không tồn tại", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(CartDetailActivity.this, getString(R.string.maktt), Toast.LENGTH_SHORT).show();
                                         break;
                                     }
 
                                 }
                                 else {
-                                    Toast.makeText(CartDetailActivity.this, "Bạn chưa nhập mã", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CartDetailActivity.this, getString(R.string.banchunhapma), Toast.LENGTH_SHORT).show();
                                     break;
                                 }
                             }
@@ -296,24 +296,24 @@ public class CartDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (edtTenkh.getText().toString().isEmpty()){
-                    Toast.makeText(CartDetailActivity.this, "Vui lòng nhập tên khách hàng", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CartDetailActivity.this, R.string.nhaptenkh, Toast.LENGTH_SHORT).show();
                 }else if (edtDiachi.getText().toString().isEmpty()){
-                    Toast.makeText(CartDetailActivity.this, "Vui lòng nhập địa chỉ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CartDetailActivity.this, getString(R.string.nhapdc), Toast.LENGTH_SHORT).show();
                 }else if (edtSdt.getText().toString().isEmpty()){
-                    Toast.makeText(CartDetailActivity.this, "Vui lòng nhập số điện thoại", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CartDetailActivity.this, getString(R.string.nhapsodient), Toast.LENGTH_SHORT).show();
                 }else {
                     AlertDialog.Builder alertDialog = new  AlertDialog.Builder(CartDetailActivity.this);
-                    alertDialog.setMessage("Bạn có muốn thanh toán đơn hàng này không");
+                    alertDialog.setMessage(getString(R.string.bancomuontt));
                     alertDialog.setIcon(R.drawable.ic_check_black_24dp);
-                    alertDialog.setTitle("Đặt hàng");
-                    alertDialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    alertDialog.setTitle(getString(R.string.dathang));
+                    alertDialog.setPositiveButton(getString(R.string.co), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             displayAlertDialog();
                             //ThemHoadon(mauser_session, String.valueOf(tongtien), edtSdt.getText().toString(), UrlSql.url_insert_hoadon);
                         }
                     });
-                    alertDialog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    alertDialog.setNegativeButton(getString(R.string.khong), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             progress_hoadon.setVisibility(View.GONE);
@@ -354,9 +354,9 @@ public class CartDetailActivity extends AppCompatActivity {
 
     private void initList(){
         countryItems = new ArrayList<>();
-        countryItems.add(new CountryItem("Giao hàng tiết kiệm","20000", R.drawable.vanchuyen));
-        countryItems.add(new CountryItem("Giao hàng nhanh", "30000", R.drawable.vanchuyen));
-        countryItems.add(new CountryItem("Giao hàng siêu tốc", "45000", R.drawable.vanchuyen));
+        countryItems.add(new CountryItem(getString(R.string.giaohangtk),"20000", R.drawable.vanchuyen));
+        countryItems.add(new CountryItem(getString(R.string.giaohangnh), "30000", R.drawable.vanchuyen));
+        countryItems.add(new CountryItem(getString(R.string.ghst), "45000", R.drawable.vanchuyen));
     }
 
 
@@ -403,10 +403,10 @@ public class CartDetailActivity extends AppCompatActivity {
                                 UpdateSoluong(masach, soluong);
                                 xoaGiohang(String.valueOf(id),mauser);
                             }
-                            sendOnChannel("Hóa đơn: "+mahoadon,"Xem đơn hàng của bạn");
-                            String mota = "Đơn hàng "+mahoadon +" đang chờ xủ lý. Vui lòng kiểm tra thời gian nhận trong chi tiết hóa đơn";
+                            sendOnChannel(getString(R.string.hod)+mahoadon,getString(R.string.xemdhb));
+                            String mota = getString(R.string.dh)+mahoadon +getString(R.string.choxl);
                             InsertNotif(mota,String.valueOf(mahoadon));
-                            Toast.makeText(CartDetailActivity.this, "Thêm thành công hóa đơn: " + mahoadon, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CartDetailActivity.this, getString(R.string.yhemtchd) + mahoadon, Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -533,8 +533,8 @@ public class CartDetailActivity extends AppCompatActivity {
                 .setSmallIcon(R.drawable.book)
                 .setStyle(new NotificationCompat.InboxStyle()
                         .addLine(title + " " + message)
-                        .setBigContentTitle("Đơn hàng đang được xử lý")
-                        .setSummaryText("adumankhe2@gmail.com"))
+                        .setBigContentTitle(getString(R.string.donhangdangducsl))
+                        .setSummaryText(getString(R.string.adumakhe)))
                 .setPriority(NotificationCompat.PRIORITY_LOW)
                 .setGroup("")
                 .setAutoCancel(true)
@@ -552,7 +552,7 @@ public class CartDetailActivity extends AppCompatActivity {
         // custom dialog
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_xacminh_hoadon);
-        dialog.setTitle("Title...");
+//        dialog.setTitle();
 
         // set the custom dialog components - text, image and button
          edtEnterPhone = (EditText) dialog.findViewById(R.id.editTextPhone_dialog);
@@ -591,7 +591,7 @@ public class CartDetailActivity extends AppCompatActivity {
                 String number =edtEnterPhone.getText().toString().trim();;
 
                 if (number.isEmpty() || number.length() < 10) {
-                    edtEnterPhone.setError("Vui lòng nhập số hợp lệ");
+                    edtEnterPhone.setError(getString(R.string.nhapsohl));
                     edtEnterPhone.requestFocus();
                     return;
                 }else {
@@ -640,7 +640,7 @@ public class CartDetailActivity extends AppCompatActivity {
 
                             ThemHoadon(mauser_session, String.valueOf(tienthanhtoan), edtSdt.getText().toString(), UrlSql.url_insert_hoadon);
                         }else {
-                            Toast.makeText(CartDetailActivity.this, "Nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CartDetailActivity.this, getString(R.string.nhapdaydutt), Toast.LENGTH_SHORT).show();
                         }
                         } else {
 //                            Toast.makeText(CartDetailActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
@@ -703,7 +703,7 @@ public class CartDetailActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("tieude", "Chờ xử lý đơn hàng");
+                params.put("tieude", getString(R.string.choxuly));
                 params.put("mota", mota);
                 params.put("mahoadon", mahoadon);
                 params.put("mauser", mauser_session);

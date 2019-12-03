@@ -68,7 +68,7 @@
                 android:textStyle="normal"
                 android:id="@+id/txtName"
                 android:layout_weight="1"
-                android:text="Thiết lập ngay"
+                android:text="@string/thietlapngay"
                 android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:gravity="center"/>
@@ -79,7 +79,7 @@
                 android:layout_weight="1"
                 android:background="?attr/buttoncolor"
                 android:padding="15dip"
-                android:text="Giới tính"
+                android:text="@string/gioitinh"
                 android:drawableRight="@drawable/ic_chevron_right"
                 android:textColor="?attr/textcolor"
                 android:textSize="18dp"
@@ -91,7 +91,7 @@
                 android:id="@+id/txtSex"
                 android:layout_weight="1"
                 android:background="?attr/buttoncolor"
-                android:text="Thiết lập ngay"
+                android:text="@string/thietlapngay"
                 android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:gravity="center"/>
@@ -105,14 +105,14 @@
                 android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:drawableRight="@drawable/ic_chevron_right"
-                android:text="Địa chỉ"/>
+                android:text="@string/diachi"/>
             <TextView
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:id="@+id/txtAddress"
                 android:layout_weight="1"
                 android:background="?attr/buttoncolor"
-                android:text="Thiết lập ngay"
+                android:text="@string/thietlapngay"
                 android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:gravity="center"/>
@@ -126,14 +126,14 @@
                 android:background="?attr/buttoncolor"
                 android:textColor="?attr/textcolor"
                 android:padding="15dip"
-                android:text="Ngày sinh"/>
+                android:text="@string/ngaysinh"/>
             <TextView
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:id="@+id/txtNgaySinh"
                 android:layout_weight="1"
                 android:background="?attr/buttoncolor"
-                android:text="Thiết lập ngay"
+                android:text="@string/thietlapngay"
                 android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:gravity="center"/>
@@ -147,14 +147,14 @@
                 android:background="?attr/buttoncolor"
                 android:textColor="?attr/textcolor"
                 android:padding="15dip"
-                android:text="Điện thoại"/>
+                android:text="@string/dienthoai"/>
             <TextView
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:id="@+id/txtPhone"
                 android:layout_weight="1"
                 android:background="?attr/buttoncolor"
-                android:text="Thiết lập ngay"
+                android:text="@string/thietlapngay"
                 android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:gravity="center"/>
@@ -168,14 +168,14 @@
                 android:drawableRight="@drawable/ic_chevron_right"
                 android:textColor="?attr/textcolor"
                 android:padding="15dip"
-                android:text="Email"/>
+                android:text="@string/email"/>
             <TextView
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:id="@+id/txtEmail"
                 android:layout_weight="1"
                 android:background="?attr/buttoncolor"
-                android:text="Thiết lập ngay"
+                android:text="@string/thietlapngay"
                 android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:autoLink="email"
@@ -194,10 +194,10 @@
                 android:padding="5dp"
                 android:textColor="?attr/textcolor"
                 android:drawableRight="@drawable/ic_chevron_right"
-                android:text="Thay đổi mật khẩu"/>
+                android:text="@string/thaydoimatkhau"/>
             <TextView
                 android:textSize="18dp"
-                android:text="Thiết lập ngay"
+                android:text="@string/thietlapngay"
                 android:onClick="doimk"
                 android:drawableRight="@drawable/ic_chevron_right"
                 android:padding="5dp"
@@ -212,7 +212,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/buttoncolor"
             android:textColor="?attr/textcolor"
-            android:text="Cập nhật thông tin"/>
+            android:text="@string/capnhat_thongtin"/>
 
 
     </TableLayout>

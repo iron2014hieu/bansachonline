@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="Chờ Xác Nhận"
+                android:text="@string/choxacnhans"
                 android:textSize="15dp"
                 android:textColor="#3F51B5"/>
 

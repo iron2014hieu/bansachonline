@@ -61,12 +61,12 @@ public class NewPasswordActivity extends AppCompatActivity {
 
 
                 if (newPass.isEmpty() || reNewPass.isEmpty()){
-                    Toast.makeText(getApplicationContext(), "Vui lòng nhập mật khẩu", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.vuilongnhapmatkhau), Toast.LENGTH_SHORT).show();
                 }
                 else if (!PASSWORD_PATTERN.matcher(newPass).matches()) {
-                    enterNewPass.setError("Mật khẩu quá ngắn hoặc phải có kí tự đặc biệt");
+                    enterNewPass.setError(getString(R.string.coktydbsochu));
                 }else if (!newPass.equals(reNewPass)){
-                    Toast.makeText(getApplicationContext(), "mật khẩu không khớp", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.matkhkokhop), Toast.LENGTH_SHORT).show();
                 }
                 else {
                     ChangePassword();
@@ -83,7 +83,7 @@ public class NewPasswordActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
                             if (success.equals("1")){
-                                Toast.makeText(NewPasswordActivity.this, "Thay đổi thành công!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(NewPasswordActivity.this,getString(R.string.thaydoithanhc), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(),ProfileActivity.class);
                                 startActivity(intent);
                             }

@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             app:titleTextColor="?attr/textcolor"
             android:background="?attr/topbottomcolor"
-            app:title="Cài đặt"
+            app:title="@string/cai_dat"
             app:navigationIcon="@drawable/ic_close"
             />
     </com.google.android.material.appbar.AppBarLayout>
@@ -92,7 +92,7 @@
         android:layout_gravity="bottom">
         <TableRow>
             <TextView
-                android:text="Liên hệ: "
+                android:text="@string/lienhe"
                 android:textColor="?attr/textcolor"
                 android:textSize="20dp"/>
             <TextView
@@ -108,7 +108,7 @@
         </TableRow>
         <TableRow>
             <TextView
-                android:text="Ghé thăm  "
+                android:text="@string/ghe_tham"
                 android:textColor="?attr/textcolor"
                 android:textSize="20dp"/>
             <TextView

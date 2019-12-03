@@ -21,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:titleTextColor="?attr/textcolor"
-                app:title="Sách"
+                app:title="@string/app_name"
                 app:navigationIcon="@drawable/ic_close"/>
         </com.google.android.material.appbar.AppBarLayout>
         <LinearLayout
@@ -164,7 +164,7 @@
                 android:textStyle="bold"
                 android:onClick="xemsachkhac"
                 android:drawableLeft="@drawable/ic_chevron_left"
-                android:text="Xem sách khác"/>
+                android:text="@string/xem_sachkhac"/>
 
             <TextView
                 android:padding="5dp"
@@ -174,7 +174,7 @@
                 android:textStyle="normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sách được đề xuất" />
+                android:text="@string/sachduoc_dexuat" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_sach_sachdexuat"

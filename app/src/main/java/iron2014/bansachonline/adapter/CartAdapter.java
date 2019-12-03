@@ -151,17 +151,17 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             public void onClick(View v) {
                 final String masach2 = String.valueOf(listGiohang.get(i).getMasach());
                 AlertDialog.Builder alertDialog = new  AlertDialog.Builder(context);
-                alertDialog.setMessage("Bạn có muốn xóa sách "+listGiohang.get(i).getSanpham()+" này không");
+                alertDialog.setMessage(context.getString(R.string.bancomuonxoa)+listGiohang.get(i).getSanpham()+context.getString(R.string.naykhong));
                 alertDialog.setIcon(R.drawable.shockedelete);
-                alertDialog.setTitle("Xóa sản phẩm");
-                alertDialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                alertDialog.setTitle(context.getString(R.string.xoasp));
+                alertDialog.setPositiveButton(context.getString(R.string.co), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                         deleteGiohang(iduser, masach2,UrlSql.URL_DELETE_CARTS);
                     }
                 });
-                alertDialog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                alertDialog.setNegativeButton(context.getString(R.string.khong), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                     }
@@ -227,7 +227,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                                     total = (Integer.valueOf(listGiohang.get(m).getGia()))*(Integer.valueOf(datMua.getSoluong()));
                                     context.startActivity(new Intent(context, Main2Activity.class));
                                 }else {
-                                    Toast.makeText(context, "Sách  không đủ số lượng!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context,context.getString(R.string.sachkdusl), Toast.LENGTH_SHORT).show();
                                     break;
                                 }
                             }

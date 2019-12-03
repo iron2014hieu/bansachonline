@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         app:titleTextColor="#fff"
         android:background="#2196F3"
-        app:title="Ưu đãi">
+        app:title="@string/uudai">
         <LinearLayout
 
             android:id="@+id/cartRelativeLayout"

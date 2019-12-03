@@ -111,8 +111,8 @@ public class LoginActivity extends AppCompatActivity {
                         clearData();
                     }
                 }else {
-                    edtEmail.setError("Vui lòng nhập email");
-                    edtPassword.setError("Vui lòng nhập password");
+                    edtEmail.setError(getString(R.string.vuilongnhapemail));
+                    edtPassword.setError(getString(R.string.vuilongnhapmatkhau));
                 }
             }
         });
@@ -149,11 +149,11 @@ public class LoginActivity extends AppCompatActivity {
                                         startActivity(new Intent(LoginActivity.this, ShipperActivity.class));
                                     }else {
                                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(LoginActivity.this, getString(R.string.dangnhaptc), Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             }else {
-                                Toast.makeText(LoginActivity.this, "Sai tài khoản hoặc mật khẩu!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, getString(R.string.saitk_ormk), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

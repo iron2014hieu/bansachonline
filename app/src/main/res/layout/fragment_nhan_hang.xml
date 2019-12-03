@@ -17,7 +17,7 @@
         android:layout_marginTop="103dp"
         android:drawableTop="@drawable/box_64db"
         android:gravity="center"
-        android:text="Chưa có đơn hàng"
+        android:text="@string/chuaco_donhang"
         android:textStyle="bold"
         android:visibility="gone"  />
 

@@ -31,7 +31,7 @@
                 android:textSize="15dp"
                 android:textColor="?attr/textcolor"
                 android:textStyle="bold"
-                android:text="Đang vận chuyển"/>
+                android:text="@string/dangvanchuyen"/>
 
                 <TextView
                     android:gravity="right"
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:textColor="?attr/textcolor"
             android:layout_marginTop="5dp"
-            android:text="Tất cả hàng đã dc vân chuyen trc nagyf 20/11/2019"/>
+            android:text="Tất cả hàng đã dc vân chuyen trc ngày 20/11/2019"/>
 
         <TextView
                 android:visibility="gone"

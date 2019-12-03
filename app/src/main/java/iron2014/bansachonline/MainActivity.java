@@ -313,7 +313,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Nhấn thêm lần nữa để thoát!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.nhanthemdethoat), Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
 

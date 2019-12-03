@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             app:navigationIcon="@drawable/ic_arrow"
             android:backgroundTint="?attr/topbottomcolor"
-            app:title="Danh sách"
+            app:title="@string/danh_sach"
             app:titleTextColor="?attr/textcolor"
             android:background="?attr/textcolor"
             android:layout_height="wrap_content"

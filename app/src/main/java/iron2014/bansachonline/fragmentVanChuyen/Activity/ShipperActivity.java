@@ -58,10 +58,10 @@ public class ShipperActivity extends AppCompatActivity {
         });
         tabViewPagerAdapter = new TabViewPagerAdapter(getSupportFragmentManager());
         //add fragmenr here
-        tabViewPagerAdapter.AddFragment(new ChoXacNhanFragment(), "Chờ xác nhận");
-        tabViewPagerAdapter.AddFragment(new ChoLayHangSPFragment(), "Chờ lấy hàng");
-        tabViewPagerAdapter.AddFragment(new GiaoHangFragment(), "Giao hàng");
-        tabViewPagerAdapter.AddFragment(new NhanHangFragment(), "Đã giao");
+        tabViewPagerAdapter.AddFragment(new ChoXacNhanFragment(), getString(R.string.choxacnhan));
+        tabViewPagerAdapter.AddFragment(new ChoLayHangSPFragment(), getString(R.string.cholayhang));
+        tabViewPagerAdapter.AddFragment(new GiaoHangFragment(), getString(R.string.giaohang));
+        tabViewPagerAdapter.AddFragment(new NhanHangFragment(), getString(R.string.dagiaohang));
         viewPager.setAdapter(tabViewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         if (check==null){

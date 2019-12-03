@@ -50,8 +50,8 @@ public class DoiMatkhauActivity extends AppCompatActivity {
                 String mEmail = edtEmailRE.getText().toString().trim();
                 String mPassword = edtPassRE.getText().toString().trim();
                 if (mEmail.isEmpty() || mPassword.isEmpty()){
-                    edtEmailRE.setError("Vui lòng nhập email");
-                    edtPassRE.setError("Vui lòng nhập mật khẩu");
+                    edtEmailRE.setError(getString(R.string.vuilongnhapemail));
+                    edtPassRE.setError(getString(R.string.vuilongnhapmatkhau));
                 }else {
                     Login();
                 }
@@ -91,7 +91,7 @@ public class DoiMatkhauActivity extends AppCompatActivity {
                                 intent.putExtra("mauser", id);
                                 startActivity(intent);
                             }else {
-                                Toast.makeText(getApplicationContext(), "Sai tài khoản hoặc mật khẩu!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), getString(R.string.saitk_ormk), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

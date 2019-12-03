@@ -2,7 +2,7 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Trang chủ"
+    <item android:title="@string/trangchu"
         android:id="@+id/mn_home"
         app:showAsAction="always"/>
 </menu>

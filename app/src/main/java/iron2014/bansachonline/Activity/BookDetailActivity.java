@@ -185,7 +185,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
 
 
             txt_numrating_book_detail.setText(""+Math.round(diemdanhgia));
-            txt_numrating_below_deatil.setText(diemdanhgia+" ("+landanhgia+" đánh giá)");
+            txt_numrating_below_deatil.setText(diemdanhgia+" ("+landanhgia+getString(R.string.danhgia));
         }
 
 
@@ -193,7 +193,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
         edtTensach.setText(tensach);
         edtGiaban.setText(giaban+" VNĐ");
         edtMotaChitiet.setText(mota);
-        txtDaban.setText("Đã bán: "+landanhgia);
+        txtDaban.setText(getString(R.string.daban)+landanhgia);
 
         giabansach = Double.valueOf(giaban);
         StaggeredGridLayoutManager gridLayoutManagerVeticl =
@@ -226,7 +226,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
             @Override
             public void onClick(View view) {
                 if(soluong.equals("0")){
-                    Toast.makeText(BookDetailActivity.this, "Sản phẩm tạm hết", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BookDetailActivity.this, getString(R.string.sptamhet), Toast.LENGTH_SHORT).show();
                 }else {
                     if (idUser!=null) {
                         ExampleBottomSheetDialog bottomSheet = new ExampleBottomSheetDialog();
@@ -342,7 +342,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                             if(check.equals("chuatontai")){
 
                                 if (success.equals("1")){
-                                  Toast.makeText(BookDetailActivity.this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                                  Toast.makeText(BookDetailActivity.this, getString(R.string.dathemvaogh), Toast.LENGTH_SHORT).show();
                                 }else {
 
                                 }
@@ -385,7 +385,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
                             if (success.equals("1")){
-                                Toast.makeText(BookDetailActivity.this, "Đã thêm yêu thích", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(BookDetailActivity.this, getString(R.string.dathemyeuthich), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -421,7 +421,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
                             if (success.equals("1")){
-                                Toast.makeText(BookDetailActivity.this, "Đã bỏ thích", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(BookDetailActivity.this, getString(R.string.dabothich), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -452,7 +452,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                     @Override
                     public void onResponse(String response) {
                         if (response.trim().equals("datontai")){
-                            Toast.makeText(BookDetailActivity.this, "Bạn đã mua sách này", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(BookDetailActivity.this, getString(R.string.bandamuasachny), Toast.LENGTH_SHORT).show();
                         }else {
                         }
                     }
@@ -551,7 +551,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
     @Override
     public void onButtonClicked(String text) {
         if (Integer.valueOf(text) > Integer.valueOf(soluong)){
-            Toast.makeText(this, "Sách không đủ số lượng!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,getString(R.string.sachkdsl), Toast.LENGTH_SHORT).show();
         }else {
             ThemDatmua(masach, tensach, linkImage, text, idUser);
             startActivity(new Intent(getApplicationContext(), Main2Activity.class));

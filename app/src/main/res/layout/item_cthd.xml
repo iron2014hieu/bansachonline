@@ -41,7 +41,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tổng tiền : "
+                    android:text="@string/tongtiens"
                     android:textColor="#3F51B5"
                     android:textStyle="bold" />
                 <TextView
@@ -60,7 +60,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Số lượng  : "
+                    android:text="@string/soluongs"
                     android:textColor="#3F51B5"
                     android:textStyle="bold" />
                 <TextView

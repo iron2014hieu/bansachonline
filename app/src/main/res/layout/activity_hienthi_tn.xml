@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         app:titleTextColor="#fff"
         android:background="#2196F3"
-        app:title="Cộng đồng">
+        app:title="@string/congdong">
     </androidx.appcompat.widget.Toolbar>
     <LinearLayout
         android:layout_marginTop="70dp"
@@ -39,7 +39,7 @@
         android:orientation="horizontal"
         android:paddingBottom="2dp" >
         <EditText
-            android:hint="Nhập văn bản"
+            android:hint="@string/nhap_vb"
             android:maxLines="1"
             android:lines="1"
             android:id="@+id/etMessage"

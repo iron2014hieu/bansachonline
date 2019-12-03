@@ -13,7 +13,7 @@
         android:textSize="25dp"
         android:textColor="#F44336"
         android:gravity="center"
-        android:text="Cập nhật thông tin"
+        android:text="@string/capnhat_thongtin"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="15dp"
                 android:layout_height="50dp"
-                android:hint="Tên khách hàng"
+                android:hint="@string/tenkhachhang"
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -54,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_height="50dp"
-                android:hint="Email"
+                android:hint="@string/email"
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -68,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_height="50dp"
-                android:hint="Địa chỉ"
+                android:hint="@string/diachi"
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -82,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_height="50dp"
-                android:hint="SĐT"
+                android:hint="@string/sodienthoai"
                 android:inputType="number"
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -103,7 +103,7 @@
                     android:id="@+id/edtNgaySinh"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="Ngày sinh" />
+                    android:hint="@string/ngaysinh" />
             </com.google.android.material.textfield.TextInputLayout>
             <ImageButton
                 android:background="@drawable/cutomsimage"
@@ -133,7 +133,7 @@
                     android:layout_width="match_parent"
                     android:layout_marginTop="10dp"
                     android:layout_height="50dp"
-                    android:hint="Giới tính"
+                    android:hint="@string/gioitinh"
                     android:enabled="false"
                     />
             </com.google.android.material.textfield.TextInputLayout>
@@ -149,13 +149,13 @@
                     android:id="@+id/rb_nam"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nam"
+                    android:text="@string/nam"
                     />
                 <RadioButton
                     android:id="@+id/rb_nu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nữ"
+                    android:text="nu"
                     />
             </RadioGroup>
         </LinearLayout>

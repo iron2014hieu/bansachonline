@@ -124,7 +124,7 @@
                     android:maxLength="15"
                     android:textColor="?attr/textcolor"
                     android:textColorHint="?attr/textcolor"
-                    android:hint="Nhấp giữ để chọn mã khuyến mãi" />
+                    android:hint="@string/nhangiuchonma" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <Button
                     android:padding="5dp"
@@ -217,7 +217,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Tổng thanh toán"
+                android:text="@string/tongthanhtoan"
                 android:textColor="#3F51B5"
                 android:textSize="15dp" />
 

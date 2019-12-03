@@ -44,7 +44,7 @@ public class TheloaiChitietActivity extends AppCompatActivity {
         String mota = b.getString("MOTA");
         final int id = b.getInt("ID");
 
-        setTitle("Cập nhật thể loại "+name);
+        setTitle(getString(R.string.cntheloainam)+name);
         editTextTentl.setText(name);
         editTextMotatl.setText(mota);
 
@@ -77,7 +77,7 @@ public class TheloaiChitietActivity extends AppCompatActivity {
 
                             if (success.equals("1")){
                                 progressDialog.dismiss();
-                                Toast.makeText(TheloaiChitietActivity.this, "Cap nhat thanh cong", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(TheloaiChitietActivity.this,getString(R.string.capnhatthanhcong), Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getBaseContext(), MainActivity.class));
                             }
                         } catch (JSONException e) {

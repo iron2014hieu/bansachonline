@@ -4,6 +4,6 @@
 
     <item
         android:id="@+id/menu_save_comment"
-        android:title="Lưu nhận xét"
+        android:title="@string/luunhanxet"
         app:showAsAction="always"/>
 </menu>

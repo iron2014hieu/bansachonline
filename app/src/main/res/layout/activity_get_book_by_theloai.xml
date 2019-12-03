@@ -10,7 +10,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_theloai"
-        app:title="Thể loại"
+        app:title="@string/theloai"
         app:titleTextColor="#fff"
         android:background="#2196F3"
         android:layout_width="match_parent"

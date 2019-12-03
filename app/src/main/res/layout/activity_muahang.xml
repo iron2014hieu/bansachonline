@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Đến thư viện"/>
+            android:text="@string/den_thuvien"/>
         <Button
             android:id="@+id/btnHome"
             android:textColor="#fff"
@@ -71,6 +71,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Trang chủ"/>
+            android:text="@string/trangchu"/>
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

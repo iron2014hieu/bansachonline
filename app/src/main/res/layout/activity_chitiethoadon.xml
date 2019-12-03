@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <androidx.appcompat.widget.Toolbar
-            app:title="Chi tiết đơn hàng"
+            app:title="@string/chitiet_donhang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/topbottomcolor"
@@ -37,14 +37,14 @@
                 android:background="#B9DCDCDC"
                 android:textColor="#3F51B5"
                 android:padding="15dip"
-                android:text="Tên khách hàng : "/>
+                android:text="@string/tenkhachhangs"/>
             <TextView
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:id="@+id/tvTenkhachhang"
                 android:layout_weight="1"
                 android:background="#A3CAC9C9"
-                android:text="Thiết lập ngay"
+                android:text="@string/thietlapngay"
                 android:textColor="#E91E63"
                 android:padding="15dip"
                 android:gravity="center"/>
@@ -59,14 +59,14 @@
                 android:background="#A3CAC9C9"
                 android:textColor="#3F51B5"
                 android:padding="15dip"
-                android:text="Địa chỉ : "/>
+                android:text="@string/diachis"/>
             <TextView
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:id="@+id/tvdiachiKh"
                 android:layout_weight="1"
                 android:background="#B9DCDCDC"
-                android:text="Thiết lập ngay"
+                android:text="@string/thietlapngay"
                 android:textColor="#E91E63"
                 android:padding="15dip"
                 android:gravity="center"/>
@@ -81,14 +81,14 @@
                 android:background="#B9DCDCDC"
                 android:textColor="#3F51B5"
                 android:padding="15dip"
-                android:text="Số điện thoại : "/>
+                android:text="@string/sodienthoai"/>
             <TextView
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:id="@+id/tvsdtKH"
                 android:layout_weight="1"
                 android:background="#A3CAC9C9"
-                android:text="Thiết lập ngay"
+                android:text="@string/thietlapngay"
                 android:textColor="#E91E63"
                 android:padding="15dip"
                 android:gravity="center"/>
@@ -103,14 +103,14 @@
                 android:background="#A3CAC9C9"
                 android:textColor="#3F51B5"
                 android:padding="15dip"
-                android:text="Tổng tiền : "/>
+                android:text="@string/tongtiens"/>
             <TextView
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:id="@+id/tvtongtienKH"
                 android:layout_weight="1"
                 android:background="#B9DCDCDC"
-                android:text="Thiết lập ngay"
+                android:text="@string/thietlapngay"
                 android:textColor="#E91E63"
                 android:padding="15dip"
                 android:gravity="center"/>
@@ -125,14 +125,14 @@
                 android:background="#B9DCDCDC"
                 android:textColor="#3F51B5"
                 android:padding="15dip"
-                android:text="Tình trạng : "/>
+                android:text="@string/tinhtranghang"/>
             <TextView
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:id="@+id/tvtinhtrangsp"
                 android:layout_weight="1"
                 android:background="#A3CAC9C9"
-                android:text="Thiết lập ngay"
+                android:text="@string/thietlapngay"
                 android:textColor="#E91E63"
                 android:padding="15dip"
                 android:gravity="center"/>
@@ -150,7 +150,7 @@
         android:id="@+id/btnXacNhanHang"
         android:textColor="#fff"
         android:background="#2196F3"
-        android:text="Xác nhận đơn hàng"
+        android:text="@string/xacnhandonhang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

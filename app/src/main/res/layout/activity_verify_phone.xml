@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:text="Cho tôi xin số điện thoại của bạn?"
+        android:text="@string/nhapsodient"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:textColor="@color/colorPrimary" />
 
@@ -38,7 +38,7 @@
             android:digits="0123456789"
             android:textColorHint="?attr/textcolor"
             android:textColor="?attr/textcolor"
-            android:hint="Số điện thoai"
+            android:hint="@string/sodienthoai"
             android:maxLength="10" />
 
     </LinearLayout>
@@ -50,7 +50,7 @@
         android:layout_below="@id/linearLayout"
         android:layout_centerHorizontal="true"
         android:background="?attr/buttoncolor"
-        android:text="Tiếp tục"
+        android:text="@string/tieptuc"
         android:textAllCaps="false"
         android:textStyle="bold"
         android:textColor="?attr/textcolor" />

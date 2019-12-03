@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/topbottomcolor"
-            app:title="Quay lại"
+            app:title="@string/quay_lai"
             app:navigationIcon="@drawable/ic_vector_back"/>
     </com.google.android.material.appbar.AppBarLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
-            android:hint="Email" />
+            android:hint="@string/email" />
     </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:padding="10dp"
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:background="@drawable/rounded_edittext"
-                android:hint="Mật khẩu" />
+                android:hint="@string/nhappasss" />
         </com.google.android.material.textfield.TextInputLayout>
             <Button
                 android:id="@+id/buttonTieptuc"
@@ -53,6 +53,6 @@
                 android:drawableRight="@drawable/ic_chevron_right"
                 android:layout_marginTop="11dp"
                 android:padding="10dp"
-                android:text="tiếp tục" />
+                android:text="@string/tieptuc" />
 
 </LinearLayout>

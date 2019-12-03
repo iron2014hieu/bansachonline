@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/topbottomcolor"
         app:titleTextColor="#fff"
-        app:title="Chi tiết vận chuyển"
+        app:title="@string/chitiet_vanchuyen"
         app:navigationIcon="@drawable/danggiao"/>
 
         <LinearLayout
@@ -51,7 +51,7 @@
                     android:id="@+id/tvtenKH"
                     android:layout_weight="1"
                     android:background="?attr/cardbackground"
-                    android:text="Thiết lập ngay"
+                    android:text="@string/thietlapngay"
                     android:textColor="?attr/textcolor"
                     android:padding="15dip"
                     android:gravity="center"/>
@@ -74,7 +74,7 @@
                     android:id="@+id/tvDiaChi"
                     android:layout_weight="1"
                     android:background="?attr/cardbackground"
-                    android:text="Thiết lập ngay"
+                    android:text="@string/thietlapngay"
                     android:textColor="?attr/textcolor"
                     android:padding="15dip"
                     android:gravity="center"/>
@@ -97,7 +97,7 @@
                     android:layout_weight="1"
                     android:background="?attr/cardbackground"
                     android:autoLink="phone"
-                    android:text="Thiết lập ngay"
+                    android:text="@string/thietlapngay"
                     android:textColor="?attr/textcolor"
                     android:padding="15dip"
                     android:gravity="center"/>
@@ -119,7 +119,7 @@
                     android:id="@+id/tvTongTien"
                     android:layout_weight="1"
                     android:background="?attr/cardbackground"
-                    android:text="Thiết lập ngay"
+                    android:text="@string/thietlapngay"
                     android:textColor="?attr/textcolor"
                     android:padding="15dip"
                     android:gravity="center"/>
@@ -141,7 +141,7 @@
                     android:id="@+id/tvTinhTrang"
                     android:layout_weight="1"
                     android:background="?attr/cardbackground"
-                    android:text="Thiết lập ngay"
+                    android:text="@string/thietlapngay"
                     android:textColor="?attr/textcolor"
                     android:padding="15dip"
                     android:gravity="center"/>

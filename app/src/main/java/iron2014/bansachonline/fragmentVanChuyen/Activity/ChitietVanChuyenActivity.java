@@ -75,11 +75,11 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
         tvTinhTrang.setText(tinhtrang);
 
         if (tinhtrang.equals("choxacnhan")){
-            tvTinhTrang.setText("Chờ xác nhận");
+            tvTinhTrang.setText(getString(R.string.choxacnhan));
         }else if (tinhtrang.equals("cholayhang")){
-            tvTinhTrang.setText("Chờ vận chuyển");
+            tvTinhTrang.setText(R.string.chovanchuyen);
         }else if(tinhtrang.equals("danhgia")){
-            tvTinhTrang.setText("Đã giao hàng");
+            tvTinhTrang.setText(getString(R.string.dagiaohang));
         }
 
         cthdAdapter = new CTHDAdapter(this, cthdList);

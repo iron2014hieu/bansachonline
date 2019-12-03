@@ -30,7 +30,7 @@
                 android:padding="10dp"
                 android:textColor="?attr/textcolor"
                 android:textSize="18dp"
-                android:text="Nhập số điện thoại xác minh "/>
+                android:text="@string/nhapsodtxm"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -65,7 +65,7 @@
             android:textColor="?attr/textcolor"
             android:textAllCaps="true"
             android:layout_margin="15dp"
-            android:text="Tiếp tục"/>
+            android:text="@string/tieptuc"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/container_dialog"
@@ -93,7 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Vui lòng đợi"
+                android:text="@string/vuilong_doi"
                 android:padding="5dp"
                 android:textSize="18sp"
                 android:textColor="?attr/textcolor" />
@@ -107,7 +107,7 @@
             android:layout_marginTop="10dp"
             android:digits="0123456789"
             android:drawablePadding="10dp"
-            android:hint="Nhập mã xác nhận"
+            android:hint="@string/nhapma_xacnhan"
             android:inputType="phone"
             android:maxLength="10" />
 
@@ -115,7 +115,7 @@
             android:id="@+id/buttonsuccess_dialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hoàn thành đơn hàng"
+            android:text="@string/hoan_thanh"
             android:padding="10dp"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"

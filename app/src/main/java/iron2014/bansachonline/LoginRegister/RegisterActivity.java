@@ -68,26 +68,26 @@ public class RegisterActivity extends AppCompatActivity {
                 final String email = edtEmail.getText().toString().trim();
                 final String password = edtPassword.getText().toString().trim();
                 if (name.isEmpty() || email.isEmpty() || password.isEmpty()){
-                    Toast.makeText(RegisterActivity.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, getString(R.string.nhapdaydutt), Toast.LENGTH_SHORT).show();
                     loading.setVisibility(View.GONE);
                     btnRegis.setVisibility(View.VISIBLE);
                 }else if (edtName.length()>10){
                     loading.setVisibility(View.GONE);
-                    edtName.setError(" tên không quá 10 kí tự");
+                    edtName.setError(getString(R.string.quamuoikt));
                     btnRegis.setVisibility(View.VISIBLE);
                 }
                 else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
                     loading.setVisibility(View.GONE);
-                    edtEmail.setError("Nhập một email đúng dạng email123@mail.abc");
+                    edtEmail.setError(getString(R.string.emaildungdd));
                     btnRegis.setVisibility(View.VISIBLE);
                 }else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
                     loading.setVisibility(View.GONE);
 //                    edtPassword.setError("Mật khẩu quá ngắn hoặc phải có kí tự đặc biệt");
-                    Toast.makeText(RegisterActivity.this, "Mật khẩu quá ngắn hoặc phải có kí tự đặc biệt", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this,getString(R.string.ngandbsocc), Toast.LENGTH_SHORT).show();
                     btnRegis.setVisibility(View.VISIBLE);
                 }else if (!password.equals(rePass)){
                     btnRegis.setVisibility(View.VISIBLE);
-                    Toast.makeText(RegisterActivity.this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, getString(R.string.mkkhongkhop), Toast.LENGTH_SHORT).show();
                     loading.setVisibility(View.GONE);
                 }
                 else {
@@ -123,7 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 if (success.equals("1")){
                                     loading.setVisibility(View.GONE);
                                     btnRegis.setVisibility(View.VISIBLE);
-                                    Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RegisterActivity.this, getString(R.string.dangky_tk), Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                                     intent.putExtra("email", email);
                                     intent.putExtra("password", password);
@@ -131,12 +131,12 @@ public class RegisterActivity extends AppCompatActivity {
                                 }else {
                                     btnRegis.setVisibility(View.VISIBLE);
 
-                                    Toast.makeText(RegisterActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RegisterActivity.this, getString(R.string.dangkytb), Toast.LENGTH_SHORT).show();
                                 }
                             }else {
                                 btnRegis.setVisibility(View.VISIBLE);
 
-                                Toast.makeText(RegisterActivity.this, "Tài khoản đã tồn tại!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, getString(R.string.datontai), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -67,7 +67,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
         if (sharedPref.loadLanguage().equals("vi")){
-            txtThayLang.setText("Tiếng việt");
+            txtThayLang.setText(getString(R.string.tiengviet));
         }else if (sharedPref.loadLanguage().equals("en")){
             txtThayLang.setText("English");
         }else if (sharedPref.loadLanguage().equals("ar")){

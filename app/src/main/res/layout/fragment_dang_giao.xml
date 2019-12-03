@@ -22,7 +22,7 @@
         android:drawableTop="@drawable/box_64db"
         android:gravity="center"
         android:textColor="?attr/textcolor"
-        android:text="Chưa có đơn hàng"
+        android:text="@string/chuaco_donhang"
         android:textStyle="bold"
         android:visibility="gone" />
     </RelativeLayout>

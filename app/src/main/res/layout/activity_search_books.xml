@@ -29,7 +29,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:titleTextColor="?attr/textcolor"
-                        app:title="Tìm kiếm"
+                        app:title="@string/tim_kiem"
                         android:background="?attr/topbottomcolor"
                         app:navigationIcon="@drawable/ic_close"
                         />

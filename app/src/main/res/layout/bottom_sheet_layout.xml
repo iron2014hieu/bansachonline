@@ -59,7 +59,7 @@
             android:layout_weight="2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Số lượng"
+            android:text="@string/soluong"
             android:textSize="20sp" />
 
         <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
@@ -80,5 +80,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Mua ngay" />
+        android:text="@string/mua_ngay" />
 </LinearLayout>

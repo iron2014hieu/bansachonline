@@ -104,18 +104,17 @@ public class GetBookByTheloaiActivity extends AppCompatActivity {
 
             if (matheloai!= null) {
                 fetchBookbymatheloai(matheloai);
-                toolbar.setTitle("Thể loại "+tentheloai);
+                toolbar.setTitle(getString(R.string.theloais)+tentheloai);
             } else if (matacgia!=null){
                 fetchBookbyTacgia(matacgia);
-                toolbar.setTitle("Tác giả "+tentacgia);
+                toolbar.setTitle(getString(R.string.tacgia)+tentacgia);
             } else if (manxb !=null){
                 fetchBookbyNXB(manxb);
-                toolbar.setTitle("Nhà xuất bản "+tennxb);
+                toolbar.setTitle(getString(R.string.nhaxxb)+tennxb);
             }
         }catch (Exception e){
             Toast.makeText(this, ""+e.toString(), Toast.LENGTH_SHORT).show();
         }
-
 
 
         recyclerview_book.addOnItemTouchListener(new RecyclerTouchListener(this,
@@ -150,7 +149,6 @@ public class GetBookByTheloaiActivity extends AppCompatActivity {
 
             }
         }));
-
     }
     public void fetchBookbymatheloai(String maTheloai) {
         apiInTerFace = ApiClient.getApiClient().create(ApiInTerFace.class);

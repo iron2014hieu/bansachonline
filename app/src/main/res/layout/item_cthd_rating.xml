@@ -38,7 +38,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Số lượng : "
+                    android:text="@string/soluongs"
                     android:textColor="?attr/textcolor"
                     android:textStyle="bold" />
                 <TextView

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         app:titleTextColor="#fff"
         android:background="#2196F3"
-        app:title="Danh sách yêu thích">
+        app:title="@string/danhsach_yeuthich">
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
@@ -31,7 +31,7 @@
         android:layout_marginEnd="160dp"
         android:layout_marginBottom="319dp"
         android:drawableTop="@drawable/favorite"
-        android:text="Danh sách trống" />
+        android:text="@string/danhsach_trong" />
 
 
 

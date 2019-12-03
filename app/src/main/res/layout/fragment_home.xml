@@ -166,7 +166,7 @@
                     android:layout_below="@+id/recyclerview_nxb_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tìm kiếm gần đây"/>
+                    android:text="@string/timkiem_ganday"/>
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_marginTop="10dp"
                     android:layout_gravity="center"

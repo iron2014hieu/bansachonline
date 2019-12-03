@@ -88,10 +88,10 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (i){
                     case R.id.rb_nam:
-                        edtGioiTinh.setText("Nam");
+                        edtGioiTinh.setText(getString(R.string.nam));
                         break;
                     case R.id.rb_nu:
-                        edtGioiTinh.setText("Nữ");
+                        edtGioiTinh.setText(getString(R.string.nu));
                         break;
                 }
             }
@@ -127,7 +127,7 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
                         if (response.equals("success")) {
                             sessionManager.createSession(id, email,address,phone, name, quyen);
                             startActivity(new Intent(UpdateProfileActivity.this, ProfileActivity.class));
-                            Toast.makeText(UpdateProfileActivity.this, "Sửa thành công", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UpdateProfileActivity.this, getString(R.string.suatc), Toast.LENGTH_SHORT).show();
                             finish();
                         }
                     }

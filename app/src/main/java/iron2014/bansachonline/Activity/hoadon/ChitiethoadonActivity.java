@@ -86,25 +86,25 @@ public class ChitiethoadonActivity extends AppCompatActivity {
         lnThongtin = findViewById(R.id.lnThongtin);
 
         if(tinhtrang!=null&&tinhtrang.equals("choxacnhan")){
-            tvtinhtrangsp.setText("Chờ xác nhận");
+            tvtinhtrangsp.setText(getString(R.string.choxacnhan));
             lnThongtin.setVisibility(View.VISIBLE);
         }else if (tinhtrang!=null&&tinhtrang.equals("cholayhang")){
             lnThongtin.setVisibility(View.VISIBLE);
-            tvtinhtrangsp.setText("Chờ lấy hàng");
+            tvtinhtrangsp.setText(getString(R.string.cholayhang));
         }
         btnXacNhanHang = findViewById(R.id.btnXacNhanHang);
         btnXacNhanHang.setVisibility(View.GONE);
         if (tinhtrang!=null&&tinhtrang.equals("userxacnhan")){
             btnXacNhanHang.setVisibility(View.VISIBLE);
             lnThongtin.setVisibility(View.VISIBLE);
-            tvtinhtrangsp.setText("Nhận đơn hàng");
+            tvtinhtrangsp.setText(getString(R.string.xacnhandonhang));
         }else if (tinhtrang!=null&&tinhtrang.equals("danggiao")){
             btnXacNhanHang.setVisibility(View.GONE);
             lnThongtin.setVisibility(View.VISIBLE);
-            tvtinhtrangsp.setText("Đang vận chuyển");
+            tvtinhtrangsp.setText(getString(R.string.dangvanchuyen));
         }else if (tinhtrang!=null&&tinhtrang.equals("danhgia")){
             btnXacNhanHang.setVisibility(View.GONE);
-            tvtinhtrangsp.setText("Đã nhận hàng");
+            tvtinhtrangsp.setText(getString(R.string.danhgia));
         }
 
 //        btnXacNhanHang.setOnClickListener(new View.OnClickListener() {

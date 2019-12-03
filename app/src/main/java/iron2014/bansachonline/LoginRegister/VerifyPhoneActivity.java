@@ -52,7 +52,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                 number = editText.getText().toString().trim();
 
                 if (number.isEmpty() || number.length() < 10) {
-                    editText.setError("Vui lòng nhập số hợp lệ");
+                    editText.setError(getString(R.string.nhapsohl));
                     editText.requestFocus();
                     return;
                 }else {
@@ -101,7 +101,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                                 intent.putExtra("sodienthoai", editText.getText().toString());
                                 startActivity(intent);
                             }else {
-                                Toast.makeText(VerifyPhoneActivity.this, "Số "+number+" chưa được đăng ký!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(VerifyPhoneActivity.this, getString(R.string.so) +number+ getString(R.string.chuaduocdk), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

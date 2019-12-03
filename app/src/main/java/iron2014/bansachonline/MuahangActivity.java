@@ -71,10 +71,10 @@ public class MuahangActivity extends AppCompatActivity {
 
         tabViewPagerAdapter = new TabViewPagerAdapter(getSupportFragmentManager());
         //add fragmenr here
-        tabViewPagerAdapter.AddFragment(new ChoXacNhanFragment(), "Chờ xác nhận");
-        tabViewPagerAdapter.AddFragment(new ChoLayHangFragment(), "Chờ lấy hàng");
-        tabViewPagerAdapter.AddFragment(new DangGiaoFragment(), "Đang giao");
-        tabViewPagerAdapter.AddFragment(new DanhGiaFragment(), "Đánh giá");
+        tabViewPagerAdapter.AddFragment(new ChoXacNhanFragment(), getString(R.string.choxacnhan));
+        tabViewPagerAdapter.AddFragment(new ChoLayHangFragment(), getString(R.string.cholayhang));
+        tabViewPagerAdapter.AddFragment(new DangGiaoFragment(), getString(R.string.danggiao));
+        tabViewPagerAdapter.AddFragment(new DanhGiaFragment(), getString(R.string.danhgia));
         viewPager.setAdapter(tabViewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         if (check==null){

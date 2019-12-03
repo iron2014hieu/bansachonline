@@ -163,14 +163,14 @@ public class ProfileActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (replayedt) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Bạn muốn hủy thay đổi?")
+            builder.setMessage(getString(R.string.banmuonhuy))
                     .setCancelable(false)
-                    .setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.co), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             ProfileActivity.this.finish();
                         }
                     })
-                    .setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(getString(R.string.khong), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.cancel();
                         }
@@ -289,7 +289,7 @@ public class ProfileActivity extends AppCompatActivity {
                             String success = jsonObject.getString("success");
 
                             if (success.equals("1")){
-                                Toast.makeText(ProfileActivity.this, "Lưu thành công!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ProfileActivity.this, getString(R.string.luuthanhcog), Toast.LENGTH_SHORT).show();
 
                             }
                         } catch (JSONException e) {
