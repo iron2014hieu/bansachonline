@@ -27,6 +27,7 @@ public class ExampleBottomSheetDialog extends BottomSheetDialogFragment {
     String linkImage, tensach,giaban,kho;
     ImageView img_book_bt, img_close;
     TextView txtBTGiaban,txtKho;
+    int soluong =1;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,21 +61,21 @@ public class ExampleBottomSheetDialog extends BottomSheetDialogFragment {
             @Override
             public void onValueChange(ElegantNumberButton view, final int oldValue, final int newValue) {
 
-                button1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (newValue > Integer.valueOf(kho)){
-                            Toast.makeText(getContext(), "Sách "+tensach+" đã chỉ còn "+kho+" cuốn.", Toast.LENGTH_SHORT).show();
-
-                        }else {
-                            mListener.onButtonClicked(String.valueOf(newValue));
-                            dismiss();
-                        }
-                    }
-                });
+                soluong = newValue;
             }
         });
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (soluong > Integer.valueOf(kho)){
+                    Toast.makeText(getContext(), "Sách "+tensach+" đã chỉ còn "+kho+" cuốn.", Toast.LENGTH_SHORT).show();
 
+                }else {
+                    mListener.onButtonClicked(String.valueOf(soluong));
+                    dismiss();
+                }
+            }
+        });
 
         return v;
     }

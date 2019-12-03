@@ -107,10 +107,8 @@ public class NotificationFragment extends Fragment {
         );
         fetchSoluong(mauser);
 
+
         return  view;
-    }
-    public void GotoCart(View view){
-        startActivity(new Intent(getContext(), Main2Activity.class));
     }
     public void fetchSoluong(String mauser){
         apiInTerFaceDatmua = ApiClient.getApiClient().create(ApiInTerFaceDatmua.class);

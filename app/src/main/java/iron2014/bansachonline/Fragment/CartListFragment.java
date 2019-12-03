@@ -72,6 +72,7 @@ public class CartListFragment extends Fragment {
         tvMuatiep = view.findViewById(R.id.tvMuatiep);
 
         txtnull_list= view.findViewById(R.id.txtnull_list);
+        txtnull_list.setVisibility(View.GONE);
 
         tvMuatiep.setOnClickListener(new View.OnClickListener() {
             @Override

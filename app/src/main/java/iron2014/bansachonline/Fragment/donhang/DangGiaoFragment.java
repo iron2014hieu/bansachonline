@@ -36,9 +36,6 @@ public class DangGiaoFragment extends Fragment {
     private SessionManager sessionManager;
     private String mauser;
     private TextView txtBill_empty_danggiao;
-    public DangGiaoFragment() {
-        // Required empty public constructor
-    }
     View v;
 
     @Override
@@ -56,6 +53,8 @@ public class DangGiaoFragment extends Fragment {
         HashMap<String,String> user = sessionManager.getUserDetail();
         mauser = user.get(sessionManager.ID);
         fetchHoadon(mauser);
+
+
         return v;
     }
     public void fetchHoadon(String miduser){

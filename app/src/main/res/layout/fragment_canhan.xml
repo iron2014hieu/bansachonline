@@ -112,6 +112,7 @@
                        android:background="?attr/backgroundcolor"
                        android:orientation="vertical">
                    <LinearLayout
+                       android:id="@+id/linner_trendonhang"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
                        android:orientation="horizontal">
@@ -142,6 +143,7 @@
                            android:layout_marginTop="10dp"
                            android:background="?attr/textcolor"/>
                    <LinearLayout
+                       android:id="@+id/linnear_donhang"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
                        android:layout_marginTop="10dp"

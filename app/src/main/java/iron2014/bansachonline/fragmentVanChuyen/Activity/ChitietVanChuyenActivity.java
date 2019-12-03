@@ -129,9 +129,7 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(ChitietVanChuyenActivity.this, ""+response, Toast.LENGTH_SHORT).show();
                         if (response.equals("tc")){
-                            Toast.makeText(ChitietVanChuyenActivity.this, "tc", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplication(), ShipperActivity.class);
                             intent.putExtra("check", 1);
                             startActivity(intent);

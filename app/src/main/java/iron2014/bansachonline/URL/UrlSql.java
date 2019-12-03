@@ -7,6 +7,8 @@ public class UrlSql {
 
     public static String URL_CHANGE_PASSWORD = "https://bansachonline.xyz/bansach/loginregister/replay_password.php";
 
+
+
     //cthd
     public static String url_insert_cthd="https://bansachonline.xyz/bansach/hoadon/cthd/them_cthd.php";
     public  static String url_insert_hoadon ="https://bansachonline.xyz/bansach/hoadon/them_hoadon.php";
@@ -17,6 +19,7 @@ public class UrlSql {
     public  static String URL_INSERT_GIOHANG ="https://bansachonline.xyz/bansach/giohang/create_carts.php";
     public static String URL_UPDATE_CARTS =baseURL+"bansach/giohang/update_carts.php";
     public static String URL_DELETE_CARTS =baseURL+"bansach/giohang/delete_carts.php";
+    public static String URL_UPDATE_CTHD_DATHANHTOAN ="https://bansachonline.xyz/bansach/hoadon/cthd/update_cthd_thanhtoan.php";
 
     //giam số lượng sách sau mua
     public static String URL_UPDATE_SOLUONG = "https://bansachonline.xyz/bansach/hoadon/cthd/update_soluong_sach.php";

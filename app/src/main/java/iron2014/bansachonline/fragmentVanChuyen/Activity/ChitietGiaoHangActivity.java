@@ -89,7 +89,6 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
         tongtien = intent.getStringExtra("tongtien");
         tinhtrang = intent.getStringExtra("tinhtrang");
         mauser = intent.getStringExtra("mauser");
-        Toast.makeText(this, ""+mauser, Toast.LENGTH_SHORT).show();
         tvTenKH.setText(tenkh);
         tvDiaChi.setText(diachi);
         tvSDT.setText(sdt);
@@ -158,10 +157,8 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(ChitietGiaoHangActivity.this, ""+response, Toast.LENGTH_SHORT).show();
                         if (response.equals("tc")){
                             sendSinglePush();
-                            Toast.makeText(ChitietGiaoHangActivity.this, "tc", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplication(), ShipperActivity.class);
                             intent.putExtra("check", 1);
                             startActivity(intent);

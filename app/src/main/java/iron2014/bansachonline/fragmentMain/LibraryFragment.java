@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -21,12 +22,15 @@ import java.util.List;
 
 import iron2014.bansachonline.Activity.Library.BookDetailLibActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
+import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
+import iron2014.bansachonline.Main2Activity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.RecycerViewTouch.RecyclerTouchListener;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.adapter.hoadoncthd.LibraryAdapter;
 import iron2014.bansachonline.model.CTHD;
+import iron2014.bansachonline.model.DatMua;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,11 +48,9 @@ public class LibraryFragment extends Fragment {
     ApiInTerFaceHoadon apiInTerFaceHoadon;
     LibraryAdapter libraryAdapter;
     List<CTHD> listLibrary = new ArrayList<>();
-    TextView txtLib_empty;
-    public LibraryFragment() {
-        // Required empty public constructor
-    }
-
+    TextView txtLib_empty,counttxt_thuviern;
+    ImageView chk_icon_tv;
+    ApiInTerFaceDatmua apiInTerFaceDatmua;
     public static LibraryFragment newInstance() {
         LibraryFragment fragment = new LibraryFragment();
         return fragment;
@@ -65,6 +67,9 @@ public class LibraryFragment extends Fragment {
         recyclerview_book_library = view.findViewById(R.id.recyclerview_book_library);
         progressBar = view.findViewById(R.id.progress_lib);
         txtLib_empty=view.findViewById(R.id.txtLib_empty);
+        counttxt_thuviern= view.findViewById(R.id.counttxt_thuviern);
+        chk_icon_tv= view.findViewById(R.id.chk_icon_tv);
+
         sessionManager = new SessionManager(getContext());
         // the loaij sachs
         StaggeredGridLayoutManager gridLayoutManager =
@@ -97,9 +102,35 @@ public class LibraryFragment extends Fragment {
 
             }
         }));
-
+        chk_icon_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), Main2Activity.class));
+            }
+        });
+        fetchSoluong(user.get(sessionManager.ID));
         return view;
 
+    }
+    public void fetchSoluong(String mauser){
+        apiInTerFaceDatmua = ApiClient.getApiClient().create(ApiInTerFaceDatmua.class);
+        Call<List<DatMua>> call = apiInTerFaceDatmua.get_soluong(mauser);
+
+        call.enqueue(new Callback<List<DatMua>>() {
+            @Override
+            public void onResponse(Call<List<DatMua>> call, retrofit2.Response<List<DatMua>> response) {
+                int soluong =0;
+                for (int i = 0; i<response.body().size(); i++){
+                    soluong = response.body().get(i).getSoluong();
+                }
+                counttxt_thuviern.setText(String.valueOf(soluong));
+            }
+
+            @Override
+            public void onFailure(Call<List<DatMua>> call, Throwable t) {
+                Log.e("Error Search:","Error on: "+t.toString());
+            }
+        });
     }
     public void fetchUser(String key){
         apiInTerFaceHoadon = ApiClient.getApiClient().create(ApiInTerFaceHoadon.class);

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -39,13 +40,11 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
     private TextView txtChoxacnhan, txtCholayhang,txtDanggiao,txtDanhgia,txtFav;
     private CardView cardview_canhan;
 
-    public CanhanFragment() {
-        // Required empty public constructor
-    }
     SessionManager sessionManager;
     String email;
     Button btnDangnhap,btnDangky;
     TextView txtXemdanhgia,chk_icon_canhan;
+    LinearLayout linner_trendonhang,linnear_donhang;
 
     View v;
 
@@ -78,6 +77,9 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
             cardview_canhan.setVisibility(View.VISIBLE);
             btnDangnhap.setVisibility(View.VISIBLE);
             btnDangky.setVisibility(View.VISIBLE);
+
+            linner_trendonhang.setVisibility(View.GONE);
+            linnear_donhang.setVisibility(View.GONE);
         }
         txtChoxacnhan.setOnClickListener(this);
         txtCholayhang.setOnClickListener(this);
@@ -91,6 +93,12 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
         txtXemdanhgia.setOnClickListener(this);
 
         fetchSoluong(user.get(sessionManager.ID));
+        chk_icon_canhan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), Main2Activity.class));
+            }
+        });
         return v;
     }
     @Override
@@ -124,9 +132,7 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
-    public void GotoCart(View view) {
-        startActivity(new Intent(getContext(), Main2Activity.class));
-    }
+
     public void fetchSoluong(String mauser){
         apiInTerFaceDatmua = ApiClient.getApiClient().create(ApiInTerFaceDatmua.class);
         Call<List<DatMua>> call = apiInTerFaceDatmua.get_soluong(mauser);
@@ -177,5 +183,8 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
         txtFav = v.findViewById(R.id.txtFav);
         txtXemdanhgia = v.findViewById(R.id.txtXemdanhgia);
         chk_icon_canhan=v.findViewById(R.id.counttxt_canhan);
+
+        linnear_donhang=v.findViewById(R.id.linnear_donhang);
+        linner_trendonhang=v.findViewById(R.id.linner_trendonhang);
     }
 }

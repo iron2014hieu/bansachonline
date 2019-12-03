@@ -150,7 +150,7 @@
         android:id="@+id/btnXacNhanHang"
         android:textColor="#fff"
         android:background="#2196F3"
-        android:text="Xác nhận"
+        android:text="Xác nhận đơn hàng"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

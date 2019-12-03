@@ -1,11 +1,13 @@
 package iron2014.bansachonline.fragmentMain;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -23,6 +25,7 @@ import java.util.List;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
+import iron2014.bansachonline.Main2Activity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.adapter.KhuyenMai.KhuyenMaiAdapter;
@@ -45,6 +48,7 @@ public class TheloaiFragment extends Fragment {
     AdView adView;
     TextView counttxt_thuviern;
     ApiInTerFaceDatmua apiInTerFaceDatmua;
+    ImageView chk_icon_km;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,7 +70,12 @@ public class TheloaiFragment extends Fragment {
 
         HashMap<String,String> user = sessionManager.getUserDetail();
         fetchSoluong(user.get(sessionManager.ID));
-
+        chk_icon_km.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), Main2Activity.class));
+            }
+        });
         return  view;
     }
     public void fetchSoluong(String mauser){
@@ -119,5 +128,6 @@ public class TheloaiFragment extends Fragment {
         recyclerview_khuyenmai = view.findViewById(R.id.recyclerview_khuyenmai);
         adView = view.findViewById(R.id.adView);
         counttxt_thuviern= view.findViewById(R.id.counttxt_thuviern);
+        chk_icon_km= view.findViewById(R.id.chk_icon_km);
     }
 }

@@ -31,6 +31,7 @@ import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.MuahangActivity;
 import iron2014.bansachonline.R;
+import iron2014.bansachonline.URL.UrlSql;
 import iron2014.bansachonline.adapter.hoadoncthd.CTHDAdapter;
 import iron2014.bansachonline.model.CTHD;
 import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
@@ -48,6 +49,7 @@ public class ChitiethoadonActivity extends AppCompatActivity {
     public static String mahd, tinhtrang, tenkh, diachi, sdt, tongtien;
     SharedPref sharedPref;
     String URL_UDATE = "https://bansachonline.xyz/bansach/hoadon/update_hoadon_tinhtrang.php";
+    String idcthd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,7 +120,11 @@ public class ChitiethoadonActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (tinhtrang.equals("userxacnhan")) {
                     UpdateTinhtrang( "danhgia", URL_UDATE);
+                    for (int i =0; i < cthdList.size();i++){
+                        idcthd = String.valueOf(cthdList.get(i).getId());
 
+                        UpdateDathanhtoanCthd(idcthd);
+                    }
                 }
             }
         });
@@ -156,9 +162,7 @@ public class ChitiethoadonActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(ChitiethoadonActivity.this, ""+response, Toast.LENGTH_SHORT).show();
                         if (response.equals("tc")){
-                            Toast.makeText(ChitiethoadonActivity.this, "tc", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplication(), MuahangActivity.class);
                             intent.putExtra("check", "3");
                             startActivity(intent);
@@ -176,6 +180,34 @@ public class ChitiethoadonActivity extends AppCompatActivity {
                 Map<String,String> params = new HashMap<>();
                 params.put("tinhtrang", tinhtrang1);
                 params.put("mahoadon", mahd);
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(request);
+    }
+    private void UpdateDathanhtoanCthd(final String id){
+        StringRequest request = new StringRequest(Request.Method.POST, UrlSql.URL_UPDATE_CTHD_DATHANHTOAN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.equals("tc")){
+                            Intent intent = new Intent(getApplication(), MuahangActivity.class);
+                            intent.putExtra("check", "3");
+                            startActivity(intent);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("update tt er ", error.toString());
+            }
+        })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("id", id);
                 return params;
             }
         };

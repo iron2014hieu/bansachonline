@@ -37,7 +37,7 @@
                 android:layout_weight="4">
 
                 <ImageView
-                    android:id="@+id/chk_icon"
+                    android:id="@+id/chk_icon_km"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_alignParentTop="true"
