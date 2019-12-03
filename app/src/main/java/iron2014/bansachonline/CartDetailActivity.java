@@ -565,12 +565,19 @@ public class CartDetailActivity extends AppCompatActivity {
         final LinearLayout linearLayout_nhap =(LinearLayout) dialog.findViewById(R.id.linearLayoutdialog_Nhap);
         final LinearLayout linearLayout_xacminh =(LinearLayout) dialog.findViewById(R.id.container_dialog);
         final ImageView img_close = dialog.findViewById(R.id.img_close);
+        final ImageView img_close_2 = dialog.findViewById(R.id.img_close_2);
         spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryAreaCodes));
 
         if (sodienthoai!=null){
             edtEnterPhone.setText(sodienthoai);
         }
         img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        img_close_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
@@ -642,7 +649,6 @@ public class CartDetailActivity extends AppCompatActivity {
                 });
     }
     private void sendVerificationCode(String number) {
-        progressBar.setVisibility(View.VISIBLE);
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 number,
                 60,

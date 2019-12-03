@@ -70,7 +70,13 @@ public class SessionManager {
         sharedPreferences = context.getSharedPreferences(PREF_NAMR, PRIVATE_MODE);
         editor=sharedPreferences.edit();
     }
-
+    public void createBottomSheetBook(String tensach,String linkbook,String giaban,String soluong){
+        editor.putString(TENSACH, tensach);
+        editor.putString(ANHBIA, linkbook);
+        editor.putString(GIA, giaban);
+        editor.putString(SOLUONG, soluong);
+        editor.apply();
+    }
     public void createSession(String id,String email,String address,String phone, String name, String quyen){
         editor.putBoolean(LOGIN, true);
         editor.putString(ID, id);
@@ -167,6 +173,14 @@ public class SessionManager {
             context.startActivity(i);
             ((ProfileActivity)context).finish();
         }
+    }
+    public HashMap<String,String> getBottonsheetBook() {
+        HashMap<String, String> token = new HashMap<>();
+        token.put(TENSACH, sharedPreferences.getString(TENSACH, null));
+        token.put(ANHBIA, sharedPreferences.getString(ANHBIA, null));
+        token.put(GIA, sharedPreferences.getString(GIA, null));
+        token.put(SOLUONG, sharedPreferences.getString(SOLUONG, null));
+        return token;
     }
     public HashMap<String,String> getTongtien() {
         HashMap<String, String> token = new HashMap<>();

@@ -188,6 +188,8 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
             txt_numrating_below_deatil.setText(diemdanhgia+" ("+landanhgia+" đánh giá)");
         }
 
+
+
         edtTensach.setText(tensach);
         edtGiaban.setText(giaban+" VNĐ");
         edtMotaChitiet.setText(mota);
@@ -229,6 +231,8 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                     if (idUser!=null) {
                         ExampleBottomSheetDialog bottomSheet = new ExampleBottomSheetDialog();
                         bottomSheet.show(getSupportFragmentManager(), "exampleBottomSheet");
+
+                        sessionManager.createBottomSheetBook(tensach, linkImage, giaban,soluong);
                     }else {
                         startActivity(new Intent(BookDetailActivity.this, LoginActivity.class));
                     }
@@ -546,8 +550,12 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
 
     @Override
     public void onButtonClicked(String text) {
-        ThemDatmua(masach, tensach, linkImage,text,idUser);
-        startActivity(new Intent(getApplicationContext(), Main2Activity.class));
+        if (Integer.valueOf(text) > Integer.valueOf(soluong)){
+            Toast.makeText(this, "Sách không đủ số lượng!", Toast.LENGTH_SHORT).show();
+        }else {
+            ThemDatmua(masach, tensach, linkImage, text, idUser);
+            startActivity(new Intent(getApplicationContext(), Main2Activity.class));
+        }
     }
 
     private void addcontrols(){
