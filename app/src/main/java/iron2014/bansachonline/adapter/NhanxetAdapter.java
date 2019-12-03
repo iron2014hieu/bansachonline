@@ -40,7 +40,7 @@ public class NhanxetAdapter extends RecyclerView.Adapter<NhanxetAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         String diem = String.valueOf(mData.get(i).getDiemdanhgia());
-        myViewHolder.txtNameuser_item.setText("******");
+x
         myViewHolder.txtLoinhanxet_item.setText(mData.get(i).getNoidungdanhgia());
         myViewHolder.ratingbar_cuaban_item.setRating(Float.valueOf(diem));
     }
