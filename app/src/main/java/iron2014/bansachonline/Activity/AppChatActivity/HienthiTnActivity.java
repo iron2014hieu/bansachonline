@@ -29,13 +29,13 @@ import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 
 public class HienthiTnActivity extends AppCompatActivity {
-        RecyclerView recyclerView;
-        List<Modeltinnhan> modeltinnhanList;
-        Adaptertinnhan adaptertinnhan;
-        Button btnsendmess;
-        DatabaseReference mData;
-        EditText editsendmesss;
-        SessionManager sessionManager;
+           RecyclerView recyclerView;
+    List<Modeltinnhan> modeltinnhanList;
+    Adaptertinnhan adaptertinnhan;
+    Button btnsendmess;
+    DatabaseReference mData;
+    EditText editsendmesss;
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,23 +63,23 @@ public class HienthiTnActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
             }
         });
-            btnsendmess.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String email;
-                    sessionManager = new SessionManager(HienthiTnActivity.this);
-                    HashMap<String,String> user = sessionManager.getUserDetail();
-                    email= user.get(sessionManager.EMAIL);
+        btnsendmess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email;
+                sessionManager = new SessionManager(HienthiTnActivity.this);
+                HashMap<String,String> user = sessionManager.getUserDetail();
+                email= user.get(sessionManager.EMAIL);
 
-                    mData = FirebaseDatabase.getInstance().getReference();
-                    String text_send_message = editsendmesss.getText().toString();
+                mData = FirebaseDatabase.getInstance().getReference();
+                String text_send_message = editsendmesss.getText().toString();
 
-                    Modeltinnhan modeltinnhan = new Modeltinnhan(email,text_send_message,"trieu","1");
-                    mData.child("Message").push().setValue(modeltinnhan);
-                    editsendmesss.setText("");
-                    btnsendmess.setVisibility(View.GONE);
-                    }
-            });
+                Modeltinnhan modeltinnhan = new Modeltinnhan(email,text_send_message,"trieu","1");
+                mData.child("Message").push().setValue(modeltinnhan);
+                editsendmesss.setText("");
+                btnsendmess.setVisibility(View.GONE);
+            }
+        });
         modeltinnhanList = new ArrayList<>();
         Query query =FirebaseDatabase.getInstance().getReference("Message").orderByChild("idchattt").equalTo("1");
         query.addChildEventListener(new ChildEventListener() {

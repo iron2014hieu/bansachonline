@@ -48,6 +48,7 @@ public class Adaptertinnhan extends RecyclerView.Adapter<Adaptertinnhan.viewHold
         sessionManager = new SessionManager(context);
         HashMap<String,String> user = sessionManager.getUserDetail();
         email= user.get(sessionManager.EMAIL);
+
         holder.txt_noidung.setText(modeltinnhanList.get(position).getNoidung());
         holder.txt_emaill.setText(modeltinnhanList.get(position).getSender());
     }
@@ -71,12 +72,10 @@ public class Adaptertinnhan extends RecyclerView.Adapter<Adaptertinnhan.viewHold
 
     @Override
     public int getItemViewType(int position) {
-        Toast.makeText(context, ""+modeltinnhanList.get(position).getSender(), Toast.LENGTH_SHORT).show();
-//        if (modeltinnhanList.get(position).getSender().equals(email)){
-//            return phai;
-//        }else {
-//            return trai;
-//        }
-        return 1;
+        if (modeltinnhanList.get(position).getSender().equals(email)){
+            return phai;
+        }else {
+            return trai;
+        }
     }
 }
