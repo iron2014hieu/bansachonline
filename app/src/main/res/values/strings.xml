@@ -205,7 +205,7 @@
     <string name="giaohangnh">Giao hàng nhanh</string>
     <string name="GHsieutoc">Giao hàng siêu tốc</string>
     <string name="xemdonhangcuabna">Xem đơn hàng của bạn</string>
-    <string name="choxuly">Đang chờ xủ lý. Vui lòng kiểm tra thời gian nhận trong chi tiết hóa đơn</string>
+    <string name="choxuly">Chờ xử lý đơn hàng</string>
     <string name="themtcdh">Thêm thành công hóa đơn:</string>
     <string name="donhangdangchoxl">Đơn hàng đang được xử lý</string>
     <string name="adumakhe">adumankhe2@gmail.com</string>
@@ -297,7 +297,7 @@
     <string name="hod">Hóa đơn:</string>
     <string name="dh">Đơn hàng</string>
     <string name="xemdhb">Xem đơn hàng của bạn</string>
-    <string name="choxl">đang chờ xủ lý. Vui lòng kiểm tra thời gian nhận trong chi tiết hóa đơn</string>
+    <string name="choxl">Chờ xử lý đơn hàng</string>
     <string name="yhemtchd">Thêm thành công hóa đơn:</string>
 
 </resources>

@@ -59,10 +59,10 @@ public class Notif_DH_Adapter extends RecyclerView.Adapter<Notif_DH_Adapter.MyVi
                 Intent intent = new Intent(context, MuahangActivity.class);
                 if (tieude.equals("Chờ xử lý đơn hàng")){
                     intent.putExtra("check","0");
-                }else if (tieude.equals("Đơn hàng "+mahoadon+" đang được giao đến bạn.")){
+                }else if (tieude.equals("Đơn hàng  "+mahoadon+" đang được giao đến bạn.")){
                     intent.putExtra("check","1");
                 }
-                else if (tieude.equals("Đơn hàng "+mahoadon+" giao thành công.")){
+                else if (tieude.equals("Đơn hàng  "+mahoadon+" giao thành công.")){
                     intent.putExtra("check","2");
                 }
                 context.startActivity(intent);
