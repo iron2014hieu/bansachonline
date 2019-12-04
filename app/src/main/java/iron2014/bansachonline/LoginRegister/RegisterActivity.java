@@ -137,6 +137,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 btnRegis.setVisibility(View.VISIBLE);
 
                                 Toast.makeText(RegisterActivity.this, getString(R.string.datontai), Toast.LENGTH_SHORT).show();
+                                loading.setVisibility(View.GONE);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

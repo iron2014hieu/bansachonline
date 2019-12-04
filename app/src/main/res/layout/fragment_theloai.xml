@@ -11,8 +11,7 @@
         android:id="@+id/toolbar_vanchuyen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleTextColor="#fff"
-        android:background="#2196F3"
+        android:background="?attr/topbottomcolor"
         app:title="@string/uudai">
         <LinearLayout
 

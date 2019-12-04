@@ -13,10 +13,10 @@
             android:id="@+id/toolbar_viewpdf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:titleTextColor="#000"
+            app:titleTextColor="?attr/textcolor"
             app:title="@string/app_name"
             app:navigationIcon="@drawable/ic_close"
-            android:background="?attr/backgroundcolor"/>
+            android:background="?attr/topbottomcolor"/>
     </com.google.android.material.appbar.AppBarLayout>
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/pdf_viewer"

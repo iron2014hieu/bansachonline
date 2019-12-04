@@ -106,7 +106,9 @@ public class CartDetailActivity extends AppCompatActivity {
     TextView TxtTienKhuyenmai;
 
     String mauser_session;
-
+    Dialog dialog;
+    Button buttonsuccess_dialog;
+    ProgressBar progress_bar_dialog;
 
     int sizeList=0;
     SessionManager sessionManager;
@@ -550,7 +552,7 @@ public class CartDetailActivity extends AppCompatActivity {
     // phần xác minh
     public void displayAlertDialog() {
         // custom dialog
-        final Dialog dialog = new Dialog(this);
+        dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_xacminh_hoadon);
 //        dialog.setTitle();
 
@@ -559,13 +561,16 @@ public class CartDetailActivity extends AppCompatActivity {
          btnTieptuc = (Button) dialog.findViewById(R.id.btnxacminhsdt_dialog);
         editTextCode_dialog =(EditText)dialog.findViewById(R.id.editTextCode_dialog);
         final Spinner spinner = (Spinner) dialog.findViewById(R.id.spinner_dialog_Countries);
-        final Button btnHoanthanh = dialog.findViewById(R.id.buttonsuccess_dialog);
+        buttonsuccess_dialog = dialog.findViewById(R.id.buttonsuccess_dialog);
         final TextView txtVuilongdoi =(TextView) dialog.findViewById(R.id.textView_dialog);
+        progress_bar_dialog = dialog.findViewById(R.id.progress_bar_dialog);
 
         final LinearLayout linearLayout_nhap =(LinearLayout) dialog.findViewById(R.id.linearLayoutdialog_Nhap);
         final LinearLayout linearLayout_xacminh =(LinearLayout) dialog.findViewById(R.id.container_dialog);
         final ImageView img_close = dialog.findViewById(R.id.img_close);
         final ImageView img_close_2 = dialog.findViewById(R.id.img_close_2);
+
+
         spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryAreaCodes));
 
         if (sodienthoai!=null){
@@ -604,14 +609,14 @@ public class CartDetailActivity extends AppCompatActivity {
 
             }
         });
-        btnHoanthanh.setOnClickListener(new View.OnClickListener() {
+        buttonsuccess_dialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String code = editTextCode_dialog.getText().toString().trim();
 
                 if (code.isEmpty() || code.length() < 6) {
 
-                    editTextCode_dialog.setError("Enter code...");
+                    editTextCode_dialog.setError("Mã đang trống hoặc mã phải có 6 ký tự");
                     editTextCode_dialog.requestFocus();
                     return;
                 }
@@ -637,6 +642,9 @@ public class CartDetailActivity extends AppCompatActivity {
                         if (!edtDiachi.getText().toString().trim().equals("")||
                         !edtSdt.getText().toString().trim().equals("") || !edtTenkh.getText().toString().trim().equals("")) {
                             progress_hoadon.setVisibility(View.VISIBLE);
+                            buttonsuccess_dialog.setVisibility(View.GONE);
+                            editTextCode_dialog.setVisibility(View.GONE);
+                            progress_bar_dialog.setVisibility(View.VISIBLE);
 
                             ThemHoadon(mauser_session, String.valueOf(tienthanhtoan), edtSdt.getText().toString(), UrlSql.url_insert_hoadon);
                         }else {

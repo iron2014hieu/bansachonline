@@ -102,12 +102,13 @@
 
         <EditText
             android:id="@+id/editTextCode_dialog"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:digits="0123456789"
             android:drawablePadding="10dp"
             android:hint="@string/nhapma_xacnhan"
+            android:layout_gravity="center"
             android:inputType="phone"
             android:maxLength="10" />
 
@@ -121,7 +122,13 @@
             android:layout_gravity="center"
             android:textAllCaps="true"
             android:background="?attr/buttoncolor"
-            android:textColor="?attr/textcolor" />
-
+            android:textColor="?attr/textcolor"
+            />
+        <ProgressBar
+            android:id="@+id/progress_bar_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

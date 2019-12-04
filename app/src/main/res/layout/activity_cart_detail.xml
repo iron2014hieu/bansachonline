@@ -156,38 +156,39 @@
 
 
         </LinearLayout>
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/txtTiensanpham"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:text="tiensanpham"
                 android:textColor="?attr/textcolor"
                 android:textSize="15dp"
-                android:text="tiensanpham" />
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/txtTienvanchuyen"
-                android:text="tienvanchuyen"
                 android:layout_width="wrap_content"
-                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:text="tienvanchuyen"
                 android:textColor="?attr/textcolor"
                 android:textSize="15dp"
-                android:layout_height="wrap_content"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/TxtTienKhuyenmai"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:text="dsds"
                 android:textColor="?attr/textcolor"
 
-                android:text="dsds"
                 android:textSize="15dp"
-                />
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
@@ -249,7 +250,7 @@
             android:id="@+id/btnThanhtoan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/cutomsbtn"
+            android:background="?attr/buttoncolor"
             android:text="@string/thanhtoanhang"
             android:padding="10dp"
             android:textColor="?attr/textcolor" />

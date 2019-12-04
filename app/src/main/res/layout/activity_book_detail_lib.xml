@@ -172,6 +172,7 @@
                 android:layout_marginTop="5dp"
                 android:textSize="18dp"
                 android:textStyle="normal"
+                android:textColor="?attr/textcolor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/sachduoc_dexuat" />

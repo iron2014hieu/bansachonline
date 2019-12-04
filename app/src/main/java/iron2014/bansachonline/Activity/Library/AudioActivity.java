@@ -198,15 +198,21 @@ public class AudioActivity extends AppCompatActivity {
     }
 
     private void rotateTheDisk() {
-        if (!mediaPlayer.isPlaying())
-        image.animate().setDuration(100).rotation(image.getRotation() + 2f).setListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                rotateTheDisk();
-                super.onAnimationEnd(animation);
-            }
-        });
-        return;
+        try {
+            if (!mediaPlayer.isPlaying())
+                image.animate().setDuration(100).rotation(image.getRotation() + 2f).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        rotateTheDisk();
+                        super.onAnimationEnd(animation);
+                    }
+                });
+            return;
+        }catch (Exception e){
+
+        }
+
+
     }
 
 

@@ -258,8 +258,8 @@
     <string name="sachkdusl">Sách  không đủ số lượng!</string>
     <string name="kho">Kho:</string>
     <string name="sachs">Sách</string>
-    <string name="chicon">chỉ còn</string>
-    <string name="cuon">cuốn.</string>
+    <string name="chicon"> chỉ còn</string>
+    <string name="cuon"> cuốn.</string>
     <string name="dagiaohang">Đã giao hàng</string>
     <string name="xacnhankhibannhan">Xác nhận đơn khi bạn đã nhận được hàng</string>
     <string name="tatcassach">Tất cả sách trong đơn hàng</string>
@@ -268,7 +268,7 @@
     <string name="chovanchuyen">Chờ vận chuyển</string>
     <string name="giaohang">Giao hàng</string>
     <string name="vuilongnhapemail">Vui lòng nhập email</string>
-    <string name="vuilongnhapmatkhau">Vui lòng nh ập mật khẩu</string>
+    <string name="vuilongnhapmatkhau">Vui lòng nhập mật khẩu</string>
     <string name="saitk_ormk">Sai tài khoản hoặc mật khẩu!</string>
     <string name="nhapma">Nhập mã...</string>
     <string name="banchuadksdtnay">Bạn chưa đăng ký số điện thoại này</string>

@@ -33,6 +33,7 @@
                 tools:ignore="MissingConstraints" />
 
             <LinearLayout
+                android:id="@+id/linnear_chitiet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -60,12 +61,6 @@
                     android:layout_weight="1"
                     android:visibility="visible" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:background="?attr/textcolor" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

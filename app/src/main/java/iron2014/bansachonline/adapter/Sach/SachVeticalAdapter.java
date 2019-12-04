@@ -130,6 +130,14 @@ public class SachVeticalAdapter extends RecyclerView.Adapter<SachVeticalAdapter.
                 context.startActivity(new Intent(context, BookDetailActivity.class));
             }
         });
+        myViewHolder.linnear_chitiet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sessionManager.createSessionSendInfomationBook(masach,tensach,manxb,matheloai,ngayxb,noidung,
+                        anhbia,gia,tennxb,soluong,tacgia,matacgia, tongdiem, landanhgia);
+                context.startActivity(new Intent(context, BookDetailActivity.class));
+            }
+        });
         if(iduser == null){
             myViewHolder.img_add_tocart.setVisibility(View.GONE);
         }
@@ -156,6 +164,7 @@ public class SachVeticalAdapter extends RecyclerView.Adapter<SachVeticalAdapter.
         private RatingBar ratingBar;
         ImageView img, img_add_tocart;
         ImageView imghethang;
+        LinearLayout linnear_chitiet;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_soluongsach = itemView.findViewById(R.id.tv_soluongsach);
@@ -165,6 +174,7 @@ public class SachVeticalAdapter extends RecyclerView.Adapter<SachVeticalAdapter.
             tv_sldaban=(TextView) itemView.findViewById(R.id.tv_soluongsach);
             img_add_tocart= itemView.findViewById(R.id.img_add_tocart);
             imghethang =(ImageView) itemView.findViewById(R.id.imghethang);
+            linnear_chitiet = itemView.findViewById(R.id.linnear_chitiet);
 
         }
     }

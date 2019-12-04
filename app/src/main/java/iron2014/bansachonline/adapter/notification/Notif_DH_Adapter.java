@@ -1,6 +1,7 @@
 package iron2014.bansachonline.adapter.notification;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import iron2014.bansachonline.MuahangActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.model.Notification;
 
@@ -20,7 +22,8 @@ public class Notif_DH_Adapter extends RecyclerView.Adapter<Notif_DH_Adapter.MyVi
 
     Context context;
     List<Notification> mData;
-
+    String tieude;
+    int mahoadon;
     public Notif_DH_Adapter(Context context, List<Notification> mData) {
         this.context = context;
         this.mData = mData;
@@ -48,6 +51,40 @@ public class Notif_DH_Adapter extends RecyclerView.Adapter<Notif_DH_Adapter.MyVi
 //        }catch (Exception e){
 //            Log.e("log img", e.toString());
 //        }
+        holder.img_dh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tieude = mData.get(i).getTieude();
+                mahoadon = mData.get(i).getMahoadon();
+                Intent intent = new Intent(context, MuahangActivity.class);
+                if (tieude.equals("Chờ xử lý đơn hàng")){
+                    intent.putExtra("check","0");
+                }else if (tieude.equals("Đơn hàng "+mahoadon+" đang được giao đến bạn.")){
+                    intent.putExtra("check","1");
+                }
+                else if (tieude.equals("Đơn hàng "+mahoadon+" giao thành công.")){
+                    intent.putExtra("check","2");
+                }
+                context.startActivity(intent);
+            }
+        });
+        holder.linnear_giua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tieude = mData.get(i).getTieude();
+                mahoadon = mData.get(i).getMahoadon();
+                Intent intent = new Intent(context, MuahangActivity.class);
+                if (tieude.equals("Chờ xử lý đơn hàng")){
+                    intent.putExtra("check","0");
+                }else if (tieude.equals("Đơn hàng "+mahoadon+" đang được giao đến bạn.")){
+                    intent.putExtra("check","1");
+                }
+                else if (tieude.equals("Đơn hàng "+mahoadon+" giao thành công.")){
+                    intent.putExtra("check","2");
+                }
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -61,7 +98,8 @@ public class Notif_DH_Adapter extends RecyclerView.Adapter<Notif_DH_Adapter.MyVi
         private TextView txtMota_notif_dh;
         private TextView txtThoigian_dh;
         private TextView tvXemchitiet, tvAnchitiet;
-        private LinearLayout lnMota;
+        private LinearLayout lnMota,linnear_giua;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -71,6 +109,7 @@ public class Notif_DH_Adapter extends RecyclerView.Adapter<Notif_DH_Adapter.MyVi
             txtMota_notif_dh=(TextView)itemView.findViewById(R.id.txtMota_notif_dh);
             txtThoigian_dh = (TextView)itemView.findViewById(R.id.txtThoigian_dh);
             img_dh=(ImageView) itemView.findViewById(R.id.img_dh);
+            linnear_giua = itemView.findViewById(R.id.linnear_giua);
 
             tvAnchitiet.setOnClickListener(new View.OnClickListener() {
                 @Override
