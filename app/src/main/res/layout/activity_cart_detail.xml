@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".CartDetailActivity">
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <LinearLayout
@@ -55,6 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="@string/tenkhachhang"
+                    android:textColorHint="?attr/textcolor"
                     android:textColor="?attr/textcolor"
                     android:background="@drawable/rounded_edittext" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -70,6 +72,7 @@
                     android:layout_width="match_parent"
                     android:hint="@string/diachi"
                     android:layout_height="50dp"
+                    android:textColorHint="?attr/textcolor"
                     android:textColor="?attr/textcolor"
                     android:background="@drawable/rounded_edittext" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -86,6 +89,7 @@
                     android:layout_height="50dp"
                     android:textColor="?attr/textcolor"
                     android:hint="@string/sodienthoaikhach"
+                    android:textColorHint="?attr/textcolor"
                     android:background="@drawable/rounded_edittext" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,7 +105,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_create_bill"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"/>
 
             <LinearLayout
                 android:layout_marginTop="10dp"
@@ -161,34 +166,66 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:orientation="vertical">
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/textcolor"
+                    android:text="@string/tongtiensach"/>
+                <TextView
+                    android:id="@+id/txtTiensanpham"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="tiensanpham"
+                    android:textColor="?attr/textcolor"
+                    android:textStyle="bold"
+                    android:gravity="right"
+                    android:textSize="15dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal">
             <TextView
-                android:id="@+id/txtTiensanpham"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="tiensanpham"
                 android:textColor="?attr/textcolor"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-
+                android:text="@string/phivanchuyen"/>
             <TextView
                 android:id="@+id/txtTienvanchuyen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="tienvanchuyen"
                 android:textColor="?attr/textcolor"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-
+                android:layout_weight="1"
+                android:gravity="right"
+                 />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/textcolor"
+                    android:text="@string/khuyenmai"/>
             <TextView
                 android:id="@+id/TxtTienKhuyenmai"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="dsds"
                 android:textColor="?attr/textcolor"
-
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:gravity="right"
+                android:layout_weight="1"/>
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
@@ -231,7 +268,8 @@
                 android:layout_weight="1"
                 android:text="@string/tongtien"
                 android:textColor="#F44336"
-                android:textSize="13dp" />
+                android:textStyle="bold"
+                android:textSize="15dp" />
             <TextView
                 android:visibility="gone"
                 android:layout_marginRight="5dp"
@@ -252,6 +290,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/buttoncolor"
             android:text="@string/thanhtoanhang"
+            android:layout_weight="1"
             android:padding="10dp"
             android:textColor="?attr/textcolor" />
     </LinearLayout>

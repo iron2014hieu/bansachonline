@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/cardbackground"
+    android:background="?attr/buttoncolor"
     tools:context=".LoginRegister.ProfileActivity">
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="?attr/backgroundcolor"
+        android:background="?attr/buttoncolor"
         android:gravity="center">
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -224,5 +224,6 @@
         android:background="@drawable/cutomsbtn"
         android:textColor="?attr/textcolor"
         android:drawableRight="@drawable/ic_power"
+        android:layout_margin="10dp"
         android:text="@string/dangxuat"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

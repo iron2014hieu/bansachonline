@@ -7,8 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,25 +18,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import iron2014.bansachonline.Activity.GetBookByTheloaiActivity;
-import iron2014.bansachonline.Activity.hoadon.ChitiethoadonActivity;
+import iron2014.bansachonline.Activity.CartListActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
-import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceNotif;
-import iron2014.bansachonline.Main2Activity;
+import iron2014.bansachonline.LoginRegister.LoginActivity;
 import iron2014.bansachonline.MainActivity;
-import iron2014.bansachonline.MuahangActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.RecycerViewTouch.RecyclerTouchListener;
 import iron2014.bansachonline.Session.SessionManager;
-import iron2014.bansachonline.adapter.Sach.SachAdapter;
 import iron2014.bansachonline.adapter.notification.Notif_DH_Adapter;
 import iron2014.bansachonline.adapter.notification.Notif_KM_Adapter;
-import iron2014.bansachonline.model.Books;
 import iron2014.bansachonline.model.DatMua;
 import iron2014.bansachonline.model.Notification;
-import iron2014.bansachonline.model.TheLoai;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -61,6 +55,7 @@ public class NotificationFragment extends Fragment {
     Notif_DH_Adapter notif_dh_adapter;
     TextView counttxt_notif;
     ApiInTerFaceDatmua apiInTerFaceDatmua;
+    ImageView chk_icon_notif;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -106,7 +101,17 @@ public class NotificationFragment extends Fragment {
             public void onLongClick(View view, int position) {}})
         );
         fetchSoluong(mauser);
-
+        chk_icon_notif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mauser!=null) {
+                    Intent intent = new Intent(getContext(), CartListActivity.class);
+                    startActivity(intent);
+                }else {
+                    startActivity(new Intent(getContext(), LoginActivity.class));
+                }
+            }
+        });
 
         return  view;
     }
@@ -178,6 +183,7 @@ public class NotificationFragment extends Fragment {
         txtThongbaoNotif_null= view.findViewById(R.id.txtThongbaoNotif_null);
         txtCapnhatDonhang=view.findViewById(R.id.txtCapnhatDonhang);
         counttxt_notif= view.findViewById(R.id.counttxt_notif);
+        chk_icon_notif = view.findViewById(R.id.chk_icon_notiff);
     }
 
 }

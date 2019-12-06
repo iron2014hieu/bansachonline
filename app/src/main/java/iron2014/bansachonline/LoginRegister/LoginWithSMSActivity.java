@@ -49,7 +49,7 @@ import iron2014.bansachonline.URL.UrlSql;
 public class LoginWithSMSActivity extends AppCompatActivity {
     private String verificationId,phonenumber,sodienthoai;
     private FirebaseAuth mAuth;
-    private ProgressBar progressBar,progess_success_login;
+    private ProgressBar progess_success_login;
     private EditText editText;
     private TextView textView;
     SessionManager sessionManager;
@@ -62,7 +62,6 @@ public class LoginWithSMSActivity extends AppCompatActivity {
         sessionManager = new SessionManager(this);
         mAuth = FirebaseAuth.getInstance();
 
-        progressBar = findViewById(R.id.progressbar);
         progess_success_login= findViewById(R.id.progess_success_login);
         editText = findViewById(R.id.editTextCode);
         textView=findViewById(R.id.textView);
@@ -111,7 +110,6 @@ public class LoginWithSMSActivity extends AppCompatActivity {
                             textView.setVisibility(View.GONE);
                             buttonSignIn.setVisibility(View.GONE);
                             editText.setVisibility(View.GONE);
-                            progressBar.setVisibility(View.GONE);
                             progess_success_login.setVisibility(View.VISIBLE);
                             LoginWithphone(sodienthoai);
                         } else {
@@ -124,7 +122,6 @@ public class LoginWithSMSActivity extends AppCompatActivity {
     }
 
     private void sendVerificationCode(String number) {
-        progressBar.setVisibility(View.VISIBLE);
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 number,
                 60,
@@ -177,7 +174,10 @@ public class LoginWithSMSActivity extends AppCompatActivity {
                                     String phone = object.getString("phone").trim();
                                     String id = object.getString("id").trim();
                                     String quyen = object.getString("quyen").trim();
-                                    sessionManager.createSession(id, email,address,phone, name, quyen);
+                                    String sex = object.getString("sex").trim();
+                                    String ngaysinh = object.getString("ngaysinh").trim();
+
+                                    sessionManager.createSession(id, email,address,phone, name, quyen,sex,ngaysinh);
                                     updateDevicesToken("1", id);
                                     if(quyen.equals("shipper")){
                                         startActivity(new Intent(LoginWithSMSActivity.this, ShipperActivity.class));

@@ -125,8 +125,7 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
                     @Override
                     public void onResponse(String response) {
                         if (response.equals("success")) {
-                            sessionManager.createSession(id, email,address,phone, name, quyen);
-                            startActivity(new Intent(UpdateProfileActivity.this, ProfileActivity.class));
+                            sessionManager.createSession(id, email,address,phone, name, quyen,sex, ngaysinh);
                             Toast.makeText(UpdateProfileActivity.this, getString(R.string.suatc), Toast.LENGTH_SHORT).show();
                             finish();
                         }

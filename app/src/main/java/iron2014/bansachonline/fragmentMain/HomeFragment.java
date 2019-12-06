@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -24,7 +23,8 @@ import com.smarteist.autoimageslider.SliderView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import iron2014.bansachonline.Activity.BookDetailActivity;
+
+import iron2014.bansachonline.Activity.CartListActivity;
 import iron2014.bansachonline.Activity.GetAllBookActivity;
 import iron2014.bansachonline.Activity.GetBookByTheloaiActivity;
 import iron2014.bansachonline.Activity.SearchBooksActivity;
@@ -35,17 +35,14 @@ import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceNXB;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceTacgia;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceTheloai;
 import iron2014.bansachonline.LoginRegister.LoginActivity;
-import iron2014.bansachonline.Main2Activity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.RecycerViewTouch.RecyclerTouchListener;
 import iron2014.bansachonline.Session.SessionManager;
-import iron2014.bansachonline.URL.UrlSql;
 import iron2014.bansachonline.adapter.NhaxuatbanAdapter;
 import iron2014.bansachonline.adapter.Sach.SachAdapter;
 import iron2014.bansachonline.adapter.Slider.SliderAdapterExample;
 import iron2014.bansachonline.adapter.TacgiaAdapter;
 import iron2014.bansachonline.adapter.TheLoaiAdapter;
-import iron2014.bansachonline.listener.QuantityChangeListener;
 import iron2014.bansachonline.model.Books;
 import iron2014.bansachonline.model.DatMua;
 import iron2014.bansachonline.model.Nhaxuatban;
@@ -252,7 +249,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(mauser!=null) {
-                    Intent intent = new Intent(getContext(), Main2Activity.class);
+                    Intent intent = new Intent(getContext(), CartListActivity.class);
                     startActivity(intent);
                 }else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
@@ -387,11 +384,14 @@ public class HomeFragment extends Fragment {
         call.enqueue(new Callback<List<DatMua>>() {
             @Override
             public void onResponse(Call<List<DatMua>> call, retrofit2.Response<List<DatMua>> response) {
+                int total =0;
                 int soluong =0;
                 for (int i = 0; i<response.body().size(); i++){
                     soluong = response.body().get(i).getSoluong();
+                    total+= soluong;
+
                 }
-                counttxt.setText(String.valueOf(soluong));
+                counttxt.setText(String.valueOf(total));
             }
 
             @Override

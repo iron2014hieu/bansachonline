@@ -20,11 +20,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import iron2014.bansachonline.Activity.CartListActivity;
 import iron2014.bansachonline.Activity.Library.BookDetailLibActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
-import iron2014.bansachonline.Main2Activity;
+import iron2014.bansachonline.LoginRegister.LoginActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.RecycerViewTouch.RecyclerTouchListener;
 import iron2014.bansachonline.Session.SessionManager;
@@ -77,7 +78,7 @@ public class LibraryFragment extends Fragment {
         recyclerview_book_library.setLayoutManager(gridLayoutManager);
         recyclerview_book_library.setHasFixedSize(true);
 
-        HashMap<String,String> user = sessionManager.getUserDetail();
+        final HashMap<String,String> user = sessionManager.getUserDetail();
         fetchUser(user.get(sessionManager.ID));
         recyclerview_book_library.addOnItemTouchListener(new RecyclerTouchListener(getActivity(),
                 recyclerview_book_library, new RecyclerTouchListener.ClickListener() {
@@ -105,7 +106,12 @@ public class LibraryFragment extends Fragment {
         chk_icon_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), Main2Activity.class));
+                if(user.get(sessionManager.ID)!=null) {
+                    Intent intent = new Intent(getContext(), CartListActivity.class);
+                    startActivity(intent);
+                }else {
+                    startActivity(new Intent(getContext(), LoginActivity.class));
+                }
             }
         });
         fetchSoluong(user.get(sessionManager.ID));

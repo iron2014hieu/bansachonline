@@ -29,12 +29,15 @@ import java.util.Map;
 
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.R;
+import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.UrlSql;
 import iron2014.bansachonline.fragmentVanChuyen.Activity.ShipperActivity;
 
 public class DoiMatkhauActivity extends AppCompatActivity {
     TextInputEditText edtPassRE,edtEmailRE;
     Button btnTieptuc;
+    SessionManager sessionManager;
+    String email ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,10 @@ public class DoiMatkhauActivity extends AppCompatActivity {
         btnTieptuc = findViewById(R.id.buttonTieptuc);
         Toolbar toolbar = findViewById(R.id.toolbar_doimk);
         setSupportActionBar(toolbar);
+        sessionManager = new SessionManager(this);
+        HashMap<String,String> user = sessionManager.getUserDetail();
+        email = user.get(sessionManager.EMAIL);
+        edtEmailRE.setText(email);
         btnTieptuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

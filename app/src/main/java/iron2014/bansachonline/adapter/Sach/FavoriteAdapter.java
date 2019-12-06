@@ -1,6 +1,5 @@
 package iron2014.bansachonline.adapter.Sach;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -8,38 +7,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import iron2014.bansachonline.Activity.BookDetailActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
-import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
-import iron2014.bansachonline.Main2Activity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
-import iron2014.bansachonline.URL.UrlSql;
 import iron2014.bansachonline.model.BookFavorite;
 import iron2014.bansachonline.model.Books;
 import retrofit2.Call;

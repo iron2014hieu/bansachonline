@@ -62,7 +62,7 @@ public class GetAllBookActivity extends AppCompatActivity {
 
         // lấy sách
         StaggeredGridLayoutManager gridLayoutManagerVeticl =
-                new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+                new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL);
         recyclerview_book_all.setLayoutManager(gridLayoutManagerVeticl);
         recyclerview_book_all.setHasFixedSize(true);
 

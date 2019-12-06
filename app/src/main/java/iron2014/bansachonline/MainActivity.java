@@ -57,6 +57,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
+import iron2014.bansachonline.Activity.CartListActivity;
 import iron2014.bansachonline.Activity.SearchBooksActivity;
 import iron2014.bansachonline.fragmentVanChuyen.Activity.ShipperActivity;
 import iron2014.bansachonline.LoginRegister.LoginActivity;
@@ -276,7 +277,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (name != null) {
             switch (item.getItemId()) {
                 case R.id.action_addcart:
-                    startActivity(new Intent(MainActivity.this, Main2Activity.class));
+                    startActivity(new Intent(MainActivity.this, CartListActivity.class));
                     break;
             }
         } else {
@@ -308,7 +309,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
+            finish();
             return;
         }
 

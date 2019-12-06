@@ -4,5 +4,7 @@
 
     <item android:title="@string/trangchu"
         android:id="@+id/mn_home"
-        app:showAsAction="always"/>
+        android:icon="@drawable/ic_home_black_24dp"
+        app:showAsAction="always"
+        />
 </menu>

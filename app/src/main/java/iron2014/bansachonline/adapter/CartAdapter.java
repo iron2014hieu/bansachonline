@@ -33,16 +33,13 @@ import java.util.List;
 import java.util.Map;
 
 import iron2014.bansachonline.Activity.BookDetailActivity;
+import iron2014.bansachonline.Activity.CartListActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
-import iron2014.bansachonline.Fragment.CartListFragment;
-import iron2014.bansachonline.Main2Activity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.UrlSql;
-import iron2014.bansachonline.adapter.Sach.SachAdapter;
 import iron2014.bansachonline.model.Books;
-import iron2014.bansachonline.model.Cart;
 import iron2014.bansachonline.model.DatMua;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,17 +47,15 @@ import retrofit2.Callback;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
     Context context;
     public static List<DatMua> listGiohang;
-    public static int tongTienSach;
-    private int tongTienTungsach;
-    UrlSql urlSql;
-    private  int total = 0;
+
     String iduser, masach;
     public  static String url_UD = "https://bansachonline.xyz/bansach/giohang/update_status_carts.php";
     ApiInTerFace apiInTerFace;
     SessionManager sessionManager;
 
-    int soluong;
-
+    public static int tongTien =0;
+    int soluong =0;
+    int tientungsach =0;
     public CartAdapter(Context context, List<DatMua> listGiohang) {
         this.context = context;
         this.listGiohang = listGiohang;
@@ -71,7 +66,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
         view = LayoutInflater.from(context).inflate(R.layout.item_giohang, viewGroup, false);
-        urlSql = new UrlSql();
         final MyViewHolder holder= new MyViewHolder(view);
         sessionManager = new SessionManager(context);
         return holder;
@@ -79,29 +73,42 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int i) {
+        tongTien =0;
+
         holder.checkBox.setTag(i);
         holder.tv_name.setText(listGiohang.get(i).getSanpham());
-        holder.tv_giaban.setText(listGiohang.get(i).getGia()+" VNĐ");
+
         holder.btn_quality.setNumber(String.valueOf(listGiohang.get(i).getSoluong()));
         String linkImage= listGiohang.get(i).getHinhanh();
 
         Picasso.with(context).load(linkImage).into(holder.img_cart);
 
         final String maSach = String.valueOf(listGiohang.get(i).getMasach());
+
         if (listGiohang.get(i).getSelected()==1){
             holder.checkBox.setChecked(true);
+
         }else {
             holder.checkBox.setChecked(false);
         }
+
+        holder.tv_giaban.setText(listGiohang.get(i).getGia()+" VNĐ");
+
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     update_selected(maSach,"1", url_UD);
-                    context.startActivity(new Intent(context, Main2Activity.class));
+                    if (listGiohang.get(i).getMasach() == Integer.valueOf(maSach)){
+                        listGiohang.get(i).setSelected(1);
+                    }
+                    context.startActivity(new Intent(context, CartListActivity.class));
                 } else {
                     update_selected(maSach,"0", url_UD);
-                    context.startActivity(new Intent(context, Main2Activity.class));
+                    if (listGiohang.get(i).getMasach() == Integer.valueOf(maSach)){
+                        listGiohang.get(i).setSelected(0);
+                    }
+                    context.startActivity(new Intent(context, CartListActivity.class));
                 }
             }
         });
@@ -109,13 +116,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
         iduser = listGiohang.get(i).getMauser();
         masach = String.valueOf(listGiohang.get(i).getMasach());
-        holder.btn_quality.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int num = Integer.valueOf(holder.btn_quality.getNumber());
-                Toast.makeText(context, ""+num, Toast.LENGTH_SHORT).show();
-            }
-        });
+
         holder.btn_quality.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
             @Override
             public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
@@ -123,17 +124,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 String masach1 = String.valueOf(datMua.getMasach());
 
                 fetchCheckSoluong(String.valueOf(listGiohang.get(i).getMasach()), newValue, masach1);
-
-//                if (newValue<=soluong){
-//                    updateSoluongTongtien(String.valueOf(newValue),iduser, masach1);
-//                    datMua.setSoluong(newValue);
-//                    total = (Integer.valueOf(datMua.getGia()))*(Integer.valueOf(datMua.getSoluong()));
-//                    context.startActivity(new Intent(context, Main2Activity.class));
-//                }else {
-//                    Toast.makeText(context, "Sách "+ten+" không đủ số lượng!", Toast.LENGTH_SHORT).show();
-//                }
-
-
                 if (newValue ==0){
                     holder.checkBox.setChecked(false);
                     update_selected(maSach,"0", url_UD);
@@ -222,10 +212,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                             for (int n =0; n<listGiohang.size();n++){
                                 DatMua datMua = listGiohang.get(n);
                                 if (newValue<=soluong){
-                                    updateSoluongTongtien(String.valueOf(newValue),iduser, masach1);
+                                    updateSoluongTongtien(String.valueOf(newValue),iduser, masach1);;
                                     datMua.setSoluong(newValue);
-                                    total = (Integer.valueOf(listGiohang.get(m).getGia()))*(Integer.valueOf(datMua.getSoluong()));
-                                    context.startActivity(new Intent(context, Main2Activity.class));
                                 }else {
                                     Toast.makeText(context,context.getString(R.string.sachkdusl), Toast.LENGTH_SHORT).show();
                                     break;
@@ -289,8 +277,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if (response.trim().equals("tb")){
-                        }else if (response.trim().equals("tc")){
+                         if (response.trim().equals("tc")){
+//                             context.startActivity(new Intent(context, Main2Activity.class));
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -319,7 +307,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                     public void onResponse(String response) {
                         if (response.trim().equals("tb")){
                         }else if (response.trim().equals("tc")){
-                            context.startActivity(new Intent(context, Main2Activity.class));
+                            context.startActivity(new Intent(context, CartListActivity.class));
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -345,8 +333,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if (response.trim().equals("tb")){
-                        }else if (response.trim().equals("tc")){
+                        if (response.trim().equals("tc")){
+                            context.startActivity(new Intent(context, CartListActivity.class));
                         }
                     }
                 }, new Response.ErrorListener() {

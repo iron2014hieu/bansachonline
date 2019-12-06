@@ -116,7 +116,7 @@
     <string name="dienthoai">Điện thoại</string>
     <string name="thietlapngay">Thiết lập ngay</string>
     <string name="thaydoi_mk">Thiết lập ngay</string>
-    <string name="dangky_tk">Đăng ký tài khoản</string>
+    <string name="dangky_tk">Đăng ký thành công</string>
     <string name="tentaik">Tên tài khoản</string>
     <string name="nhap_mk">Nhập mật khẩu</string>
     <string name="nhaplaimk">Nhập lại mật khẩu</string>
@@ -154,7 +154,8 @@
     <string name="themvao_gh">Thêm vào giỏ</string>
 ///
     <string name="vuilongnhap">Vui lòng nhập email</string>
-    <string name="nhappasss">Vui lòng nhập password</string>
+    <string name="saitk_ormk_login">Tài khoản hoặc mật khẩu sai!</string>
+    <string name="nhappasss">Vui lòng nhập mật khẩu</string>
     <string name="dangnhaptc">Đăng nhập thành công!</string>
     <string name="saitk_mk">Sai tài khoản hoặc mật khẩu!</string>
     <string name="chuadk_sdtnay">Bạn chưa đăng ký số điện thoại này</string>
@@ -252,7 +253,7 @@
     <string name="giaohang">Giao hàng</string>
     <string name="vuilongnhapemail">Vui lòng nhập email</string>
     <string name="vuilongnhapmatkhau">Vui lòng nh ập mật khẩu</string>
-    <string name="saitk_ormk">Sai tài khoản hoặc mật khẩu!</string>
+    <string name="saitk_ormk">Sai mật khẩu!</string>
     <string name="nhapma">Nhập mã...</string>
     <string name="banchuadksdtnay">Bạn chưa đăng ký số điện thoại này</string>
     <string name="matkhkokhop">Mật khẩu không khớp</string>

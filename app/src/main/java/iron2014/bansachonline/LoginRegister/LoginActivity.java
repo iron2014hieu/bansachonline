@@ -122,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(getBaseContext(), VerifyPhoneActivity.class));
     }
     private void Login(final String email, final String password){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, urlSql.URL_LOGIN,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_LOGIN,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -140,8 +140,10 @@ public class LoginActivity extends AppCompatActivity {
                                     String phone = object.getString("phone").trim();
                                     String id = object.getString("id").trim();
                                     String quyen = object.getString("quyen").trim();
+                                    String sex = object.getString("sex").trim();
+                                    String ngaysinh = object.getString("ngaysinh").trim();
 
-                                    sessionManager.createSession(id, email,address,phone, name, quyen);
+                                    sessionManager.createSession(id, email,address,phone, name, quyen,sex,ngaysinh);
                                     //get token notif
                                     sendTokenToServer(id);
                                     updateDevicesToken("1",id);
@@ -153,7 +155,7 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                 }
                             }else {
-                                Toast.makeText(LoginActivity.this, getString(R.string.saitk_ormk), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, getString(R.string.saitk_ormk_login), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

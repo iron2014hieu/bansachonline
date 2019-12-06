@@ -126,7 +126,7 @@
                     android:layout_height="match_parent"/>
                 <LinearLayout
                     android:id="@+id/linnear_nhaxuaban"
-                    android:background="#2196F3"
+                    android:background="?attr/cardbackground"
                     android:layout_below="@id/recyclerview_book_home"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="10dp"
                         android:text="@string/nhaxuatban"
-                        android:textColor="#fff"
+                        android:textColor="?attr/textcolor"
                         android:textSize="18dp"
                         android:textStyle="normal" />
                     <LinearLayout

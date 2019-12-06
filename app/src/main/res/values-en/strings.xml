@@ -116,7 +116,7 @@
         <string name = "dienthoai"> Phone number </string>
         <string name = "thietlapngay"> Set up now </string>
         <string name = "thaydoi_mk"> Set up now </string>
-        <string name = "dangky_tk"> Register an account </string>
+        <string name = "dangky_tk"> Sign Up Success </string>
         <string name = "tentaik"> Account name </string>
         <string name = "nhap_mk"> Enter the password </string>
         <string name = "nhaplaimk"> Retype the password </string>
@@ -256,7 +256,8 @@
         <string name = "giaohang"> Delivery </string>
         <string name = "vuilongnhapemail"> Please enter email </string>
         <string name = "vuilongnhapmatkhau"> Please enter the password </string>
-        <string name = "saitk_ormk"> Wrong account or password! </string>
+        <string name = "saitk_ormk"> Wrong password! </string>
+        <string name="saitk_ormk_login">Wrong account or password!</string>
         <string name = "nhapma"> Enter the code ... </string>
         <string name = "banchuadksdtnay"> You have not registered this phone number </string>
         <string name = "matkhkokhop"> Passwords do not match </string>

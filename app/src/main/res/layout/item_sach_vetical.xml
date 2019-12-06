@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:backgroundTint="?attr/backgroundcolor"
-    android:layout_marginBottom="5dp">
+    android:layout_marginBottom="1dp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -30,6 +30,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:src="@drawable/book"
+                android:padding="10dp"
                 tools:ignore="MissingConstraints" />
 
             <LinearLayout

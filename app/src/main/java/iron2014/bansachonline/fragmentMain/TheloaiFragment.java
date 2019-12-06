@@ -22,10 +22,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import iron2014.bansachonline.Activity.CartListActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
-import iron2014.bansachonline.Main2Activity;
+import iron2014.bansachonline.LoginRegister.LoginActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.adapter.KhuyenMai.KhuyenMaiAdapter;
@@ -68,12 +69,17 @@ public class TheloaiFragment extends Fragment {
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
         adView.loadAd(adRequest);
 
-        HashMap<String,String> user = sessionManager.getUserDetail();
+        final HashMap<String,String> user = sessionManager.getUserDetail();
         fetchSoluong(user.get(sessionManager.ID));
         chk_icon_km.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), Main2Activity.class));
+                if(user.get(sessionManager.ID)!=null) {
+                    Intent intent = new Intent(getContext(), CartListActivity.class);
+                    startActivity(intent);
+                }else {
+                    startActivity(new Intent(getContext(), LoginActivity.class));
+                }
             }
         });
         return  view;

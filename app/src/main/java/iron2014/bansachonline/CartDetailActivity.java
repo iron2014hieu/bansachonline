@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.AdapterView;
@@ -26,6 +27,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +38,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -66,6 +69,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import iron2014.bansachonline.Activity.CartListActivity;
 import iron2014.bansachonline.Activity.ChonMaKhuyenmaiActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
@@ -94,7 +98,7 @@ public class CartDetailActivity extends AppCompatActivity {
     private CountryAdapter countryAdapter;
     private List<KhuyenMai> listKhuyenMai = new ArrayList<>();
     ApiInTerFaceHoadon apiInTerFaceHoadon;
-    ProgressBar progressBar;
+
     private String verificationId;
     EditText edtMaGiamGia, edtSdt, edtDiachi, edtTenkh,  edtEnterPhone,editTextCode_dialog;
     TextView txtTongtien, txtTiensanpham, txtTienvanchuyen, txtTongthanhtoan;
@@ -124,23 +128,17 @@ public class CartDetailActivity extends AppCompatActivity {
     SharedPref sharedPref;
     private String tenkh,diachi,sodienthoai;
     private NotificationManagerCompat notificationManager;
-
+    NestedScrollView scroller;
+    String TAG ="muahang";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPref = new SharedPref(this);
         theme();
         setContentView(R.layout.activity_cart_detail);
-        progress_hoadon=findViewById(R.id.progress_hoadon);
-        edtMaGiamGia = findViewById(R.id.edtMaGiamGia);
-        txtTongtien= findViewById(R.id.txtTongtienthanhtoan);
-        edtSdt = findViewById(R.id.edtSdt);
-        edtDiachi=findViewById(R.id.edtDiachi);
-        edtTenkh=findViewById(R.id.edtTenkh);
-        btnCheckMGG = findViewById(R.id.CheckMGG);
-        btnThanhtoan= findViewById(R.id.btnThanhtoan);
-        TxtTienKhuyenmai=findViewById(R.id.TxtTienKhuyenmai);
-        recyclerview_create_bill= findViewById(R.id.recyclerview_create_bill);
+        addControls();
+
+
         sessionManager = new SessionManager(this);
         notificationManager = NotificationManagerCompat.from(this);
         mAuth = FirebaseAuth.getInstance();
@@ -188,9 +186,9 @@ public class CartDetailActivity extends AppCompatActivity {
         toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator()).start();
 
 
-        txtTiensanpham.setText(getString(R.string.tongtiensach)+(tongtien));
-        TxtTienKhuyenmai.setText(getString(R.string.khuyenmais)+trukhuyenmai);
-        txtTienvanchuyen.setText(getString(R.string.phivc)+ tienvanchuyen);
+        txtTiensanpham.setText(tongtien+" VNĐ");
+        TxtTienKhuyenmai.setText(trukhuyenmai+" VNĐ");
+        txtTienvanchuyen.setText(tienvanchuyen+" VNĐ");
 
 
         cartAdapter = new ListSPAdapter(this,listDatmua);
@@ -214,9 +212,9 @@ public class CartDetailActivity extends AppCompatActivity {
 
                 txtTongthanhtoan.setText(String.valueOf(tienthanhtoan));
 
-                txtTiensanpham.setText(getString(R.string.tongtiensach) +(tongtien)+" VNĐ");
-                TxtTienKhuyenmai.setText(getString(R.string.khuyenmais) +trukhuyenmai+" VNĐ");
-                txtTienvanchuyen.setText(getString(R.string.phivanchuyen)+ tienvanchuyen+" VNĐ");
+                txtTiensanpham.setText(tongtien+" VNĐ");
+                TxtTienKhuyenmai.setText(trukhuyenmai+" VNĐ");
+                txtTienvanchuyen.setText(tienvanchuyen+" VNĐ");
 
             }
             @Override
@@ -237,7 +235,7 @@ public class CartDetailActivity extends AppCompatActivity {
 
         });
         StaggeredGridLayoutManager gridLayoutManager3 =
-                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
+                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         recyclerview_create_bill.setLayoutManager(gridLayoutManager3);
         recyclerview_create_bill.setHasFixedSize(true);
         fetchTacgia(mauser_session);
@@ -269,9 +267,9 @@ public class CartDetailActivity extends AppCompatActivity {
 
                                         txtTongthanhtoan.setText(String.valueOf(tienthanhtoan));
 
-                                        txtTiensanpham.setText(getString(R.string.tongtiensach) +(tongtien)+" VNĐ");
-                                        TxtTienKhuyenmai.setText(getString(R.string.khuyenmai) +trukhuyenmai+" VNĐ");
-                                        txtTienvanchuyen.setText(getString(R.string.phivanchuyen) + tienvanchuyen+" VNĐ");
+                                        txtTiensanpham.setText(tongtien+" VNĐ");
+                                        TxtTienKhuyenmai.setText(trukhuyenmai+" VNĐ");
+                                        txtTienvanchuyen.setText(tienvanchuyen+" VNĐ");
                                         break;
                                     } else {
                                         Toast.makeText(CartDetailActivity.this, getString(R.string.maktt), Toast.LENGTH_SHORT).show();
@@ -294,6 +292,7 @@ public class CartDetailActivity extends AppCompatActivity {
                 Log.e("Error Search:","Error on: "+t.toString());
             }
         });
+
         btnThanhtoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -327,7 +326,33 @@ public class CartDetailActivity extends AppCompatActivity {
                 }
             }
         });
+
+        if (scroller != null) {
+
+            scroller.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+
+                    if (scrollY > oldScrollY) {
+                        Log.i(TAG, "Scroll DOWN");
+                    }
+                    if (scrollY < oldScrollY) {
+                        Log.i(TAG, "Scroll UP");
+                    }
+
+                    if (scrollY == 0) {
+                        Log.i(TAG, "TOP SCROLL");
+                    }
+
+                    if (scrollY == ( v.getMeasuredHeight() - v.getChildAt(0).getMeasuredHeight() )) {
+                        Log.i(TAG, "BOTTOM SCROLL");
+                    }
+                }
+            });
+        }
     }
+
+
 
     //settheme
     public  void theme(){
@@ -351,7 +376,7 @@ public class CartDetailActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(getApplicationContext(), Main2Activity.class));
+        startActivity(new Intent(getApplicationContext(), CartListActivity.class));
     }
 
     private void initList(){
@@ -566,7 +591,7 @@ public class CartDetailActivity extends AppCompatActivity {
         progress_bar_dialog = dialog.findViewById(R.id.progress_bar_dialog);
 
         final LinearLayout linearLayout_nhap =(LinearLayout) dialog.findViewById(R.id.linearLayoutdialog_Nhap);
-        final LinearLayout linearLayout_xacminh =(LinearLayout) dialog.findViewById(R.id.container_dialog);
+        final RelativeLayout linearLayout_xacminh = dialog.findViewById(R.id.container_dialog);
         final ImageView img_close = dialog.findViewById(R.id.img_close);
         final ImageView img_close_2 = dialog.findViewById(R.id.img_close_2);
 
@@ -641,7 +666,6 @@ public class CartDetailActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                         if (!edtDiachi.getText().toString().trim().equals("")||
                         !edtSdt.getText().toString().trim().equals("") || !edtTenkh.getText().toString().trim().equals("")) {
-                            progress_hoadon.setVisibility(View.VISIBLE);
                             buttonsuccess_dialog.setVisibility(View.GONE);
                             editTextCode_dialog.setVisibility(View.GONE);
                             progress_bar_dialog.setVisibility(View.VISIBLE);
@@ -738,5 +762,18 @@ public class CartDetailActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+    private void addControls() {
+        progress_hoadon=findViewById(R.id.progress_hoadon);
+        edtMaGiamGia = findViewById(R.id.edtMaGiamGia);
+        txtTongtien= findViewById(R.id.txtTongtienthanhtoan);
+        edtSdt = findViewById(R.id.edtSdt);
+        edtDiachi=findViewById(R.id.edtDiachi);
+        edtTenkh=findViewById(R.id.edtTenkh);
+        btnCheckMGG = findViewById(R.id.CheckMGG);
+        btnThanhtoan= findViewById(R.id.btnThanhtoan);
+        TxtTienKhuyenmai=findViewById(R.id.TxtTienKhuyenmai);
+        recyclerview_create_bill= findViewById(R.id.recyclerview_create_bill);
+        scroller= findViewById(R.id.nestedScrollView);
     }
 }

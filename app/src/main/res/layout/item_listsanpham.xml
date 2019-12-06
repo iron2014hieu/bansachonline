@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/cardbackground"
-    android:layout_marginTop="5dp">
+    android:layout_marginTop="1dp">
     <LinearLayout
         android:padding="5dp"
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         android:orientation="horizontal">
     <LinearLayout
         android:id="@+id/linear_cart"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
     <ImageView
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:maxLength="25"
             android:text="Teen sach"
-            android:textColor="#3F51B5"
+            android:textColor="?attr/textcolor"
             android:textStyle="normal" />
         <TextView
             android:layout_width="wrap_content"
@@ -67,12 +67,14 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/textcolor"
                 android:text="@string/soluongs"/>
             <TextView
                 android:padding="10dp"
                 android:id="@+id/tv_soluongmua"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/textcolor"
                 android:text="0"/>
             <ImageButton
                 android:visibility="gone"

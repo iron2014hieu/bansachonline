@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.GetAllBookActivity"
-    android:background="?attr/backgroundcolor"
     android:gravity="center"
     android:orientation="vertical">
     <androidx.core.widget.NestedScrollView
@@ -15,7 +14,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:background="?attr/backgroundcolor"
             android:orientation="vertical">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -36,7 +34,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_gravity="center"
         android:id="@+id/recyclerview_book_all"
-        android:backgroundTint="?attr/backgroundcolor"
+        android:background="?attr/cardbackground"
         android:layout_below="@id/inlayout"
         android:foregroundGravity="center"
         android:layout_width="match_parent"

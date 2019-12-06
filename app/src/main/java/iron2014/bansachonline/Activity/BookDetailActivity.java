@@ -54,7 +54,6 @@ import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceFav;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
 import iron2014.bansachonline.BottomSheet.ExampleBottomSheetDialog;
 import iron2014.bansachonline.LoginRegister.LoginActivity;
-import iron2014.bansachonline.Main2Activity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.UrlSql;
@@ -347,7 +346,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
 
                                 }
                             }else {
-                                startActivity(new Intent(getApplicationContext(), Main2Activity.class));
+                                startActivity(new Intent(getApplicationContext(), CartListActivity.class));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -554,7 +553,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
             Toast.makeText(this,getString(R.string.sachkdsl), Toast.LENGTH_SHORT).show();
         }else {
             ThemDatmua(masach, tensach, linkImage, text, idUser);
-            startActivity(new Intent(getApplicationContext(), Main2Activity.class));
+            startActivity(new Intent(getApplicationContext(), CartListActivity.class));
         }
     }
 

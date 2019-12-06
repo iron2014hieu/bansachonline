@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:padding="10dp"
+    android:background="?attr/cardbackground"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/txtTongTiensach"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/textcolor"
+        android:text="100000 VNĐ"/>
+    <TextView
+        android:id="@+id/txtPhivanchuyen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/textcolor"
+        android:text="20000 VNĐ"/>
+    <TextView
+        android:id="@+id/txtKhuyenmai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/textcolor"
+        android:text="-11000 VNĐ"/>
+</LinearLayout>

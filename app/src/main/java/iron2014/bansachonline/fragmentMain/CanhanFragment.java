@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import java.util.HashMap;
 import java.util.List;
 
+import iron2014.bansachonline.Activity.CartListActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
 import iron2014.bansachonline.BookFavoriteActivity;
@@ -21,7 +22,6 @@ import iron2014.bansachonline.LoginRegister.LoginActivity;
 import iron2014.bansachonline.LoginRegister.ProfileActivity;
 import iron2014.bansachonline.LoginRegister.RegisterActivity;
 import iron2014.bansachonline.LoginRegister.SettingsActivity;
-import iron2014.bansachonline.Main2Activity;
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.MuahangActivity;
 import iron2014.bansachonline.R;
@@ -96,7 +96,12 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
         chk_icon_canhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), Main2Activity.class));
+                if(email!=null) {
+                    Intent intent = new Intent(getContext(), CartListActivity.class);
+                    startActivity(intent);
+                }else {
+                    startActivity(new Intent(getContext(), LoginActivity.class));
+                }
             }
         });
         return v;

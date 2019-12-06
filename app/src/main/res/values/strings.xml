@@ -4,30 +4,30 @@
     <string name="facebook_login_protocol_schema">fb982539198779504</string>
 
     <string name="hello_blank_fragment">ddd</string>
-    <string name="string_internet_connection_not_available">Không có kết nối internet!</string>
-    <string name="thaydoingonngu">Ngôn ngữ</string>
-    <string name="chedotoi">Chế độ tối</string>
-    <string name="tatBatchedotoi">Tắt/bật chế độ tối</string>
+    <string name="string_internet_connection_not_available"> Không có kết nối internet!</string>
+    <string name="thaydoingonngu"> Ngôn ngữ</string>
+    <string name="chedotoi"> Chế độ tối</string>
+    <string name="tatBatchedotoi"> Tắt/bật chế độ tối</string>
 
-    <string name="thay_doi_ngon_ngu">Thay đổi ngôn ngữ</string>
-    <string name="chitet_mua">Chi tiết</string>
-    <string name="mota_ban">Mô tả sách</string>
-    <string name="cungtacgia_ban">Sản phẩm cùng tác giả</string>
-    <string name="danhgia_ban">Đánh giá sản phẩm</string>
-    <string name="tatca_ban">Xem tất cả</string>
-    <string name="mungay_ban">Mua ngay</string>
-    <string name="docsach">Đọc sách</string>
-    <string name="audio">Audio</string>
-    <string name="danhgia_doc">Xem đánh giá của bạn</string>
-    <string name="tenkhachhang">Tên khách hàng</string>
-    <string name="diachi">Địa chỉ</string>
-    <string name="sodienthoaikhach">Số điện thoại</string>
-    <string name="sanphammua">Sản phẩm</string>
-    <string name="thanhtoanhang">Thanh toán</string>
-    <string name="kientrama">Kiểm tra</string>
-    <string name="phuongthucvanchuyen">Phương thức vận chuyển</string>
-    <string name="tongtien">Tổng tiền: 10 VND</string>
-    <string name="tenkhachhangs">Khách hàng :</string>
+    <string name="thay_doi_ngon_ngu"> Thay đổi ngôn ngữ</string>
+    <string name="chitet_mua"> Chi tiết</string>
+    <string name="mota_ban"> Mô tả sách</string>
+    <string name="cungtacgia_ban"> Sản phẩm cùng tác giả</string>
+    <string name="danhgia_ban"> Đánh giá sản phẩm</string>
+    <string name="tatca_ban"> Xem tất cả</string>
+    <string name="mungay_ban"> Mua ngay</string>
+    <string name="docsach"> Đọc sách</string>
+    <string name="audio"> Audio</string>
+    <string name="danhgia_doc"> Xem đánh giá của bạn </string>
+    <string name="tenkhachhang"> Tên khách hàng </string>
+    <string name="diachi"> Địa chỉ </string>
+    <string name="sodienthoaikhach"> Số điện thoại </string>
+    <string name="sanphammua"> Sản phẩm </string>
+    <string name="thanhtoanhang"> Thanh toán </string>
+    <string name="kientrama"> Kiểm tra </string>
+    <string name="phuongthucvanchuyen"> Phương thức vận chuyển </string>
+    <string name="tongtien"> Tổng tiền: 10 VND </string>
+    <string name="tenkhachhangs"> Khách hàng : </string>
     <string name="diachis">Địa chỉ :</string>
     <string name="SDT">SĐT :</string>
     <string name="tongtiens">Tổng tiền :</string>
@@ -132,7 +132,7 @@
     <string name="dienthoai">Điện thoại</string>
     <string name="thietlapngay">Thiết lập ngay</string>
     <string name="thaydoi_mk">Thiết lập ngay</string>
-    <string name="dangky_tk">Đăng ký tài khoản</string>
+    <string name="dangky_tk">Đăng ký thành công</string>
     <string name="tentaik">Tên tài khoản</string>
     <string name="nhap_mk">Nhập mật khẩu</string>
     <string name="nhaplaimk">Nhập lại mật khẩu</string>
@@ -170,7 +170,7 @@
     <string name="themvao_gh">Thêm vào giỏ</string>
 
     <string name="vuilongnhap">Vui lòng nhập email</string>
-    <string name="nhappasss">Vui lòng nhập password</string>
+    <string name="nhappasss">Vui lòng nhập mật khẩu</string>
     <string name="dangnhaptc">Đăng nhập thành công!</string>
     <string name="saitk_mk">Sai tài khoản hoặc mật khẩu!</string>
     <string name="chuadk_sdtnay">Bạn chưa đăng ký số điện thoại này</string>
@@ -182,7 +182,6 @@
     <string name="emaildung">Nhập một email đúng</string>
     <string name="quangnvaktdb">Mật khẩu quá ngắn hoặc phải có kí tự đặc biệt</string>
     <string name="mkkhongkhop">mật khẩu không khớp</string>
-
 
 
     <string name="thanhcong">Thành công</string>
@@ -252,8 +251,8 @@
     <string name="nhaxxb">Nhà xuất bản</string>
     <string name="cntheloainam">Cập nhật thể loại</string>
     <string name="capnhatthanhcong">Cập nhật thành công</string>
-    <string name="naykhong">này không</string>
-    <string name="bancomuonxoa">Bạn có muốn xóa sách</string>
+    <string name="naykhong"> này không</string>
+    <string name="bancomuonxoa"> Bạn có muốn xóa sách </string>
     <string name="xoasp">Xóa sản phẩm</string>
     <string name="sachkdusl">Sách  không đủ số lượng!</string>
     <string name="kho">Kho:</string>
@@ -269,7 +268,8 @@
     <string name="giaohang">Giao hàng</string>
     <string name="vuilongnhapemail">Vui lòng nhập email</string>
     <string name="vuilongnhapmatkhau">Vui lòng nhập mật khẩu</string>
-    <string name="saitk_ormk">Sai tài khoản hoặc mật khẩu!</string>
+    <string name="saitk_ormk">Mật khẩu sai!</string>
+    <string name="saitk_ormk_login">Tài khoản hoặc mật khẩu sai!</string>
     <string name="nhapma">Nhập mã...</string>
     <string name="banchuadksdtnay">Bạn chưa đăng ký số điện thoại này</string>
     <string name="matkhkokhop">Mật khẩu không khớp</string>

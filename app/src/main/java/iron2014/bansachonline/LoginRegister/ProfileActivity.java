@@ -68,6 +68,7 @@ public class ProfileActivity extends AppCompatActivity {
     Bitmap bitmap;
     CircleImageView profile_image;
     Boolean replayedt = false;
+    Toolbar toolbar1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = new SharedPref(this);
@@ -75,21 +76,8 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_profile);
-        Toolbar toolbar1 = (Toolbar) findViewById(R.id.toolbar_profile_edit);
-        toolbar1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProfileActivity.this, UpdateProfileActivity.class);
-                intent.putExtra("name", name);
-                intent.putExtra("email", email);
-                intent.putExtra("phone", phone);
-                intent.putExtra("address", address);
-                intent.putExtra("sex", sex);
-                intent.putExtra("ngaysinh", ngaysinh);
-                intent.putExtra("id", id);
-                startActivity(intent);
-            }
-        });
+        toolbar1 = (Toolbar) findViewById(R.id.toolbar_profile_edit);
+
 
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -116,31 +104,22 @@ public class ProfileActivity extends AppCompatActivity {
                         }
                     }
                 });
-//        btnUpdateThongTin= findViewById(R.id.btnUpdateThongTin);
-//        btnUpdateThongTin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(ProfileActivity.this, UpdateProfileActivity.class);
-//                intent.putExtra("name", name);
-//                intent.putExtra("email", email);
-//                intent.putExtra("phone", phone);
-//                intent.putExtra("address", address);
-//                intent.putExtra("sex", sex);
-//                intent.putExtra("ngaysinh", ngaysinh);
-//                intent.putExtra("id", id);
-//                startActivity(intent);
-//            }
-//        });
+
 
         profile_image = findViewById(R.id.profile_image);
 
         HashMap<String,String> user = sessionManager.getUserDetail();
         email = user.get(sessionManager.EMAIL);
-        name = user.get(sessionManager.NAME);
+//        name = user.get(sessionManager.NAME);
+//        phone = user.get(sessionManager.PHONE);
+//        address = user.get(sessionManager.ADDRESS);
+//        sex = user.get(sessionManager.SEX);
         id = user.get(sessionManager.ID);
-        quyen = user.get(sessionManager.QUYEN);
-        phone = user.get(sessionManager.PHONE);
+//        ngaysinh = user.get(sessionManager.NGAYSINH);
+//        quyen = user.get(sessionManager.QUYEN);
+
         getDetail(email);
+
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,7 +130,14 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
-        @Override
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getDetail(email);
+    }
+
+    @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
@@ -183,7 +169,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void getImage(View v){
         chooseFile();
     }
-    private void getDetail(final String email){
+    private void getDetail(final String email1){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_READ,
                 new Response.Listener<String>() {
                     @Override
@@ -194,13 +180,12 @@ public class ProfileActivity extends AppCompatActivity {
                             JSONArray jsonArray = jsonobject.getJSONArray("users_table");
                             JSONObject data = jsonArray.getJSONObject(0);
                             int id = data.getInt("id");
-                            String name = data.getString("name");
-                            String email = data.getString("email");
+                            name = data.getString("name");
+                            email = data.getString("email");
                             address = data.getString("address");
                             phone = data.getString("phone");
                             ngaysinh = data.getString("ngaysinh");
                             sex = data.getString("sex");
-                            String password = data.getString("password");
                             String urlImage = data.getString("photo");
                             txtAddress.setText(address);
                             txtNgaySinh.setText(ngaysinh);
@@ -212,6 +197,20 @@ public class ProfileActivity extends AppCompatActivity {
                             strid = String.valueOf(id);
                             Picasso.with(ProfileActivity.this).load(urlImage).into(profile_image) ;
 
+                            toolbar1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(ProfileActivity.this, UpdateProfileActivity.class);
+                                    intent.putExtra("name", name);
+                                    intent.putExtra("email", email);
+                                    intent.putExtra("phone", phone);
+                                    intent.putExtra("address", address);
+                                    intent.putExtra("sex", sex);
+                                    intent.putExtra("ngaysinh", ngaysinh);
+                                    intent.putExtra("id", strid);
+                                    startActivity(intent);
+                                }
+                            });
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -228,7 +227,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<>();
-                params.put("email", email);
+                params.put("email", email1);
                 return params;
             }
         };
@@ -391,7 +390,6 @@ public class ProfileActivity extends AppCompatActivity {
     private void updateDevicesToken(final String islogin,final String mauser){
 
         if (token == null) {
-            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -410,7 +408,7 @@ public class ProfileActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                        Log.e("errupdateDevicesToken", error.getMessage());
                     }
                 }) {
 

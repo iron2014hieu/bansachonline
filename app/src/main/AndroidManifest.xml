@@ -19,24 +19,61 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".LoginRegister.NewPasswordActivity"></activity>
-        <activity android:name=".LoginRegister.DoiMatkhauActivity" />
-        <activity android:name=".Activity.ChonMaKhuyenmaiActivity" />
-        <activity android:name=".BookFavoriteActivity" />
-        <activity android:name=".Activity.AppChatActivity.HienthiTnActivity" />
-        <activity android:name=".Activity.AppChatActivity.MainCHATActivity" />
-        <activity android:name=".Activity.Library.AudioActivity" />
-        <activity android:name=".LoginRegister.VerifyPhoneActivity" />
-        <activity android:name=".LoginRegister.LoginWithSMSActivity" />
-        <activity android:name=".Activity.hoadon.ListAllCommentActivity" />
-        <activity android:name=".fragmentVanChuyen.Activity.ChitietGiaoHangActivity" />
-        <activity android:name=".Activity.Library.BookDetailLibActivity" />
-        <activity android:name=".FirstStartActivity" />
-        <activity android:name=".MuahangActivity" />
-        <activity android:name=".Activity.GetAllBookActivity" />
-        <activity android:name=".fragmentVanChuyen.Activity.ShipperActivity" />
-        <activity android:name=".fragmentVanChuyen.Activity.ChitietVanChuyenActivity" />
-        <activity android:name=".Activity.SearchBooksActivity">
+        <activity android:name=".Activity.CartListActivity"></activity>
+        <activity
+            android:name=".LoginRegister.NewPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginRegister.DoiMatkhauActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.ChonMaKhuyenmaiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".BookFavoriteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.AppChatActivity.HienthiTnActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.AppChatActivity.MainCHATActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Library.AudioActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginRegister.VerifyPhoneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginRegister.LoginWithSMSActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.hoadon.ListAllCommentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fragmentVanChuyen.Activity.ChitietGiaoHangActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Library.BookDetailLibActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FirstStartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MuahangActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.GetAllBookActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fragmentVanChuyen.Activity.ShipperActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fragmentVanChuyen.Activity.ChitietVanChuyenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.SearchBooksActivity"
+            android:screenOrientation="portrait">
 
             <!-- to identify this activity as "searchable" -->
             <intent-filter>
@@ -45,28 +82,52 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".CartDetailActivity" />
-        <activity android:name=".Activity.hoadon.RatingBookCommentActivity" />
-        <activity android:name=".Activity.BookDetailActivity" />
-        <activity android:name=".Activity.GetBookByTheloaiActivity" />
-        <activity android:name=".LoginRegister.ProfileActivity" />
-        <activity android:name=".Activity.Library.ViewBookActivity" />
-        <activity android:name=".LoginRegister.UpdateProfileActivity" />
-        <activity android:name=".Activity.hoadon.Chitiethoadon_RatingActivity" />
-        <activity android:name=".Activity.hoadon.ChitiethoadonActivity" />
-        <activity android:name=".Main2Activity" />
+        <activity
+            android:name=".CartDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.hoadon.RatingBookCommentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.BookDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.GetBookByTheloaiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginRegister.ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Library.ViewBookActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginRegister.UpdateProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.hoadon.Chitiethoadon_RatingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.hoadon.ChitiethoadonActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.TheloaiChitietActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginRegister.RegisterActivity"
             android:hardwareAccelerated="false"
-            android:parentActivityName=".LoginRegister.LoginActivity" />
-        <activity android:name=".LoginRegister.LoginActivity" />
+            android:parentActivityName=".LoginRegister.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginRegister.LoginActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginRegister.SettingsActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.SEARCH" />

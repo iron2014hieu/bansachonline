@@ -96,10 +96,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="103dp"
+        android:layout_marginTop="345dp"
         android:drawableTop="@drawable/box_64db"
         android:gravity="center"
         android:text="@string/chuaco_sachthuvien"
         android:textStyle="bold"
-        android:visibility="gone"  />
+        android:visibility="gone" />
 </RelativeLayout>

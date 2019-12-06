@@ -30,8 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import iron2014.bansachonline.Fragment.CartListFragment;
-import iron2014.bansachonline.Main2Activity;
+import iron2014.bansachonline.Activity.CartListActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.model.DatMua;
 
@@ -78,11 +77,11 @@ public class ListSPAdapter extends RecyclerView.Adapter<ListSPAdapter.MyViewHold
             holder.checkBox.setChecked(true);
             tongTienTungsach = listGiohang.get(i).getGia() * listGiohang.get(i).getSoluong();
             tongTienSach +=tongTienTungsach;
-            CartListFragment.txtTongtien.setText(String.valueOf(tongTienSach));
+            CartListActivity.txtTongtien.setText(String.valueOf(tongTienSach));
         }else  {
             holder.checkBox.setChecked(false);
             tongTienTungsach = listGiohang.get(i).getGia() * listGiohang.get(i).getSoluong();
-            CartListFragment.txtTongtien.setText(String.valueOf(tongTienSach));
+            CartListActivity.txtTongtien.setText(String.valueOf(tongTienSach));
         }
 
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -95,7 +94,7 @@ public class ListSPAdapter extends RecyclerView.Adapter<ListSPAdapter.MyViewHold
                         if(listGiohang.get(i).getSelected() == 1) {
                             tongTienTungsach = listGiohang.get(i).getGia() * listGiohang.get(i).getSoluong();
                             tongTienSach +=tongTienTungsach;
-                            CartListFragment.txtTongtien.setText(String.valueOf(tongTienSach));
+                            CartListActivity.txtTongtien.setText(String.valueOf(tongTienSach));
                     }
                 } else {
                     listGiohang.get(pos).setSelected(0);
@@ -103,7 +102,7 @@ public class ListSPAdapter extends RecyclerView.Adapter<ListSPAdapter.MyViewHold
                         if (listGiohang.get(i).getSelected() == 0){
                             tongTienTungsach = listGiohang.get(i).getGia() * listGiohang.get(i).getSoluong();
                             tongTienSach -=tongTienTungsach;
-                            CartListFragment.txtTongtien.setText(String.valueOf(tongTienSach));
+                            CartListActivity.txtTongtien.setText(String.valueOf(tongTienSach));
                     }
 
                 }
@@ -207,7 +206,7 @@ public class ListSPAdapter extends RecyclerView.Adapter<ListSPAdapter.MyViewHold
                     public void onResponse(String response) {
                         if (response.trim().equals("tb")){
                         }else if (response.trim().equals("tc")){
-                            context.startActivity(new Intent(context, Main2Activity.class));
+                            context.startActivity(new Intent(context, CartListActivity.class));
                         }
                     }
                 }, new Response.ErrorListener() {

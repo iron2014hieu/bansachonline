@@ -22,7 +22,8 @@ public class SessionManager {
     public static final String ID = "ID";
     public static final String QUYEN = "QUYEN";
     public static final String PHONE = "PHONE";
-    
+    public static final String SEX = "SEX";
+    public  static final String NGAYSINH ="NGAYSINH";
     // get matheloai --> get sach theo the loai
 
     public static final String ID_BILL = "ID_BILL";
@@ -77,7 +78,7 @@ public class SessionManager {
         editor.putString(SOLUONG, soluong);
         editor.apply();
     }
-    public void createSession(String id,String email,String address,String phone, String name, String quyen){
+    public void createSession(String id,String email,String address,String phone, String name, String quyen,String sex,String ngaysinh){
         editor.putBoolean(LOGIN, true);
         editor.putString(ID, id);
         editor.putString(EMAIL, email);
@@ -85,6 +86,8 @@ public class SessionManager {
         editor.putString(PHONE, phone);
         editor.putString(NAME, name);
         editor.putString(QUYEN, quyen);
+        editor.putString(SEX, sex);
+        editor.putString(NGAYSINH, ngaysinh);
         editor.apply();
     }
     public void createTongtien(String tongtien){
@@ -203,6 +206,8 @@ public class SessionManager {
         user.put(PHONE, sharedPreferences.getString(PHONE, null));
         user.put(NAME, sharedPreferences.getString(NAME, null));
         user.put(QUYEN, sharedPreferences.getString(QUYEN, null));
+        user.put(SEX, sharedPreferences.getString(SEX, null));
+        user.put(NGAYSINH, sharedPreferences.getString(NGAYSINH, null));
         return user;
     }
     public HashMap<String,String> getSuggest(){

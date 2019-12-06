@@ -33,18 +33,14 @@ import java.util.List;
 import java.util.Map;
 
 import iron2014.bansachonline.Activity.BookDetailActivity;
+import iron2014.bansachonline.Activity.CartListActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
-import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceTacgia;
-import iron2014.bansachonline.Main2Activity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.UrlSql;
-import iron2014.bansachonline.adapter.TacgiaAdapter;
 import iron2014.bansachonline.model.Books;
-import iron2014.bansachonline.model.DatMua;
-import iron2014.bansachonline.model.Tacgia;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -221,7 +217,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
                                     Toast.makeText(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
                                 }
                             }else {
-                                context.startActivity(new Intent(context, Main2Activity.class));
+                                context.startActivity(new Intent(context, CartListActivity.class));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
