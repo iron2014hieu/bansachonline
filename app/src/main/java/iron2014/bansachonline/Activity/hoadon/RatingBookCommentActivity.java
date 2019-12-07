@@ -29,6 +29,7 @@ import java.util.Map;
 
 import iron2014.bansachonline.Activity.Library.BookDetailLibActivity;
 import iron2014.bansachonline.MainActivity;
+import iron2014.bansachonline.MuahangActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.UrlSql;
@@ -95,7 +96,8 @@ public class RatingBookCommentActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .setPositiveButton(getString(R.string.co), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        RatingBookCommentActivity.this.finish();
+                        startActivity(new Intent(getApplicationContext(), Chitiethoadon_RatingActivity.class));
+                        finish();
                     }
                 })
                 .setNegativeButton(getString(R.string.khong), new DialogInterface.OnClickListener() {
@@ -161,7 +163,7 @@ public class RatingBookCommentActivity extends AppCompatActivity {
     }
     private void LuuNhanxet(final String masach, final String diemdanhgia, final String id_sach_cthd){
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading");
+        progressDialog.setMessage(getString(R.string.vuilong_doi));
         progressDialog.show();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_THEMNHATXET,
@@ -170,8 +172,8 @@ public class RatingBookCommentActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         progressDialog.dismiss();
                         if (response.equals("tc")){
-                            Intent intent =(new Intent(getApplicationContext(), MainActivity.class));
-                            intent.putExtra("check","2");
+                            Intent intent =(new Intent(getApplicationContext(), MuahangActivity.class));
+                            intent.putExtra("check","3");
                             finish();
                         }
                     }

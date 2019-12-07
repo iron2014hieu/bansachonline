@@ -59,7 +59,7 @@ public class ChitiethoadonActivity extends AppCompatActivity {
         Anhxa();
 
         Intent intent = getIntent();
-        mahd = intent.getStringExtra("mahd");
+        mahd = intent.getStringExtra("mahoadon");
         tinhtrang = intent.getStringExtra("tinhtrang");
         tenkh = intent.getStringExtra("tenkh");
         diachi = intent.getStringExtra("diachi");

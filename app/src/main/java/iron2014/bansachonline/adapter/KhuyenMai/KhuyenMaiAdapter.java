@@ -20,6 +20,7 @@ public class KhuyenMaiAdapter extends RecyclerView.Adapter<KhuyenMaiAdapter.MyVi
 
     Context context;
     List<KhuyenMai> mData;
+    String tieude;
 
     public KhuyenMaiAdapter(Context context, List<KhuyenMai> mData) {
         this.context = context;

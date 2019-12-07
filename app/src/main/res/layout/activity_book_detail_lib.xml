@@ -142,15 +142,16 @@
                             android:layout_gravity="center"
                             android:text="0"/>
                     </LinearLayout>
-                    <EditText
-                        android:textSize="15dp"
+
+                    <TextView
                         android:id="@+id/edtNhanxet_lib"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:enabled="false"
                         android:hint="Nhận xét của bạn"
-                        android:textColor="?attr/textcolor"
                         android:text="ddddddddddddddddddddddddddddddđ"
-                        android:enabled="false"/>
+                        android:textColor="?attr/textcolor"
+                        android:textSize="15dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <TextView

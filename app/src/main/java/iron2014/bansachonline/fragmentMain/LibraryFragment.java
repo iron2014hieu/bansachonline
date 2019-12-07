@@ -125,11 +125,14 @@ public class LibraryFragment extends Fragment {
         call.enqueue(new Callback<List<DatMua>>() {
             @Override
             public void onResponse(Call<List<DatMua>> call, retrofit2.Response<List<DatMua>> response) {
+                int total =0;
                 int soluong =0;
                 for (int i = 0; i<response.body().size(); i++){
                     soluong = response.body().get(i).getSoluong();
+                    total+= soluong;
+
                 }
-                counttxt_thuviern.setText(String.valueOf(soluong));
+                counttxt_thuviern.setText(String.valueOf(total));
             }
 
             @Override

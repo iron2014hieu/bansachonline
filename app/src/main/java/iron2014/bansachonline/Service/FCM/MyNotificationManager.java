@@ -47,7 +47,7 @@ public class MyNotificationManager {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mCtx);
         Notification notification;
         Uri sound = Uri.parse("android.resource://"
-                + mCtx.getPackageName() + "/" + R.raw.ongoi_co_tinnhan);
+                + mCtx.getPackageName() + "/" + R.raw.drum);
         notification = mBuilder.setSmallIcon(R.drawable.book).setTicker(title).setWhen(0)
                 .setAutoCancel(true)
                 .setSound(sound)

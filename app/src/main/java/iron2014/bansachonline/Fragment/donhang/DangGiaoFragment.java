@@ -1,6 +1,7 @@
 package iron2014.bansachonline.Fragment.donhang;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,9 +17,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import iron2014.bansachonline.Activity.hoadon.ChitiethoadonActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
 import iron2014.bansachonline.R;
+import iron2014.bansachonline.RecycerViewTouch.RecyclerTouchListener;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.adapter.hoadoncthd.HoadonAdapter;
 import iron2014.bansachonline.model.Hoadon;
@@ -54,7 +57,38 @@ public class DangGiaoFragment extends Fragment {
         mauser = user.get(sessionManager.ID);
         fetchHoadon(mauser);
 
+        recyclerview_danggiao.addOnItemTouchListener(new RecyclerTouchListener(getActivity(),
+                recyclerview_danggiao, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Hoadon theloai =   listHoadon.get(position);
+                String id = String.valueOf(theloai.getMahoadon());
+                String ten = theloai.getTenkh();
+                String diachi = theloai.getDiachi();
+                String sdt = theloai.getSdt();
+                String tinhtrang = theloai.getTinhtrang();
+                String tongtien = String.valueOf(theloai.getTongtien());
+                String mauser = String.valueOf(theloai.getMauser());
 
+
+                sessionManager.createSessionGuimatheloai(id,ten);
+                Intent intent = new Intent(getContext(), ChitiethoadonActivity.class);
+                intent.putExtra("mahoadon", id);
+                intent.putExtra("tenkh", ten);
+                intent.putExtra("diachi", diachi);
+                intent.putExtra("sdt", sdt);
+                intent.putExtra("tinhtrang", tinhtrang);
+                intent.putExtra("tongtien", tongtien);
+                intent.putExtra("mauser", mauser);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+
+            }
+        }));
         return v;
     }
     public void fetchHoadon(String miduser){

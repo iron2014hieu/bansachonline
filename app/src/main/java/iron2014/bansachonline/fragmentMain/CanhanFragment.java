@@ -45,6 +45,7 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
     Button btnDangnhap,btnDangky;
     TextView txtXemdanhgia,chk_icon_canhan;
     LinearLayout linner_trendonhang,linnear_donhang;
+    TextView txtLichsumuahang;
 
     View v;
 
@@ -104,6 +105,14 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
                 }
             }
         });
+        txtLichsumuahang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), MuahangActivity.class);
+                intent.putExtra("check","3");
+                startActivity(intent);
+            }
+        });
         return v;
     }
     @Override
@@ -137,7 +146,6 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
-
     public void fetchSoluong(String mauser){
         apiInTerFaceDatmua = ApiClient.getApiClient().create(ApiInTerFaceDatmua.class);
         Call<List<DatMua>> call = apiInTerFaceDatmua.get_soluong(mauser);
@@ -145,11 +153,14 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
         call.enqueue(new Callback<List<DatMua>>() {
             @Override
             public void onResponse(Call<List<DatMua>> call, retrofit2.Response<List<DatMua>> response) {
+                int total =0;
                 int soluong =0;
                 for (int i = 0; i<response.body().size(); i++){
                     soluong = response.body().get(i).getSoluong();
+                    total+= soluong;
+
                 }
-                chk_icon_canhan.setText(String.valueOf(soluong));
+                chk_icon_canhan.setText(String.valueOf(total));
             }
 
             @Override
@@ -191,5 +202,7 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
 
         linnear_donhang=v.findViewById(R.id.linnear_donhang);
         linner_trendonhang=v.findViewById(R.id.linner_trendonhang);
+
+        txtLichsumuahang= v.findViewById(R.id.txtLichsumuahang);
     }
 }

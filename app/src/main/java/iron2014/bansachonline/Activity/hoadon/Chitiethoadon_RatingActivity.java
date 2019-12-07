@@ -38,7 +38,7 @@ public class Chitiethoadon_RatingActivity extends AppCompatActivity {
 
         Anhxa();
         Intent intent = getIntent();
-        mahd = intent.getStringExtra("mahd");
+        mahd = intent.getStringExtra("mahoadon");
 
         cthdAdapter = new CTHD_RatingAdapter(this, cthdList);
 

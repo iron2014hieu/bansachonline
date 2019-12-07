@@ -56,6 +56,7 @@ public class NotificationFragment extends Fragment {
     TextView counttxt_notif;
     ApiInTerFaceDatmua apiInTerFaceDatmua;
     ImageView chk_icon_notif;
+    String tieude ="";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -91,6 +92,7 @@ public class NotificationFragment extends Fragment {
                 recyclerview_thongbao_khuyenmai, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
+
                 Intent intent = new Intent(getContext(), MainActivity.class);
                 intent.putExtra("check", "1");
                 startActivity(intent);
@@ -122,11 +124,14 @@ public class NotificationFragment extends Fragment {
         call.enqueue(new Callback<List<DatMua>>() {
             @Override
             public void onResponse(Call<List<DatMua>> call, retrofit2.Response<List<DatMua>> response) {
+                int total =0;
                 int soluong =0;
                 for (int i = 0; i<response.body().size(); i++){
                     soluong = response.body().get(i).getSoluong();
+                    total+= soluong;
+
                 }
-                counttxt_notif.setText(String.valueOf(soluong));
+                counttxt_notif.setText(String.valueOf(total));
             }
 
             @Override

@@ -78,5 +78,6 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         ads:adSize="BANNER"
+        android:layerType="software"
         ads:adUnitId="ca-app-pub-3940256099942544/6300978111"/>
 </LinearLayout>

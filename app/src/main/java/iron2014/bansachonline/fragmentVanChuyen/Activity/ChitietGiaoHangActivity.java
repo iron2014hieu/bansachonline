@@ -194,7 +194,7 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
-                        String mota = getString(R.string.tatcassach) +mahd+ getString(R.string.giaodenban) +now+".";
+                        String mota = getString(R.string.tatcassach) +" "+mahd+" "+ getString(R.string.giaodenban) +" "+now+".";
                         InsertNotif(mota,mahd);
                         Toast.makeText(ChitietGiaoHangActivity.this, response, Toast.LENGTH_LONG).show();
                     }

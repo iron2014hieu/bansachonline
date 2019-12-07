@@ -111,7 +111,6 @@
             android:hint="@string/nhapma_xacnhan"
             android:layout_gravity="center"
             android:inputType="phone"
-            android:gravity="center"
             android:layout_below="@+id/linnear_title2"
             android:maxLength="10" />
 

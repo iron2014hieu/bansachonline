@@ -69,29 +69,29 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
         holder.linnear_hoadon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, ChitiethoadonActivity.class);
-                String mahd = String.valueOf(mData.get(i).getMahoadon());
-                String tenkh = String.valueOf(mData.get(i).getTenkh());
-                String diachi = String.valueOf(mData.get(i).getDiachi());
-                String tongtien = String.valueOf(mData.get(i).getTongtien());
-                String sdt = String.valueOf(mData.get(i).getSdt());
-                String tinhtrang = mData.get(i).getTinhtrang();
-                intent.putExtra("mahd", mahd);
-                intent.putExtra("tinhtrang", tinhtrang);
-                intent.putExtra("tenkh", tenkh);
-                intent.putExtra("diachi", diachi);
-                intent.putExtra("sdt", sdt);
-                intent.putExtra("tongtien", tongtien);
-                sessionManager.createHoadon(tinhtrang);
-                context.startActivity(intent);
+//                Intent intent = new Intent(context, ChitiethoadonActivity.class);
+//                String mahd = String.valueOf(mData.get(i).getMahoadon());
+//                String tenkh = String.valueOf(mData.get(i).getTenkh());
+//                String diachi = String.valueOf(mData.get(i).getDiachi());
+//                String tongtien = String.valueOf(mData.get(i).getTongtien());
+//                String sdt = String.valueOf(mData.get(i).getSdt());
+//                String tinhtrang = mData.get(i).getTinhtrang();
+//                intent.putExtra("mahd", mahd);
+//                intent.putExtra("tinhtrang", tinhtrang);
+//                intent.putExtra("tenkh", tenkh);
+//                intent.putExtra("diachi", diachi);
+//                intent.putExtra("sdt", sdt);
+//                intent.putExtra("tongtien", tongtien);
+//                sessionManager.createHoadon(tinhtrang);
+//                context.startActivity(intent);
             }
         });
-        holder.txtXemchitiet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        holder.txtXemchitiet.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
         int amount = 3;
         Date date = java.sql.Date.valueOf(mData.get(i).getNgayxuat());
         defaultTime.setTime(date);

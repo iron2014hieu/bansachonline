@@ -68,7 +68,7 @@ public class BookDetailLibActivity extends AppCompatActivity {
     NotificationManagerCompat notificationManagerCompat;
     MediaSessionCompat mediaSessionCompat;
     RatingBar ratingbar_lib;
-    EditText edtNhanxet_lib;
+    TextView edtNhanxet_lib;
     ApiInTerFace apiInTerFace;
     List<Books> listBooks = new ArrayList<>();
     SachAdapter sachAdapter;

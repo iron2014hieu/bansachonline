@@ -104,13 +104,13 @@ public class GetBookByTheloaiActivity extends AppCompatActivity {
 
             if (matheloai!= null) {
                 fetchBookbymatheloai(matheloai);
-                toolbar.setTitle(getString(R.string.theloais)+tentheloai);
+                toolbar.setTitle(getString(R.string.theloais)+" "+tentheloai);
             } else if (matacgia!=null){
                 fetchBookbyTacgia(matacgia);
-                toolbar.setTitle(getString(R.string.tacgia)+tentacgia);
+                toolbar.setTitle(getString(R.string.tacgia)+" "+tentacgia);
             } else if (manxb !=null){
                 fetchBookbyNXB(manxb);
-                toolbar.setTitle(getString(R.string.nhaxxb)+tennxb);
+                toolbar.setTitle(getString(R.string.nhaxxb)+" "+tennxb);
             }
         }catch (Exception e){
             Toast.makeText(this, ""+e.toString(), Toast.LENGTH_SHORT).show();

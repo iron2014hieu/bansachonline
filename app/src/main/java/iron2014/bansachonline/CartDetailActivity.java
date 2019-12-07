@@ -430,10 +430,10 @@ public class CartDetailActivity extends AppCompatActivity {
                                 UpdateSoluong(masach, soluong);
                                 xoaGiohang(String.valueOf(id),mauser);
                             }
-                            sendOnChannel(getString(R.string.hod)+mahoadon,getString(R.string.xemdhb));
-                            String mota = getString(R.string.dh)+mahoadon +getString(R.string.choxl);
+                            sendOnChannel(getString(R.string.hod)+" "+mahoadon,getString(R.string.xemdhb));
+                            String mota = getString(R.string.dh)+" "+mahoadon +" "+getString(R.string.choxl);
                             InsertNotif(mota,String.valueOf(mahoadon));
-                            Toast.makeText(CartDetailActivity.this, getString(R.string.yhemtchd) + mahoadon, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CartDetailActivity.this, getString(R.string.yhemtchd) +" "+ mahoadon, Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -441,7 +441,6 @@ public class CartDetailActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("VolleyError regis ", error.toString());
             }
         }){
             @Override
@@ -723,13 +722,11 @@ public class CartDetailActivity extends AppCompatActivity {
                             String success = jsonObject.getString("success");
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Log.e("printStackTrace", e.toString());
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("VolleyError regis ", error.toString());
             }
         }){
             @Override

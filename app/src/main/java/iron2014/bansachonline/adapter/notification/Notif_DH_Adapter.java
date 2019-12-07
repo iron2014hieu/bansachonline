@@ -24,6 +24,7 @@ public class Notif_DH_Adapter extends RecyclerView.Adapter<Notif_DH_Adapter.MyVi
     List<Notification> mData;
     String tieude;
     int mahoadon;
+
     public Notif_DH_Adapter(Context context, List<Notification> mData) {
         this.context = context;
         this.mData = mData;

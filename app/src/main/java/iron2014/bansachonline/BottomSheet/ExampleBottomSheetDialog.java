@@ -68,7 +68,7 @@ public class ExampleBottomSheetDialog extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 if (soluong > Integer.valueOf(kho)){
-                    Toast.makeText(getContext(), getString(R.string.sachs) +tensach+getString(R.string.chicon) +kho+getString(R.string.cuon) , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.sachs) +" "+tensach+" "+getString(R.string.chicon) +" "+kho+" "+getString(R.string.cuon) , Toast.LENGTH_SHORT).show();
 
                 }else {
                     mListener.onButtonClicked(String.valueOf(soluong));
