@@ -14,8 +14,12 @@ public interface ApiInTerFaceDatmua {
 
     @GET("giohang/query_carts_bill.php")
     Call<List<DatMua>> getDatMuaThanhtoan(@Query("mauser") String keyword);
-    @GET("giohang/get_soluong.php")
+    @GET("giohang/get_soluong_rtf.php")
     Call<List<DatMua>> get_soluong(
             @Query("mauser") String keyword
+    );
+    @GET("giohang/get_soluong_giohang.php")
+    Call<List<DatMua>> get_soluong_giohang(
+            @Query("masach") String masach,  @Query("mauser") String mauser
     );
 }

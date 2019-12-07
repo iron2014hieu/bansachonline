@@ -102,7 +102,11 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MyView
                 final String landanhgia = String.valueOf(books.getLandanhgia());
                 sessionManager.createSessionSendInfomationBook(masach,tensach,manxb,matheloai,ngayxb,noidung,
                         anhbia,gia,tennxb,soluong,tacgia,matacgia, tongdiem, landanhgia);
-                context.startActivity(new Intent(context, BookDetailActivity.class));
+
+                Intent intent =(new Intent(context, BookDetailActivity.class));
+
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             }
 
             @Override

@@ -40,7 +40,7 @@ public class BookFavoriteActivity extends AppCompatActivity {
         sessionManager= new SessionManager(this);
 
         StaggeredGridLayoutManager gridLayoutManager4 =
-                new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+                new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL);
         recyclerview_fav.setLayoutManager(gridLayoutManager4);
         recyclerview_fav.setHasFixedSize(true);
         HashMap<String,String> user = sessionManager.getUserDetail();

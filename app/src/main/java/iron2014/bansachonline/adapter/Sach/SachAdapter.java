@@ -41,12 +41,13 @@ import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.UrlSql;
 import iron2014.bansachonline.model.Books;
+import iron2014.bansachonline.model.DatMua;
 import retrofit2.Call;
 import retrofit2.Callback;
 
 public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> {
 
-
+    int soluong =0;
     Context context;
     List<Books> mData;
     Dialog myDialog;
@@ -85,6 +86,8 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
 //        myViewHolder.tv_soluongsach.setText(String.valueOf(mData.get(i).getSoluong()));
         if(mData.get(i).getSoluong()== 0) {
             myViewHolder.imghethang.setVisibility(View.VISIBLE);
+        }else {
+            myViewHolder.imghethang.setVisibility(View.GONE);
         }
         myViewHolder.img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,11 +98,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
         });
         try {
             String urlImage = mData.get(i).getAnhbia();
-            if (urlImage==null){
-                myViewHolder.img.setImageResource(R.drawable.profile2);
-            }else {
-                Picasso.with(context).load(urlImage).into(myViewHolder.img);
-            }
+            Picasso.with(context).load(urlImage).into(myViewHolder.img);
         }catch (Exception e){
             Log.e("IMG", e.toString());
         }
@@ -137,7 +136,6 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
             @Override
             public void onClick(View v) {
                 fetchBookDetails(String.valueOf(mData.get(i).getMasach()));
-
             }
         });
     }
@@ -186,7 +184,8 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
                     final String masach =String.valueOf(books.getMasach());
                     final String gia = String.valueOf(books.getGia());
                     if (soluong>0){
-                        ThemDatmua(masach, tensach, anhbia,iduser, gia);
+                        ThemDatmua(masach, tensach, anhbia,iduser, gia,soluong);
+
                     }else {
                         Toast.makeText(context, "Sách "+tensach+" đã hết!", Toast.LENGTH_SHORT).show();
                     }
@@ -194,13 +193,15 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
 
             }
 
+
+
             @Override
             public void onFailure(Call<List<Books>> call, Throwable t) {
                 Log.e("Error Search:","Error on: "+t.toString());
             }
         });
     }
-    private void ThemDatmua(final String masach, final String sp, final String hinhanhsach, final String mauser, final String giaban){
+    private void ThemDatmua(final String masach, final String sp, final String hinhanhsach, final String mauser, final String giaban,final int sl_sach){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_INSERT_GIOHANG,
                 new Response.Listener<String>() {
@@ -217,11 +218,13 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
                                     Toast.makeText(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
                                 }
                             }else {
-                                context.startActivity(new Intent(context, CartListActivity.class));
+//                                if (success.equals("1")){
+//                                    Toast.makeText(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+//                                }
+                                Get_soluongDatmua(masach,sl_sach);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Log.e("printStackTrace", e.toString());
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -245,4 +248,64 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
         };
         requestQueue.add(stringRequest);
     }
+
+    private void Get_soluongDatmua(final String masach,final int sl_sach) {
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_GET_SOLUONG_GH,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        int sl_datmua = Integer.valueOf(response);
+                        if (sl_datmua<sl_sach){
+                            UpdateSoluongDatmua(masach);
+                        }else {
+                            Toast.makeText(context, "Sách không đủ số lượng", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("MYSQL", "Lỗi! \n" +error.toString());
+            }
+        }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String > params = new HashMap<>();
+                params.put("masach", masach);
+                params.put("mauser", iduser);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+    private void UpdateSoluongDatmua(final String masach){
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_UPDATE_SOLUONG_GH,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.equals("tc")){
+                            Toast.makeText(context, "Đã thêm vào giỏ hàng!", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("MYSQL", "Lỗi! \n" +error.toString());
+            }
+        }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String > params = new HashMap<>();
+                params.put("masach", masach);
+                params.put("mauser", iduser);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+
 }

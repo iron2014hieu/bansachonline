@@ -17,6 +17,11 @@ public class UrlSql {
     public static String URL_INSERT_NOTIF = baseURL+"bansach/thongbao/insert_notif.php";
 
     public  static String URL_INSERT_GIOHANG ="https://bansachonline.xyz/bansach/giohang/create_carts.php";
+
+    public  static String URL_UPDATE_SOLUONG_GH ="https://bansachonline.xyz/bansach/giohang/update_soluong.php";
+
+    public  static String URL_GET_SOLUONG_GH ="https://bansachonline.xyz/bansach/giohang/get_soluong.php";
+
     public static String URL_UPDATE_CARTS =baseURL+"bansach/giohang/update_carts.php";
     public static String URL_DELETE_CARTS =baseURL+"bansach/giohang/delete_carts.php";
     public static String URL_UPDATE_CTHD_DATHANHTOAN ="https://bansachonline.xyz/bansach/hoadon/cthd/update_cthd_thanhtoan.php";
