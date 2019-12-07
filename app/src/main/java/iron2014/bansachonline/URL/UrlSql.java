@@ -34,4 +34,7 @@ public class UrlSql {
     public static String URL_DELETE_FAVORITE ="https://bansachonline.xyz/bansach/yeuthich/delete_favorite.php";
 
     public static String URL_DELETE_GIOHANG ="https://bansachonline.xyz/bansach/giohang/delete_giohang.php";
+
+    //user
+    public static String URL_READ ="https://bansachonline.xyz/bansach/loginregister/read_detail.php";
 }

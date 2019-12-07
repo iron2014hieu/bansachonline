@@ -50,6 +50,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.EndPoints;
+import iron2014.bansachonline.URL.UrlSql;
 import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -59,7 +60,6 @@ public class ProfileActivity extends AppCompatActivity {
     SessionManager sessionManager;
     private String TAG = "TAG_PROFILE";
     private String token;
-    private static String URL_READ ="https://bansachonline.xyz/bansach/loginregister/read_detail.php";
     private static String URL_EDIT ="https://bansachonline.xyz/bansach/loginregister/edit_detail.php";
     private static String URL_UPLOAD ="https://bansachonline.xyz/bansach/loginregister/upload.php";
     String email,strid,name,quyen,linh_img,phone, address, sex, ngaysinh, id;
@@ -170,7 +170,7 @@ public class ProfileActivity extends AppCompatActivity {
         chooseFile();
     }
     private void getDetail(final String email1){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_READ,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_READ,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

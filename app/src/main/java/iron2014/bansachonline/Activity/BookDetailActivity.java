@@ -212,6 +212,9 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
         btn_themvaogio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(soluong.equals("0")){
+                    Toast.makeText(BookDetailActivity.this, getString(R.string.sptamhet), Toast.LENGTH_SHORT).show();
+                }else
                 ThemDatmua(masach, tensach, linkImage,"1",idUser);
             }
         });

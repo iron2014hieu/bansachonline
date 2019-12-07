@@ -57,7 +57,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -75,7 +77,9 @@ import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
 import iron2014.bansachonline.LoginRegister.CountryData;
+import iron2014.bansachonline.LoginRegister.ProfileActivity;
 import iron2014.bansachonline.LoginRegister.RegisterActivity;
+import iron2014.bansachonline.LoginRegister.UpdateProfileActivity;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.EndPoints;
 import iron2014.bansachonline.URL.UrlSql;
@@ -144,10 +148,10 @@ public class CartDetailActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         HashMap<String,String> user = sessionManager.getUserDetail();
         mauser_session = user.get(sessionManager.ID);
-        tenkh = user.get(sessionManager.NAME);
-        diachi = user.get(sessionManager.ADDRESS);
-        sodienthoai = user.get(sessionManager.PHONE);
+        String email = user.get(sessionManager.EMAIL);
 
+
+        getDetail(email);
 
 
         txtTienvanchuyen = findViewById(R.id.txtTienvanchuyen);
@@ -158,7 +162,9 @@ public class CartDetailActivity extends AppCompatActivity {
         HashMap<String,String> dathang = sessionManager.getTongtien();
         tongtien = Double.valueOf(dathang.get(sessionManager.TONGTIEN));
 
-
+        //        tenkh = user.get(sessionManager.NAME);
+//        diachi = user.get(sessionManager.ADDRESS);
+//        sodienthoai = user.get(sessionManager.PHONE);
         tienthanhtoan = tongtien+trukhuyenmai+tienvanchuyen;
         txtTongthanhtoan.setText(String.valueOf(tienthanhtoan));
 
@@ -352,7 +358,47 @@ public class CartDetailActivity extends AppCompatActivity {
         }
     }
 
+    private void getDetail(final String email1){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_READ,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i(TAG, response);
+                        try {
+                            JSONObject jsonobject = new JSONObject(response);
+                            JSONArray jsonArray = jsonobject.getJSONArray("users_table");
+                            JSONObject data = jsonArray.getJSONObject(0);
+                            int id = data.getInt("id");
+                            tenkh = data.getString("name");
+                            diachi = data.getString("address");
+                            sodienthoai = data.getString("phone");
 
+                            edtDiachi.setText(diachi);
+                            edtSdt.setText(sodienthoai);
+                            edtTenkh.setText(tenkh);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<>();
+                params.put("email", email1);
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
 
     //settheme
     public  void theme(){
