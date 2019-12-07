@@ -309,7 +309,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
-            finish();
+            Intent intent1 = new Intent(Intent.ACTION_MAIN);
+            intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent1.addCategory(Intent.CATEGORY_HOME);
+            startActivity(intent1);
             return;
         }
 

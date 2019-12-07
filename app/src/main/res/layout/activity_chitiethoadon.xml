@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/cardbackground"
         android:orientation="vertical">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -34,8 +35,8 @@
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="#B9DCDCDC"
-                android:textColor="#3F51B5"
+                android:background="?attr/cardbackground"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:text="@string/tenkhachhangs"/>
             <TextView
@@ -43,9 +44,9 @@
                 android:textStyle="normal"
                 android:id="@+id/tvTenkhachhang"
                 android:layout_weight="1"
-                android:background="#A3CAC9C9"
                 android:text="@string/thietlapngay"
-                android:textColor="#E91E63"
+                android:background="?attr/cardbackground"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:gravity="center"/>
         </TableRow>
@@ -56,8 +57,8 @@
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="#A3CAC9C9"
-                android:textColor="#3F51B5"
+                android:background="?attr/cardbackground"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:text="@string/diachis"/>
             <TextView
@@ -65,9 +66,9 @@
                 android:textStyle="normal"
                 android:id="@+id/tvdiachiKh"
                 android:layout_weight="1"
-                android:background="#B9DCDCDC"
+                android:background="?attr/cardbackground"
+                android:textColor="?attr/textcolor"
                 android:text="@string/thietlapngay"
-                android:textColor="#E91E63"
                 android:padding="15dip"
                 android:gravity="center"/>
         </TableRow>
@@ -78,8 +79,8 @@
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="#B9DCDCDC"
-                android:textColor="#3F51B5"
+                android:background="?attr/cardbackground"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:text="@string/sodienthoai"/>
             <TextView
@@ -87,9 +88,9 @@
                 android:textStyle="normal"
                 android:id="@+id/tvsdtKH"
                 android:layout_weight="1"
-                android:background="#A3CAC9C9"
+                android:background="?attr/cardbackground"
+                android:textColor="?attr/textcolor"
                 android:text="@string/thietlapngay"
-                android:textColor="#E91E63"
                 android:padding="15dip"
                 android:gravity="center"/>
         </TableRow>
@@ -100,20 +101,21 @@
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="#A3CAC9C9"
-                android:textColor="#3F51B5"
+                android:background="?attr/cardbackground"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:text="@string/tongtiens"/>
+
             <TextView
-                android:textSize="18dp"
-                android:textStyle="normal"
                 android:id="@+id/tvtongtienKH"
                 android:layout_weight="1"
-                android:background="#B9DCDCDC"
-                android:text="@string/thietlapngay"
-                android:textColor="#E91E63"
+                android:gravity="center"
                 android:padding="15dip"
-                android:gravity="center"/>
+                android:text="@string/thietlapngay"
+                android:background="?attr/cardbackground"
+                android:textColor="?attr/textcolor"
+                android:textSize="18dp"
+                android:textStyle="normal" />
         </TableRow>
         <TableRow
             android:layout_height="wrap_content"
@@ -122,8 +124,8 @@
                 android:textSize="18dp"
                 android:textStyle="normal"
                 android:layout_weight="1"
-                android:background="#B9DCDCDC"
-                android:textColor="#3F51B5"
+                android:background="?attr/cardbackground"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:text="@string/tinhtranghang"/>
             <TextView
@@ -131,9 +133,9 @@
                 android:textStyle="normal"
                 android:id="@+id/tvtinhtrangsp"
                 android:layout_weight="1"
-                android:background="#A3CAC9C9"
                 android:text="@string/thietlapngay"
-                android:textColor="#E91E63"
+                android:background="?attr/cardbackground"
+                android:textColor="?attr/textcolor"
                 android:padding="15dip"
                 android:gravity="center"/>
         </TableRow>

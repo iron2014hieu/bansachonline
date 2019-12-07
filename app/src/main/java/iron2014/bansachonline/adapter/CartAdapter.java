@@ -212,8 +212,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                             for (int n =0; n<listGiohang.size();n++){
                                 DatMua datMua = listGiohang.get(n);
                                 if (newValue<=soluong){
-                                    updateSoluongTongtien(String.valueOf(newValue),iduser, masach1);;
-                                    datMua.setSoluong(newValue);
+                                    updateSoluongTongtien(String.valueOf(newValue),iduser, masach1);
+//                                    datMua.setSoluong(newValue);
                                 }else {
                                     Toast.makeText(context,context.getString(R.string.sachkdusl), Toast.LENGTH_SHORT).show();
                                     break;

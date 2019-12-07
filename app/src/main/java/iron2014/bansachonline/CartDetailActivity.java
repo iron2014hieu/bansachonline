@@ -260,7 +260,7 @@ public class CartDetailActivity extends AppCompatActivity {
                                 String s = edtMaGiamGia.getText().toString();
                                 if (!s.equals("")) {
                                     if (makm.equals(s)) {
-                                        Toast.makeText(CartDetailActivity.this, getString(R.string.hople) + makm, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(CartDetailActivity.this, getString(R.string.hople) +" "+ makm, Toast.LENGTH_SHORT).show();
 
                                         trukhuyenmai = (tongtien*phantram) - tongtien;
                                         tienthanhtoan = tongtien+trukhuyenmai+tienvanchuyen;
@@ -271,10 +271,10 @@ public class CartDetailActivity extends AppCompatActivity {
                                         TxtTienKhuyenmai.setText(trukhuyenmai+" VNĐ");
                                         txtTienvanchuyen.setText(tienvanchuyen+" VNĐ");
                                         break;
-                                    } else {
-                                        Toast.makeText(CartDetailActivity.this, getString(R.string.maktt), Toast.LENGTH_SHORT).show();
-                                        break;
                                     }
+//                                    else {
+//                                        Toast.makeText(CartDetailActivity.this, getString(R.string.maktt), Toast.LENGTH_SHORT).show();
+//                                    }
 
                                 }
                                 else {

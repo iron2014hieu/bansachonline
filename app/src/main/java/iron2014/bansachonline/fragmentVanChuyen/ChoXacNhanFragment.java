@@ -21,6 +21,7 @@ import iron2014.bansachonline.R;
 import iron2014.bansachonline.RecycerViewTouch.RecyclerTouchListener;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.adapter.hoadoncthd.HoadonAdapter;
+import iron2014.bansachonline.fragmentVanChuyen.Activity.ChitietGiaoHangActivity;
 import iron2014.bansachonline.fragmentVanChuyen.Activity.ChitietVanChuyenActivity;
 import iron2014.bansachonline.model.Hoadon;
 import retrofit2.Call;
@@ -68,7 +69,7 @@ public class ChoXacNhanFragment extends Fragment {
             String tongtien = String.valueOf(theloai.getTongtien());
 
             sessionManager.createSessionGuimatheloai(id,ten);
-            Intent intent = new Intent(getContext(), ChitietVanChuyenActivity.class);
+            Intent intent = new Intent(getContext(), ChitietGiaoHangActivity.class);
             intent.putExtra("mahoadon", id);
             intent.putExtra("tenkh", ten);
             intent.putExtra("diachi", diachi);
