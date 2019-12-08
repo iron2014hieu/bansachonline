@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -22,8 +23,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Map;
 
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
@@ -78,7 +83,16 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
                 final String sex1 = edtGioiTinh.getText().toString();
                 final String ngaysinh1 = edtNgaySinh.getText().toString();
                 final String phone1 = edtSdtUser.getText().toString();
-                saveDetail(id, name1, address1, sex1, ngaysinh1, phone1);
+                if (name1.isEmpty() || address1.isEmpty() || sex1.isEmpty() || phone1.isEmpty()){
+                    Toast.makeText(UpdateProfileActivity.this, "Bạn còn bỏ sót thông tin kìa!", Toast.LENGTH_SHORT).show();
+                }else {
+                    if (phone1.length() != 10) {
+                        edtSdtUser.setError("Số điện thoại phải có 10 số.");
+                    } else if (name1.length() < 5) {
+                        edtNameUser.setError("Tên phải có trên 5 ký tự");
+                    } else
+                        saveDetail(id, name1, address1, sex1, ngaysinh1, phone1);
+                }
             }
         });
 
@@ -118,25 +132,53 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
         }
     }
     private void saveDetail(final String strid, final String strname, final String strdiachi, final String strsex, final String strngaysinh, final String strphone) {
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_UDATE + "?id=" + strid + "&name="
-                + strname + "&address=" + strdiachi + "&sex=" + strsex + "&ngaysinh=" + strngaysinh + "&phone=" + strphone,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_UDATE ,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if (response.equals("success")) {
-                            sessionManager.createSession(id, email,address,phone, name, quyen,sex, ngaysinh);
-                            Toast.makeText(UpdateProfileActivity.this, getString(R.string.suatc), Toast.LENGTH_SHORT).show();
-                            finish();
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                            String check = jsonObject.getString("check");
+
+                            if(check.equals("chuatontai")){
+
+                                if (success.equals("1")){
+                                    Toast.makeText(UpdateProfileActivity.this, "Sửa thành công", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }else {
+
+                                    Toast.makeText(getApplicationContext(), "Sửa thất bại", Toast.LENGTH_SHORT).show();
+
+                                }
+                            }else {
+
+                                Toast.makeText(getApplicationContext(), getString(R.string.so)+" "+strphone+" "+" đã có người đăng ký.", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.e("printStackTrace", e.toString());
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("Error: ", error.toString());
+                        Log.e("Error: err", error.toString());
                     }
-                });
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("name", strname);
+                params.put("address", strdiachi);
+                params.put("sex", strsex);
+                params.put("ngaysinh", strngaysinh);
+                params.put("phone", strphone);
+                params.put("id", strid);
+                return params;
+            }
+        };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
@@ -152,39 +194,5 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
         edtAddress = findViewById(R.id.edtAddress);
         btnUpdateUser = findViewById(R.id.btnUpdateUser);
     }
-//    private void UpdateTinhtrang(final String name , final String address , final String sex, final String ngaysinh , final String phone ,  String url){
-//        StringRequest request = new StringRequest(Request.Method.GET, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        Toast.makeText(UpdateProfileActivity.this, ""+response, Toast.LENGTH_SHORT).show();
-//                        if (response.equals("success")){
-//                            Toast.makeText(UpdateProfileActivity.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-//                            Intent intent = new Intent(getApplication(), ProfileActivity.class);
-//                            startActivity(intent);
-//                        }
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.e("update tt er ", error.toString());
-//            }
-//        })
-//        {
-//            @Override
-//            protected Map<String, String> getParams() throws AuthFailureError {
-//                Map<String,String> params = new HashMap<>();
-//                params.put("id", id);
-//                params.put("name", name);
-//                params.put("address", address);
-//                params.put("sex", sex);
-//                params.put("ngaysinh", ngaysinh);
-//                params.put("phone", phone);
-//                return params;
-//            }
-//        };
-//        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        requestQueue.add(request);
-//    }
 
 }

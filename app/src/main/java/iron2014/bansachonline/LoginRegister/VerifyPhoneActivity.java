@@ -101,7 +101,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                                 intent.putExtra("sodienthoai", editText.getText().toString());
                                 startActivity(intent);
                             }else {
-                                Toast.makeText(VerifyPhoneActivity.this, getString(R.string.so) +number+ getString(R.string.chuaduocdk), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(VerifyPhoneActivity.this, getString(R.string.so) +" "+number+" "+ getString(R.string.chuaduocdk), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
