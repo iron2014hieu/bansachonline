@@ -349,7 +349,8 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
 
                                 }
                             }else {
-                                startActivity(new Intent(getApplicationContext(), CartListActivity.class));
+                                // đã có trong  giỏ hàng
+                                Get_soluongDatmua(masach,Integer.valueOf(soluong));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -377,6 +378,66 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
         };
         requestQueue.add(stringRequest);
     }
+    private void Get_soluongDatmua(final String masach,final int sl_sach) {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_GET_SOLUONG_GH,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        int sl_datmua = Integer.valueOf(response);
+                        if (sl_datmua<sl_sach){
+                            UpdateSoluongDatmua(masach);
+                        }else {
+                            Toast.makeText(getApplicationContext(), "Sách không đủ số lượng", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("MYSQL", "Lỗi! \n" +error.toString());
+            }
+        }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String > params = new HashMap<>();
+                params.put("masach", masach);
+                params.put("mauser", idUser);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+    private void UpdateSoluongDatmua(final String masach){
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_UPDATE_SOLUONG_GH,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.equals("tc")){
+                            Toast.makeText(getApplicationContext(), "Đã thêm vào giỏ hàng!", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("MYSQL", "Lỗi! \n" +error.toString());
+            }
+        }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String > params = new HashMap<>();
+                params.put("masach", masach);
+                params.put("mauser", idUser);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+
+
     private void ThemYeuthich(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_INSERT_FAVORITE,
@@ -523,7 +584,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        finish();
     }
     private void checkLike(String masach, String mauser){
         apiInTerFaceFav = ApiClient.getApiClient().create(ApiInTerFaceFav.class);

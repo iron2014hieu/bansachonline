@@ -221,7 +221,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
 //                                if (success.equals("1")){
 //                                    Toast.makeText(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
 //                                }
-                                Get_soluongDatmua(masach,sl_sach);
+                                Get_soluongDatmua(masach,soluong);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,12 +56,12 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MyView
         if (linkImage!=null) {
             Picasso.with(context).load(linkImage).into(myViewHolder.img_book_favorite);
         }
-        myViewHolder.img_book_favorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fectchBookCT(mData.get(i).getTensach());
-            }
-        });
+//        myViewHolder.img_book_favorite.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                fectchBookCT(mData.get(i).getTensach());
+//            }
+//        });
     }
 
     @Override
@@ -85,28 +86,34 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MyView
         call.enqueue(new Callback<List<Books>>() {
             @Override
             public void onResponse(Call<List<Books>> call, retrofit2.Response<List<Books>> response) {
-                Books books = response.body().get(0);
-                final String masach = String.valueOf(books.getMasach());
-                final String tensach = String.valueOf(books.getTensach());
-                final String manxb = String.valueOf(books.getManxb());
-                final String matheloai = String.valueOf(books.getMatheloai());
-                final String ngayxb = books.getNgayxb();
-                final String noidung = books.getNoidung();
-                final String anhbia =books.getAnhbia();
-                final String gia = String.valueOf( books.getGia());
-                final String tennxb= String.valueOf(books.getTennxb());
-                final String soluong = String.valueOf(books.getSoluong());
-                final String tacgia = books.getTacgia();
-                final String matacgia = String.valueOf(books.getMatacgia());
-                final String tongdiem = String.valueOf(books.getTongdiem());
-                final String landanhgia = String.valueOf(books.getLandanhgia());
-                sessionManager.createSessionSendInfomationBook(masach,tensach,manxb,matheloai,ngayxb,noidung,
-                        anhbia,gia,tennxb,soluong,tacgia,matacgia, tongdiem, landanhgia);
+                try {
+                    Books books = response.body().get(0);
+                    final String masach = String.valueOf(books.getMasach());
+                    final String tensach = String.valueOf(books.getTensach());
+                    final String manxb = String.valueOf(books.getManxb());
+                    final String matheloai = String.valueOf(books.getMatheloai());
+                    final String ngayxb = books.getNgayxb();
+                    final String noidung = books.getNoidung();
+                    final String anhbia =books.getAnhbia();
+                    final String gia = String.valueOf( books.getGia());
+                    final String tennxb= String.valueOf(books.getTennxb());
+                    final String soluong = String.valueOf(books.getSoluong());
+                    final String tacgia = books.getTacgia();
+                    final String matacgia = String.valueOf(books.getMatacgia());
+                    final String tongdiem = String.valueOf(books.getTongdiem());
+                    final String landanhgia = String.valueOf(books.getLandanhgia());
+                    sessionManager.createSessionSendInfomationBook(masach,tensach,manxb,matheloai,ngayxb,noidung,
+                            anhbia,gia,tennxb,soluong,tacgia,matacgia, tongdiem, landanhgia);
 
-                Intent intent =(new Intent(context, BookDetailActivity.class));
+                    Intent intent =(new Intent(context, BookDetailActivity.class));
 
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    context.startActivity(intent);
+                }catch (Exception e){
+                    Log.e("errdetailfav", e.getMessage());
+                }
+
             }
 
             @Override

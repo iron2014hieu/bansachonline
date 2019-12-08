@@ -141,7 +141,7 @@
         <string name = "thietlap"> Setting </string>
         <string name = "tong_thanhtoa"> Total payment: </string>
         <string name = "chuaco_donhang"> No orders </string> yet
-        <string name = "timkiem_ganday"> Recent searches </string>
+        <string name = "timkiem_ganday"> Recent searches and suggestions </string>
     <!--        <string name = "thuvien"> Library </string>-->
         <string name = "tusach_cuatoi"> My bookcase </string>
         <string name = "chuaco_sachthuvien"> There are no books in the library </string> yet

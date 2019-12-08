@@ -37,4 +37,7 @@ public class UrlSql {
 
     //user
     public static String URL_READ ="https://bansachonline.xyz/bansach/loginregister/read_detail.php";
+
+    // laays chi tiet sach
+    public static String URL_GET_DETAIL_BOOK ="https://bansachonline.xyz/bansach/sach/getDetail.php/?masach=";
 }
