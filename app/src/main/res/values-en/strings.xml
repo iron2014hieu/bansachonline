@@ -288,5 +288,8 @@
         <string name = "choxl"> is waiting for processing. Please check the receipt time in invoice details </string>
         <string name = "yhemtchd"> Add invoice success: </string>
 
+    <string name="moinhanhang">has just been delivered</string>
+
+    <string name="donhangvuadcchuyendi">Your order has been shipped.</string>
 </resources>
 

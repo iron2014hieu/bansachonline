@@ -17,6 +17,9 @@ public interface ApiInTerFaceHoadon {
     Call<List<Hoadon>> get_cholayhang(@Query("mauser") String keyword);
     @GET("hoadon/get_danggiao.php")
     Call<List<Hoadon>> get_danggiao(@Query("mauser") String keyword);
+
+    @GET("hoadon/get_userxacnhan.php")
+    Call<List<Hoadon>> get_userxacnhan(@Query("mauser") String keyword);
     @GET("hoadon/get_danhgia.php")
     Call<List<Hoadon>> get_danhgia(@Query("mauser") String keyword);
     //cthd

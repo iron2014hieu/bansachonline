@@ -1,7 +1,9 @@
 package iron2014.bansachonline.fragmentVanChuyen.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +22,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +33,9 @@ import java.util.Map;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
 import iron2014.bansachonline.R;
+import iron2014.bansachonline.Service.FCM.MyVolley;
+import iron2014.bansachonline.URL.EndPoints;
+import iron2014.bansachonline.URL.UrlSql;
 import iron2014.bansachonline.adapter.hoadoncthd.CTHDAdapter;
 import iron2014.bansachonline.model.CTHD;
 import retrofit2.Call;
@@ -41,7 +49,7 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
     List<CTHD> cthdList = new ArrayList<>();
     CTHDAdapter cthdAdapter;
     ApiInTerFaceHoadon apiInTerFaceHoadon;
-    public static String mahd, tenkh, diachi, sdt, tongtien, tinhtrang;
+    public static String mahd, tenkh, diachi, sdt, tongtien, tinhtrang, mauser;
 
     String URL_UDATE = "https://bansachonline.xyz/bansach/hoadon/update_hoadon_tinhtrang.php";
     @Override
@@ -65,6 +73,8 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
         sdt = intent.getStringExtra("sdt");
         tongtien = intent.getStringExtra("tongtien");
         tinhtrang = intent.getStringExtra("tinhtrang");
+        mauser = intent.getStringExtra("mauser");
+
         if (tinhtrang!=null&&tinhtrang.equals("danhgia")){
             btnNhanhang.setVisibility(View.GONE);
         }
@@ -98,6 +108,7 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (tinhtrang.equals("cholayhang")) {
                     UpdateTinhtrang( "danggiao", URL_UDATE);
+
                 }
 
             }
@@ -132,6 +143,10 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
                         if (response.equals("tc")){
                             Intent intent = new Intent(getApplication(), ShipperActivity.class);
                             intent.putExtra("check", 1);
+                            //gui+thêm thông báo ở đây
+
+
+                            sendSinglePush();
                             startActivity(intent);
                         }
                     }
@@ -152,5 +167,73 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
+    }
+    private void sendSinglePush(){
+        final String title = getString(R.string.moinhanhang);
+        final String message = getString(R.string.donhangvuadcchuyendi);
+        final String image = "https://www.incimages.com/uploaded_files/image/970x450/getty_549933903_2000133320009280405_105293.jpg";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, EndPoints.URL_SEND_SINGLE_PUSH,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        String mota = getString(R.string.dh)+" "+mahd +" "+getString(R.string.moinhanhang);
+                        InsertNotif(mota, mahd);
+
+                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("title", title);
+                params.put("message", message);
+
+                if (!TextUtils.isEmpty(image))
+                    params.put("image", image);
+
+                params.put("mauser", mauser);
+                return params;
+            }
+        };
+
+        MyVolley.getInstance(this).addToRequestQueue(stringRequest);
+    }
+    private void InsertNotif (final String mota, final String mahoadon){
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_INSERT_NOTIF,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("tieude", getString(R.string.moinhanhang));
+                params.put("mota", mota);
+                params.put("mahoadon", mahoadon);
+                params.put("mauser", mauser);
+                params.put("loaithongbao", "donhang");
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 }

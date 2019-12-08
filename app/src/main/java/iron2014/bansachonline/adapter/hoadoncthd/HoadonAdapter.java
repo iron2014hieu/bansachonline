@@ -134,6 +134,8 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
 
         LinearLayout linnear_hoadon;
 
+
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -145,6 +147,8 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
             txtUserXacnhan= itemView.findViewById(R.id.txtUserXacnhan);
 
             linnear_hoadon = itemView.findViewById(R.id.linnear_hoadon);
+
+
         }
     }
     public static void UpDownDate() {

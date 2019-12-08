@@ -298,6 +298,8 @@
     <string name="dh">Đơn hàng</string>
     <string name="xemdhb">Xem đơn hàng của bạn</string>
     <string name="choxl">Chờ xử lý đơn hàng</string>
+    <string name="moinhanhang">Vừa được chuyển đi</string>
     <string name="yhemtchd">Thêm thành công hóa đơn:</string>
+    <string name="donhangvuadcchuyendi">Đơn hàng của bạn vừa mới được chuyển đi.</string>
 
 </resources>

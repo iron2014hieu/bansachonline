@@ -181,6 +181,7 @@ public class LoginWithSMSActivity extends AppCompatActivity {
                                     updateDevicesToken("1", id);
                                     if(quyen.equals("shipper")){
                                         startActivity(new Intent(LoginWithSMSActivity.this, ShipperActivity.class));
+                                        Toast.makeText(LoginWithSMSActivity.this, getString(R.string.dangnhaptc), Toast.LENGTH_SHORT).show();
                                     }else {
                                         startActivity(new Intent(LoginWithSMSActivity.this, MainActivity.class));
                                         Toast.makeText(LoginWithSMSActivity.this, getString(R.string.dangnhaptc), Toast.LENGTH_SHORT).show();

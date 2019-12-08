@@ -52,6 +52,13 @@ public class Notif_DH_Adapter extends RecyclerView.Adapter<Notif_DH_Adapter.MyVi
 //        }catch (Exception e){
 //            Log.e("log img", e.toString());
 //        }
+        String tieude1 = mData.get(i).getTieude();
+        int mahd = mData.get(i).getMahoadon();
+        if (tieude1.equals("Đơn hàng "+mahd+" giao thành công.") || tieude1.equals("Order "+mahd+" was delivered successfully.")){
+            holder.view_giaothanhcong.setVisibility(View.VISIBLE);
+        }else {
+            holder.view_giaothanhcong.setVisibility(View.GONE);
+        }
         holder.img_dh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +109,7 @@ public class Notif_DH_Adapter extends RecyclerView.Adapter<Notif_DH_Adapter.MyVi
         private LinearLayout lnMota,linnear_giua;
 
 
+        View view_giaothanhcong;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvXemchitiet = (TextView)itemView.findViewById(R.id.tvXemchitiet);
@@ -111,6 +119,8 @@ public class Notif_DH_Adapter extends RecyclerView.Adapter<Notif_DH_Adapter.MyVi
             txtThoigian_dh = (TextView)itemView.findViewById(R.id.txtThoigian_dh);
             img_dh=(ImageView) itemView.findViewById(R.id.img_dh);
             linnear_giua = itemView.findViewById(R.id.linnear_giua);
+
+            view_giaothanhcong = itemView.findViewById(R.id.view_giaothanhcong);
 
             tvAnchitiet.setOnClickListener(new View.OnClickListener() {
                 @Override

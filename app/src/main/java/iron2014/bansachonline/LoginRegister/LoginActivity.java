@@ -149,6 +149,7 @@ public class LoginActivity extends AppCompatActivity {
                                     updateDevicesToken("1",id);
                                     if(quyen.equals("shipper")){
                                         startActivity(new Intent(LoginActivity.this, ShipperActivity.class));
+                                        Toast.makeText(LoginActivity.this, getString(R.string.dangnhaptc), Toast.LENGTH_SHORT).show();
                                     }else {
                                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                         Toast.makeText(LoginActivity.this, getString(R.string.dangnhaptc), Toast.LENGTH_SHORT).show();

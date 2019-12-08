@@ -67,6 +67,8 @@ public class NhanHangFragment extends Fragment {
                 String tinhtrang = theloai.getTinhtrang();
                 String tongtien = String.valueOf(theloai.getTongtien());
 
+                String mauser = String.valueOf(theloai.getMauser());
+
                 sessionManager.createSessionGuimatheloai(id,ten);
                 Intent intent = new Intent(getContext(), ChitietVanChuyenActivity.class);
                 intent.putExtra("mahoadon", id);
@@ -75,6 +77,8 @@ public class NhanHangFragment extends Fragment {
                 intent.putExtra("sdt", sdt);
                 intent.putExtra("tinhtrang", tinhtrang);
                 intent.putExtra("tongtien", tongtien);
+
+                intent.putExtra("mauser", mauser);
                 startActivity(intent);
 
             }

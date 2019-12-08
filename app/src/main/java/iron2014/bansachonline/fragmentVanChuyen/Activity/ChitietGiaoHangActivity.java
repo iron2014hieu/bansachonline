@@ -244,7 +244,7 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("tieude", getString(R.string.donhang) + mahd +getString(R.string.giaothanhcong));
+                params.put("tieude", getString(R.string.donhang) +" " + mahd +" "+getString(R.string.giaothanhcong));
                 params.put("mota", mota);
                 params.put("mahoadon", mahoadon);
                 params.put("mauser", mauser);

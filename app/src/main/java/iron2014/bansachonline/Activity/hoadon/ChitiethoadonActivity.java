@@ -93,6 +93,7 @@ public class ChitiethoadonActivity extends AppCompatActivity {
             tvtinhtrangsp.setText(getString(R.string.cholayhang));
         }
         btnXacNhanHang = findViewById(R.id.btnXacNhanHang);
+
         btnXacNhanHang.setVisibility(View.GONE);
         if (tinhtrang!=null&&tinhtrang.equals("userxacnhan")){
             btnXacNhanHang.setVisibility(View.VISIBLE);
