@@ -37,6 +37,7 @@ import iron2014.bansachonline.Activity.CartListActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
+import iron2014.bansachonline.CustomToast;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.UrlSql;
@@ -196,13 +197,18 @@ public class SachVeticalAdapter extends RecyclerView.Adapter<SachVeticalAdapter.
                     final String masach =String.valueOf(books.getMasach());
                     final String gia = String.valueOf(books.getGia());
                     if (soluong>0){
-                        ThemDatmua(masach, tensach, anhbia,iduser, gia);
+                        ThemDatmua(masach, tensach, anhbia,iduser, gia,soluong);
+
                     }else {
-                        Toast.makeText(context, "Sách "+tensach+" đã hết!", Toast.LENGTH_SHORT).show();
+                        CustomToast.makeText(context,"Sách "+tensach+" đã hết!", (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
+
+
                     }
                 }
 
             }
+
+
 
             @Override
             public void onFailure(Call<List<Books>> call, Throwable t) {
@@ -210,7 +216,7 @@ public class SachVeticalAdapter extends RecyclerView.Adapter<SachVeticalAdapter.
             }
         });
     }
-    private void ThemDatmua(final String masach, final String sp, final String hinhanhsach, final String mauser, final String giaban){
+    private void ThemDatmua(final String masach, final String sp, final String hinhanhsach, final String mauser, final String giaban,final int sl_sach){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_INSERT_GIOHANG,
                 new Response.Listener<String>() {
@@ -224,14 +230,16 @@ public class SachVeticalAdapter extends RecyclerView.Adapter<SachVeticalAdapter.
                             if(check.equals("chuatontai")){
 
                                 if (success.equals("1")){
-                                    Toast.makeText(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                                    CustomToast.makeText(context,"Đã thêm vào giỏ hàng", (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();
                                 }
                             }else {
-                                context.startActivity(new Intent(context, CartListActivity.class));
+//                                if (success.equals("1")){
+//                                    Toast.makeText(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+//                                }
+                                Get_soluongDatmua(masach,sl_sach);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Log.e("printStackTrace", e.toString());
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -250,6 +258,65 @@ public class SachVeticalAdapter extends RecyclerView.Adapter<SachVeticalAdapter.
                 params.put("gia", giaban);
                 params.put("soluong", "1");
                 params.put("mauser", mauser);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+
+    private void Get_soluongDatmua(final String masach,final int sl_sach) {
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_GET_SOLUONG_GH,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        int sl_datmua = Integer.valueOf(response);
+                        if (sl_datmua<sl_sach){
+                            UpdateSoluongDatmua(masach);
+                        }else {
+                            CustomToast.makeText(context,"Sách không đủ số lượng", (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("MYSQL", "Lỗi! \n" +error.toString());
+            }
+        }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String > params = new HashMap<>();
+                params.put("masach", masach);
+                params.put("mauser", iduser);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+    private void UpdateSoluongDatmua(final String masach){
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_UPDATE_SOLUONG_GH,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.equals("tc")){
+                            CustomToast.makeText(context,"Đã thêm vào giỏ hàng!", (int) CustomToast.LONG,CustomToast.SUCCESS,true).show();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("MYSQL", "Lỗi! \n" +error.toString());
+            }
+        }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String > params = new HashMap<>();
+                params.put("masach", masach);
+                params.put("mauser", iduser);
                 return params;
             }
         };

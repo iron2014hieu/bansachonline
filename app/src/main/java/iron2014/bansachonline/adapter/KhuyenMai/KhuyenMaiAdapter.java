@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
+import iron2014.bansachonline.CustomToast;
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.model.KhuyenMai;
@@ -56,7 +57,7 @@ public class KhuyenMaiAdapter extends RecyclerView.Adapter<KhuyenMaiAdapter.MyVi
             public void onClick(View view) {
                 ClipData clip = ClipData.newPlainText("makm",  mData.get(i).getMaKM());
                 MainActivity.clipboardManager.setPrimaryClip(clip);
-                Toast.makeText(context, "Đã sao chép mã "+mData.get(i).getMaKM(), Toast.LENGTH_SHORT).show();
+                CustomToast.makeText(context,"Đã sao chép mã "+mData.get(i).getMaKM(), (int) CustomToast.LONG,CustomToast.SUCCESS,true).show();
             }
         });
 

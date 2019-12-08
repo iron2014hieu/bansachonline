@@ -479,8 +479,7 @@ public class CartDetailActivity extends AppCompatActivity {
                             sendOnChannel(getString(R.string.hod)+" "+mahoadon,getString(R.string.xemdhb));
                             String mota = getString(R.string.dh)+" "+mahoadon +" "+getString(R.string.choxl);
                             InsertNotif(mota,String.valueOf(mahoadon));
-                            Toast.makeText(CartDetailActivity.this, getString(R.string.yhemtchd) +" "+ mahoadon, Toast.LENGTH_SHORT).show();
-                        } catch (JSONException e) {
+                            CustomToast.makeText(getApplicationContext(),getString(R.string.yhemtchd) +" "+ mahoadon, (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show(); } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }

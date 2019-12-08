@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import iron2014.bansachonline.CustomToast;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 
@@ -130,13 +131,12 @@ public class RegisterActivity extends AppCompatActivity {
                                     startActivity(intent);
                                 }else {
                                     btnRegis.setVisibility(View.VISIBLE);
-
-                                    Toast.makeText(RegisterActivity.this, getString(R.string.dangkytb), Toast.LENGTH_SHORT).show();
+                                    CustomToast.makeText(getApplicationContext(),getString(R.string.dangkytb), (int) CustomToast.LONG,CustomToast.ERROR,true).show();
                                 }
                             }else {
                                 btnRegis.setVisibility(View.VISIBLE);
+                                CustomToast.makeText(getApplicationContext(),getString(R.string.datontai), (int) CustomToast.LONG,CustomToast.WARNING,true).show();
 
-                                Toast.makeText(RegisterActivity.this, getString(R.string.datontai), Toast.LENGTH_SHORT).show();
                                 loading.setVisibility(View.GONE);
                             }
                         } catch (JSONException e) {

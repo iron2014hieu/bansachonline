@@ -53,6 +53,7 @@ import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceFav;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
 import iron2014.bansachonline.BottomSheet.ExampleBottomSheetDialog;
+import iron2014.bansachonline.CustomToast;
 import iron2014.bansachonline.LoginRegister.LoginActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
@@ -213,7 +214,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
             @Override
             public void onClick(View v) {
                 if(soluong.equals("0")){
-                    Toast.makeText(BookDetailActivity.this, getString(R.string.sptamhet), Toast.LENGTH_SHORT).show();
+                    CustomToast.makeText(getApplicationContext(),getString(R.string.sptamhet), (int) CustomToast.SHORT,CustomToast.CONFUSING,true).show();
                 }else
                 ThemDatmua(masach, tensach, linkImage,"1",idUser);
             }
@@ -388,7 +389,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                         if (sl_datmua<sl_sach){
                             UpdateSoluongDatmua(masach);
                         }else {
-                            Toast.makeText(getApplicationContext(), "Sách không đủ số lượng", Toast.LENGTH_SHORT).show();
+                            CustomToast.makeText(getApplicationContext(),"Sách không đủ số lượng", (int) CustomToast.SHORT,CustomToast.CONFUSING,true).show();
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -415,7 +416,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                     @Override
                     public void onResponse(String response) {
                         if (response.equals("tc")){
-                            Toast.makeText(getApplicationContext(), "Đã thêm vào giỏ hàng!", Toast.LENGTH_SHORT).show();
+                            CustomToast.makeText(getApplicationContext(),"Đã thêm vào giỏ hàng!", (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();
                         }
 
                     }
@@ -448,7 +449,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
                             if (success.equals("1")){
-                                Toast.makeText(BookDetailActivity.this, getString(R.string.dathemyeuthich), Toast.LENGTH_SHORT).show();
+                                CustomToast.makeText(getApplicationContext(), getString(R.string.dathemyeuthich), (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -484,8 +485,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
                             if (success.equals("1")){
-                                Toast.makeText(BookDetailActivity.this, getString(R.string.dabothich), Toast.LENGTH_SHORT).show();
-                            }
+                                CustomToast.makeText(getApplicationContext(), getString(R.string.dabothich), (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show(); }
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Log.e("printStackTrace", e.toString());
@@ -515,7 +515,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                     @Override
                     public void onResponse(String response) {
                         if (response.trim().equals("datontai")){
-                            Toast.makeText(BookDetailActivity.this, getString(R.string.bandamuasachny), Toast.LENGTH_SHORT).show();
+                            CustomToast.makeText(getApplicationContext(), getString(R.string.bandamuasachny), (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
                         }else {
                         }
                     }

@@ -27,6 +27,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import iron2014.bansachonline.CustomToast;
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
@@ -98,7 +99,7 @@ public class DoiMatkhauActivity extends AppCompatActivity {
                                 intent.putExtra("mauser", id);
                                 startActivity(intent);
                             }else {
-                                Toast.makeText(getApplicationContext(), getString(R.string.saitk_ormk), Toast.LENGTH_SHORT).show();
+                                CustomToast.makeText(getApplicationContext(),getString(R.string.saitk_ormk), (int) CustomToast.LONG,CustomToast.SUCCESS,true).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -36,6 +36,7 @@ import iron2014.bansachonline.Activity.BookDetailActivity;
 import iron2014.bansachonline.Activity.CartListActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
+import iron2014.bansachonline.CustomToast;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.UrlSql;
@@ -215,7 +216,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                                     updateSoluongTongtien(String.valueOf(newValue),iduser, masach1);
 //                                    datMua.setSoluong(newValue);
                                 }else {
-                                    Toast.makeText(context,context.getString(R.string.sachkdusl), Toast.LENGTH_SHORT).show();
+                                    CustomToast.makeText(context,context.getString(R.string.sachkdusl), (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
                                     break;
                                 }
                             }

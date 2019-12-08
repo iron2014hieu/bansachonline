@@ -23,6 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import iron2014.bansachonline.CustomToast;
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.URL.UrlSql;
@@ -101,7 +102,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                                 intent.putExtra("sodienthoai", editText.getText().toString());
                                 startActivity(intent);
                             }else {
-                                Toast.makeText(VerifyPhoneActivity.this, getString(R.string.so) +" "+number+" "+ getString(R.string.chuaduocdk), Toast.LENGTH_SHORT).show();
+                                CustomToast.makeText(getApplicationContext(),getString(R.string.so) +" "+number+" "+ getString(R.string.chuaduocdk), (int) CustomToast.LONG,CustomToast.WARNING,true).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

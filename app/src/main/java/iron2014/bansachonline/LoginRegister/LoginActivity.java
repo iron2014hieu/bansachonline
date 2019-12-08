@@ -42,6 +42,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import iron2014.bansachonline.CustomToast;
 import iron2014.bansachonline.URL.EndPoints;
 import iron2014.bansachonline.fragmentVanChuyen.Activity.ShipperActivity;
 import iron2014.bansachonline.MainActivity;
@@ -149,11 +150,10 @@ public class LoginActivity extends AppCompatActivity {
                                     updateDevicesToken("1",id);
                                     if(quyen.equals("shipper")){
                                         startActivity(new Intent(LoginActivity.this, ShipperActivity.class));
-                                        Toast.makeText(LoginActivity.this, getString(R.string.dangnhaptc), Toast.LENGTH_SHORT).show();
+                                        CustomToast.makeText(getApplicationContext(),getString(R.string.dangnhaptc), (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();
                                     }else {
                                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                        Toast.makeText(LoginActivity.this, getString(R.string.dangnhaptc), Toast.LENGTH_SHORT).show();
-                                    }
+                                        CustomToast.makeText(getApplicationContext(),getString(R.string.dangnhaptc), (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();                                    }
                                 }
                             }else {
                                 Toast.makeText(LoginActivity.this, getString(R.string.saitk_ormk_login), Toast.LENGTH_SHORT).show();

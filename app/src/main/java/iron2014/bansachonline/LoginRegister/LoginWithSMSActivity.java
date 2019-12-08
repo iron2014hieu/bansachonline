@@ -39,6 +39,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import iron2014.bansachonline.CustomToast;
 import iron2014.bansachonline.URL.EndPoints;
 import iron2014.bansachonline.fragmentVanChuyen.Activity.ShipperActivity;
 import iron2014.bansachonline.MainActivity;
@@ -181,14 +182,14 @@ public class LoginWithSMSActivity extends AppCompatActivity {
                                     updateDevicesToken("1", id);
                                     if(quyen.equals("shipper")){
                                         startActivity(new Intent(LoginWithSMSActivity.this, ShipperActivity.class));
-                                        Toast.makeText(LoginWithSMSActivity.this, getString(R.string.dangnhaptc), Toast.LENGTH_SHORT).show();
+                                        CustomToast.makeText(getApplicationContext(),getString(R.string.dangnhaptc), (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();
                                     }else {
                                         startActivity(new Intent(LoginWithSMSActivity.this, MainActivity.class));
-                                        Toast.makeText(LoginWithSMSActivity.this, getString(R.string.dangnhaptc), Toast.LENGTH_SHORT).show();
+                                        CustomToast.makeText(getApplicationContext(),getString(R.string.dangnhaptc), (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();
                                     }
                                 }
                             }else {
-                                Toast.makeText(LoginWithSMSActivity.this, getString(R.string.banchuadksdtnay), Toast.LENGTH_SHORT).show();
+                                CustomToast.makeText(getApplicationContext(),getString(R.string.banchuadksdtnay), (int) CustomToast.LONG,CustomToast.CONFUSING,true).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

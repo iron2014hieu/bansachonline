@@ -1,80 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/cardbackground"
-    android:weightSum="5"
-    android:layout_marginTop="5dp">
+    android:background="?attr/cardbackground">
 
     <ImageView
-        android:id="@+id/img_dh"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_weight="1"
-        android:background="?attr/cardbackground"
-        android:src="@drawable/icon_media"/>
+        android:id="@+id/img_check_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:src="@drawable/check_success"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <LinearLayout
-        android:id="@+id/linnear_giua"
-        android:background="?attr/cardbackground"
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="4"
-        android:orientation="vertical">
-        <View
-            android:id="@+id/view_giaothanhcong"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#FF0000"/>
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_weight="2"
-            android:id="@+id/txtMota_tieude_dh"
+
+        android:orientation="horizontal"
+        android:weightSum="5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_dh"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="?attr/cardbackground"
+            android:src="@drawable/icon_media" />
+
+        <LinearLayout
+            android:id="@+id/linnear_giua"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:textColor="?attr/textcolor"
-            android:textStyle="bold"
-            android:text="Đang vận chuyển"/>
+            android:layout_weight="4"
+
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/view_giaothanhcong"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#00FF48"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/txtMota_tieude_dh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="2"
+                android:text="Đang vận chuyển"
+                android:textColor="?attr/textcolor"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtMota_notif_dh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Tất cả hàng đã dc vân chuyen trc nagyf 20/11/2019"
+                android:textColor="?attr/textcolor"
+                android:textSize="13dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/txtThoigian_dh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:drawableLeft="@drawable/ic_access_time"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="20/11/2019"
+                android:textColor="?attr/textcolor"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
 
         <TextView
-            android:visibility="gone"
-            android:textSize="13dp"
-            android:id="@+id/txtMota_notif_dh"
+            android:id="@+id/tvXemchitiet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="?attr/textcolor"
-            android:layout_marginTop="5dp"
-            android:text="Tất cả hàng đã dc vân chuyen trc nagyf 20/11/2019"/>
+            android:layout_weight="1"
+            android:drawableRight="@drawable/ic_arrow_drop_down"
+            android:gravity="right"
+            android:textColor="#F44336" />
 
         <TextView
-            android:id="@+id/txtThoigian_dh"
+            android:id="@+id/tvAnchitiet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:drawableLeft="@drawable/ic_access_time"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="20/11/2019"
-            android:textColor="?attr/textcolor"
+            android:drawableRight="@drawable/ic_arrow_drop_up"
+            android:gravity="right"
+            android:textColor="#F44336"
             android:visibility="gone" />
-
     </LinearLayout>
-    <TextView
-        android:gravity="right"
-        android:drawableRight="@drawable/ic_arrow_drop_down"
-        android:id="@+id/tvXemchitiet"
-        android:textColor="#F44336"
-        android:layout_weight="1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:gravity="right"
-        android:visibility="gone"
-        android:id="@+id/tvAnchitiet"
-        android:textColor="#F44336"
-        android:drawableRight="@drawable/ic_arrow_drop_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

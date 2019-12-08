@@ -30,6 +30,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import iron2014.bansachonline.CustomToast;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 
@@ -144,16 +145,13 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
                             if(check.equals("chuatontai")){
 
                                 if (success.equals("1")){
-                                    Toast.makeText(UpdateProfileActivity.this, "Sửa thành công", Toast.LENGTH_SHORT).show();
-                                    finish();
+                                    CustomToast.makeText(getApplicationContext(),"Sửa thành công", (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();finish();
                                 }else {
-
-                                    Toast.makeText(getApplicationContext(), "Sửa thất bại", Toast.LENGTH_SHORT).show();
+                                    CustomToast.makeText(getApplicationContext(),"Sửa thất bại", (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
 
                                 }
                             }else {
-
-                                Toast.makeText(getApplicationContext(), getString(R.string.so)+" "+strphone+" "+" đã có người đăng ký.", Toast.LENGTH_SHORT).show();
+                                CustomToast.makeText(getApplicationContext(),getString(R.string.so)+" "+strphone+" "+" đã có người đăng ký.", (int) CustomToast.LONG,CustomToast.CONFUSING,true).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

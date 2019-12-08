@@ -56,8 +56,10 @@ public class Notif_DH_Adapter extends RecyclerView.Adapter<Notif_DH_Adapter.MyVi
         int mahd = mData.get(i).getMahoadon();
         if (tieude1.equals("Đơn hàng "+mahd+" giao thành công.") || tieude1.equals("Order "+mahd+" was delivered successfully.")){
             holder.view_giaothanhcong.setVisibility(View.VISIBLE);
+            //holder.img_check_success.setVisibility(View.VISIBLE);
         }else {
             holder.view_giaothanhcong.setVisibility(View.GONE);
+            holder.img_check_success.setVisibility(View.GONE);
         }
         holder.img_dh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,7 +109,7 @@ public class Notif_DH_Adapter extends RecyclerView.Adapter<Notif_DH_Adapter.MyVi
         private TextView txtThoigian_dh;
         private TextView tvXemchitiet, tvAnchitiet;
         private LinearLayout lnMota,linnear_giua;
-
+        ImageView img_check_success;
 
         View view_giaothanhcong;
         public MyViewHolder(@NonNull View itemView) {
@@ -119,6 +121,7 @@ public class Notif_DH_Adapter extends RecyclerView.Adapter<Notif_DH_Adapter.MyVi
             txtThoigian_dh = (TextView)itemView.findViewById(R.id.txtThoigian_dh);
             img_dh=(ImageView) itemView.findViewById(R.id.img_dh);
             linnear_giua = itemView.findViewById(R.id.linnear_giua);
+            img_check_success = itemView.findViewById(R.id.img_check_success);
 
             view_giaothanhcong = itemView.findViewById(R.id.view_giaothanhcong);
 

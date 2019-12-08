@@ -37,6 +37,7 @@ import iron2014.bansachonline.Activity.CartListActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
+import iron2014.bansachonline.CustomToast;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.UrlSql;
@@ -215,7 +216,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
                             if(check.equals("chuatontai")){
 
                                 if (success.equals("1")){
-                                    Toast.makeText(context, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                                    CustomToast.makeText(context,"Đã thêm vào giỏ hàng", (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();
                                 }
                             }else {
 //                                if (success.equals("1")){
@@ -259,7 +260,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
                         if (sl_datmua<sl_sach){
                             UpdateSoluongDatmua(masach);
                         }else {
-                            Toast.makeText(context, "Sách không đủ số lượng", Toast.LENGTH_SHORT).show();
+                            CustomToast.makeText(context,"Sách không đủ số lượng", (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -286,7 +287,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.MyViewHolder> 
                     @Override
                     public void onResponse(String response) {
                         if (response.equals("tc")){
-                            Toast.makeText(context, "Đã thêm vào giỏ hàng!", Toast.LENGTH_SHORT).show();
+                            CustomToast.makeText(context,"Đã thêm vào giỏ hàng!", (int) CustomToast.LONG,CustomToast.SUCCESS,true).show();
                         }
 
                     }
