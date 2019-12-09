@@ -42,6 +42,7 @@ import iron2014.bansachonline.URL.UrlSql;
 import iron2014.bansachonline.adapter.Sach.FavoriteAdapter;
 import iron2014.bansachonline.model.BookFavorite;
 import iron2014.bansachonline.model.Books;
+import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -53,9 +54,12 @@ public class BookFavoriteActivity extends AppCompatActivity {
     SessionManager sessionManager;
     TextView txtFav_empty;
     ApiInTerFace apiInTerFace;
+    SharedPref sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPref = new SharedPref(this);
+        theme();
         setContentView(R.layout.activity_book_favorite);
         txtFav_empty = findViewById(R.id.txtFav_empty);
 
@@ -151,5 +155,10 @@ public class BookFavoriteActivity extends AppCompatActivity {
                 Log.e("Error Search:","Error on: "+t.toString());
             }
         });
+    }
+    public  void theme(){
+        if (sharedPref.loadNightModeState() == true){
+            setTheme(R.style.darktheme);
+        }else setTheme(R.style.AppTheme);
     }
 }

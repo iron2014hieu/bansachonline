@@ -119,6 +119,13 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("check", "0");
+        startActivity(intent);
+    }
+
     public void loginsms(View view){
         startActivity(new Intent(getBaseContext(), VerifyPhoneActivity.class));
     }
@@ -156,7 +163,7 @@ public class LoginActivity extends AppCompatActivity {
                                         CustomToast.makeText(getApplicationContext(),getString(R.string.dangnhaptc), (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();                                    }
                                 }
                             }else {
-                                Toast.makeText(LoginActivity.this, getString(R.string.saitk_ormk_login), Toast.LENGTH_SHORT).show();
+                                CustomToast.makeText(getApplicationContext(),getString(R.string.saitk_ormk_login), (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

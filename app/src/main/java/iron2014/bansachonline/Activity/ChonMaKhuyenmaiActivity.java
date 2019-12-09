@@ -36,6 +36,5 @@ public class ChonMaKhuyenmaiActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         startActivity(new Intent(getApplicationContext(), CartDetailActivity.class));
-        finish();
     }
 }

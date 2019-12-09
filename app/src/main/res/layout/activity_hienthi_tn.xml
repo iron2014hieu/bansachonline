@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="?attr/cardbackground"
+    android:background="@drawable/wallpaper_chat"
     tools:context=".Activity.AppChatActivity.HienthiTnActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_vanchuyen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleTextColor="#fff"
-        android:background="#2196F3"
+        app:titleTextColor="?attr/textcolor"
+        android:background="?attr/topbottomcolor"
         app:title="@string/congdong">
     </androidx.appcompat.widget.Toolbar>
     <LinearLayout
@@ -22,7 +22,6 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:background="?attr/cardbackground"
             android:id="@+id/recyclerview_tn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

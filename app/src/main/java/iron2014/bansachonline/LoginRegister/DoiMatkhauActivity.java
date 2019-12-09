@@ -33,15 +33,19 @@ import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.UrlSql;
 import iron2014.bansachonline.fragmentVanChuyen.Activity.ShipperActivity;
+import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 
 public class DoiMatkhauActivity extends AppCompatActivity {
     TextInputEditText edtPassRE,edtEmailRE;
     Button btnTieptuc;
     SessionManager sessionManager;
     String email ;
+    SharedPref sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPref = new SharedPref(this);
+        theme();
         setContentView(R.layout.activity_doi_matkhau);
         edtEmailRE=findViewById(R.id.edtEmailRE);
         edtPassRE=findViewById(R.id.edtPasswordRE);
@@ -124,5 +128,10 @@ public class DoiMatkhauActivity extends AppCompatActivity {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+    public  void theme(){
+        if (sharedPref.loadNightModeState() == true){
+            setTheme(R.style.darktheme);
+        }else setTheme(R.style.AppTheme);
     }
 }

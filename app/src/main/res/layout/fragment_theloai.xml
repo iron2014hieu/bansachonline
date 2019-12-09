@@ -28,7 +28,7 @@
                 android:textColor="?attr/textcolor"
                 android:padding="8dp"
                 android:gravity="left"
-                android:text="Ưu đãi"
+                android:text="@string/uudai"
                 android:textStyle="bold" />
             <RelativeLayout
                 android:layout_width="match_parent"

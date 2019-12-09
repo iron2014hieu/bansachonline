@@ -40,6 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="15dp"
                 android:layout_height="50dp"
+                android:textColor="?attr/textcolor"
                 android:hint="@string/tenkhachhang"
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -56,6 +57,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_edittext"
                 android:enabled="false"
+                android:textColor="?attr/textcolor"
                 android:text="@string/email" />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -69,6 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_height="50dp"
+                android:textColor="?attr/textcolor"
                 android:hint="@string/diachi"
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -84,6 +87,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_height="50dp"
                 android:hint="@string/sodienthoai"
+                android:textColor="?attr/textcolor"
                 android:inputType="number"
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -104,6 +108,7 @@
                     android:id="@+id/edtNgaySinh"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:textColor="?attr/textcolor"
                     android:text="@string/ngaysinh" />
             </com.google.android.material.textfield.TextInputLayout>
             <ImageButton
@@ -150,13 +155,15 @@
                     android:id="@+id/rb_nam"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/textcolor"
                     android:text="@string/nam"
                     />
                 <RadioButton
                     android:id="@+id/rb_nu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nữ"
+                    android:textColor="?attr/textcolor"
+                    android:text="@string/nu"
                     />
             </RadioGroup>
         </LinearLayout>
@@ -173,6 +180,6 @@
         android:id="@+id/btnUpdateUser"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Cập nhật thông tin"
+        android:text="@string/capnhat_thongtin"
         />
 </LinearLayout>

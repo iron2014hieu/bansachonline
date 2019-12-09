@@ -33,6 +33,7 @@ import java.util.Map;
 import iron2014.bansachonline.CustomToast;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
+import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 
 
 public class UpdateProfileActivity extends AppCompatActivity implements View.OnClickListener{
@@ -42,7 +43,7 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
     ImageButton btnDatePicker;
     String URL_UDATE = "https://bansachonline.xyz/bansach/user/update.php";
     String id;
-
+    SharedPref sharedPref;
     RadioGroup radioGroup;
     SessionManager sessionManager;
 
@@ -50,6 +51,8 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
     String name,address,phone,ngaysinh,sex,email, quyen;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPref = new SharedPref(this);
+        theme();
         setContentView(R.layout.activity_updateprofile);
         Anhxa();
 
@@ -181,7 +184,11 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
         requestQueue.add(stringRequest);
     }
 
-
+    public  void theme(){
+        if (sharedPref.loadNightModeState() == true){
+            setTheme(R.style.darktheme);
+        }else setTheme(R.style.AppTheme);
+    }
     private void Anhxa() {
         edtid = findViewById(R.id.edtid);
         edtNameUser = findViewById(R.id.edtNameUser);

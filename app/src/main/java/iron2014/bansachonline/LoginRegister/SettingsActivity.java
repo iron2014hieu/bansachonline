@@ -97,7 +97,7 @@ public class SettingsActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void showChangeLanguageDialog(View view) {
-        final String[] lisItems={"Vietnamese","English","中国"};
+        final String[] lisItems={"Vietnamese","English"};
         AlertDialog.Builder mbuilder=new AlertDialog.Builder(SettingsActivity.this);
         mbuilder.setTitle(R.string.app_name);
         mbuilder.setSingleChoiceItems(lisItems, -1, new DialogInterface.OnClickListener() {

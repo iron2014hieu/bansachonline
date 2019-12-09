@@ -179,7 +179,6 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
                         String mota = getString(R.string.dh)+" "+mahd +" "+getString(R.string.moinhanhang);
                         InsertNotif(mota, mahd);
 
-                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
                     }
                 },
                 new Response.ErrorListener() {

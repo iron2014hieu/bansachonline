@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
@@ -43,7 +44,8 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
     SessionManager sessionManager;
     String email;
     Button btnDangnhap,btnDangky;
-    TextView txtXemdanhgia,chk_icon_canhan;
+    TextView txtXemdanhgia,counter_canhan;
+    ImageView chk_icon_canhan;
     LinearLayout linner_trendonhang,linnear_donhang;
     TextView txtLichsumuahang;
 
@@ -95,6 +97,17 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
 
         fetchSoluong(user.get(sessionManager.ID));
         chk_icon_canhan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(email!=null) {
+                    Intent intent = new Intent(getContext(), CartListActivity.class);
+                    startActivity(intent);
+                }else {
+                    startActivity(new Intent(getContext(), LoginActivity.class));
+                }
+            }
+        });
+        counter_canhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(email!=null) {
@@ -160,7 +173,7 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
                     total+= soluong;
 
                 }
-                chk_icon_canhan.setText(String.valueOf(total));
+                counter_canhan.setText(String.valueOf(total));
             }
 
             @Override
@@ -198,8 +211,8 @@ public class CanhanFragment extends Fragment implements View.OnClickListener {
         btnDangky= v.findViewById(R.id.btnDangky);
         txtFav = v.findViewById(R.id.txtFav);
         txtXemdanhgia = v.findViewById(R.id.txtXemdanhgia);
-        chk_icon_canhan=v.findViewById(R.id.counttxt_canhan);
-
+        counter_canhan=v.findViewById(R.id.counttxt_canhan);
+        chk_icon_canhan =v.findViewById(R.id.chk_icon_canhan);
         linnear_donhang=v.findViewById(R.id.linnear_donhang);
         linner_trendonhang=v.findViewById(R.id.linner_trendonhang);
 

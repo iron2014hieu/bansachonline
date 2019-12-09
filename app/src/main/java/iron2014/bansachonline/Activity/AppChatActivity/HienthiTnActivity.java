@@ -27,6 +27,7 @@ import java.util.List;
 
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
+import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 
 public class HienthiTnActivity extends AppCompatActivity {
            RecyclerView recyclerView;
@@ -36,10 +37,12 @@ public class HienthiTnActivity extends AppCompatActivity {
     DatabaseReference mData;
     EditText editsendmesss;
     SessionManager sessionManager;
-
+    SharedPref sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPref = new SharedPref(this);
+        theme();
         setContentView(R.layout.activity_hienthi_tn);
         recyclerView = findViewById(R.id.recyclerview_tn);
         btnsendmess = findViewById(R.id.btnSendMsg);
@@ -118,5 +121,10 @@ public class HienthiTnActivity extends AppCompatActivity {
             }
         });
 
+    }
+    public  void theme(){
+        if (sharedPref.loadNightModeState() == true){
+            setTheme(R.style.darktheme);
+        }else setTheme(R.style.AppTheme);
     }
 }

@@ -62,9 +62,10 @@ public class SearchBooksActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_books);
         sharedPref = new SharedPref(this);
         theme();
+        setContentView(R.layout.activity_search_books);
+
         addControl();
         addArray();
 //        checkPermission();

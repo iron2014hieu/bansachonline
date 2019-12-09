@@ -70,12 +70,13 @@ public class Adaptertinnhan extends RecyclerView.Adapter<Adaptertinnhan.viewHold
 
     }
 
-//    @Override
-//    public int getItemViewType(int position) {
+    @Override
+    public int getItemViewType(int position) {
 //        if (modeltinnhanList.get(position).getSender().equals(email)){
 //            return phai;
 //        }else {
 //            return trai;
 //        }
-//    }
+        return  1;
+    }
 }

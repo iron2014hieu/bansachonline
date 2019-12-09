@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="?attr/backgroundcolor"
     tools:context=".LoginRegister.DoiMatkhauActivity">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -40,6 +41,7 @@
                 android:id="@+id/edtPasswordRE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/textcolor"
                 android:inputType="textPassword"
                 android:background="@drawable/rounded_edittext"
                 android:hint="@string/nhappasss" />

@@ -196,7 +196,7 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         String mota = getString(R.string.tatcassach) +" "+mahd+" "+ getString(R.string.giaodenban) +" "+now+".";
                         InsertNotif(mota,mahd);
-                        Toast.makeText(ChitietGiaoHangActivity.this, response, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(ChitietGiaoHangActivity.this, response, Toast.LENGTH_LONG).show();
                     }
                 },
                 new Response.ErrorListener() {

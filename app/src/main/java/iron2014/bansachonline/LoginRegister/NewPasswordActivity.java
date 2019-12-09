@@ -29,10 +29,12 @@ import java.util.regex.Pattern;
 
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.URL.UrlSql;
+import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 
 public class NewPasswordActivity extends AppCompatActivity {
     String id;
     Button buttonRepass;
+    SharedPref sharedPref;
     TextInputEditText enterNewPass,enterReNewPass;
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
@@ -44,6 +46,8 @@ public class NewPasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPref = new SharedPref(this);
+        theme();
         setContentView(R.layout.activity_new_password);
 
         enterReNewPass= findViewById(R.id.enterReNewPass);
@@ -110,5 +114,10 @@ public class NewPasswordActivity extends AppCompatActivity {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+    public  void theme(){
+        if (sharedPref.loadNightModeState() == true){
+            setTheme(R.style.darktheme);
+        }else setTheme(R.style.AppTheme);
     }
 }
