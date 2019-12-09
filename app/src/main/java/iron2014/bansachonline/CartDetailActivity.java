@@ -57,14 +57,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -77,13 +74,8 @@ import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceDatmua;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
 import iron2014.bansachonline.LoginRegister.CountryData;
-import iron2014.bansachonline.LoginRegister.ProfileActivity;
-import iron2014.bansachonline.LoginRegister.RegisterActivity;
-import iron2014.bansachonline.LoginRegister.UpdateProfileActivity;
 import iron2014.bansachonline.Session.SessionManager;
-import iron2014.bansachonline.URL.EndPoints;
 import iron2014.bansachonline.URL.UrlSql;
-import iron2014.bansachonline.adapter.KhuyenMai.KhuyenMaiAdapter;
 import iron2014.bansachonline.adapter.ListSPAdapter;
 import iron2014.bansachonline.model.DatMua;
 import iron2014.bansachonline.model.KhuyenMai;
@@ -235,7 +227,7 @@ public class CartDetailActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View view) {
                 startActivity(new Intent(getApplicationContext(), ChonMaKhuyenmaiActivity.class));
-                Toast.makeText(CartDetailActivity.this, getString(R.string.haychonmacan), Toast.LENGTH_SHORT).show();
+                CustomToast.makeText(getApplicationContext(),getString(R.string.haychonmacan), (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
                 return false;
             }
 
@@ -255,8 +247,7 @@ public class CartDetailActivity extends AppCompatActivity {
             public void onResponse(Call<List<KhuyenMai>> call, retrofit2.Response<List<KhuyenMai>> response) {
                 listKhuyenMai = response.body();
                 if (listKhuyenMai.size() == 0) {
-                    Toast.makeText(CartDetailActivity.this, getString(R.string.khongcokm), Toast.LENGTH_SHORT).show();
-                } else {
+                    CustomToast.makeText(getApplicationContext(),getString(R.string.khongcokm), (int) CustomToast.SHORT,CustomToast.CONFUSING,true).show(); } else {
                     btnCheckMGG.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -266,7 +257,7 @@ public class CartDetailActivity extends AppCompatActivity {
                                 String s = edtMaGiamGia.getText().toString();
                                 if (!s.equals("")) {
                                     if (makm.equals(s)) {
-                                        Toast.makeText(CartDetailActivity.this, getString(R.string.hople) +" "+ makm, Toast.LENGTH_SHORT).show();
+                                        CustomToast.makeText(getApplicationContext(),getString(R.string.hople), (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();
 
                                         trukhuyenmai = (tongtien*phantram) - tongtien;
                                         tienthanhtoan = tongtien+trukhuyenmai+tienvanchuyen;
@@ -284,8 +275,7 @@ public class CartDetailActivity extends AppCompatActivity {
 
                                 }
                                 else {
-                                    Toast.makeText(CartDetailActivity.this, getString(R.string.banchunhapma), Toast.LENGTH_SHORT).show();
-                                    break;
+                                    CustomToast.makeText(getApplicationContext(),getString(R.string.banchunhapma), (int) CustomToast.SHORT,CustomToast.CONFUSING,true).show();break;
                                 }
                             }
 
@@ -303,12 +293,11 @@ public class CartDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (edtTenkh.getText().toString().isEmpty()){
-                    Toast.makeText(CartDetailActivity.this, R.string.nhaptenkh, Toast.LENGTH_SHORT).show();
+                    CustomToast.makeText(getApplicationContext(),getString(R.string.nhaptenkh), (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
                 }else if (edtDiachi.getText().toString().isEmpty()){
-                    Toast.makeText(CartDetailActivity.this, getString(R.string.nhapdc), Toast.LENGTH_SHORT).show();
+                    CustomToast.makeText(getApplicationContext(),getString(R.string.nhapdc), (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
                 }else if (edtSdt.getText().toString().isEmpty()){
-                    Toast.makeText(CartDetailActivity.this, getString(R.string.nhapsodient), Toast.LENGTH_SHORT).show();
-                }else {
+                    CustomToast.makeText(getApplicationContext(),getString(R.string.nhapsodient), (int) CustomToast.SHORT,CustomToast.WARNING,true).show(); }else {
                     AlertDialog.Builder alertDialog = new  AlertDialog.Builder(CartDetailActivity.this);
                     alertDialog.setMessage(getString(R.string.bancomuontt));
                     alertDialog.setIcon(R.drawable.ic_check_black_24dp);
@@ -556,7 +545,6 @@ public class CartDetailActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(CartDetailActivity.this, ""+error, Toast.LENGTH_SHORT).show();
                 Log.d("MYSQL", "Lỗi!" +error.toString());
             }
         }
@@ -716,10 +704,9 @@ public class CartDetailActivity extends AppCompatActivity {
 
                             ThemHoadon(mauser_session, String.valueOf(tienthanhtoan), edtSdt.getText().toString(), UrlSql.url_insert_hoadon);
                         }else {
-                            Toast.makeText(CartDetailActivity.this, getString(R.string.nhapdaydutt), Toast.LENGTH_SHORT).show();
+                            CustomToast.makeText(getApplicationContext(),getString(R.string.nhapdaydutt), (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
                         }
                         } else {
-//                            Toast.makeText(CartDetailActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -753,7 +740,6 @@ public class CartDetailActivity extends AppCompatActivity {
         }
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            Toast.makeText(CartDetailActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     };
     private void InsertNotif (final String mota, final String mahoadon){

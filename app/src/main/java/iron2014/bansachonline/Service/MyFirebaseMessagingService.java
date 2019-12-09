@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
@@ -103,7 +104,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 + getApplicationContext().getPackageName() + "/" + R.raw.drum);
         notification = mBuilder.setSmallIcon(R.mipmap.ic_launcher).setTicker(title).setWhen(0)
                 .setAutoCancel(true)
-                .setSound(sound)
+                .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                 .setContentIntent(pendingIntent)
                 .setContentTitle(title)
                 .setStyle(bigPictureStyle)

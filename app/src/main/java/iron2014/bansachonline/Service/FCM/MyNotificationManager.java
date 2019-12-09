@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.provider.Settings;
 import android.text.Html;
 
 import androidx.core.app.NotificationCompat;
@@ -50,7 +51,7 @@ public class MyNotificationManager {
                 + mCtx.getPackageName() + "/" + R.raw.drum);
         notification = mBuilder.setSmallIcon(R.drawable.book).setTicker(title).setWhen(0)
                 .setAutoCancel(true)
-                .setSound(sound)
+                .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                 .setContentIntent(resultPendingIntent)
                 .setContentTitle(title)
                 .setStyle(bigPictureStyle)
@@ -84,7 +85,7 @@ public class MyNotificationManager {
                 + mCtx.getPackageName() + "/" + R.raw.drum);
         notification = mBuilder.setSmallIcon(R.drawable.book).setTicker(title).setWhen(0)
                 .setAutoCancel(true)
-                .setSound(sound)
+                .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                 .setContentIntent(resultPendingIntent)
                 .setContentTitle(title)
                 .setSmallIcon(R.drawable.book)

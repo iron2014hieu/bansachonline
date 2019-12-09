@@ -25,6 +25,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import iron2014.bansachonline.CustomToast;
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.R;
 
@@ -77,22 +78,18 @@ public class TheloaiChitietActivity extends AppCompatActivity {
 
                             if (success.equals("1")){
                                 progressDialog.dismiss();
-                                Toast.makeText(TheloaiChitietActivity.this,getString(R.string.capnhatthanhcong), Toast.LENGTH_SHORT).show();
+                                CustomToast.makeText(getApplicationContext(),getString(R.string.capnhatthanhcong), (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
                                 startActivity(new Intent(getBaseContext(), MainActivity.class));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            progressDialog.dismiss();
-                            Toast.makeText(TheloaiChitietActivity.this, "Loi e! "+e.toString(), Toast.LENGTH_SHORT).show();
-                        }
+                            progressDialog.dismiss(); }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        progressDialog.dismiss();
-                        Toast.makeText(TheloaiChitietActivity.this, "Error ! "+error.toString(), Toast.LENGTH_SHORT).show();
-                    }
+                        progressDialog.dismiss(); }
                 })
         {
             @Override

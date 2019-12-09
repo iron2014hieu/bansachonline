@@ -112,9 +112,7 @@ public class GetBookByTheloaiActivity extends AppCompatActivity {
                 fetchBookbyNXB(manxb);
                 toolbar.setTitle(getString(R.string.nhaxxb)+" "+tennxb);
             }
-        }catch (Exception e){
-            Toast.makeText(this, ""+e.toString(), Toast.LENGTH_SHORT).show();
-        }
+        }catch (Exception e){ }
 
 
         recyclerview_book.addOnItemTouchListener(new RecyclerTouchListener(this,

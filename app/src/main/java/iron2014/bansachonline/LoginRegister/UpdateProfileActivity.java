@@ -85,14 +85,14 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
                 final String ngaysinh1 = edtNgaySinh.getText().toString();
                 final String phone1 = edtSdtUser.getText().toString();
                 if (name1.isEmpty() || address1.isEmpty() || sex1.isEmpty() || phone1.isEmpty()){
-                    Toast.makeText(UpdateProfileActivity.this, "Bạn còn bỏ sót thông tin kìa!", Toast.LENGTH_SHORT).show();
+                    CustomToast.makeText(getApplicationContext(),"Bạn còn bỏ sót thông tin kìa!", (int) CustomToast.SHORT,CustomToast.WARNING,true).show();finish();
                 }else {
                     if (phone1.length() != 10) {
                         edtSdtUser.setError("Số điện thoại phải có 10 số.");
                     } else if (name1.length() < 5) {
                         edtNameUser.setError("Tên phải có trên 5 ký tự");
                     } else
-                        saveDetail(id, name1, address1, sex1, ngaysinh1, phone1);
+                       saveDetail(id, name1, address1, sex1, ngaysinh1, phone1);
                 }
             }
         });

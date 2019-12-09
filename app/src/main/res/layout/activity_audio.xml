@@ -177,9 +177,10 @@
         <TextView
             android:id="@+id/txtTacgia"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="15dp"
             android:layout_marginTop="5dp"
             android:text="Tác giả: xxx"
+            android:visibility="gone"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             android:textColor="@color/colorYellow" />
 

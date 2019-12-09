@@ -229,7 +229,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
             @Override
             public void onClick(View view) {
                 if(soluong.equals("0")){
-                    Toast.makeText(BookDetailActivity.this, getString(R.string.sptamhet), Toast.LENGTH_SHORT).show();
+                    CustomToast.makeText(getApplicationContext(),getString(R.string.sptamhet), (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
                 }else {
                     if (idUser!=null) {
                         ExampleBottomSheetDialog bottomSheet = new ExampleBottomSheetDialog();
@@ -345,7 +345,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                             if(check.equals("chuatontai")){
 
                                 if (success.equals("1")){
-                                  Toast.makeText(BookDetailActivity.this, getString(R.string.dathemvaogh), Toast.LENGTH_SHORT).show();
+                                    CustomToast.makeText(getApplicationContext(),getString(R.string.dathemvaogh), (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
                                 }else {
 
                                 }

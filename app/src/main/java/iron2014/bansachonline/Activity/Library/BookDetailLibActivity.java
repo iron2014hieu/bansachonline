@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -46,6 +45,7 @@ import iron2014.bansachonline.Activity.BookDetailActivity;
 import iron2014.bansachonline.Activity.hoadon.RatingBookCommentActivity;
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFace;
+import iron2014.bansachonline.CustomToast;
 import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Service.App;
@@ -241,14 +241,13 @@ public class BookDetailLibActivity extends AppCompatActivity {
                             ratingbar_book_detail_lib.setRating(Float.valueOf(tongdiem)/Float.valueOf(landanhgia));
                         }catch (JSONException e){
                             e.printStackTrace();
-                            Toast.makeText(BookDetailLibActivity.this, ""+e.toString(), Toast.LENGTH_SHORT).show();
+
                         }
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(BookDetailLibActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
         requestQueue.add(jsonArrayRequest);
