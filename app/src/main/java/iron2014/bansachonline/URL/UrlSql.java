@@ -20,6 +20,7 @@ public class UrlSql {
 
     public  static String URL_UPDATE_SOLUONG_GH ="https://bansachonline.xyz/bansach/giohang/update_soluong.php";
 
+    public  static String URL_UPDATE_SOLUONG_GH_sll ="https://bansachonline.xyz/bansach/giohang/update_soluong_sll.php";
     public  static String URL_GET_SOLUONG_GH ="https://bansachonline.xyz/bansach/giohang/get_soluong.php";
 
     public static String URL_UPDATE_CARTS =baseURL+"bansach/giohang/update_carts.php";

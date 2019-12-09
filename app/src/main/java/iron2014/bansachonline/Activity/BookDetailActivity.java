@@ -348,13 +348,13 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                             if(check.equals("chuatontai")){
 
                                 if (success.equals("1")){
-                                    CustomToast.makeText(getApplicationContext(),getString(R.string.dathemvaogh), (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
+                                    CustomToast.makeText(getApplicationContext(),getString(R.string.dathemvaogh), (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();
                                 }else {
 
                                 }
                             }else {
                                 // đã có trong  giỏ hàng
-                                Get_soluongDatmua(masach,Integer.valueOf(soluong));
+                                Get_soluongDatmua(masach,Integer.valueOf(soluong), soluongdat);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -382,7 +382,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
         };
         requestQueue.add(stringRequest);
     }
-    private void Get_soluongDatmua(final String masach,final int sl_sach) {
+    private void Get_soluongDatmua(final String masach,final int sl_sach, final String soluongDat) {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_GET_SOLUONG_GH,
                 new Response.Listener<String>() {
@@ -390,7 +390,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                     public void onResponse(String response) {
                         int sl_datmua = Integer.valueOf(response);
                         if (sl_datmua<sl_sach){
-                            UpdateSoluongDatmua(masach);
+                            UpdateSoluongDatmua(masach, soluongDat);
                         }else {
                             CustomToast.makeText(getApplicationContext(),"Sách không đủ số lượng", (int) CustomToast.SHORT,CustomToast.CONFUSING,true).show();
                         }
@@ -412,9 +412,9 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
         };
         requestQueue.add(stringRequest);
     }
-    private void UpdateSoluongDatmua(final String masach){
+    private void UpdateSoluongDatmua(final String masach, final String soluongdat){
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_UPDATE_SOLUONG_GH,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_UPDATE_SOLUONG_GH_sll,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -435,6 +435,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                 Map<String, String > params = new HashMap<>();
                 params.put("masach", masach);
                 params.put("mauser", idUser);
+                params.put("soluong", soluongdat);
                 return params;
             }
         };
@@ -613,13 +614,45 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
     }
 
 
+    public void fetchBookDetails(String masach, final String text){
+        apiInTerFace = ApiClient.getApiClient().create(ApiInTerFace.class);
+        Call<List<Books>> call = apiInTerFace.getBookDetail(masach);
 
+        call.enqueue(new Callback<List<Books>>() {
+            @Override
+            public void onResponse(Call<List<Books>> call, retrofit2.Response<List<Books>> response) {
+                for (int m =0; m<response.body().size();m++){
+                    Books books =response.body().get(m);
+                    final int soluong = (books.getSoluong());
+                    final String tensach = books.getTensach();
+                    final String anhbia = books.getAnhbia();
+                    final String masach =String.valueOf(books.getMasach());
+                    final String gia = String.valueOf(books.getGia());
+                    if (soluong>0){
+                        //ThemDatmua(masach, tensach, anhbia,iduser, gia,soluong);
+                        ThemDatmua(masach, tensach, linkImage, text, idUser);
+                    }else {
+                        Toast.makeText(getApplicationContext(), "Sách "+tensach+" đã hết!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+
+
+
+            @Override
+            public void onFailure(Call<List<Books>> call, Throwable t) {
+                Log.e("Error Search:","Error on: "+t.toString());
+            }
+        });
+    }
     @Override
     public void onButtonClicked(String text) {
         if (Integer.valueOf(text) > Integer.valueOf(soluong)){
             Toast.makeText(this,getString(R.string.sachkdsl), Toast.LENGTH_SHORT).show();
         }else {
-            ThemDatmua(masach, tensach, linkImage, text, idUser);
+            //ThemDatmua(masach, tensach, linkImage, text, idUser);
+            fetchBookDetails(masach, text);
             startActivity(new Intent(getApplicationContext(), CartListActivity.class));
         }
     }

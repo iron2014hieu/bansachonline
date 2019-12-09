@@ -18,6 +18,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
+import iron2014.bansachonline.CustomToast;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 
@@ -68,8 +69,7 @@ public class ExampleBottomSheetDialog extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 if (soluong > Integer.valueOf(kho)){
-                    Toast.makeText(getContext(), getString(R.string.sachs) +" "+tensach+" "+getString(R.string.chicon) +" "+kho+" "+getString(R.string.cuon) , Toast.LENGTH_SHORT).show();
-
+                    CustomToast.makeText(getContext(),getString(R.string.sachs) +" "+tensach+" "+getString(R.string.chicon) +" "+kho+" "+getString(R.string.cuon), (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
                 }else {
                     mListener.onButtonClicked(String.valueOf(soluong));
                     dismiss();
