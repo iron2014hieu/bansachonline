@@ -5,9 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="?attr/buttoncolor"
+    android:background="@drawable/bacground1212"
     tools:context=".LoginRegister.RegisterActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <androidx.appcompat.widget.Toolbar
+        android:visibility="gone"
         android:id="@+id/toolbarDangky"
         app:navigationIcon="@drawable/ic_close"
         app:title="@string/dangky"
@@ -19,93 +24,144 @@
 
 
     <LinearLayout
-        android:padding="30dp"
+        android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
-            android:textColor="#3F51B5"
+            android:layout_marginTop="10dp"
+            android:textColor="#E91E63"
+            android:textStyle="normal"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:text="Wellcome to Book Store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="#2196F3"
             android:textStyle="bold"
-            android:layout_marginTop="30dp"
             android:gravity="center"
             android:textSize="30dp"
-            android:text="@string/dangkytaikhaon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginTop="30dp"
+            android:text="ĐĂNG KÍ"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true">
-            <EditText
-                android:id="@+id/edtName"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="@string/ten"
-                android:textColor="?attr/textcolor"
-                android:textColorHint="?attr/textcolor"
-                android:background="@drawable/rounded_edittext"
-                android:padding="5dp"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
             android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true">
-            <EditText
-                android:id="@+id/edtEmail"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="@string/email"
-                android:textColor="?attr/textcolor"
-                android:textColorHint="?attr/textcolor"
-                android:background="@drawable/rounded_edittext"
-                android:padding="5dp"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginBottom="30dp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginTop="10dp"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true">
-            <EditText
-                android:id="@+id/edtPassword"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:inputType="textPassword"
-                android:hint="@string/nhap_mk"
-                android:textColor="?attr/textcolor"
-                android:textColorHint="?attr/textcolor"
-                android:background="@drawable/rounded_edittext"
-                android:padding="5dp"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true">
-        <EditText
-            android:id="@+id/edtC_Password"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:inputType="textPassword"
-            android:hint="@string/nhaplaimk"
-            android:background="@drawable/rounded_edittext"
-            android:padding="5dp"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_margin="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="4dp">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp">
+                <TextView
+                    android:textColor="#E91E63"
+                    android:id="@+id/tvUsername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Tên khách hàng"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+                <EditText
+                    android:drawableRight="@drawable/ic_person_black_24dp"
+                    android:layout_below="@+id/tvUsername"
+                    android:id="@+id/edtName"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textColorHint="?attr/textcolor"
+                    android:textColor="?attr/textcolor"
+                    android:background="@drawable/rounded_edittext"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:inputType="text"
+                    />
+                <TextView
+                    android:textColor="#E91E63"
+                    android:id="@+id/tvEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edtName"
+                    android:layout_margin="10dp"
+                    android:text="Email"
+                    android:textSize="16sp"
+                    android:textStyle="normal"/>
+
+                <EditText
+                    android:id="@+id/edtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/tvEmail"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:drawableRight="@drawable/ic_email_black_24dp"
+                    android:drawablePadding="30dp"
+                    android:inputType="text"
+                    android:textColor="?attr/textcolor"
+                    android:textColorHint="?attr/textcolor" />
+
+                <TextView
+                    android:textColor="#E91E63"
+                    android:id="@+id/tvPass1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edtEmail"
+                    android:layout_margin="10dp"
+                    android:text="Mật khẩu"
+                    android:textSize="16sp"
+                    android:textStyle="normal"/>
+                <EditText
+                    android:drawableRight="@drawable/ic_vpn_key_black_24dp"
+                    android:layout_below="@+id/tvPass1"
+                    android:id="@+id/edtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textColorHint="?attr/textcolor"
+                    android:textColor="?attr/textcolor"
+                    android:inputType="textPassword"
+                    android:background="@drawable/rounded_edittext"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    />
+                <TextView
+                    android:textColor="#E91E63"
+                    android:id="@+id/edtPassword2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edtPassword"
+                    android:layout_margin="10dp"
+                    android:text="Mật khẩu"
+                    android:textSize="16sp"
+                    android:textStyle="normal"/>
+                <EditText
+                    android:drawableRight="@drawable/ic_vpn_key_black_24dp"
+                    android:layout_below="@+id/edtPassword2"
+                    android:id="@+id/edtC_Password"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textColorHint="?attr/textcolor"
+                    android:textColor="?attr/textcolor"
+                    android:inputType="textPassword"
+                    android:background="@drawable/rounded_edittext"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
         <Button
+            android:textColor="#2196F3"
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="?attr/textcolor"
             android:textColorHint="?attr/textcolor"
-            android:background="@drawable/cutomsbtn"
-            android:layout_marginTop="20dp"
+            android:background="@drawable/button_login"
             android:text="@string/dangky"/>
     <ProgressBar
         android:id="@+id/loading"
@@ -117,5 +173,6 @@
         android:visibility="gone"
         />
 
+    </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:padding="10dp"
+    android:background="?attr/cardbackground"
     tools:context=".LoginRegister.UpdateProfileActivity">
     <TextView
         android:layout_width="match_parent"
@@ -47,15 +48,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             app:passwordToggleEnabled="true">
+
             <EditText
-                android:background="@drawable/rounded_edittext"
                 android:id="@+id/edtEmailUser"
-                android:enabled="false"
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
                 android:layout_height="50dp"
-                android:hint="@string/email"
-                />
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_edittext"
+                android:enabled="false"
+                android:text="@string/email" />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -103,10 +104,10 @@
                     android:id="@+id/edtNgaySinh"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="@string/ngaysinh" />
+                    android:text="@string/ngaysinh" />
             </com.google.android.material.textfield.TextInputLayout>
             <ImageButton
-                android:background="@drawable/cutomsimage"
+                android:background="?attr/cardbackground"
                 android:layout_marginTop="20dp"
                 android:layout_weight="1"
                 android:layout_width="100dp"
@@ -124,6 +125,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_weight="1"
                 android:layout_width="250dp"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:passwordToggleEnabled="true">
@@ -133,18 +135,17 @@
                     android:layout_width="match_parent"
                     android:layout_marginTop="10dp"
                     android:layout_height="50dp"
-                    android:hint="@string/gioitinh"
+                    android:text="@string/gioitinh"
                     android:enabled="false"
                     />
             </com.google.android.material.textfield.TextInputLayout>
             <RadioGroup
                 android:gravity="right"
-                android:layout_weight="1"
                 android:layout_marginTop="10dp"
                 android:id="@+id/rg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal">
                 <RadioButton
                     android:id="@+id/rb_nam"
                     android:layout_width="match_parent"
@@ -155,7 +156,7 @@
                     android:id="@+id/rb_nu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="nu"
+                    android:text="Nữ"
                     />
             </RadioGroup>
         </LinearLayout>
