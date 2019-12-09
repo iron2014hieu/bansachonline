@@ -41,6 +41,7 @@
         app:tabGravity="fill"
         app:tabBackground="?attr/backgroundcolor"
         app:tabSelectedTextColor="#FF0000"
+        app:tabTextColor="?attr/textcolor"
         android:id="@+id/tablayout_id"/>
 
         <androidx.viewpager.widget.ViewPager

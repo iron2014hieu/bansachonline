@@ -23,6 +23,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="103dp"
         android:drawableTop="@drawable/box_64db"
+        android:textColor="?attr/textcolor"
         android:gravity="center"
         android:text="@string/chuaco_donhang"
         android:textStyle="bold"

@@ -99,6 +99,7 @@
         android:layout_marginTop="345dp"
         android:drawableTop="@drawable/box_64db"
         android:gravity="center"
+        android:textColor="?attr/textcolor"
         android:text="@string/chuaco_sachthuvien"
         android:textStyle="bold"
         android:visibility="gone" />

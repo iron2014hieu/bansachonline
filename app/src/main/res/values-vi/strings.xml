@@ -286,4 +286,6 @@
 
     <string name="moinhanhang">Vừa được chuyển đi</string>
     <string name="donhangvuadcchuyendi">Đơn hàng của bạn vừa mới được chuyển đi.</string>
+
+    <string name="nhapten">Nhập tên</string>
 </resources>

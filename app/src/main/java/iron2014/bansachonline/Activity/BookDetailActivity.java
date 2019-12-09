@@ -185,7 +185,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
 
 
             txt_numrating_book_detail.setText(""+Math.round(diemdanhgia));
-            txt_numrating_below_deatil.setText(diemdanhgia+" ("+landanhgia+getString(R.string.danhgia));
+            txt_numrating_below_deatil.setText(diemdanhgia+" ("+landanhgia+" "+getString(R.string.danhgia));
         }
 
 
@@ -213,10 +213,13 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
         btn_themvaogio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(soluong.equals("0")){
-                    CustomToast.makeText(getApplicationContext(),getString(R.string.sptamhet), (int) CustomToast.SHORT,CustomToast.CONFUSING,true).show();
+                if (idUser!=null) {
+                    if (soluong.equals("0")) {
+                        CustomToast.makeText(getApplicationContext(), getString(R.string.sptamhet), (int) CustomToast.SHORT, CustomToast.CONFUSING, true).show();
+                    } else
+                        ThemDatmua(masach, tensach, linkImage, "1", idUser);
                 }else
-                ThemDatmua(masach, tensach, linkImage,"1",idUser);
+                    startActivity(new Intent(BookDetailActivity.this, LoginActivity.class));
             }
         });
         fetchBookRandom();

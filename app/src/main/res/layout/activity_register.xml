@@ -31,6 +31,7 @@
         <TextView
             android:layout_marginTop="10dp"
             android:textColor="#E91E63"
+            android:visibility="gone"
             android:textStyle="normal"
             android:gravity="center"
             android:textSize="20dp"
@@ -42,7 +43,7 @@
             android:textStyle="bold"
             android:gravity="center"
             android:textSize="30dp"
-            android:text="ĐĂNG KÍ"
+            android:text="@string/dangky"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -65,7 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Tên khách hàng"
+                    android:text="@string/nhapten"
                     android:textSize="16sp"
                     android:textStyle="normal" />
                 <EditText
@@ -75,8 +76,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:textColorHint="?attr/textcolor"
-                    android:textColor="?attr/textcolor"
-                    android:background="@drawable/rounded_edittext"
+                    android:textColor="#000"
+                    android:background="@drawable/rounded_edittext_lore"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:inputType="text"
@@ -99,11 +100,11 @@
                     android:layout_below="@+id/tvEmail"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:background="@drawable/rounded_edittext"
+                    android:background="@drawable/rounded_edittext_lore"
                     android:drawableRight="@drawable/ic_email_black_24dp"
                     android:drawablePadding="30dp"
                     android:inputType="text"
-                    android:textColor="?attr/textcolor"
+                    android:textColor="#000"
                     android:textColorHint="?attr/textcolor" />
 
                 <TextView
@@ -113,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/edtEmail"
                     android:layout_margin="10dp"
-                    android:text="Mật khẩu"
+                    android:text="@string/nhap_mk"
                     android:textSize="16sp"
                     android:textStyle="normal"/>
                 <EditText
@@ -123,9 +124,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:textColorHint="?attr/textcolor"
-                    android:textColor="?attr/textcolor"
+                    android:textColor="#000"
                     android:inputType="textPassword"
-                    android:background="@drawable/rounded_edittext"
+                    android:background="@drawable/rounded_edittext_lore"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     />
@@ -136,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/edtPassword"
                     android:layout_margin="10dp"
-                    android:text="Mật khẩu"
+                    android:text="@string/nhaplaimk"
                     android:textSize="16sp"
                     android:textStyle="normal"/>
                 <EditText
@@ -146,9 +147,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:textColorHint="?attr/textcolor"
-                    android:textColor="?attr/textcolor"
+                    android:textColor="#000"
                     android:inputType="textPassword"
-                    android:background="@drawable/rounded_edittext"
+                    android:background="@drawable/rounded_edittext_lore"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     />
@@ -161,7 +162,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColorHint="?attr/textcolor"
-            android:background="@drawable/button_login"
+            android:background="@drawable/button_login_fff"
             android:text="@string/dangky"/>
     <ProgressBar
         android:id="@+id/loading"

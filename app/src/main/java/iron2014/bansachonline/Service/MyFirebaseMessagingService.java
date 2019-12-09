@@ -104,7 +104,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 + getApplicationContext().getPackageName() + "/" + R.raw.drum);
         notification = mBuilder.setSmallIcon(R.mipmap.ic_launcher).setTicker(title).setWhen(0)
                 .setAutoCancel(true)
-                .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+                .setSound(sound)
+//                .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                 .setContentIntent(pendingIntent)
                 .setContentTitle(title)
                 .setStyle(bigPictureStyle)

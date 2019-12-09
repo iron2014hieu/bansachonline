@@ -317,7 +317,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, getString(R.string.nhanthemdethoat), Toast.LENGTH_SHORT).show();
+        CustomToast.makeText(getApplicationContext(),getString(R.string.nhanthemdethoat), (int) CustomToast.LONG,CustomToast.WARNING,true).show();
 
         new Handler().postDelayed(new Runnable() {
 

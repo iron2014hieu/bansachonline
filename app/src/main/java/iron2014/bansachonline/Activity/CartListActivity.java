@@ -29,6 +29,7 @@ import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.adapter.CartAdapter;
 import iron2014.bansachonline.model.DatMua;
+import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -45,9 +46,13 @@ public class CartListActivity extends AppCompatActivity {
     String quyen, name, idUser;
     SessionManager sessionManager;
     public static int total=0;
+
+    SharedPref sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPref = new SharedPref(this);
+        theme();
         setContentView(R.layout.activity_cart_list);
         tv_tongthanhtoan = findViewById(R.id.tv_tongthanhtoan);
         txtDonvi = findViewById(R.id.txtDonvi);
@@ -165,5 +170,10 @@ public class CartListActivity extends AppCompatActivity {
     public void onBackPressed() {
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
         finish();
+    }
+    public  void theme(){
+        if (sharedPref.loadNightModeState() == true){
+            setTheme(R.style.darktheme);
+        }else setTheme(R.style.AppTheme);
     }
 }

@@ -37,7 +37,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+
                     android:background="?attr/cardbackground"
                     android:orientation="vertical">
                     <ImageView
@@ -132,7 +132,7 @@
                         android:id="@+id/edtMotaChitiet"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:layout_margin="5dp"
                         android:layout_marginTop="15dp"
                         android:background="@android:color/transparent"
                         android:enabled="false"
@@ -148,6 +148,8 @@
                         android:layout_marginTop="5dp"
                         android:textSize="18dp"
                         android:textStyle="normal"
+                        android:layout_margin="5dp"
+                        android:textColor="?attr/textcolor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/cungtacgia_ban" />
@@ -165,6 +167,7 @@
                         android:textStyle="normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="?attr/textcolor"
                         android:text="@string/sach_tacgiakhac" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -237,6 +240,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="10dp"
+                            android:textColor="?attr/textcolor"
                             android:text="4.7(2 đánh giá)"/>
 
                         <TextView

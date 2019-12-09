@@ -51,7 +51,8 @@ public class MyNotificationManager {
                 + mCtx.getPackageName() + "/" + R.raw.drum);
         notification = mBuilder.setSmallIcon(R.drawable.book).setTicker(title).setWhen(0)
                 .setAutoCancel(true)
-                .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+//                .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+                .setSound(sound)
                 .setContentIntent(resultPendingIntent)
                 .setContentTitle(title)
                 .setStyle(bigPictureStyle)
@@ -85,7 +86,8 @@ public class MyNotificationManager {
                 + mCtx.getPackageName() + "/" + R.raw.drum);
         notification = mBuilder.setSmallIcon(R.drawable.book).setTicker(title).setWhen(0)
                 .setAutoCancel(true)
-                .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+//                .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+                .setSound(sound)
                 .setContentIntent(resultPendingIntent)
                 .setContentTitle(title)
                 .setSmallIcon(R.drawable.book)
