@@ -49,7 +49,7 @@ public class CTHD_RatingAdapter extends RecyclerView.Adapter<CTHD_RatingAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int i) {
-        holder.txt_books_name_cthd.setText("Sách "+mData.get(i).getTensach());
+        holder.txt_books_name_cthd.setText(context.getString(R.string.sach)+" "+mData.get(i).getTensach());
         holder.txt_giaban_cthd.setText(mData.get(i).getGiaban()+"₫");
         holder.txt_soluong_cthd.setText("x"+mData.get(i).getSoluong());
         try {

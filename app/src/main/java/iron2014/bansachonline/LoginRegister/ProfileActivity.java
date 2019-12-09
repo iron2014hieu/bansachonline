@@ -1,8 +1,11 @@
 package iron2014.bansachonline.LoginRegister;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -12,7 +15,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +57,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import iron2014.bansachonline.CustomToast;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.Session.SessionManager;
 import iron2014.bansachonline.URL.EndPoints;
@@ -54,6 +65,7 @@ import iron2014.bansachonline.URL.UrlSql;
 import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 
 public class ProfileActivity extends AppCompatActivity {
+    Dialog dialog;
     SharedPref sharedPref;
     TextView txtEmail, txtName, txtPhone, txtNgaySinh, txtSex, txtAddress;
     Button btnLogout, btnUpdateThongTin;
@@ -69,6 +81,10 @@ public class ProfileActivity extends AppCompatActivity {
     CircleImageView profile_image;
     Boolean replayedt = false;
     Toolbar toolbar1;
+
+    EditText edtPhone;
+    Button btnUpdate;
+    ProgressBar progress_bar_changephone_dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = new SharedPref(this);
@@ -129,8 +145,106 @@ public class ProfileActivity extends AppCompatActivity {
                 updateDevicesToken("0", id);
             }
         });
+
+    }
+public void doisdt(View view) {
+        displayAlertDialog();
+}
+    // sưa sdt
+        private void saveDetail(final String strid,  final String strphone) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlSql.URL_UDATE_PHONE ,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                            String check = jsonObject.getString("check");
+
+                            if (check.equals("chuatontai")) {
+                                if (success.equals("1")) {
+                                    CustomToast.makeText(getApplicationContext(), getString(R.string.suathanhcong), (int) CustomToast.SHORT, CustomToast.SUCCESS, true).show();
+                                    recreate();
+                                } else {
+                                   // CustomToast.makeText(getApplicationContext(), "Sửa thất bại", (int) CustomToast.SHORT, CustomToast.WARNING, true).show();
+
+                                }
+                            }else {
+                                CustomToast.makeText(getApplicationContext(), getString(R.string.sdtdatontai), (int) CustomToast.LONG, CustomToast.WARNING, true).show();
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.e("printStackTrace", e.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Error: err", error.toString());
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("phone", strphone);
+                params.put("id", strid);
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
+    // phần xác minh
+    public void displayAlertDialog() {
+        // custom dialog
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_chan_phone);
+//        dialog.setTitle();
+
+        // set the custom dialog components - text, image and button
+        edtPhone = (EditText) dialog.findViewById(R.id.edtPhone);
+        btnUpdate = (Button) dialog.findViewById(R.id.btnUpdate);
+
+        progress_bar_changephone_dialog = dialog.findViewById(R.id.progress_bar_changephone_dialog);
+
+        final LinearLayout linearLayout_nhap =(LinearLayout) dialog.findViewById(R.id.linearLayoutdialog_Nhap);
+        final RelativeLayout linearLayout_xacminh = dialog.findViewById(R.id.container_dialog);
+        final ImageView img_close_phone = dialog.findViewById(R.id.img_close_phone);
+
+        if (txtPhone.getText().toString()!=null){
+            edtPhone.setText(txtPhone.getText().toString().trim());
+        }
+        img_close_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        // if button is clicked, close the custom dialog
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String number =edtPhone.getText().toString().trim();
+
+                if (number.isEmpty() || number.length() < 10) {
+                    edtPhone.setError(getString(R.string.nhapsohl));
+                    edtPhone.requestFocus();
+                    return;
+                }else {
+                    saveDetail(id, number);
+                }
+
+
+            }
+        });
+
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+    }
     @Override
     protected void onResume() {
         super.onResume();

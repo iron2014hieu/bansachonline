@@ -111,7 +111,7 @@
                     android:textStyle="normal"
                     android:layout_weight="1"
                     android:background="?attr/cardbackground"
-                    android:textColor="?attr/textcolor"
+                    android:textColor="#3F51B5"
                     android:padding="15dip"
                     android:text="@string/tongtiens"/>
                 <TextView

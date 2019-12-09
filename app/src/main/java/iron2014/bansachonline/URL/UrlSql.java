@@ -41,4 +41,7 @@ public class UrlSql {
 
     // laays chi tiet sach
     public static String URL_GET_DETAIL_BOOK ="https://bansachonline.xyz/bansach/sach/getDetail.php/?masach=";
+
+    //profile
+    public  static String URL_UDATE_PHONE = "https://bansachonline.xyz/bansach/user/update_phone.php";
 }

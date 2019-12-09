@@ -42,6 +42,8 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
     Button btnUpdateUser;
     ImageButton btnDatePicker;
     String URL_UDATE = "https://bansachonline.xyz/bansach/user/update.php";
+
+
     String id;
     SharedPref sharedPref;
     RadioGroup radioGroup;
@@ -73,7 +75,7 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
         edtid.setText(id);
         edtNameUser.setText(name);
         edtEmailUser.setText(email);
-        edtSdtUser.setText(phone);
+//        edtSdtUser.setText(phone);
         edtNgaySinh.setText(ngaysinh);
         edtGioiTinh.setText(sex);
         edtAddress.setText(address);
@@ -86,16 +88,16 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
                 final String address1 = edtAddress.getText().toString();
                 final String sex1 = edtGioiTinh.getText().toString();
                 final String ngaysinh1 = edtNgaySinh.getText().toString();
-                final String phone1 = edtSdtUser.getText().toString();
-                if (name1.isEmpty() || address1.isEmpty() || sex1.isEmpty() || phone1.isEmpty()){
+//                final String phone1 = edtSdtUser.getText().toString();
+                if (name1.isEmpty() || address1.isEmpty() || sex1.isEmpty()){
                     CustomToast.makeText(getApplicationContext(),"Bạn còn bỏ sót thông tin kìa!", (int) CustomToast.SHORT,CustomToast.WARNING,true).show();finish();
                 }else {
-                    if (phone1.length() != 10) {
-                        edtSdtUser.setError("Số điện thoại phải có 10 số.");
-                    } else if (name1.length() < 5) {
-                        edtNameUser.setError("Tên phải có trên 5 ký tự");
-                    } else
-                       saveDetail(id, name1, address1, sex1, ngaysinh1, phone1);
+//                    if (phone1.length() != 10) {
+//                        edtSdtUser.setError("Số điện thoại phải có 10 số.");
+//                    } else if (name1.length() < 5) {
+//                        edtNameUser.setError("Tên phải có trên 5 ký tự");
+//                    } else
+                       saveDetail(id, name1, address1, sex1, ngaysinh1);
                 }
             }
         });
@@ -135,55 +137,42 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
             datePickerDialog.show();
         }
     }
-    private void saveDetail(final String strid, final String strname, final String strdiachi, final String strsex, final String strngaysinh, final String strphone) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_UDATE ,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            String success = jsonObject.getString("success");
-                            String check = jsonObject.getString("check");
 
-                            if(check.equals("chuatontai")){
+private void saveDetail(final String strid, final String strname, final String strdiachi, final String strsex, final String strngaysinh) {
+    StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_UDATE ,
+            new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    if (response.equals("1")){
+                        finish();
+                        CustomToast.makeText(getApplicationContext(),"Sửa thành công", (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();finish();
+                    }else {
+                        CustomToast.makeText(getApplicationContext(),"Sửa thất bại", (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
 
-                                if (success.equals("1")){
-                                    CustomToast.makeText(getApplicationContext(),"Sửa thành công", (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();finish();
-                                }else {
-                                    CustomToast.makeText(getApplicationContext(),"Sửa thất bại", (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
-
-                                }
-                            }else {
-                                CustomToast.makeText(getApplicationContext(),getString(R.string.so)+" "+strphone+" "+" đã có người đăng ký.", (int) CustomToast.LONG,CustomToast.CONFUSING,true).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Log.e("printStackTrace", e.toString());
-                        }
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("Error: err", error.toString());
-                    }
-                }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("name", strname);
-                params.put("address", strdiachi);
-                params.put("sex", strsex);
-                params.put("ngaysinh", strngaysinh);
-                params.put("phone", strphone);
-                params.put("id", strid);
-                return params;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
 
+                }
+            },
+            new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("Error: err", error.toString());
+                }
+            }){
+        @Override
+        protected Map<String, String> getParams() throws AuthFailureError {
+            Map<String, String> params = new HashMap<>();
+            params.put("name", strname);
+            params.put("address", strdiachi);
+            params.put("sex", strsex);
+            params.put("ngaysinh", strngaysinh);
+            params.put("id", strid);
+            return params;
+        }
+    };
+    RequestQueue requestQueue = Volley.newRequestQueue(this);
+    requestQueue.add(stringRequest);
+}
     public  void theme(){
         if (sharedPref.loadNightModeState() == true){
             setTheme(R.style.darktheme);

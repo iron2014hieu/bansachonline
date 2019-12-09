@@ -61,7 +61,7 @@ public class HoadonAdapter extends RecyclerView.Adapter<HoadonAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int i) {
-        holder.tv_hoadon_stt.setText("Hóa đơn "+mData.get(i).getMahoadon());
+        holder.tv_hoadon_stt.setText(context.getString(R.string.hoadonAdapter)+" "+mData.get(i).getMahoadon());
         holder.tv_tongtien.setText(mData.get(i).getTongtien()+"₫");
         if (quyen.equals("shipper")){
             holder.txtXemchitiet.setVisibility(View.GONE);

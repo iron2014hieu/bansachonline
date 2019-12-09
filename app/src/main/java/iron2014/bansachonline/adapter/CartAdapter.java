@@ -142,8 +142,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             public void onClick(View v) {
                 final String masach2 = String.valueOf(listGiohang.get(i).getMasach());
                 AlertDialog.Builder alertDialog = new  AlertDialog.Builder(context);
-                alertDialog.setMessage(context.getString(R.string.bancomuonxoa)+listGiohang.get(i).getSanpham()+context.getString(R.string.naykhong));
-                alertDialog.setIcon(R.drawable.shockedelete);
+                alertDialog.setMessage(context.getString(R.string.bancomuonxoa)+" "+listGiohang.get(i).getSanpham()+" "+context.getString(R.string.naykhong));
+                alertDialog.setIcon(R.drawable.ic_delete_sweep);
                 alertDialog.setTitle(context.getString(R.string.xoasp));
                 alertDialog.setPositiveButton(context.getString(R.string.co), new DialogInterface.OnClickListener() {
                     @Override

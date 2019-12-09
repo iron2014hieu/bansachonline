@@ -113,7 +113,7 @@
         <string name = "ve_trangchu"> Homepage </string>
         <string name = "gioitinh"> Gender </string>
         <string name = "ngaysinh"> Date of Birth </string>
-        <string name = "dienthoai"> Phone number </string>
+    <string name="dienthoai">Change PhoneNumber</string>
         <string name = "thietlapngay"> Set up now </string>
         <string name = "thaydoi_mk"> Set up now </string>
         <string name = "dangky_tk"> Sign Up Success </string>
@@ -292,6 +292,12 @@
 
     <string name="donhangvuadcchuyendi">Your order has been shipped.</string>
 
+    <string name="hoadonAdapter">bill</string>
     <string name="nhapten">Enter name</string>
+    <string name="capnhat">Update</string>
+    <string name="capnhat_sodienthoai">Update PhoneNumber</string>
+
+    <string name="sdtdatontai">You or someone else has already registered this phone number!</string>
+    <string name="suathanhcong">Update successful</string>
 </resources>
 

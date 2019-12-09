@@ -113,7 +113,7 @@
     <string name="ve_trangchu">Trang chủ</string>
     <string name="gioitinh">Giới tính</string>
     <string name="ngaysinh">Ngày sinh</string>
-    <string name="dienthoai">Điện thoại</string>
+    <string name="dienthoai">Thay đổi số điện thoại</string>
     <string name="thietlapngay">Thiết lập ngay</string>
     <string name="thaydoi_mk">Thiết lập ngay</string>
     <string name="dangky_tk">Đăng ký thành công</string>
@@ -286,6 +286,11 @@
 
     <string name="moinhanhang">Vừa được chuyển đi</string>
     <string name="donhangvuadcchuyendi">Đơn hàng của bạn vừa mới được chuyển đi.</string>
-
+    <string name="hoadonAdapter">Hóa đơn</string>
     <string name="nhapten">Nhập tên</string>
+    <string name="capnhat">Cập nhật</string>
+    <string name="capnhat_sodienthoai">Cập nhật số điện thoại</string>
+
+    <string name="sdtdatontai">Bạn hoặc ai đó đã đăng ký số điện thoại này!</string>
+    <string name="suathanhcong">Cập nhật thành công</string>
 </resources>

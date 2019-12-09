@@ -19,9 +19,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".Activity.CartListActivity"
-            android:screenOrientation="portrait"
-            ></activity>
+        <activity android:name=".LoginRegister.ChangePhoneActivity"></activity>
+        <activity
+            android:name=".Activity.CartListActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginRegister.NewPasswordActivity"
             android:screenOrientation="portrait" />

@@ -79,5 +79,5 @@
         android:layout_gravity="center"
         ads:adSize="BANNER"
         android:layerType="software"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"/>
+        ads:adUnitId="ca-app-pub-4271678036251490~7420544422"/>
 </LinearLayout>
