@@ -98,6 +98,8 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
     ImageButton img_like,img_unlike,btn_Share_fb;
     TextView txtDaban;
     Button btn_themvaogio;
+
+    String buttonNao ="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = new SharedPref(this);
@@ -213,6 +215,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
         btn_themvaogio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                buttonNao = "themvaogiao";
                 if (idUser!=null) {
                     if (soluong.equals("0")) {
                         CustomToast.makeText(getApplicationContext(), getString(R.string.sptamhet), (int) CustomToast.SHORT, CustomToast.CONFUSING, true).show();
@@ -231,6 +234,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
         btn_muangay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                buttonNao = "buttonmuangay";
                 if(soluong.equals("0")){
                     CustomToast.makeText(getApplicationContext(),getString(R.string.sptamhet), (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
                 }else {
@@ -349,6 +353,9 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
 
                                 if (success.equals("1")){
                                     CustomToast.makeText(getApplicationContext(),getString(R.string.dathemvaogh), (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();
+                                    if (!buttonNao.equals("themvaogiao")) {
+                                        startActivity(new Intent(getApplicationContext(), CartListActivity.class));
+                                    }
                                 }else {
 
                                 }
@@ -420,6 +427,9 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
                     public void onResponse(String response) {
                         if (response.equals("tc")){
                             CustomToast.makeText(getApplicationContext(),"Đã thêm vào giỏ hàng!", (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();
+                            if (!buttonNao.equals("themvaogiao")) {
+                                startActivity(new Intent(getApplicationContext(), CartListActivity.class));
+                            }
                         }
 
                     }
@@ -653,7 +663,6 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
         }else {
             //ThemDatmua(masach, tensach, linkImage, text, idUser);
             fetchBookDetails(masach, text);
-            startActivity(new Intent(getApplicationContext(), CartListActivity.class));
         }
     }
 
