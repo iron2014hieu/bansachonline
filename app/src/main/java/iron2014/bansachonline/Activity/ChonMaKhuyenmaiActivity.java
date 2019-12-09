@@ -12,12 +12,15 @@ import android.widget.FrameLayout;
 import iron2014.bansachonline.CartDetailActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.fragmentMain.TheloaiFragment;
+import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
 
 public class ChonMaKhuyenmaiActivity extends AppCompatActivity {
-
+    SharedPref sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPref = new SharedPref(this);
+        theme();
         setContentView(R.layout.activity_chon_ma_khuyenmai);
 
         // Create new fragment and transaction
@@ -36,5 +39,10 @@ public class ChonMaKhuyenmaiActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         startActivity(new Intent(getApplicationContext(), CartDetailActivity.class));
+    }
+    public  void theme(){
+        if (sharedPref.loadNightModeState() == true){
+            setTheme(R.style.darktheme);
+        }else setTheme(R.style.AppTheme);
     }
 }
