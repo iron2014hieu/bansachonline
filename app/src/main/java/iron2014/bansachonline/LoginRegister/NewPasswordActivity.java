@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import iron2014.bansachonline.CustomToast;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.URL.UrlSql;
 import iron2014.bansachonline.nighmode_vanchuyen.SharedPref;
@@ -65,12 +66,12 @@ public class NewPasswordActivity extends AppCompatActivity {
 
 
                 if (newPass.isEmpty() || reNewPass.isEmpty()){
-                    Toast.makeText(getApplicationContext(), getString(R.string.vuilongnhapmatkhau), Toast.LENGTH_SHORT).show();
+                    CustomToast.makeText(getApplicationContext(),getString(R.string.vuilongnhapmatkhau), (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
                 }
                 else if (!PASSWORD_PATTERN.matcher(newPass).matches()) {
                     enterNewPass.setError(getString(R.string.coktydbsochu));
                 }else if (!newPass.equals(reNewPass)){
-                    Toast.makeText(getApplicationContext(), getString(R.string.matkhkokhop), Toast.LENGTH_SHORT).show();
+                    CustomToast.makeText(getApplicationContext(),getString(R.string.matkhkokhop), (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
                 }
                 else {
                     ChangePassword();
@@ -87,7 +88,7 @@ public class NewPasswordActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
                             if (success.equals("1")){
-                                Toast.makeText(NewPasswordActivity.this,getString(R.string.thaydoithanhc), Toast.LENGTH_SHORT).show();
+                                CustomToast.makeText(getApplicationContext(),getString(R.string.thaydoithanhc), (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();
                                 Intent intent = new Intent(getApplicationContext(),ProfileActivity.class);
                                 startActivity(intent);
                             }

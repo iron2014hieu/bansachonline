@@ -69,7 +69,7 @@ public class ChitiethoadonActivity extends AppCompatActivity {
         cthdAdapter = new CTHDAdapter(this, cthdList);
 
         StaggeredGridLayoutManager gridLayoutManagerVeticl =
-                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
         recyclerView_cthd.setLayoutManager(gridLayoutManagerVeticl);
         recyclerView_cthd.setHasFixedSize(true);
 

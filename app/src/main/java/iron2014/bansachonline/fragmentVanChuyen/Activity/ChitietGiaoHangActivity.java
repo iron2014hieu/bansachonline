@@ -129,7 +129,7 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
         cthdAdapter = new CTHDAdapter(this, cthdList);
         fetchcthdbymahd(mahd);
         StaggeredGridLayoutManager gridLayoutManagerVeticl =
-                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(gridLayoutManagerVeticl);
         recyclerView.setHasFixedSize(true);
 

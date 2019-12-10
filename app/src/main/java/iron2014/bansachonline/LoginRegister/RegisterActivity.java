@@ -69,7 +69,8 @@ public class RegisterActivity extends AppCompatActivity {
                 final String email = edtEmail.getText().toString().trim();
                 final String password = edtPassword.getText().toString().trim();
                 if (name.isEmpty() || email.isEmpty() || password.isEmpty()){
-                    Toast.makeText(RegisterActivity.this, getString(R.string.nhapdaydutt), Toast.LENGTH_SHORT).show();
+                    CustomToast.makeText(getApplicationContext(),getString(R.string.nhapdaydutt), (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
+
                     loading.setVisibility(View.GONE);
                     btnRegis.setVisibility(View.VISIBLE);
                 }else if (edtName.length()>10){
@@ -84,11 +85,12 @@ public class RegisterActivity extends AppCompatActivity {
                 }else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
                     loading.setVisibility(View.GONE);
 //                    edtPassword.setError("Mật khẩu quá ngắn hoặc phải có kí tự đặc biệt");
-                    Toast.makeText(RegisterActivity.this,getString(R.string.ngandbsocc), Toast.LENGTH_SHORT).show();
+                    CustomToast.makeText(getApplicationContext(),getString(R.string.ngandbsocc), (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
+
                     btnRegis.setVisibility(View.VISIBLE);
                 }else if (!password.equals(rePass)){
                     btnRegis.setVisibility(View.VISIBLE);
-                    Toast.makeText(RegisterActivity.this, getString(R.string.mkkhongkhop), Toast.LENGTH_SHORT).show();
+                    CustomToast.makeText(getApplicationContext(),getString(R.string.mkkhongkhop), (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
                     loading.setVisibility(View.GONE);
                 }
                 else {
@@ -124,13 +126,14 @@ public class RegisterActivity extends AppCompatActivity {
                                 if (success.equals("1")){
                                     loading.setVisibility(View.GONE);
                                     btnRegis.setVisibility(View.VISIBLE);
-                                    Toast.makeText(RegisterActivity.this, getString(R.string.dangky_tk), Toast.LENGTH_SHORT).show();
+                                    CustomToast.makeText(getApplicationContext(),getString(R.string.dangky_tk), (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();
                                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                                     intent.putExtra("email", email);
                                     intent.putExtra("password", password);
                                     startActivity(intent);
                                 }else {
                                     btnRegis.setVisibility(View.VISIBLE);
+                                    loading.setVisibility(View.GONE);
                                     CustomToast.makeText(getApplicationContext(),getString(R.string.dangkytb), (int) CustomToast.LONG,CustomToast.ERROR,true).show();
                                 }
                             }else {

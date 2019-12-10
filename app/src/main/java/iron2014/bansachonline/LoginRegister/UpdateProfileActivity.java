@@ -90,7 +90,7 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
                 final String ngaysinh1 = edtNgaySinh.getText().toString();
 //                final String phone1 = edtSdtUser.getText().toString();
                 if (name1.isEmpty() || address1.isEmpty() || sex1.isEmpty()){
-                    CustomToast.makeText(getApplicationContext(),"Bạn còn bỏ sót thông tin kìa!", (int) CustomToast.SHORT,CustomToast.WARNING,true).show();finish();
+                    CustomToast.makeText(getApplicationContext(),"Bạn còn bỏ sót thông tin kìa!", (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
                 }else {
 //                    if (phone1.length() != 10) {
 //                        edtSdtUser.setError("Số điện thoại phải có 10 số.");
@@ -103,6 +103,16 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
         });
 
         radioGroup = findViewById(R.id.rg);
+
+        if (edtGioiTinh!=null){
+            if (sex.equals("Nam") || sex.equals("Male") ){
+                radioGroup.check(R.id.rb_nam);
+            }else if (sex.equals("Nữ") || sex.equals("Female"))
+            {
+                radioGroup.check(R.id.rb_nu);
+            }
+        }
+
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -145,7 +155,7 @@ private void saveDetail(final String strid, final String strname, final String s
                 public void onResponse(String response) {
                     if (response.equals("1")){
                         finish();
-                        CustomToast.makeText(getApplicationContext(),"Sửa thành công", (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();finish();
+                        CustomToast.makeText(getApplicationContext(),getString(R.string.suathanhcong), (int) CustomToast.SHORT,CustomToast.SUCCESS,true).show();
                     }else {
                         CustomToast.makeText(getApplicationContext(),"Sửa thất bại", (int) CustomToast.SHORT,CustomToast.WARNING,true).show();
 
