@@ -290,7 +290,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
         btn_Share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = "https://play.google.com/store/audiobooks/details/Max_Gladstone_Bookburners_The_Complete_Season_2?id=AQAAAEDMAm1CsM&hl=vi";
+                String text = "https://play.google.com/store/apps/details?id=app.sachnoi&hl=vi";
                 // sharing intent
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
