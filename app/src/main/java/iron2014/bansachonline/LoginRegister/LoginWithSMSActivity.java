@@ -153,7 +153,7 @@ public class LoginWithSMSActivity extends AppCompatActivity {
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            Toast.makeText(LoginWithSMSActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(LoginWithSMSActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     };
     private void LoginWithphone(final String phone){
@@ -209,7 +209,6 @@ public class LoginWithSMSActivity extends AppCompatActivity {
     private void updateDevicesToken(final String islogin,final String mauser){
 
         if (token == null) {
-            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -228,7 +227,7 @@ public class LoginWithSMSActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }) {
 

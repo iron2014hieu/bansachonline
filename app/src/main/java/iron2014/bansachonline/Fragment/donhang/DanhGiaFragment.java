@@ -74,10 +74,11 @@ public class DanhGiaFragment extends Fragment {
                 String tinhtrang = theloai.getTinhtrang();
                 String tongtien = String.valueOf(theloai.getTongtien());
                 String mauser = String.valueOf(theloai.getMauser());
+                String ngayxuat = theloai.getNgayxuat();
 
 
                 sessionManager.createSessionGuimatheloai(id,ten);
-                Intent intent = new Intent(getContext(), Chitiethoadon_RatingActivity.class);
+                Intent intent = new Intent(getContext(), ChitiethoadonActivity.class);
                 intent.putExtra("mahoadon", id);
                 intent.putExtra("tenkh", ten);
                 intent.putExtra("diachi", diachi);
@@ -85,6 +86,7 @@ public class DanhGiaFragment extends Fragment {
                 intent.putExtra("tinhtrang", tinhtrang);
                 intent.putExtra("tongtien", tongtien);
                 intent.putExtra("mauser", mauser);
+                intent.putExtra("ngayxuat",ngayxuat);
                 startActivity(intent);
             }
 

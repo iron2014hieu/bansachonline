@@ -43,13 +43,13 @@ import retrofit2.Callback;
 
 public class ChitietVanChuyenActivity extends AppCompatActivity {
 
-    TextView tvMaHD, tvTenKH, tvDiaChi, tvSDT, tvTongTien, tvTinhTrang;
+    TextView tvMaHD, tvTenKH, tvDiaChi, tvSDT, tvTongTien, tvTinhTrang,tvNgaydathang;
     Button btnNhanhang;
     RecyclerView recyclerView;
     List<CTHD> cthdList = new ArrayList<>();
     CTHDAdapter cthdAdapter;
     ApiInTerFaceHoadon apiInTerFaceHoadon;
-    public static String mahd, tenkh, diachi, sdt, tongtien, tinhtrang, mauser;
+    public static String mahd, tenkh, diachi, sdt, tongtien, tinhtrang, mauser, ngayxuat;
 
     String URL_UDATE = "https://bansachonline.xyz/bansach/hoadon/update_hoadon_tinhtrang.php";
     @Override
@@ -57,7 +57,7 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chitiet_van_chuyen);
         recyclerView = findViewById(R.id.recyclerview_xacnhadonhang);
-
+        tvNgaydathang = findViewById(R.id.tvNgaydathang);
         btnNhanhang = findViewById(R.id.btnNhanhang);
 
         tvMaHD = findViewById(R.id.tvmaHD);
@@ -74,6 +74,7 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
         tongtien = intent.getStringExtra("tongtien");
         tinhtrang = intent.getStringExtra("tinhtrang");
         mauser = intent.getStringExtra("mauser");
+        ngayxuat = intent.getStringExtra("ngayxuat");
 
         if (tinhtrang!=null&&tinhtrang.equals("danhgia")){
             btnNhanhang.setVisibility(View.GONE);
@@ -83,6 +84,7 @@ public class ChitietVanChuyenActivity extends AppCompatActivity {
         tvSDT.setText(sdt);
         tvTongTien.setText(tongtien);
         tvTinhTrang.setText(tinhtrang);
+        tvNgaydathang.setText(ngayxuat);
 
         if (tinhtrang.equals("choxacnhan")){
             tvTinhTrang.setText(getString(R.string.choxacnhan));

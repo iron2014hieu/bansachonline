@@ -50,7 +50,7 @@ import retrofit2.Callback;
 
 public class ChitietGiaoHangActivity extends AppCompatActivity {
 
-    TextView tvMaHD, tvTenKH, tvDiaChi, tvSDT, tvTongTien, tvTinhTrang;
+    TextView tvMaHD, tvTenKH, tvDiaChi, tvSDT, tvTongTien, tvTinhTrang, tvNgaydathang;
     Button btnGiaoHang;
     RecyclerView recyclerView;
     List<CTHD> cthdList = new ArrayList<>();
@@ -62,7 +62,7 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     Calendar defaultTime = Calendar.getInstance();
 
-    String now ;
+    String now , ngayxuat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +76,7 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
         tvSDT = findViewById(R.id.tvSDT);
         tvTongTien = findViewById(R.id.tvTongTien);
         tvTinhTrang = findViewById(R.id.tvTinhTrang);
-
+        tvNgaydathang = findViewById(R.id.tvNgaydathang);
 
         btnGiaoHang = findViewById(R.id.btnGiaoHang);
 
@@ -89,11 +89,13 @@ public class ChitietGiaoHangActivity extends AppCompatActivity {
         tongtien = intent.getStringExtra("tongtien");
         tinhtrang = intent.getStringExtra("tinhtrang");
         mauser = intent.getStringExtra("mauser");
+        ngayxuat = intent.getStringExtra("ngayxuat");
         tvTenKH.setText(tenkh);
         tvDiaChi.setText(diachi);
         tvSDT.setText(sdt);
         tvTongTien.setText(tongtien);
         tvTinhTrang.setText(tinhtrang);
+        tvNgaydathang.setText(ngayxuat);
 
         if(tinhtrang.equals("danhgia")){
             tvTinhTrang.setText(getString(R.string.dagiaohang));

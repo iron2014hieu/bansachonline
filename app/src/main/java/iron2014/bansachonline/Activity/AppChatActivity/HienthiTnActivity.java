@@ -6,6 +6,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,10 +35,12 @@ public class HienthiTnActivity extends AppCompatActivity {
     List<Modeltinnhan> modeltinnhanList;
     Adaptertinnhan adaptertinnhan;
     Button btnsendmess;
+    ImageButton btnSendOK;
     DatabaseReference mData;
     EditText editsendmesss;
     SessionManager sessionManager;
     SharedPref sharedPref;
+    String camxuc ="\uD83D\uDE06";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +50,7 @@ public class HienthiTnActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerview_tn);
         btnsendmess = findViewById(R.id.btnSendMsg);
         editsendmesss = findViewById(R.id.etMessage);
+        btnSendOK=findViewById(R.id.btnSendOK);
         if (editsendmesss.getText().toString().isEmpty()){
             btnsendmess.setVisibility(View.GONE);
         }
@@ -62,16 +66,16 @@ public class HienthiTnActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!s.equals("")){
                     btnsendmess.setVisibility(View.VISIBLE);
-                }else if (s.equals("")){
+                    btnSendOK.setVisibility(View.GONE);
+                }
+                if (editsendmesss.getText().toString().isEmpty()){
                     btnsendmess.setVisibility(View.GONE);
+                    btnSendOK.setVisibility(View.VISIBLE);
                 }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.equals("")){
-                    btnsendmess.setVisibility(View.GONE);
-                }
             }
         });
         btnsendmess.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +93,23 @@ public class HienthiTnActivity extends AppCompatActivity {
                 mData.child("Message").push().setValue(modeltinnhan);
                 editsendmesss.setText("");
                 btnsendmess.setVisibility(View.GONE);
+            }
+        });
+        btnSendOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email;
+                sessionManager = new SessionManager(HienthiTnActivity.this);
+                HashMap<String,String> user = sessionManager.getUserDetail();
+                email= user.get(sessionManager.EMAIL);
+
+                mData = FirebaseDatabase.getInstance().getReference();
+                String text_send_message = camxuc;
+
+                Modeltinnhan modeltinnhan = new Modeltinnhan(email,text_send_message,"trieu","1");
+                mData.child("Message").push().setValue(modeltinnhan);
+                //editsendmesss.setText("");
+//                btnSendOK.setVisibility(View.GONE);
             }
         });
         modeltinnhanList = new ArrayList<>();

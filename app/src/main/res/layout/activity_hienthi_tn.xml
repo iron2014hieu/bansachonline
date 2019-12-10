@@ -51,14 +51,25 @@
             android:layout_weight="0.72"
             android:ems="10"
             android:maxHeight="80dp" />
-
-        <Button
-            android:id="@+id/btnSendMsg"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/ic_send_black_24dp"
-            />
+            android:layout_alignParentRight="true">
+            <Button
+                android:id="@+id/btnSendMsg"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_send_black_24dp"
+                />
+            <ImageButton
+                android:id="@+id/btnSendOK"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:src="@drawable/smiling"
+                />
+        </RelativeLayout>
+
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

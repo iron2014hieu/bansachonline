@@ -28,7 +28,6 @@ import java.util.Map;
 
 import iron2014.bansachonline.ApiRetrofit.ApiClient;
 import iron2014.bansachonline.ApiRetrofit.InTerFace.ApiInTerFaceHoadon;
-import iron2014.bansachonline.MainActivity;
 import iron2014.bansachonline.MuahangActivity;
 import iron2014.bansachonline.R;
 import iron2014.bansachonline.URL.UrlSql;
@@ -46,10 +45,11 @@ public class ChitiethoadonActivity extends AppCompatActivity {
     List<CTHD> cthdList = new ArrayList<>();
     CTHDAdapter cthdAdapter;
     ApiInTerFaceHoadon apiInTerFaceHoadon;
-    public static String mahd, tinhtrang, tenkh, diachi, sdt, tongtien;
+    public static String mahd, tinhtrang, tenkh, diachi, sdt, tongtien,ngayxuat;
     SharedPref sharedPref;
     String URL_UDATE = "https://bansachonline.xyz/bansach/hoadon/update_hoadon_tinhtrang.php";
     String idcthd;
+    TextView tvngaydat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +65,7 @@ public class ChitiethoadonActivity extends AppCompatActivity {
         diachi = intent.getStringExtra("diachi");
         sdt = intent.getStringExtra("sdt");
         tongtien = intent.getStringExtra("tongtien");
+        ngayxuat = intent.getStringExtra("ngayxuat");
         cthdAdapter = new CTHDAdapter(this, cthdList);
 
         StaggeredGridLayoutManager gridLayoutManagerVeticl =
@@ -72,16 +73,13 @@ public class ChitiethoadonActivity extends AppCompatActivity {
         recyclerView_cthd.setLayoutManager(gridLayoutManagerVeticl);
         recyclerView_cthd.setHasFixedSize(true);
 
-        tvTenkhachhang = findViewById(R.id.tvTenkhachhang);
-        tvdiachiKh = findViewById(R.id.tvdiachiKh);
-        tvsdtKH = findViewById(R.id.tvsdtKH);
-        tvtinhtrangsp = findViewById(R.id.tvtinhtrangsp);
-        tvtongtienKH = findViewById(R.id.tvtongtienKH);
+
         tvtinhtrangsp.setText(tinhtrang);
         tvTenkhachhang.setText(tenkh);
         tvdiachiKh.setText(diachi);
         tvtongtienKH.setText(tongtien);
         tvsdtKH.setText(sdt);
+        tvngaydat.setText(ngayxuat);
 
         lnThongtin = findViewById(R.id.lnThongtin);
 
@@ -216,6 +214,12 @@ public class ChitiethoadonActivity extends AppCompatActivity {
         requestQueue.add(request);
     }
     private void Anhxa(){
+        tvTenkhachhang = findViewById(R.id.tvTenkhachhang);
+        tvdiachiKh = findViewById(R.id.tvdiachiKh);
+        tvsdtKH = findViewById(R.id.tvsdtKH);
+        tvtinhtrangsp = findViewById(R.id.tvtinhtrangsp);
+        tvtongtienKH = findViewById(R.id.tvtongtienKH);
         recyclerView_cthd = findViewById(R.id.recyclerview_cthd);
+        tvngaydat = findViewById(R.id.tvngaydat);
     }
 }

@@ -108,7 +108,7 @@ public class ViewBookActivity extends AppCompatActivity {
                                 }).onPageError(new OnPageErrorListener() {
                                     @Override
                                     public void onPageError(int page, Throwable t) {
-                                        Toast.makeText(ViewBookActivity.this, "Error while open page: "+page, Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(ViewBookActivity.this, "Error while open page: "+page, Toast.LENGTH_SHORT).show();
                                     }
                                 }).onPageChange(new OnPageChangeListener() {
                                     @Override
@@ -133,7 +133,7 @@ public class ViewBookActivity extends AppCompatActivity {
 
                             @Override
                             public void onError(FileLoadRequest request, Throwable t) {
-                                Toast.makeText(ViewBookActivity.this, " Error :"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(ViewBookActivity.this, " Error :"+t.getMessage(), Toast.LENGTH_SHORT).show();
                                 Log.e("lỗi load pdf", t.getMessage());
                                 progressBar.setVisibility(View.GONE);
                             }
@@ -181,7 +181,7 @@ public class ViewBookActivity extends AppCompatActivity {
                         }).onPageError(new OnPageErrorListener() {
                             @Override
                             public void onPageError(int page, Throwable t) {
-                                Toast.makeText(ViewBookActivity.this, "Error while open page: "+page, Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(ViewBookActivity.this, "Error while open page: "+page, Toast.LENGTH_SHORT).show();
                             }
                         }).onPageChange(new OnPageChangeListener() {
                             @Override
@@ -208,7 +208,7 @@ public class ViewBookActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(FileLoadRequest request, Throwable t) {
-                        Toast.makeText(ViewBookActivity.this, "Eror:  "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(ViewBookActivity.this, "Eror:  "+t.getMessage(), Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.GONE);
                     }
                 });

@@ -147,6 +147,28 @@
                     android:padding="15dip"
                     android:gravity="center"/>
             </TableRow>
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+                <TextView
+                    android:textSize="18dp"
+                    android:textStyle="normal"
+                    android:layout_weight="1"
+                    android:background="?attr/cardbackground"
+                    android:textColor="#3F51B5"
+                    android:padding="15dip"
+                    android:text="@string/ngaydat"/>
+                <TextView
+                    android:textSize="18dp"
+                    android:textStyle="normal"
+                    android:id="@+id/tvNgaydathang"
+                    android:layout_weight="1"
+                    android:background="?attr/cardbackground"
+                    android:text="@string/thietlapngay"
+                    android:textColor="?attr/textcolor"
+                    android:padding="15dip"
+                    android:gravity="center"/>
+            </TableRow>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_xacnhadonhang"
             android:layout_width="match_parent"

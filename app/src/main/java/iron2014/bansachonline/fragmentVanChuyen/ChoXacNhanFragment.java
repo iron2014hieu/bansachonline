@@ -67,8 +67,8 @@ public class ChoXacNhanFragment extends Fragment {
             String sdt = theloai.getSdt();
             String tinhtrang = theloai.getTinhtrang();
             String tongtien = String.valueOf(theloai.getTongtien());
-
             String mauser = String.valueOf(theloai.getMauser());
+            String ngayxuat = theloai.getNgayxuat();
 
             sessionManager.createSessionGuimatheloai(id,ten);
             Intent intent = new Intent(getContext(), ChitietVanChuyenActivity.class);
@@ -78,8 +78,8 @@ public class ChoXacNhanFragment extends Fragment {
             intent.putExtra("sdt", sdt);
             intent.putExtra("tinhtrang", tinhtrang);
             intent.putExtra("tongtien", tongtien);
-
             intent.putExtra("mauser", mauser);
+            intent.putExtra("ngayxuat", ngayxuat);
             startActivity(intent);
 
             }

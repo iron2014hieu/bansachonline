@@ -299,5 +299,6 @@
 
     <string name="sdtdatontai">You or someone else has already registered this phone number!</string>
     <string name="suathanhcong">Update successful</string>
+    <string name="ngaydat">order date</string>
 </resources>
 

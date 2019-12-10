@@ -55,6 +55,7 @@ public class Adaptertinnhan extends RecyclerView.Adapter<Adaptertinnhan.viewHold
 
         String mai = modeltinnhanList.get(position).getSender();
 
+
     }
     @Override
     public int getItemCount() {

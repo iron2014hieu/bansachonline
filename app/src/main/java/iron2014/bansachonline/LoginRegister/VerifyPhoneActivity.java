@@ -58,16 +58,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                     return;
                 }else {
                     LoginWithphone(number);
-//                    if (check == false){
-//                        Toast.makeText(VerifyPhoneActivity.this, "Số "+number+" chưa được đăng ký!"+check, Toast.LENGTH_SHORT).show();
-//                    }else {
-//                        String phoneNumber = "+" + code + number;
-//                        Toast.makeText(VerifyPhoneActivity.this, ""+check, Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(VerifyPhoneActivity.this, LoginWithSMSActivity.class);
-//                        intent.putExtra("phonenumber", phoneNumber);
-//                        intent.putExtra("sodienthoai", editText.getText().toString());
-//                        startActivity(intent);
-//                    }
+
                 }
 
 
