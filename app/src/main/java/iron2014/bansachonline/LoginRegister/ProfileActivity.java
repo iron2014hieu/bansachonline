@@ -165,6 +165,7 @@ public void doisdt(View view) {
                                 if (success.equals("1")) {
                                     CustomToast.makeText(getApplicationContext(), getString(R.string.suathanhcong), (int) CustomToast.SHORT, CustomToast.SUCCESS, true).show();
                                     recreate();
+                                    dialog.dismiss();
                                 } else {
                                    // CustomToast.makeText(getApplicationContext(), "Sửa thất bại", (int) CustomToast.SHORT, CustomToast.WARNING, true).show();
 
