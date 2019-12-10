@@ -1,6 +1,9 @@
 package iron2014.bansachonline.Activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,8 +38,11 @@ import com.facebook.FacebookSdk;
 import com.facebook.share.Sharer;
 import com.facebook.share.model.ShareHashtag;
 import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareDialog;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -82,6 +88,7 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
 
     CallbackManager callbackManager;
     ShareDialog shareDialog;
+
     String idUser, name, quyen;
     private Double giabansach = 0.0;
     private Float diemdanhgia;
@@ -100,6 +107,32 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
     Button btn_themvaogio;
 
     String buttonNao ="";
+
+    Target target = new Target() {
+        @Override
+        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+            SharePhoto sharePhoto = new SharePhoto.Builder()
+                    .setBitmap(bitmap)
+                    .build();
+            if (ShareDialog.canShow(SharePhotoContent.class))
+            {
+                SharePhotoContent content = new SharePhotoContent.Builder()
+                        .addPhoto(sharePhoto)
+                        .build();
+                shareDialog.show(content);
+            }
+        }
+
+        @Override
+        public void onBitmapFailed(Drawable errorDrawable) {
+
+        }
+
+        @Override
+        public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = new SharedPref(this);
@@ -274,15 +307,44 @@ public class BookDetailActivity extends AppCompatActivity implements ExampleBott
         btn_Share_fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ShareDialog.canShow(ShareLinkContent.class)) {
+                // create call back
+                shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+                    @Override
+                    public void onSuccess(Sharer.Result result) {
+                        Toast.makeText(BookDetailActivity.this, "Share ss", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Toast.makeText(BookDetailActivity.this, "Share cc", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onError(FacebookException error) {
+                        Toast.makeText(BookDetailActivity.this, "Share er "+error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+//                Drawable myDrawable  = img_book.getDrawable();
+//                Bitmap bitmap = ((BitmapDrawable) myDrawable).getBitmap();
+//                SharePhoto sharePhoto1 = new SharePhoto.Builder()
+//                        .setBitmap(bitmap)
+//                        .build();
+                try {
                     ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                            .setContentUrl(Uri.parse("http://developers.facebook.com/android"))
-                            .setShareHashtag((new ShareHashtag.Builder()
-                                    .setHashtag("#ConnectTheWorld")
-                                    .build()))
+                            .setQuote("\uD83D\uDE00 \uD83E\uDD23 cảm thấy tuyệt vời!")
+                            .setContentUrl(Uri.parse("https://play.google.com/store/apps/details?id=app.sachnoi&hl=vi"))
+                            .setShareHashtag(new ShareHashtag.Builder()
+                                    .setHashtag("#bansachonline")
+                                    .build())
                             .build();
-                    shareDialog.show(linkContent);
-                }
+
+                    if (shareDialog.canShow(ShareLinkContent.class)){
+                        shareDialog.show(linkContent);
+                    }
+                }catch (Exception e){}
+
             }
         });
 

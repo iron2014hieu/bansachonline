@@ -25,6 +25,7 @@ public class Adaptertinnhan extends RecyclerView.Adapter<Adaptertinnhan.viewHold
     List<Modeltinnhan> modeltinnhanList;
     SessionManager sessionManager;
     String email;
+    String mai;
 
     public Adaptertinnhan(Context context, List<Modeltinnhan> modeltinnhanList) {
         this.context = context;
@@ -51,6 +52,9 @@ public class Adaptertinnhan extends RecyclerView.Adapter<Adaptertinnhan.viewHold
 
         holder.txt_noidung.setText(modeltinnhanList.get(position).getNoidung());
         holder.txt_emaill.setText(modeltinnhanList.get(position).getSender());
+
+        String mai = modeltinnhanList.get(position).getSender();
+
     }
     @Override
     public int getItemCount() {
@@ -72,11 +76,12 @@ public class Adaptertinnhan extends RecyclerView.Adapter<Adaptertinnhan.viewHold
 
     @Override
     public int getItemViewType(int position) {
-//        if (modeltinnhanList.get(position).getSender().equals(email)){
-//            return phai;
-//        }else {
-//            return trai;
-//        }
-        return  1;
+            if (modeltinnhanList.get(position).getSender() != null && modeltinnhanList.get(position).getSender().equals(email)){
+                return phai;
+            }else {
+                return trai;
+            }
+
+//        return  1;
     }
 }
