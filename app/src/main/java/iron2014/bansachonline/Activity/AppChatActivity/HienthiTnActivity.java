@@ -53,17 +53,25 @@ public class HienthiTnActivity extends AppCompatActivity {
         editsendmesss.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                if (s.equals("")){
+                    btnsendmess.setVisibility(View.GONE);
+                }
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!s.equals("")){
                     btnsendmess.setVisibility(View.VISIBLE);
+                }else if (s.equals("")){
+                    btnsendmess.setVisibility(View.GONE);
                 }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (s.equals("")){
+                    btnsendmess.setVisibility(View.GONE);
+                }
             }
         });
         btnsendmess.setOnClickListener(new View.OnClickListener() {
