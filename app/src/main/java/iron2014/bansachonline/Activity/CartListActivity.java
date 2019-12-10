@@ -153,6 +153,7 @@ public class CartListActivity extends AppCompatActivity {
                                 Intent intent = new Intent(getBaseContext(), CartDetailActivity.class);
                                 sessionManager.createTongtien(txtTongtien.getText().toString().trim());
                                 startActivity(intent);
+
                             }
 
                         }
@@ -170,6 +171,9 @@ public class CartListActivity extends AppCompatActivity {
     public void onBackPressed() {
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
         finish();
+    }
+    public void recreate_gh() {
+        recreate();
     }
     public  void theme(){
         if (sharedPref.loadNightModeState() == true){

@@ -44,6 +44,8 @@ public class GetBookByTheloaiActivity extends AppCompatActivity {
     private ApiInTerFace apiInTerFace;
     private SessionManager sessionManager;
     SachAdapter sachAdapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +53,10 @@ public class GetBookByTheloaiActivity extends AppCompatActivity {
         theme();
         setContentView(R.layout.activity_get_book_by_theloai);
         Toolbar toolbar = findViewById(R.id.toolbar_theloai);
+        setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
+
+
 
 
         recyclerview_book=findViewById(R.id.recyclerview_book_bymatheloai);
@@ -148,6 +153,18 @@ public class GetBookByTheloaiActivity extends AppCompatActivity {
             }
         }));
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return  true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
     public void fetchBookbymatheloai(String maTheloai) {
         apiInTerFace = ApiClient.getApiClient().create(ApiInTerFace.class);
         Call<List<Books>> call = apiInTerFace.getBookbyMatheloai(maTheloai);

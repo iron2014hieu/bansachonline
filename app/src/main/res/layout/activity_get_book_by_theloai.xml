@@ -11,8 +11,9 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_theloai"
         app:title="@string/theloai"
-        app:titleTextColor="#fff"
-        android:background="#2196F3"
+        app:navigationIcon="@drawable/ic_vector_back"
+        app:titleTextColor="?attr/textcolor"
+        android:background="?attr/topbottomcolor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

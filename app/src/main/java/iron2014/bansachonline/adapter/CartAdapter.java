@@ -57,6 +57,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     public static int tongTien =0;
     int soluong =0;
     int tientungsach =0;
+
+    CartListActivity cartListActivity;
     public CartAdapter(Context context, List<DatMua> listGiohang) {
         this.context = context;
         this.listGiohang = listGiohang;
@@ -69,6 +71,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         view = LayoutInflater.from(context).inflate(R.layout.item_giohang, viewGroup, false);
         final MyViewHolder holder= new MyViewHolder(view);
         sessionManager = new SessionManager(context);
+        cartListActivity = new CartListActivity();
         return holder;
     }
 
